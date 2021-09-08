@@ -1,0 +1,37 @@
+{
+  "name": "project-catwalk",
+  "version": "1.0.0",
+  "description": "Team Sokka's Front End Capstone Project",
+  "main": "server/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TeamSokka/project-catwalk.git"
+  },
+  "keywords": [
+    "boomerang"
+  ],
+  "author": "Team Sokka",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TeamSokka/project-catwalk/issues"
+  },
+  "homepage": "https://github.com/TeamSokka/project-catwalk#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "jest": "^27.1.1",
+    "live-server": "^1.2.1",
+    "nodemon": "^2.0.12",
+    "puppeteer": "^10.2.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "sass": "^1.39.0",
+    "webpack-dev": "^1.1.1"
+  },
+  "devDependencies": {
+    "webpack": "^5.52.0",
+    "webpack-cli": "^4.8.0"
+  }
+}
