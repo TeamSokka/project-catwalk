@@ -6,7 +6,9 @@
 
 2. In your terminal, run the following script:
   ```
-  npm start
+  npm start - server
+  npm run react:dev
+
   ```
 
 3. Open localhost:3000 in the browser and you should see **Hello World!** if React is running correctly.
