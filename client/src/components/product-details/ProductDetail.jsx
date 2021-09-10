@@ -1,0 +1,1 @@
+//ProductDetail extends React.Component
