@@ -8,7 +8,7 @@ class ProductDetail extends React.Component {
 
   render() {
     return (
-      <div>Hello, World!</div>
+      <div>This will be the ProductDetail widget!</div>
     )
   }
 }
