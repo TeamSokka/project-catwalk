@@ -1,4 +1,5 @@
 import React from "react";
+import ReviewListEntry from "./reviewListEntry";
 
 class ReviewList extends React.Component {
   constructor(props) {
@@ -7,9 +8,17 @@ class ReviewList extends React.Component {
 
   render() {
     return (
-
+      <ReviewListEntry />
     )
   }
 }
 
 export default ReviewList;
+
+/*
+Star Rating               User Name + Date
+Review - first line
+Review - rest
+
+Helpful  Yes | Report
+*/

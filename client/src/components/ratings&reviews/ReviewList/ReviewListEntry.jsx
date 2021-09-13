@@ -7,7 +7,20 @@ class ReviewListEntry extends React.Component {
 
   render() {
     return (
-
+      <div>
+        <div>
+          Star Rating
+        </div>
+        <div>
+          User name
+        </div>
+        <div>
+          {new Date().toLocaleString() + ''}
+        </div>
+        <div>
+          review summary
+        </div>
+      </div>
     )
   }
 }

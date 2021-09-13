@@ -12,10 +12,9 @@ app.use(express.static(path.join(__dirname, '..', 'client/dist')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Main
-// Helper folder
-// divide main into widget components
 
+// Products
+// Reviews
 // REVIEWS WIDGET
 // GET /reviews/
 app.get('/reviews', (req, res) => {
@@ -66,8 +65,8 @@ app.put('/reviews/', (req, res) => {
   })
 })
 
-// Products
-// Reviews
+
+
 // Questions and Answers
 // Interactions
 
