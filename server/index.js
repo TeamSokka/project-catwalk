@@ -18,10 +18,11 @@ app.use(express.urlencoded({ extended: true }));
 
 // REVIEWS WIDGET
 // GET /reviews/
-app.get('/reviews/', (req, res) => {
+app.get('/reviews', (req, res) => {
   ratings.getReviews(req.body, (err, data) => {
     if (err) {
       console.log('Error app.get /reviews/ : ' + err);
+      res.status(404).send(err);
     } else {
       res.status(200).send(data);
     }
@@ -33,6 +34,7 @@ app.get('/reviews/meta', (req, res) => {
   ratings.getMetaReviews(req.body, (err, data) => {
     if (err) {
       console.log('Error app.get /reviews/meta : ' + err);
+      res.status(404).send(err);
     } else {
       res.status(200).send(data);
     }
@@ -44,8 +46,9 @@ app.post('/reviews', (req, res) => {
   ratings.postReviews((err, data) => {
     if (err) {
       console.log('Error app.post /reviews : ' + err);
+      res.status(404).send(err);
     } else {
-      res.status(201).send();
+      res.status(201).send(data);
     }
   })
 })
@@ -56,8 +59,9 @@ app.put('/reviews/', (req, res) => {
   ratings.putReviews(req.body, (err, data) => {
     if (err) {
       console.log('Error app.post /reviews/ : ' + err);
+      res.status(404).send(err);
     } else {
-      res.status(204).send();
+      res.status(204).send(data);
     }
   })
 })
