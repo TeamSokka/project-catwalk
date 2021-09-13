@@ -66,6 +66,10 @@ app.put('/reviews/', (req, res) => {
   })
 })
 
+// Products
+// Reviews
+// Questions and Answers
+// Interactions
 
 app.listen(PORT, () => {
   console.log(`Listening at localhost:${PORT}!`)
