@@ -12,6 +12,10 @@ app.use(express.static(path.join(__dirname, '..', 'client/dist')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Main
+// Helper folder
+// divide main into widget components
+
 // REVIEWS WIDGET
 // GET /reviews/
 app.get('/reviews/', (req, res) => {
@@ -48,10 +52,10 @@ app.post('/reviews', (req, res) => {
 
 // PUT /reviews/:review_id/helpful
 // PUT /reviews/:review_id/report
-app.put('/reviews/:review_id/', (req, res) => {
+app.put('/reviews/', (req, res) => {
   ratings.putReviews(req.body, (err, data) => {
     if (err) {
-      console.log('Error app.post /reviews/:review_id/ : ' + err);
+      console.log('Error app.post /reviews/ : ' + err);
     } else {
       res.status(204).send();
     }

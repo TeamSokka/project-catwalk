@@ -3,7 +3,7 @@
 // axios
 // config
 const axios = require('axios');
-const config = require('../config.js');
+const config = require('../../config');
 
 // GET reviews
 // GET metadata
