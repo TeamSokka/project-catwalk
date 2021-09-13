@@ -1,4 +1,5 @@
 import React from 'react';
+import Search from './Search.js';
 import QuestionList from './QuestionList.js';
 
 class QuestionsAndAnswers extends React.Component {
@@ -6,8 +7,9 @@ class QuestionsAndAnswers extends React.Component {
     super(props);
 
     this.state = {
-      query: '',
-      questions: []
+      search: '',
+      questions: [],
+      answers: []
     }
   }
 
@@ -21,6 +23,7 @@ class QuestionsAndAnswers extends React.Component {
     return(
       <div>
         <h3>QUESTIONS & ANSWERS</h3>
+        <Search search={this.state.search} />
         <QuestionList questions={this.state.questions} />
       </div>
     )
