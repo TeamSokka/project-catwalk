@@ -6,13 +6,15 @@ import ImageGallery from 'ImageGallery.jsx';
 import AddToCart from 'AddToCart.jsx';
 import ImageGallery from 'ImageGallery.jsx';
 
+import data from ('/dummy-data/data.js');
+
 class ProductDetail extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productInfo: {},
-      productStyles: {},
-      relatedProducts: []
+      productInfo: data.info,
+      productStyles: data.styles,
+      relatedProducts: data.related,
       selectedStyle: null,
       selectedSize: null
     }
