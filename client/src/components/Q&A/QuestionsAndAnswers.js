@@ -11,23 +11,26 @@ class QuestionsAndAnswers extends React.Component {
       questions: [],
       answers: []
     }
+    this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(e) {
     this.setState({
       [e.target.id]: e.target.value
     });
+    console.log(`${e.target.id}: ${e.target.value}`);
   }
 
   render() {
     return(
       <div>
         <h3>QUESTIONS & ANSWERS</h3>
-        <Search search={this.state.search} />
+        <Search search={this.state.search}
+        handleChange={this.handleChange} />
         <QuestionList questions={this.state.questions} />
       </div>
     )
   }
 }
 
-extend default QuestionsAndAnswers;
+export default QuestionsAndAnswers;
