@@ -1,4 +1,5 @@
 import React from 'react';
+import RelatedItems from './RelatedItems&OutfitCreation/RelatedItems';
 
 class App extends React.Component {
   constructor(props) {
@@ -7,7 +8,10 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>Hello World!</div>
+      // <div>Hello World!</div>
+      <div>
+        <RelatedItems />
+      </div>
     )
   }
 }
