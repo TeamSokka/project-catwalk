@@ -12,6 +12,7 @@
 
 # Runtime data
 client/dist/bundle.js
+config.js
 
 
 # User-specific files (MonoDevelop/Xamarin Studio)
