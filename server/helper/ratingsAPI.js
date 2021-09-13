@@ -5,7 +5,6 @@
 const axios = require('axios');
 const config = require('../config.js');
 
-
 // GET reviews
 // GET metadata
 
@@ -13,8 +12,9 @@ const config = require('../config.js');
 // http://example.com/page?parameter=value&also=another
 const getReviews = (body, callback) => {
   axios.get(
-    `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?product_id=${body.product_id}&page=${body.page}&count=${body.count}&sort=${body.sort}`, body, {
+    `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?product_id=${body.product_id}&page=${body.page}&count=${body.count}&sort=${body.sort}`, {
     headers: {
+      'User-Agent': 'request',
       Authorization: config.TOKEN,
     }
   })
@@ -29,8 +29,9 @@ const getReviews = (body, callback) => {
 }
 
 const getMetaReviews = (body, callback) => {
-  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta/?product_id=${body.product_id}`, body, {
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta/?product_id=${body.product_id}`, {
     headers: {
+      'User-Agent': 'request',
       Authorization: config.TOKEN,
     }
   })
@@ -92,6 +93,13 @@ const putReviews = (body, callback) => {
       console.log('Error putReviews API: ' + error);
       callback(error, null);
     })
+}
+
+module.exports = {
+  getReviews,
+  getMetaReviews,
+  postReviews,
+  putReviews
 }
 
 
