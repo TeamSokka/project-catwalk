@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 // GET Questions
 app.get('/qa/questions', (req, res) => {
   // console.log('product id', req.query);
-  let id = req.query.product_id;
+  let id = req.query.product_id || 40344;
   questions.getQuestions(id, (err, data) => {
     if (err) {
       res.status(400).send(err);

@@ -10,23 +10,28 @@ class QuestionsAndAnswers extends React.Component {
     this.state = {
       search: '',
       questions: [],
-      answers: []
-    }
+      answers: [],
+    };
     this.handleChange = this.handleChange.bind(this);
     this.getQuestions = this.getQuestions.bind(this);
   }
 
-  componentDidMount() {this.getQuestions()}
+  componentDidMount() {
+    this.getQuestions();
+  }
 
   getQuestions() {
-    axios.get('/qa/questions')
-    .then((res) =>
-    console.log('results ', res))
+    axios.get('/qa/questions').then((res) => {
+      console.log(res);
+      this.setState({
+        questions: res.data.results,
+      });
+    });
   }
 
   handleChange(e) {
     this.setState({
-      [e.target.id]: e.target.value
+      [e.target.id]: e.target.value,
     });
     console.log(`${e.target.id}: ${e.target.value}`);
   }
@@ -38,14 +43,13 @@ class QuestionsAndAnswers extends React.Component {
   // }
 
   render() {
-    return(
+    return (
       <div>
         <h3>QUESTIONS & ANSWERS</h3>
-        <Search search={this.state.search}
-        handleChange={this.handleChange} />
+        <Search search={this.state.search} handleChange={this.handleChange} />
         <QuestionList questions={this.state.questions} />
       </div>
-    )
+    );
   }
 }
 

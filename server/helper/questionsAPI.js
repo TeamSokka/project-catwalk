@@ -3,17 +3,22 @@ const config = require('../../config.js');
 
 const api = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp';
 
-const options = {
-  url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp',
-  headers: {
-    'User-Agent': 'request',
-    Authorization: `${config.TOKEN}`,
-  },
-};
+// const options = {
+//   url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp',
+//   headers: {
+//     'User-Agent': 'request',
+//     Authorization: `${config.TOKEN}`,
+//   },
+// };
 
 getQuestions = (id, callback) => {
   axios
-    .get(`${options}/qa/questions?product_id=${id}`)
+    .get(`${api}/qa/questions?product_id=${id}`, {
+      headers: {
+        'User-Agent': 'request',
+        Authorization: `${config.TOKEN}`,
+      },
+    })
     .then((res) => {
       console.log('data from response', res.data);
       callback(null, res.data);
