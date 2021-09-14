@@ -22,13 +22,13 @@ class ProductDetail extends React.Component {
   }
 
   getProductInfo(id) {
-    axios.get('/products/:product_id', {
+    axios.get(`/products/${this.state.currentProductId}`, {
       params: {
         product_id: id
       }
     })
       .then((res) => {
-        console.log('productInfo recd');
+        console.log('productInfo recd:', res.data);
         this.setState({
           productInfo: res.data
         });
@@ -39,15 +39,16 @@ class ProductDetail extends React.Component {
   }
 
   getStyles(id) {
-    axios.get('/products/:product_id/styles', {
+    axios.get(`/products/${this.state.currentProductId}/styles`, {
       params: {
         product_id: id
       }
     })
       .then((res) => {
-        console.log('styles recd');
+        console.log('styles recd:', res.data);
         this.setState({
-          styles: res.data
+          styles: res.data,
+          selectedStyle: res.data.results[0]
         })
       })
       .catch((err) => {
@@ -56,13 +57,13 @@ class ProductDetail extends React.Component {
   }
 
   getRelated(id) {
-    axios.get('/products/:product_id/related', {
+    axios.get(`/products/${this.state.currentProductId}/related`, {
       params: {
         product_id: id
       }
     })
       .then((res) => {
-        console.log('related products recd');
+        console.log('related products recd:', res.data);
         this.steState({
           related: res.data
         })
@@ -73,20 +74,20 @@ class ProductDetail extends React.Component {
   }
 
   componentDidMount() {
+    this.getProductInfo(this.state.currentProductId);
+    this.getStyles(this.state.currentProductId);
+    this.getRelated(this.state.currentProductId);
+    this.setState({
+      selectedStyle: this.state.styles[0]
+    });
     console.log('styles:', this.state.styles);
     console.log('selected style:', this.state.selectedStyle);
     console.log('photos:', this.state.selectedStyle.photos);
-    // this.getProductInfo(this.state.currentProductId);
-    // this.getStyles(this.state.currentProductId);
-    // this.getRelated(this.state.currentProductId);
-    // this.setState({
-    //   selectedStyle: this.state.styles[0]
-    // });
   }
 
   render() {
     return (
-      <div><h2>Product details</h2>
+      <div><h4>Product Details</h4>
         <ImageGallery
           photos={this.state.selectedStyle.photos}
           selectedphotoindex={this.state.selectedPhotoIndex}

@@ -11,22 +11,22 @@ const api = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp';
 //   }
 // };
 module.exports = {
-  getProducts: (callback) => {
-    axios
-      .get(`${api}/products`, {
-        headers: {
-          'User-Agent': 'request',
-          'Authorization': config.TOKEN
-        }
-      })
-      .then((res) => {
-        console.log('"GET all" processed. Response data:', res.data);
-        callback(null, res.data);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  },
+  // getProducts: (callback) => {
+  //   axios
+  //     .get(`${api}/products`, {
+  //       headers: {
+  //         'User-Agent': 'request',
+  //         'Authorization': config.TOKEN
+  //       }
+  //     })
+  //     .then((res) => {
+  //       console.log('"GET all" processed. Response data:', res.data);
+  //       callback(null, res.data);
+  //     })
+  //     .catch((err) => {
+  //       console.error(err);
+  //     });
+  // },
 
   getProductById: (id, callback) => {
     axios
@@ -74,5 +74,8 @@ module.exports = {
         console.log('GET related processed. Response data:', res.data);
         callback(null, res.data);
       })
+      .catch((err) => {
+        console.error(err);
+      });
   }
 }
