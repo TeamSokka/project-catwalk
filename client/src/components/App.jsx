@@ -15,6 +15,7 @@ class App extends React.Component {
     this.fetchMeta = this.fetchMeta.bind(this);
   }
 
+  // Get meta reviews
   fetchMeta() {
     const { productID } = this.state;
     axios.get(`/reviews/meta/?product_id=${productID}`)
