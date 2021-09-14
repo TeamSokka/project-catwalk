@@ -22,7 +22,8 @@ import React from 'react';
 
 var ImageGallery = (props) => (
   <div id="image-gallery">
-    <div className="main-image">
+    <im className="main-image" src={props.selectedstyle.photos[0].url}>
+    </im>
       <div>thumbnail 1</div>
       <div>thumbnail 2</div>
       <div>thumbnail 3</div>
@@ -30,7 +31,6 @@ var ImageGallery = (props) => (
       <div>thumbnail 5</div>
       <div>thumbnail 6</div>
       <div>thumbnail 7</div>
-    </div>
   </div>
 );
 

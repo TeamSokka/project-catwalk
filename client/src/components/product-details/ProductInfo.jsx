@@ -5,13 +5,13 @@ import React from 'react';
 var ProductInfo = (props) => (
   <div>
     <StarRating />
-    <span>CATEGORY</span>
-    <span>Product Title</span>
-    <span>$###</span>
-    <p><h3>Product Overview</h3>
-      This free form text field may exist on some items.  If it is available it should be displayed.
+    <span id="category">{props.productinfo.category}</span>
+    <span id="name">Product Title{props.productinfo.name}</span>
+    <span id="price">$###</span>
+    <p><h3>{props.productinfo.slogan}</h3>
+      {props.productinfo.description}
     </p>
-    <div>
+    <div>Share:
       <i>F</i>
       <i>T</i>
       <i>P</i>

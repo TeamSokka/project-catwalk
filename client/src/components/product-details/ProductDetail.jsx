@@ -6,15 +6,16 @@ import ImageGallery from 'ImageGallery.jsx';
 import AddToCart from 'AddToCart.jsx';
 import ImageGallery from 'ImageGallery.jsx';
 
-import data from ('/dummy-data/data.js');
+import data from ('/data/dummy-data.js');
 
 class ProductDetail extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       productInfo: data.info,
-      productStyles: data.styles,
+      styles: data.styles,
       relatedProducts: data.related,
+      reviews: [],
       selectedStyle: null,
       selectedSize: null
     }
@@ -22,7 +23,24 @@ class ProductDetail extends React.Component {
 
   render() {
     return (
-      <div>This will be the ProductDetail widget!</div>
+      <div>
+        <ImageGallery
+          productinfo={this.state.productInfo}
+          styles={this.state.styles}
+          selectedstyle={this.state.styles}
+        />
+        <div>
+          <ProductInfo
+            productinfo={this.state.productInfo}
+          />
+          <StyleSelector
+            selectedstyle={this.state.selectedStyle}
+          />
+          <AddToCart
+            selectedsize={this.state.selectedSize}
+          />
+        </div>
+      </div>
     )
   }
 };
