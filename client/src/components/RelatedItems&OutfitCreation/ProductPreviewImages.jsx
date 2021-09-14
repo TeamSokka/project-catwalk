@@ -7,9 +7,7 @@ class ProductPreviewImages extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1>Product Preview Images</h1>
-      </div>
+      <h1>Product Preview Images</h1>
     )
   }
 }

@@ -1,18 +1,38 @@
 import React from 'react';
 import ProductPreviewImages from './ProductPreviewImages';
 import ProductInformation from './ProductInformation';
+import './related-items.scss';
 
 class RelatedProductCards extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      isProductClicked: false
+    }
+  }
+
+  handleUpdateClickedProduct = () => {
+    console.log('hit the product img');
+    this.setState({
+      ...this.state,
+      isProductClicked: true
+    })
   }
 
   render() {
+    const { isProductClicked } = this.state;
+
     return (
-      <div>
+      <div id="related-product-card">
         <h1>Related Product Cards</h1>
-        <ProductPreviewImages />
-        <ProductInformation />
+          <div onClick={this.handleUpdateClickedProduct}className="product-card">
+
+            {isProductClicked ?
+              (<ProductInformation/>)
+            :
+              (<ProductPreviewImages/>)
+            }
+          </div>
       </div>
     )
   }
