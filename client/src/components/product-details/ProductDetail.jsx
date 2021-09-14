@@ -3,19 +3,21 @@ import React from 'react';
 import ImageGallery from './ImageGallery.jsx';
 import ProductInfo from './ProductInfo.jsx';
 import AddToCart from './AddToCart.jsx';
-import actios from 'axios';
+import axios from 'axios';
 import data from './data/dummy-data.js';
 
 class ProductDetail extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      currentProductId: 40344,
       productInfo: data.info,
-      styles: data.styles,
+      styles: data.styles.results,
       relatedProducts: data.related,
       reviews: [],
-      selectedStyle: null,
-      selectedSize: null
+      selectedStyle: data.styles.results[0],
+      selectedSize: null,
+      selectedPhotoIndex: 0
     }
   }
 
@@ -70,15 +72,26 @@ class ProductDetail extends React.Component {
       });
   }
 
+  componentDidMount() {
+    console.log('styles:', this.state.styles);
+    console.log('selected style:', this.state.selectedStyle);
+    console.log('photos:', this.state.selectedStyle.photos);
+    // this.getProductInfo(this.state.currentProductId);
+    // this.getStyles(this.state.currentProductId);
+    // this.getRelated(this.state.currentProductId);
+    // this.setState({
+    //   selectedStyle: this.state.styles[0]
+    // });
+  }
+
   render() {
     return (
-      <div>
+      <div><h2>Product details</h2>
         <ImageGallery
-          productinfo={this.state.productInfo}
-          styles={this.state.styles}
-          selectedstyle={this.state.styles}
+          photos={this.state.selectedStyle.photos}
+          selectedphotoindex={this.state.selectedPhotoIndex}
         />
-        <div>
+        {/* <div>
           <ProductInfo
             productinfo={this.state.productInfo}
           />
@@ -88,9 +101,9 @@ class ProductDetail extends React.Component {
           <AddToCart
             selectedsize={this.state.selectedSize}
           />
-        </div>
+        </div> */}
       </div>
-    )
+    );
   }
 };
 

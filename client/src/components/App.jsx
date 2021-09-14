@@ -1,5 +1,5 @@
 import React from 'react';
-import ProductDetail from './/product-details/ProductDetail.jsx';
+import ProductDetail from './product-details/ProductDetail.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -14,6 +14,6 @@ class App extends React.Component {
       </div>
     )
   }
-}
+};
 
 export default App;
