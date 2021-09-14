@@ -1,5 +1,5 @@
 import React from "react";
-import ReviewListEntry from "./reviewListEntry";
+import ReviewListEntry from "./ReviewListEntry";
 
 class ReviewList extends React.Component {
   constructor(props) {

@@ -1,5 +1,5 @@
 import React from 'react';
-import ReviewList from './reviewList/reviewList';
+import ReviewList from './ReviewList/ReviewList';
 
 const axios = require('axios');
 

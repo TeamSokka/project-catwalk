@@ -9,7 +9,7 @@ class ReviewListEntry extends React.Component {
     return (
       <div>
         <div>
-          Star Rating 1234456
+          Star Rating 123567
         </div>
         <div>
           User name
