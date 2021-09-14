@@ -16,9 +16,9 @@ app.use(express.urlencoded({ extended: true }));
 // Products
 // Reviews
 // REVIEWS WIDGET
-// GET /reviews/
+// GET /reviews/ - OK: localhost:3000/reviews?product_id=40344&page=1&count=5&sort="helpful"
 app.get('/reviews', (req, res) => {
-  ratings.getReviews(req.body, (err, data) => {
+  ratings.getReviews(req.query, (err, data) => {
     if (err) {
       console.log('Error app.get /reviews/ : ' + err);
       res.status(404).send(err);
@@ -28,9 +28,9 @@ app.get('/reviews', (req, res) => {
   });
 })
 
-// GET /reviews/meta
+// GET /reviews/meta - OK: localhost:3000/reviews/meta?product_id=40344
 app.get('/reviews/meta', (req, res) => {
-  ratings.getMetaReviews(req.body, (err, data) => {
+  ratings.getMetaReviews(req.query, (err, data) => {
     if (err) {
       console.log('Error app.get /reviews/meta : ' + err);
       res.status(404).send(err);
@@ -40,9 +40,33 @@ app.get('/reviews/meta', (req, res) => {
   });
 })
 
+/*
+{
+    "product_id": "40345",
+    "ratings": {
+        "2": "1",
+        "3": "1",
+        "4": "2",
+        "5": "8"
+    },
+    "recommended": {
+        "false": "2",
+        "true": "10"
+    },
+    "characteristics": {
+        "Quality": {
+            "id": 135223,
+            "value": "4.2000000000000000"
+        }
+    }
+}
+*/
+
+
 // POST /reviews
 app.post('/reviews', (req, res) => {
-  ratings.postReviews((err, data) => {
+  console.log(req);
+  ratings.postReviews(req.body, (err, data) => {
     if (err) {
       console.log('Error app.post /reviews : ' + err);
       res.status(404).send(err);
@@ -52,10 +76,11 @@ app.post('/reviews', (req, res) => {
   })
 })
 
+
 // PUT /reviews/:review_id/helpful
 // PUT /reviews/:review_id/report
-app.put('/reviews/', (req, res) => {
-  ratings.putReviews(req.body, (err, data) => {
+app.put(`/reviews/:review_id/:method`, (req, res) => {
+  ratings.putReviews(req, (err, data) => {
     if (err) {
       console.log('Error app.post /reviews/ : ' + err);
       res.status(404).send(err);
@@ -64,6 +89,7 @@ app.put('/reviews/', (req, res) => {
     }
   })
 })
+
 
 
 

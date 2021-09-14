@@ -7,36 +7,41 @@ const config = require('../../config');
 
 // GET reviews
 // GET metadata
-
+// 40344 - 40348
+// product id - req.query
 // https://app-hrsei-api.herokuapp.com/api/fec2/:CAMPUS_CODE/
 // http://example.com/page?parameter=value&also=another
-const getReviews = (body, callback) => {
+// `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?product_id=${body.product_id}&page=${body.page}&count=${body.count}&sort=${body.sort}`
+const getReviews = (query, callback) => {
+  // console.log(q);
+  // console.log(q.meta);
   axios.get(
-    `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?product_id=${body.product_id}&page=${body.page}&count=${body.count}&sort=${body.sort}`, {
-    headers: {
-      'User-Agent': 'request',
-      Authorization: config.TOKEN,
-    }
-  })
+    `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews?product_id=${query.product_id}&page=${query.page}&count=${query.count}&sort=${query.sort}`,
+    {
+      headers: {
+        'User-Agent': 'request',
+        'Authorization': config.TOKEN,
+      },
+    })
     .then((response) => {
-      console.log('getReviews API data: ' + response.data);
+      console.log('getReviews API data: ' + response);
       callback(null, response.data);
     })
     .catch((error) => {
       console.log('Error getReviews API: ' + error);
       callback(error, null);
     })
-}
+};
 
-const getMetaReviews = (body, callback) => {
-  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta/?product_id=${body.product_id}`, {
+const getMetaReviews = (query, callback) => {
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta/?product_id=${query.product_id}`, {
     headers: {
       'User-Agent': 'request',
-      Authorization: config.TOKEN,
+      'Authorization': config.TOKEN,
     }
   })
     .then((response) => {
-      console.log('getMetaReviews API data: ' + response.data);
+      console.log('getMetaReviews API data: ' + response);
       callback(null, response.data);
     })
     .catch((error) => {
@@ -52,13 +57,13 @@ POST /reviews
 Response: Status: 201 CREATED
 */
 const postReviews = (body, callback) => {
-  axios.put('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews', body, {
+  axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews', body, {
     headers: {
-      Authorization: config.TOKEN,
+      'Authorization': config.TOKEN,
     }
   })
     .then((response) => {
-      console.log('postReviews API data: ' + response.data);
+      console.log('postReviews API data: ' + response);
       callback(null, response.data);
     })
     .catch((error) => {
@@ -67,6 +72,17 @@ const postReviews = (body, callback) => {
     })
 }
 
+// {
+//   "product_id": 40344,
+//     "rating": 5,
+//       "summary": "abc",
+//         "body": "zxy",
+//           "recommend": true,
+//             "name": "user",
+//               "email": "@yahoo",
+//                 "photos": ["img"],
+//                   "characteristics": { "14": 5, "15": 5 }
+// }
 
 // PUT reviews
 /*
@@ -79,8 +95,31 @@ PUT /reviews/:review_id/report
 Response: Status: 204 NO CONTENT
 */
 
-const putReviews = (body, callback) => {
-  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/${body.review_id}/${body.type}`, {}, {
+// const putReviews = (body, callback) => {
+//   axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/${body.review_id}/${body.type}`, {}, {
+//     headers: {
+//       Authorization: config.TOKEN,
+//     }
+//   })
+//     .then((response) => {
+//       console.log('putReviews API data: ' + response.data);
+//       callback(null, response.data);
+//     })
+//     .catch((error) => {
+//       console.log('Error putReviews API: ' + error);
+//       callback(error, null);
+//     })
+// }
+
+// localhost:3000/reviews?product_id=40344&page=1&count=5&sort="helpful"
+// "review_id": 840797,
+// localhost:3000/reviews/840797/helpful
+
+const putReviews = (req, callback) => {
+  const { review_id, method } = req.params;
+  if (!method) { method = 'helpful'; }
+  console.log(req.body);
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/${review_id}/${method}`, req.body, {
     headers: {
       Authorization: config.TOKEN,
     }
@@ -95,6 +134,7 @@ const putReviews = (body, callback) => {
     })
 }
 
+
 module.exports = {
   getReviews,
   getMetaReviews,
@@ -102,6 +142,21 @@ module.exports = {
   putReviews
 }
 
+/*
+{
+    "product_id": 40344,
+    "rating": 5,
+    "summary": "abc",
+    "body": "zxy",
+    "recommend": true,
+    "name": "user",
+    "email": "john6fa@yahoo.com",
+    "photos": [],
+    "characteristics": { "14": 5, "15": 5 }
+}
+
+
+*/
 
 /*
 const axios = require('axios');
