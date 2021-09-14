@@ -40,27 +40,6 @@ app.get('/reviews/meta', (req, res) => {
   });
 })
 
-/*
-{
-    "product_id": "40345",
-    "ratings": {
-        "2": "1",
-        "3": "1",
-        "4": "2",
-        "5": "8"
-    },
-    "recommended": {
-        "false": "2",
-        "true": "10"
-    },
-    "characteristics": {
-        "Quality": {
-            "id": 135223,
-            "value": "4.2000000000000000"
-        }
-    }
-}
-*/
 
 
 // POST /reviews
@@ -76,7 +55,6 @@ app.post('/reviews', (req, res) => {
   })
 })
 
-
 // PUT /reviews/:review_id/helpful
 // PUT /reviews/:review_id/report
 app.put(`/reviews/:review_id/:method`, (req, res) => {
@@ -89,8 +67,6 @@ app.put(`/reviews/:review_id/:method`, (req, res) => {
     }
   })
 })
-
-
 
 
 // Questions and Answers
