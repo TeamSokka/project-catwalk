@@ -1,3 +1,4 @@
+import { thisExpression } from '@babel/types';
 import React from 'react';
 import ReviewList from './ReviewList/ReviewList';
 
@@ -20,7 +21,7 @@ class RatingsAndReviews extends React.Component {
     this.handlePostReview = this.handlePostReview.bind(this);
     this.handlePutReview = this.handlePutReview.bind(this);
     this.moreReviewsClick = this.moreReviewsClick.bind(this);
-
+    this.writeReviewClick = this.writeReviewClick.bind(this);
   }
 
   // Get reviews
@@ -90,6 +91,10 @@ class RatingsAndReviews extends React.Component {
     }
   }
 
+  writeReviewClick() {
+
+  }
+
   componentDidMount() {
     this.handleGetReview();
   }
@@ -98,9 +103,13 @@ class RatingsAndReviews extends React.Component {
     return (
       <div>
         Ratings and Reviews Section
-        <ReviewList reviewList={this.state.reviewList} />
-        <button className="" type="button">Add a Review</button>
-        <button className="" type="button">More Reviews</button>
+        <ReviewList
+          reviewList={this.state.reviewList}
+          // handlePutReview={this.state.handlePutReview}
+          reviewListEnd={this.state.reviewListEnd}
+        />
+        <button className="" type="button" onClick={this.writeReviewClick}>Add a Review</button>
+        <button className="" type="button" onClick={this.moreReviewsClick}>More Reviews</button>
       </div >
     )
   }
