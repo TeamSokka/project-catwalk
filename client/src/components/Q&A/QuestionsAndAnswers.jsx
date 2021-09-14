@@ -1,6 +1,7 @@
 import React from 'react';
-import Search from './Search.js';
-import QuestionList from './QuestionList.js';
+import Search from './Search.jsx';
+import QuestionList from './QuestionList.jsx';
+import axios from 'axios';
 
 class QuestionsAndAnswers extends React.Component {
   constructor(props) {
@@ -12,6 +13,15 @@ class QuestionsAndAnswers extends React.Component {
       answers: []
     }
     this.handleChange = this.handleChange.bind(this);
+    this.getQuestions = this.getQuestions.bind(this);
+  }
+
+  componentDidMount() {this.getQuestions()}
+
+  getQuestions() {
+    axios.get('/qa/questions')
+    .then((res) =>
+    console.log('results ', res))
   }
 
   handleChange(e) {
@@ -20,6 +30,12 @@ class QuestionsAndAnswers extends React.Component {
     });
     console.log(`${e.target.id}: ${e.target.value}`);
   }
+
+  // addQuestion() {
+  //   axios.post('.qa.questions')
+  //   .then((res) => {
+  //   })
+  // }
 
   render() {
     return(

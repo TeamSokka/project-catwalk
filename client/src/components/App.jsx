@@ -1,5 +1,5 @@
 import React from 'react';
-import QuestionsAndAnswers from '../components/Q&A/QuestionsAndAnswers.js';
+import QuestionsAndAnswers from './Q&A/QuestionsAndAnswers.jsx';
 
 class App extends React.Component {
   constructor(props) {

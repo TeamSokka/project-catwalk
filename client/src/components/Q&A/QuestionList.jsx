@@ -1,5 +1,5 @@
 import React from 'react';
-import Question from './Question.js';
+import Question from './Question.jsx';
 
 const QuestionList = (props) => {
   return (
