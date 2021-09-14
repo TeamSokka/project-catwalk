@@ -13,12 +13,14 @@ class RatingsAndReviews extends React.Component {
       metaData: metaData,
       noReviews: false,
       hideMoreReviews: false,
-      reviewEnd: 2,
+      reviewListEnd: 2,
     }
 
     this.handleGetReview = this.handleGetReview.bind(this);
     this.handlePostReview = this.handlePostReview.bind(this);
     this.handlePutReview = this.handlePutReview.bind(this);
+    this.moreReviewsClick = this.moreReviewsClick.bind(this);
+
   }
 
   // Get reviews
@@ -66,24 +68,27 @@ class RatingsAndReviews extends React.Component {
     // add two every time
     // check newReviewEnd + 2 is less than total reviews
     // if true, hideReviewButton is false
-    const newEnd = this.state.reviewEnd + 2;
-    if (newEnd < this.state.reviewList.length) {
-      this.setState({
-        reviewEnd: newEnd
-      })
-    }
 
     // if no more reviews, hideReviewButton is true
     // More Reviews Button is gone
-    if (newEnd === this.state.reviewList.length || newEnd === this.state.reviewList.length - 1) {
+
+    const newEnd = this.state.reviewListEnd + 2;
+    if (newEnd < this.state.reviewList.length) {
+      this.setState({
+        reviewListEnd: newEnd
+      })
+      // } else if (newEnd === this.state.reviewList.length || newEnd === this.state.reviewList.length - 1) {
+      //   this.setState({
+      //     hideMoreReviews: true,
+      //     reviewListEnd: newEnd
+      //   })
+    } else if (newEnd >= this.state.reviewList.length) {
       this.setState({
         hideMoreReviews: true,
-        reviewEnd: newEnd
+        reviewListEnd: newEnd
       })
     }
   }
-
-
 
   componentDidMount() {
     this.handleGetReview();
