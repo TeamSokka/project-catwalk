@@ -22,7 +22,7 @@ import React from 'react';
 
 var ImageGallery = (props) => (
   <div id="image-gallery">
-    <im className="main-image" src={props.selectedstyle.photos[0].url}>
+    <im className="main-image" src={props.selectedstyle.photos[0].url}>main image
     </im>
       <div>thumbnail 1</div>
       <div>thumbnail 2</div>

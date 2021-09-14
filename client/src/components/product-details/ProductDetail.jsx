@@ -3,7 +3,7 @@ import React from 'react';
 import ImageGallery from './ImageGallery.jsx';
 import ProductInfo from './ProductInfo.jsx';
 import AddToCart from './AddToCart.jsx';
-
+import actios from 'axios';
 import data from './data/dummy-data.js';
 
 class ProductDetail extends React.Component {
@@ -17,6 +17,57 @@ class ProductDetail extends React.Component {
       selectedStyle: null,
       selectedSize: null
     }
+  }
+
+  getProductInfo(id) {
+    axios.get('/products/:product_id', {
+      params: {
+        product_id: id
+      }
+    })
+      .then((res) => {
+        console.log('productInfo recd');
+        this.setState({
+          productInfo: res.data
+        });
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
+
+  getStyles(id) {
+    axios.get('/products/:product_id/styles', {
+      params: {
+        product_id: id
+      }
+    })
+      .then((res) => {
+        console.log('styles recd');
+        this.setState({
+          styles: res.data
+        })
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
+
+  getRelated(id) {
+    axios.get('/products/:product_id/related', {
+      params: {
+        product_id: id
+      }
+    })
+      .then((res) => {
+        console.log('related products recd');
+        this.steState({
+          related: res.data
+        })
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   }
 
   render() {
