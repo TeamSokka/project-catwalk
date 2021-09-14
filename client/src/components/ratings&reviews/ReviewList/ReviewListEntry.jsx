@@ -9,7 +9,7 @@ class ReviewListEntry extends React.Component {
     return (
       <div>
         <div>
-          Star Rating test test
+          Star Rating 1234456
         </div>
         <div>
           User name
@@ -18,7 +18,7 @@ class ReviewListEntry extends React.Component {
           {new Date().toLocaleString() + ''}
         </div>
         <div>
-          review summary
+          review summary abc
         </div>
       </div>
     )
