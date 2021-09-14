@@ -24,7 +24,7 @@ app.post('/interactions', (req, res) => {
       console.log('Failed to Post interactions', err);
       res.send(422);
     } else {
-      res.send(201);
+      res.send(201).send(data);
     }
   })
 })

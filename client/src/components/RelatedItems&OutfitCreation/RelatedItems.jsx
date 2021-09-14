@@ -10,7 +10,7 @@ class RelatedItems extends React.Component {
   render() {
     return (
       <div>
-        <h1>Related Items</h1>
+        <h1>Related Items (parent)</h1>
 
         <RelatedProductCards />
       </div>

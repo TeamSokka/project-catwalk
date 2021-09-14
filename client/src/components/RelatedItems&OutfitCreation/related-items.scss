@@ -32,6 +32,12 @@ $box-shadow-hover: 0 .75rem 1rem rgba($black, 0.30) !default;
   align-items: center;
 }
 
+#product-preview-img {
+  display: flex;
+  justify-items: center;
+  align-items: center;
+}
+
 .product-card {
   display: flex;
   flex-direction: column;
@@ -44,6 +50,7 @@ $box-shadow-hover: 0 .75rem 1rem rgba($black, 0.30) !default;
   border-radius: $border-radius;
   box-shadow: $box-shadow;
   width: 150px;
+  height: 175px;
 
   &:hover {
     cursor: pointer;
