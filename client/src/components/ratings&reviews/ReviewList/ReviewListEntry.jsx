@@ -1,14 +1,38 @@
 import React from "react";
 import ReviewList from "./ReviewList";
+import StarRating from "./StarRatings";
 
 class ReviewListEntry extends React.Component {
   constructor(props) {
     super(props);
+
+    this.averageStarRating = this.averageStarRating.bind(this);
+  }
+
+  averageStarRating(obj) {
+ 
+
   }
 
   render() {
+    // Star Rating
+    // reviewer name
+    // Date
+    // review summary
+    // body
+    // response
+    // recommend
+    // photos
+
+
     return (
+      // <div>
+      //   <div>{this.props.review.reviewer_name}</div>
+      //   <div>{this.props.review.reviewer_name}</div>
+      //   <div>{this.props.review.reviewer_name}</div>
+      // </div>
       <ul>
+        {/* <StarRating averageStarRating={this.props.review.rating} /> */}
         <li>
           {this.props.review.review_id} {'review_id'}
           <br></br>
@@ -32,3 +56,12 @@ class ReviewListEntry extends React.Component {
 }
 
 export default ReviewListEntry;
+
+/*
+<ReviewListEntry
+    review={review}
+    key={value}
+    handlePutReview={this.props.handlePutReview}
+>
+
+*/

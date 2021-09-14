@@ -84,3 +84,5 @@ const StarRating = (rating) => {
     {getStars(rating).map((star) => <div className="single-star">{star}</div>)}
   </div >
 }
+
+export default StarRating;

@@ -105,7 +105,7 @@ class RatingsAndReviews extends React.Component {
         Ratings and Reviews Section
         <ReviewList
           reviewList={this.state.reviewList}
-          // handlePutReview={this.state.handlePutReview}
+          handlePutReview={this.state.handlePutReview}
           reviewListEnd={this.state.reviewListEnd}
         />
         <button className="" type="button" onClick={this.writeReviewClick}>Add a Review</button>

@@ -8,8 +8,10 @@ class ReviewList extends React.Component {
 
   render() {
     const list = [];
-    this.props.reviewList.forEach((review, value) => {
-      list.push(<ReviewListEntry review={review} key={value} />)
+    const curReviewList = this.props.reviewList.slice(0, this.props.reviewListEnd);
+    console.log(this.props.reviewList);
+    curReviewList.forEach((review, value) => {
+      list.push(<ReviewListEntry review={review} key={value} handlePutReview={this.props.handlePutReview} />)
     })
     return (
       <div>{list}</div>
@@ -20,6 +22,12 @@ class ReviewList extends React.Component {
 export default ReviewList;
 
 /*
+<ReviewList
+  reviewList={this.state.reviewList}
+  handlePutReview={this.state.handlePutReview}
+  reviewListEnd={this.state.reviewListEnd}
+/>
+
 Star Rating               User Name + Date
 Review - first line
 Review - rest
