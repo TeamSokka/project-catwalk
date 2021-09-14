@@ -7,6 +7,7 @@ class RatingsAndReviews extends React.Component {
   constructor(props) {
     super(props);
     const { metaData } = this.props;
+
     this.state = {
       reviewList: [],
       metaData: metaData,
@@ -18,21 +19,17 @@ class RatingsAndReviews extends React.Component {
     this.handlePutReview = this.handlePutReview.bind(this);
   }
 
-  componentDidMount() {
-    this.handleGetReview();
-  }
-
   handleGetReview() {
     const { productID } = this.props;
-    axios.get(`/reviews?product_id=${productID}&page=1&count=5&sort=relevance`)
+    axios.get(`/reviews?product_id=${productID}&page=1&count=5&sort=helpful`)
       .then((result) => {
         if (result.data.results.length === 0) {
           this.setState({
             noReviews: true
-          })
+          });
         }
         this.setState({
-          reviewList: result.results
+          reviewList: result.data.results
         })
       })
       .catch((error) => {
@@ -48,11 +45,15 @@ class RatingsAndReviews extends React.Component {
 
   }
 
+  componentDidMount() {
+    this.handleGetReview();
+  }
+
   render() {
     return (
       <div>
         Ratings and Reviews Section
-        <ReviewList />
+        <ReviewList reviewList={this.state.reviewList} />
       </div >
     )
   }

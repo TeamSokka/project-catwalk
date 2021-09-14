@@ -8,9 +8,11 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      productID: 40344, // example product id
+      productID: '40348', // example product id
       metaData: {},
     }
+
+    this.fetchMeta = this.fetchMeta.bind(this);
   }
 
   fetchMeta() {
@@ -19,8 +21,7 @@ class App extends React.Component {
       .then((result) => {
         this.setState({
           metaData: result.data
-        })
-
+        });
       })
       .catch((error) => {
         console.log('Error with fetchMeta ' + error);

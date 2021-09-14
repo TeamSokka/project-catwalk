@@ -7,8 +7,12 @@ class ReviewList extends React.Component {
   }
 
   render() {
+    const list = [];
+    this.props.reviewList.forEach((review, value) => {
+      list.push(<ReviewListEntry review={review} key={value} />)
+    })
     return (
-      <ReviewListEntry />
+      <div>{list}</div>
     )
   }
 }
