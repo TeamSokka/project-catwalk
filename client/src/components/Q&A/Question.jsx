@@ -17,8 +17,8 @@ const Question = (props) => {
       <span style={{fontWeight: 'bold'}}> Q: {props.question.question_body}
       </span>
         <p>Helpful?</p>
-        {answers.slice(0, 2).map((answer) =>
-          <Answer answer={answer} />
+        {answers.slice(0, 2).map((answer, index) =>
+          <Answer key={index} answer={answer} />
         )}
     </div>
   )
