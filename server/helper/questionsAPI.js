@@ -39,15 +39,15 @@ getQuestions = (id, callback) => {
 
 getAnswers = (id, callback) => {
   axios
-    .get(`${api}/qa/questions?product_id=${id.product}`, {
+    .get(`${api}/qa/questions/${id}/answers`, {
       headers: {
         'User-Agent': 'request',
         Authorization: `${config.TOKEN}`,
       },
     })
     .then((res) => {
-      console.log('answers ', res.data.results);
-      callback(null, res.data.results);
+      console.log('answers ', res.data);
+      callback(null, res.data);
     })
     .catch((err) => {
       callback(err, null);

@@ -26,21 +26,21 @@ app.get('/qa/questions', (req, res) => {
 });
 
 // GET Answers
-// app.get('/qa/questions/:question_id/answers', (req, res) => {
-//   let id = {
-//     product: req.query.product_id,
-//     question: req.params.question_id,
-//   };
-//   console.log('product id', req.query);
-//   console.log('q id ', req.params.question_id);
-//   questions.getAnswers(id, (err, data) => {
-//     if (err) {
-//       res.status(400).send(err);
-//     } else {
-//       res.status(200).send(data);
-//     }
-//   });
-// });
+app.get('/qa/questions/:question_id/answers', (req, res) => {
+  // let id = {
+  //   product: req.query.product_id || 40344,
+  //   question: req.params.question_id,
+  // };
+  console.log('product id', req.query);
+  console.log('q id ', req.params.question_id);
+  questions.getAnswers(req.params.question_id, (err, data) => {
+    if (err) {
+      res.status(400).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  });
+});
 
 // POST Questions
 app.post('/qa/questions', (req, res) => {
