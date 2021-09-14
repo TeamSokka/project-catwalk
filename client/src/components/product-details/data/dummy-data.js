@@ -48,7 +48,7 @@ const data = {
   styles: {
     "product_id": "1",
     "results": [
-  	{
+  	  {
             "style_id": 1,
             "name": "Forest Green & Black",
             "original_price": "140",
@@ -79,21 +79,21 @@ const data = {
                     		"size": "M"
                 	},
             //...
-            	}
-    },
-    {
+        }
+      },
+      {
         "style_id": 2,
         "name": "Desert Brown & Tan",
         "original_price": "140",
         "sale_price": "0",
         "default?": false,
         "photos": [
-  			{
+  			  {
                     "thumbnail_url": "urlplaceholder/style_2_photo_number_thumbnail.jpg",
                     "url": "urlplaceholder/style_2_photo_number.jpg"
-        }
+          }
       // ...
-            ],
+        ],
         "skus": {
                 	"37": {
                     		"quantity": 8,
@@ -108,16 +108,17 @@ const data = {
                     		"size": "M"
                 	},
             //...
-            	}
-    },
-  // ...
-  },
-  related: [
-    2,
-    3,
-    8,
-    7
-  ]
+        }
+      },
+
+    ],
+    related: [
+      2,
+      3,
+      8,
+      7
+    ]
+  }
 }
 
 export default data;

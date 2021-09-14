@@ -1,12 +1,10 @@
 //ProductDetail extends React.Component
 import React from 'react';
-import ImageGallery from 'ImageGallery.jsx';
-import ProductInfo from 'ProductInfo.jsx';
-import ImageGallery from 'ImageGallery.jsx';
-import AddToCart from 'AddToCart.jsx';
-import ImageGallery from 'ImageGallery.jsx';
+import ImageGallery from './ImageGallery.jsx';
+import ProductInfo from './ProductInfo.jsx';
+import AddToCart from './AddToCart.jsx';
 
-import data from ('/data/dummy-data.js');
+import data from './data/dummy-data.js';
 
 class ProductDetail extends React.Component {
   constructor(props) {
