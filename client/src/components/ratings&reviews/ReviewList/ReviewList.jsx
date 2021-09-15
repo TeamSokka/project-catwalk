@@ -8,7 +8,7 @@ class ReviewList extends React.Component {
 
   render() {
     const list = [];
-    const curReviewList = this.props.reviewList.slice(0, this.props.reviewListEnd);
+    const curReviewList = this.props.reviewList.slice(0, this.props.reviewsDisplayed);
     console.log(this.props.reviewList);
     curReviewList.forEach((review, value) => {
       list.push(<ReviewListEntry review={review} key={value} handlePutReview={this.props.handlePutReview} />)

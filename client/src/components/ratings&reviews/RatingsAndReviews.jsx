@@ -14,7 +14,7 @@ class RatingsAndReviews extends React.Component {
       metaData: metaData,
       noReviews: false,
       hideMoreReviews: false,
-      reviewListEnd: 2,
+      reviewsDisplayed: 2,
     }
 
     this.handleGetReview = this.handleGetReview.bind(this);
@@ -56,7 +56,7 @@ class RatingsAndReviews extends React.Component {
 
   // Mark review as report vs Helpful
   handlePutReview(review_id, type) {
-    axios.post(`/reviews/${review_id}/${type}`)
+    axios.put(`/reviews/${review_id}/${type}`)
       .then((result) => {
         console.log('Success with handlePutReview');
       })
@@ -73,21 +73,25 @@ class RatingsAndReviews extends React.Component {
     // if no more reviews, hideReviewButton is true
     // More Reviews Button is gone
 
-    const newEnd = this.state.reviewListEnd + 2;
-    if (newEnd < this.state.reviewList.length) {
+    // check if there is more reviews to be displayed
+    if (reviewsDisplayed < this.state.reviewList.length) {
+      const newEnd = this.state.reviewsDisplayed + 2;
+      if (newEnd > this.state.reviewList.length) {
+        newEnd--;
+      }
       this.setState({
-        reviewListEnd: newEnd
+        reviewsDisplayed: newEnd
       })
       // } else if (newEnd === this.state.reviewList.length || newEnd === this.state.reviewList.length - 1) {
       //   this.setState({
       //     hideMoreReviews: true,
-      //     reviewListEnd: newEnd
+      //     reviewsDisplayed: newEnd
       //   })
-    } else if (newEnd >= this.state.reviewList.length) {
-      this.setState({
-        hideMoreReviews: true,
-        reviewListEnd: newEnd
-      })
+      if (newEnd === this.state.reviewList.length) {
+        this.setState({
+          hideMoreReviews: true
+        })
+      }
     }
   }
 
@@ -106,7 +110,7 @@ class RatingsAndReviews extends React.Component {
         <ReviewList
           reviewList={this.state.reviewList}
           handlePutReview={this.state.handlePutReview}
-          reviewListEnd={this.state.reviewListEnd}
+          reviewsDisplayed={this.state.reviewsDisplayed}
         />
         <button className="" type="button" onClick={this.writeReviewClick}>Add a Review</button>
         <button className="" type="button" onClick={this.moreReviewsClick}>More Reviews</button>

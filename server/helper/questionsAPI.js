@@ -20,7 +20,6 @@ getQuestions = (id, callback) => {
       },
     })
     .then((res) => {
-      console.log('data from response', res.data);
       callback(null, res.data);
     })
     .catch((err) => {
@@ -46,7 +45,6 @@ getAnswers = (id, callback) => {
       },
     })
     .then((res) => {
-      console.log('answers ', res.data);
       callback(null, res.data);
     })
     .catch((err) => {

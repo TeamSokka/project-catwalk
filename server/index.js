@@ -71,8 +71,11 @@ app.put(`/reviews/:review_id/:method`, (req, res) => {
 })
 
 
-// Questions and Answers
 
+
+
+
+// Questions and Answers
 // GET Questions
 app.get('/qa/questions', (req, res) => {
   // console.log('product id', req.query);
