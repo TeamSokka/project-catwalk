@@ -1,17 +1,9 @@
 .individual-stars, .single-star {
   color: black;
-  height: 20px;
-  display: flex;
+  // height: 20px;
+  display: inline-block;
   justify-content: flex-start;
-  // flex-direction: row;
-  // align-content: left;
-}
-
-.star-rating-container {
-  color: black;
-  // height: 40px;
-  // display: flex;
-  // justify-content: flex-start;
-  // flex-direction: row;
-  // align-content: left;
+  transform: scale(0.6);
+  flex-direction: row;
+  align-content: left;
 }
