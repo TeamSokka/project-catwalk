@@ -17,9 +17,7 @@ class QuestionsAndAnswers extends React.Component {
     this.getAnswers = this.getAnswers.bind(this);
   }
 
-  componentDidMount() {
-    Promise.all([this.getQuestions(), this.getAnswers()]);
-  }
+  componentDidMount() { this.getQuestions(); }
 
   getAnswers() {
     this.state.questions.forEach((question) =>
