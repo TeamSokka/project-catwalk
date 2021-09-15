@@ -52,9 +52,14 @@ class ReviewListEntry extends React.Component {
     summary: "Great shoes!"
     */
 
+    var stars;
+    if (this.props.review.rating) {
+      stars = StarRating(this.props.review.rating);
+    }
 
     return (
       <div>
+        {stars}
         <div>{this.props.review.reviewer_name}</div>
         <div> {new Date(this.props.review.date).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}</div>
         <div>{this.props.review.summary}</div>
@@ -74,7 +79,7 @@ class ReviewListEntry extends React.Component {
           <u onClick={this.handleHelpfulClick}>Report</u>
         </div>
         <br></br>
-      </div >
+      </div>
     )
   }
 }

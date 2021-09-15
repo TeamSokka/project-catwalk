@@ -35,7 +35,6 @@ class QuestionsAndAnswers extends React.Component {
 
   getQuestions() {
     axios.get('/qa/questions').then((res) => {
-      console.log('questions ', res.data.results);
       this.setState({
         questions: res.data.results,
       });

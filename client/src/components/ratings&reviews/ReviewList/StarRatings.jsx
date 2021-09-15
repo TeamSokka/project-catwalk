@@ -1,4 +1,5 @@
 import React from 'react';
+import '../Styles/star-ratings.scss';
 
 const wholeStar = (
   <svg width="100" height="100">
@@ -9,36 +10,30 @@ const wholeStar = (
 const quarterStar = (
   <svg width="100" height="100">
     <polygon points="50,9 60.5,39.5 92.7,40.1 67,59.5 76.4,90.3 50,71.9 23.6,90.3 32.9,59.5 7.2,40.1 39.4,39.5" stroke="black" strokeWidth="5" fill="url(#grad1)" />
-    <defs>
-      <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
-        <stop offset="25%" stopColor="grey" stopOpacity="1" />
-        <stop offset="25%" stopColor="white" stopOpacity="1" />
-      </linearGradient>
-    </defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="25%" stopColor="grey" stopOpacity="1" />
+      <stop offset="25%" stopColor="white" stopOpacity="1" />
+    </linearGradient>
   </svg>
 );
 
 const halfStar = (
   <svg width="100" height="100">
     <polygon points="50,9 60.5,39.5 92.7,40.1 67,59.5 76.4,90.3 50,71.9 23.6,90.3 32.9,59.5 7.2,40.1 39.4,39.5" stroke="black" strokeWidth="5" fill="url(#grad1)" />
-    <defs>
-      <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
-        <stop offset="50%" stopColor="grey" stopOpacity="1" />
-        <stop offset="50%" stopColor="white" stopOpacity="1" />
-      </linearGradient>
-    </defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="50%" stopColor="grey" stopOpacity="1" />
+      <stop offset="50%" stopColor="white" stopOpacity="1" />
+    </linearGradient>
   </svg>
 );
 
 const threeQuarterStar = (
   <svg width="100" height="100">
     <polygon points="50,9 60.5,39.5 92.7,40.1 67,59.5 76.4,90.3 50,71.9 23.6,90.3 32.9,59.5 7.2,40.1 39.4,39.5" stroke="black" strokeWidth="5" fill="url(#grad1)" />
-    <defs>
-      <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
-        <stop offset="75%" stopColor="grey" stopOpacity="1" />
-        <stop offset="75%" stopColor="white" stopOpacity="1" />
-      </linearGradient>
-    </defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="75%" stopColor="grey" stopOpacity="1" />
+      <stop offset="75%" stopColor="white" stopOpacity="1" />
+    </linearGradient>
   </svg>
 );
 
@@ -49,40 +44,79 @@ const emptyStar = (
 );
 
 const getStars = (value) => {
-  // 4.25
   const stars = [];
-  const [whole, part] = value.toString().split('.');
-  // [4, 25]
-  // push whole stars
-  // push part star
+  const [digit, remainder] = value.toString().split('.');
 
-  for (var i = 0; i < whole; i++) {
+  for (var i = 0; i < digit; i++) {
     stars.push(wholeStar);
   }
 
-  if (part) {
-    var partNum = Number(`${part}`);
-    if (partNum <= 0.33) {
+  if (remainder) {
+    const parts = Number(`.${remainder}`);
+    if (parts <= 0.33) {
       stars.push(quarterStar);
-    } else if (partNum <= 0.5) {
+    } else if (parts <= 0.66 && parts > 0.33) {
       stars.push(halfStar);
-    } else if (partNum <= 0.75) {
+    } else {
       stars.push(threeQuarterStar);
     }
   }
 
-  // empty stars
-  var remainder = Math.floor(5 - Number(whole) - Number(part));
-  for (var i = remainder; i <= 5; i++) {
+  for (var i = Number(digit); i < (remainder ? 4 : 5); i++) {
     stars.push(emptyStar);
   }
-};
 
-const StarRating = (rating) => {
-  <div class="star-rating-container">
-    {/* returns array - map over each star - div for individual star */}
-    {getStars(rating).map((star) => <div className="single-star">{star}</div>)}
-  </div >
+  return stars;
 }
 
+const StarRating = (rating) => (
+  <div className="star-rating-container">
+    <div className="individual-stars">
+      {getStars(rating).map((star) => <div className="single-star" key={`${rating}_${Math.random()}`} >{star}</div>)}
+    </div>
+  </div >
+
+);
+
 export default StarRating;
+
+
+// const getStars = (value) => {
+//   // 4.25
+//   const stars = [];
+//   const [whole, part] = value.toString().split('.');
+//   // [4, 25]
+//   // push whole stars
+//   // push part star
+
+//   for (var i = 0; i < whole; i++) {
+//     stars.push(wholeStar);
+//   }
+
+//   if (part) {
+//     var partNum = Number(`${part}`);
+//     if (partNum <= 0.33) {
+//       stars.push(quarterStar);
+//     } else if (partNum <= 0.5) {
+//       stars.push(halfStar);
+//     } else if (partNum <= 0.75) {
+//       stars.push(threeQuarterStar);
+//     }
+//   }
+
+//   // empty stars
+//   var remainder = Math.floor(5 - Number(whole) - Number(part));
+//   for (var i = remainder; i <= 5; i++) {
+//     stars.push(emptyStar);
+//   }
+//   return stars;
+// };
+
+// const StarRating = (rating) => {
+//   <div class="star-rating-container">
+//     {/* returns array - map over each star - div for individual star */}
+//     {getStars(rating).map((star) => <div className="single-star" key={`${rating}_${Math.random()}`}>{star}</div>)}
+//   </div >
+// }
+
+// export default StarRating;
