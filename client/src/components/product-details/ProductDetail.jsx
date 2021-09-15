@@ -11,8 +11,8 @@ class ProductDetail extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentProductId: this.props.productid,
-      productInfo: this.props.productinfo,
+      currentProductId: this.props.productID,
+      productInfo: this.props.productInfo,
       styles: [],
       // relatedProducts: this.props.related,
       reviews: [],
