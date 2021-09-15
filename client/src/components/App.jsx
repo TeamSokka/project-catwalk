@@ -80,7 +80,6 @@ class App extends React.Component {
           productID={productID}
           productInfo={productInfo}
         />
-
         <RatingsAndReviews
           productID={productID}
           metaData={metaData}
