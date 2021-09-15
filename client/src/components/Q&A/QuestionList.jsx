@@ -11,7 +11,10 @@ const QuestionList = (props) => {
             answers={props.answers} />
         ))}
       </div>
-
+      <div>
+        <button className='more-answered-btn'>MORE ANSWERED QUESTIONS</button>
+        <button className='add-question-btn'>ADD A QUESTION +</button>
+      </div>
     </div>
   );
 };
