@@ -5,17 +5,37 @@ import React from 'react';
 //  quantity selector
 //  add to cart button
 
-var AddToCart = (props) => (
-  <form>
+var AddToCart = (props) => {
+  // const quantities = []
+  // for (var i = 0; i <= props.selectedsizesku.quantity; i++) {
+  //   quantities.push(i);
+  // };
+
+  return (
+  <form id="add-to-cart-form">
     <div>
-      <p>Size Selector</p>
-      <p>Quantity Selctor</p>
+      <label>Select Size:
+        <select id="size-selector" value={props.selectedsizesku} onChange={props.handlesizeselect}>
+          {props.selectedstyle.skus.length
+          ? Object.keys(props.selectedstyle.skus).map((sku, index) => (
+              <option key={index} value={sku}>{props.selectedstyle.skus[sku].size}</option>
+            ))
+          : <option>OUT OF STOCK</option>
+          }
+        </select>
+      </label>
+      <label>Select Quantity:
+        <select id="quantity-selector">
+          {}
+        </select>
+      </label>
     </div>
     <div>
-      <button>Add to Cart</button>
+      <button id="add-to-cart-button">Add to Cart</button>
       <button>Star</button>
     </div>
   </form>
-);
+  );
+};
 
 export default AddToCart;

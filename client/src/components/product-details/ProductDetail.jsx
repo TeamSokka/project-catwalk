@@ -1,9 +1,10 @@
 //ProductDetail extends React.Component
 import React from 'react';
+import axios from 'axios';
 import ImageGallery from './ImageGallery.jsx';
 import ProductInfo from './ProductInfo.jsx';
+import StyleSelector from './StyleSelector.jsx';
 import AddToCart from './AddToCart.jsx';
-import axios from 'axios';
 import data from './data/dummy-data.js';
 
 class ProductDetail extends React.Component {
@@ -11,12 +12,12 @@ class ProductDetail extends React.Component {
     super(props);
     this.state = {
       currentProductId: this.props.productid,
-      productInfo: {},
+      productInfo: this.props.productinfo,
       styles: [],
       relatedProducts: [],
       reviews: [],
-      selectedStyle: { photos: [] },
-      selectedSize: null,
+      selectedStyle: { photos: [], skus: {} },
+      selectedSizeSKU: { quantity: 0 },
       selectedPhotoIndex: 0
     }
   }
@@ -37,15 +38,18 @@ class ProductDetail extends React.Component {
   getStyles() {
     axios.get(`/products/${this.state.currentProductId}/styles`)
       .then((res) => {
-        console.log('styles recd:', res.data);
+        console.log('styles recd:', res.data.results);
         this.setState({
-          styles: res.data,
+          styles: res.data.results,
           selectedStyle: res.data.results[0]
+        });
+        this.setState({
+          selectedSizeSKU: res.data.results[0][Object.keys(res.data.results[0].skus)][0]
         })
       })
       .catch((err) => {
         console.error(err);
-      });
+      })
   }
 
   getRelated() {
@@ -59,6 +63,12 @@ class ProductDetail extends React.Component {
       .catch((err) => {
         console.error(err);
       });
+  }
+
+  handleSizeSelect(event) {
+    this.setState({
+      selectedSizeSKU: event.target.value
+    })
   }
 
   componentDidMount() {
@@ -80,17 +90,20 @@ class ProductDetail extends React.Component {
           photos={this.state.selectedStyle.photos}
           selectedphotoindex={this.state.selectedPhotoIndex}
         />
-        {/* <div>
+        <div>
           <ProductInfo
             productinfo={this.state.productInfo}
           />
           <StyleSelector
+            styles={this.state.styles}
             selectedstyle={this.state.selectedStyle}
           />
           <AddToCart
-            selectedsize={this.state.selectedSize}
+            selectedsizesku={this.state.selectedSizeSKU}
+            selectedstyle={this.state.selectedStyle}
+            handlesizeselect={this.handleSizeSelect.bind(this)}
           />
-        </div> */}
+        </div>
       </div>
     );
   }

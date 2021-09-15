@@ -4,14 +4,16 @@ import React from 'react';
 
 var ProductInfo = (props) => (
   <div>
-    <StarRating />
+    {/* <StarRating /> */}
     <span id="category">{props.productinfo.category}</span>
-    <span id="name">Product Title{props.productinfo.name}</span>
-    <span id="price">$###</span>
-    <p><h3>{props.productinfo.slogan}</h3>
+    <span id="name">{props.productinfo.name}</span>
+    <span id="price">${props.productinfo.default_price}</span>
+    <h2>{props.productinfo.slogan}</h2>
+    <p>
       {props.productinfo.description}
     </p>
-    <div>Share:
+    <div>Share:</div>
+    <div>
       <i>F</i>
       <i>T</i>
       <i>P</i>
