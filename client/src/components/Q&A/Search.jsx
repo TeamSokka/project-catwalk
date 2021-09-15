@@ -1,12 +1,15 @@
 import React from 'react';
+import { BiSearchAlt } from 'react-icons/bi';
 
 const Search = (props) => {
   return (
-    <form>
+    <div className='search'>
       <input type='text' id='search' value={props.search}
+      style={{ width:'300px' }}
       onChange={(e) => props.handleChange(e)}
       placeholder='HAVE A QUESTION? SEARCH FOR ANSWERS...' />
-    </form>
+      <BiSearchAlt onClick={props.onSearch} />
+    </div>
   )
 }
 

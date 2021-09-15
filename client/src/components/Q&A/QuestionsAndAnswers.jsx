@@ -31,13 +31,19 @@ class QuestionsAndAnswers extends React.Component {
     );
   }
 
-  getQuestions() {
-    axios.get('/qa/questions').then((res) => {
-      console.log('questions ', res.data.results);
-      this.setState({
-        questions: res.data.results,
+  getQuestions(id) {
+
+    axios.get('/qa/questions', {
+      params: {
+        product_id: id
+      }
+    }).
+      then((res) => {
+        console.log('questions ', res.data.results);
+        this.setState({
+          questions: res.data.results,
+        });
       });
-    });
     // .then(this.getAnswers.bind(this))
     // 'question id ', this.state.questions.map((question) => question.question_id));
   }
@@ -55,11 +61,21 @@ class QuestionsAndAnswers extends React.Component {
   //   })
   // }
 
+  onSearch() {
+    let results = this.state.questions.filter((question) =>
+      question.question_body.toLowerCase().includes(this.state.search.toLowerCase())
+    )
+    this.setState({
+      questions: results
+    })
+  }
+
   render() {
     return (
       <div>
         <h3>QUESTIONS & ANSWERS</h3>
-        <Search search={this.state.search} handleChange={this.handleChange} />
+        <Search search={this.state.search} handleChange={this.handleChange}
+          onSearch={this.onSearch.bind(this)} />
         <QuestionList
           questions={this.state.questions}
           answers={this.state.answers}
