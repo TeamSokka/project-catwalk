@@ -10,7 +10,7 @@ class ProductDetail extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentProductId: 40344,
+      currentProductId: 40347,
       productInfo: {},
       styles: [],
       relatedProducts: [],
