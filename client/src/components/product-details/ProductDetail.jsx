@@ -11,11 +11,11 @@ class ProductDetail extends React.Component {
     super(props);
     this.state = {
       currentProductId: 40344,
-      productInfo: data.info,
-      styles: data.styles.results,
-      relatedProducts: data.related,
+      productInfo: {},
+      styles: [],
+      relatedProducts: [],
       reviews: [],
-      selectedStyle: data.styles.results[0],
+      selectedStyle: { photos: [] },
       selectedSize: null,
       selectedPhotoIndex: 0
     }

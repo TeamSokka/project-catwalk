@@ -22,11 +22,19 @@ import React from 'react';
 
 var ImageGallery = (props) => (
   <div id="image-gallery">
-    <img className="main-image" src={props.photos[props.selectedphotoindex].url}>
-    </img>
-    {props.photos.map((photo, index) => (
-      <img className='thumbnail' key={index} value={index} src={photo.thumbnail_url}></img>
-    ))}
+    {props.photos.length
+      ? <img className="main-image" src={props.photos[props.selectedphotoindex].url}>
+      </img>
+      : <p><em>No photo to display.</em></p>
+    }
+    <div id="thumbnail-list">
+      {props.photos
+        ? props.photos.map((photo, index) => (
+          <img className='thumbnail' key={index} value={index} src={photo.thumbnail_url}></img>
+          ))
+        : <p><em>No photos to display.</em></p>
+      }
+    </div>
   </div>
 );
 
