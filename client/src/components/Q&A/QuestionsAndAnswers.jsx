@@ -34,12 +34,18 @@ class QuestionsAndAnswers extends React.Component {
   }
 
   getQuestions() {
-    axios.get('/qa/questions').then((res) => {
-      console.log('questions ', res.data.results);
-      this.setState({
-        questions: res.data.results,
+    const { productID } = this.props;
+    axios.get('/qa/questions', {
+      params: {
+        product_id: productID
+      }
+    })
+      .then((res) => {
+        console.log('questions ', res.data);
+        this.setState({
+          questions: res.data.results,
+        });
       });
-    });
     // .then(this.getAnswers.bind(this))
     // 'question id ', this.state.questions.map((question) => question.question_id));
   }
