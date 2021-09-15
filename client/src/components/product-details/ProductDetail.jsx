@@ -11,7 +11,7 @@ class ProductDetail extends React.Component {
     super(props);
     this.state = {
       currentProductId: 40347,
-      productInfo: {},
+      // productInfo: {},
       styles: [],
       relatedProducts: [],
       reviews: [],
@@ -21,22 +21,22 @@ class ProductDetail extends React.Component {
     }
   }
 
-  getProductInfo(id) {
-    axios.get(`/products/${this.state.currentProductId}`, {
-      params: {
-        product_id: id
-      }
-    })
-      .then((res) => {
-        console.log('productInfo recd:', res.data);
-        this.setState({
-          productInfo: res.data
-        });
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  }
+  // getProductInfo(id) {
+  //   axios.get(`/products/${this.state.currentProductId}`, {
+  //     params: {
+  //       product_id: id
+  //     }
+  //   })
+  //     .then((res) => {
+  //       // console.log('productInfo recd:', res.data);
+  //       this.setState({
+  //         productInfo: res.data
+  //       });
+  //     })
+  //     .catch((err) => {
+  //       console.error(err);
+  //     });
+  // }
 
   getStyles(id) {
     axios.get(`/products/${this.state.currentProductId}/styles`, {
@@ -56,33 +56,33 @@ class ProductDetail extends React.Component {
       });
   }
 
-  getRelated(id) {
-    axios.get(`/products/${this.state.currentProductId}/related`, {
-      params: {
-        product_id: id
-      }
-    })
-      .then((res) => {
-        console.log('related products recd:', res.data);
-        this.setState({
-          relatedProducts: res.data
-        })
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  }
+  // getRelated(id) {
+  //   axios.get(`/products/${this.state.currentProductId}/related`, {
+  //     params: {
+  //       product_id: id
+  //     }
+  //   })
+  //     .then((res) => {
+  //       // console.log('related products recd:', res.data);
+  //       this.setState({
+  //         relatedProducts: res.data
+  //       })
+  //     })
+  //     .catch((err) => {
+  //       console.error(err);
+  //     });
+  // }
 
   componentDidMount() {
-    this.getProductInfo(this.state.currentProductId);
+    // this.getProductInfo(this.state.currentProductId);
     this.getStyles(this.state.currentProductId);
-    this.getRelated(this.state.currentProductId);
+    // this.getRelated(this.state.currentProductId);
     // this.setState({
     //   selectedStyle: this.state.styles[0]
     // });
-    console.log('styles:', this.state.styles);
-    console.log('selected style:', this.state.selectedStyle);
-    console.log('photos:', this.state.selectedStyle.photos);
+    // console.log('styles:', this.state.styles);
+    // console.log('selected style:', this.state.selectedStyle);
+    // console.log('photos:', this.state.selectedStyle.photos);
   }
 
   render() {
