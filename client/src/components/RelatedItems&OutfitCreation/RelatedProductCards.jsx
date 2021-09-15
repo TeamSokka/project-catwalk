@@ -3,6 +3,7 @@ import ProductPreviewImages from './ProductPreviewImages';
 import ProductInformation from './ProductInformation';
 import './related-items.scss';
 
+//this.props.productID
 class RelatedProductCards extends React.Component {
   constructor(props) {
     super(props);
