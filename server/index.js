@@ -2,15 +2,14 @@ const express = require('express');
 const path = require('path');
 const PORT = 3000;
 const app = express();
-const questions = require('./helper/questionsAPI');
 
 const axios = require('axios');
 const config = require('../config.js');
 
-const interactions = require('./helper/interactionsAPI');
-
-const ratings = require('./helper/ratingsAPI');
 const products = require('./helper/productsAPI.js');
+const ratings = require('./helper/ratingsAPI');
+const questions = require('./helper/questionsAPI');
+const interactions = require('./helper/interactionsAPI');
 
 app.use(express.static(path.join(__dirname, '..', 'client/dist')));
 app.use(express.json());

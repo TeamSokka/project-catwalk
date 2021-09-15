@@ -1,10 +1,13 @@
 import React from 'react';
+
 import QuestionsAndAnswers from '../components/Q&A/QuestionsAndAnswers.jsx';
 import RelatedItems from './RelatedItems&OutfitCreation/RelatedItems';
 import RatingsAndReviews from './ratings&reviews/RatingsAndReviews';
+import ProductDetail from './product-details/ProductDetail.jsx';
+
+import { formatRelatedItems } from '../components/helpers/_functions.js';
 
 const axios = require('axios');
-import ProductDetail from './product-details/ProductDetail.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -12,10 +15,43 @@ class App extends React.Component {
 
     this.state = {
       productID: '40348', // example product id
+      productInfo: {},
+      relatedProducts: [],
       metaData: {},
     }
 
     this.fetchMeta = this.fetchMeta.bind(this);
+  }
+
+  componentDidMount() {
+    this.getRelated(this.state.currentProductId);
+    this.getProductInfo(this.state.currentProductId);
+   }
+
+  getProductInfo = () => {
+    axios.get(`/products/${this.state.productID}`)
+    .then((res) => {
+      // console.log('productInfo recd:', res.data);
+      this.setState({
+        productInfo: res.data
+      });
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+  }
+
+  getRelated = () => {
+    axios.get(`/products/${this.state.productID}/related`)
+      .then((res) => {
+        // console.log('related products recd:', res.data);
+        this.setState({
+          relatedProducts: res.data
+        })
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   }
 
   // Get meta reviews
@@ -33,20 +69,29 @@ class App extends React.Component {
   }
 
   render() {
+    const {productID, productInfo, relatedProducts, metaData} = this.state;
+
+    console.log('app state// productInfo', productInfo);
+    console.log('app state// relatedPro', relatedProducts);
+
     return (
       <div>
         <ProductDetail
-          productID={this.state.productID}
+          productID={productID}
+          productInfo={productInfo}
         />
         <RatingsAndReviews
-          productID={this.state.productID}
-          metaData={this.state.metaData}
+          productID={productID}
+          metaData={metaData}
+          productInfo={productInfo}
         />
-        <QuestionsAndAnswers
-          productID={this.state.productID}
-        />
+
+        <QuestionsAndAnswers productID={productID} />
+
         <RelatedItems
-          productID={this.state.productID}
+          productID={productID}
+          productInfo={productInfo}
+          relatedProducts={relatedProducts}
         />
       </div>
     )
