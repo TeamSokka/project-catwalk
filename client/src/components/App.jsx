@@ -4,6 +4,7 @@ import RelatedItems from './RelatedItems&OutfitCreation/RelatedItems';
 import RatingsAndReviews from './ratings&reviews/RatingsAndReviews';
 
 const axios = require('axios');
+import ProductDetail from './product-details/ProductDetail.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -34,6 +35,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <ProductDetail />
         <RatingsAndReviews
           productID={this.state.productID}
           metaData={this.state.metaData}
@@ -43,6 +45,6 @@ class App extends React.Component {
       </div>
     )
   }
-}
+};
 
 export default App;
