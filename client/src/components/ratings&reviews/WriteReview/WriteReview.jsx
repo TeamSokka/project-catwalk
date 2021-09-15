@@ -23,6 +23,12 @@ class WriteReview extends React.Component {
   }
 
 
+  // handle input change
+  handleInputChange() {
+
+  }
+
+
   // min char count
   minCharCount() {
     const { body } = this.state;
@@ -136,7 +142,7 @@ class WriteReview extends React.Component {
             <textarea id="review-summary"
               name="review-summary"
               rows="5" cols="33"
-              placeholder="Example: Best purchase ever">
+              placeholder="Example: Best purchase ever!">
             </textarea>
           </div>
 
@@ -152,6 +158,35 @@ class WriteReview extends React.Component {
             <small>For privacy reasons, do not use your full name or email address</small>
           </div>
 
+          <div className="email">
+            <label htmlFor="email">Email</label>
+            <br></br>
+            <textarea id="email"
+              name="name"
+              rows="2" cols="33"
+              placeholder="Example:jackson11@email.com">
+            </textarea>
+            <br></br>
+            <small>For authentication reasons, you will not be emailed</small>
+          </div>
+
+          <div className="review-body">
+            <label htmlFor="review"><b>* Review</b></label>
+            <br></br>
+            <textarea id="review"
+              name="review"
+              rows="5" cols="33"
+              placeholder="Why did you like the product or not?">
+            </textarea>
+          </div>
+
+          <div className="photos">
+            <label htmlFor="photos">Upload Photos (optional)</label>
+            <br></br>
+            <button type="button">Add Photos</button>
+          </div>
+
+          <button type="button" onClick={(e) => { submitReview(e) }}>Submit Review</button>
 
         </form>
       </div>
