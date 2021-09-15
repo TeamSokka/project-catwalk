@@ -35,7 +35,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <ProductDetail />
+        <ProductDetail productid={this.state.productID}/>
         <RatingsAndReviews
           productID={this.state.productID}
           metaData={this.state.metaData}

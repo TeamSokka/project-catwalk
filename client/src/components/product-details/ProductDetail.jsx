@@ -10,7 +10,7 @@ class ProductDetail extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentProductId: 40347,
+      currentProductId: this.props.productid,
       productInfo: {},
       styles: [],
       relatedProducts: [],
@@ -21,12 +21,8 @@ class ProductDetail extends React.Component {
     }
   }
 
-  getProductInfo(id) {
-    axios.get(`/products/${this.state.currentProductId}`, {
-      params: {
-        product_id: id
-      }
-    })
+  getProductInfo() {
+    axios.get(`/products/${this.state.currentProductId}`)
       .then((res) => {
         console.log('productInfo recd:', res.data);
         this.setState({
@@ -38,12 +34,8 @@ class ProductDetail extends React.Component {
       });
   }
 
-  getStyles(id) {
-    axios.get(`/products/${this.state.currentProductId}/styles`, {
-      params: {
-        product_id: id
-      }
-    })
+  getStyles() {
+    axios.get(`/products/${this.state.currentProductId}/styles`)
       .then((res) => {
         console.log('styles recd:', res.data);
         this.setState({
@@ -56,12 +48,8 @@ class ProductDetail extends React.Component {
       });
   }
 
-  getRelated(id) {
-    axios.get(`/products/${this.state.currentProductId}/related`, {
-      params: {
-        product_id: id
-      }
-    })
+  getRelated() {
+    axios.get(`/products/${this.state.currentProductId}/related`)
       .then((res) => {
         console.log('related products recd:', res.data);
         this.setState({
@@ -74,9 +62,9 @@ class ProductDetail extends React.Component {
   }
 
   componentDidMount() {
-    this.getProductInfo(this.state.currentProductId);
-    this.getStyles(this.state.currentProductId);
-    this.getRelated(this.state.currentProductId);
+    this.getProductInfo();
+    this.getStyles();
+    this.getRelated();
     // this.setState({
     //   selectedStyle: this.state.styles[0]
     // });
