@@ -78,9 +78,9 @@ class ProductDetail extends React.Component {
     // this.setState({
     //   selectedStyle: this.state.styles[0]
     // });
-    console.log('styles:', this.state.styles);
-    console.log('selected style:', this.state.selectedStyle);
-    console.log('photos:', this.state.selectedStyle.photos);
+    // console.log('styles:', this.state.styles);
+    // console.log('selected style:', this.state.selectedStyle);
+    // console.log('photos:', this.state.selectedStyle.photos);
   }
 
   render() {
