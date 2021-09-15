@@ -35,13 +35,19 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <ProductDetail />
+        <ProductDetail
+          productID={this.state.productID}
+        />
         <RatingsAndReviews
           productID={this.state.productID}
           metaData={this.state.metaData}
         />
-        <QuestionsAndAnswers />
-        <RelatedItems />
+        <QuestionsAndAnswers
+          productID={this.state.productID}
+        />
+        <RelatedItems
+          productID={this.state.productID}
+        />
       </div>
     )
   }

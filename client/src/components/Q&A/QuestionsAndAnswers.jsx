@@ -31,15 +31,15 @@ class QuestionsAndAnswers extends React.Component {
     );
   }
 
-  getQuestions(id) {
-
+  getQuestions() {
+    const { productID } = this.props;
     axios.get('/qa/questions', {
       params: {
-        product_id: id
+        product_id: productID
       }
-    }).
-      then((res) => {
-        console.log('questions ', res.data.results);
+    })
+      .then((res) => {
+        console.log('questions ', res.data);
         this.setState({
           questions: res.data.results,
         });
