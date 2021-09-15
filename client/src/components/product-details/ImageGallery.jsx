@@ -22,10 +22,10 @@ import React from 'react';
 
 var ImageGallery = (props) => (
   <div id="image-gallery">
-    <div className="main-image" src={props.photos[props.selectedphotoindex].url}>main image url: {props.photos[props.selectedphotoindex].url}
-    </div>
+    <img className="main-image" src={props.photos[props.selectedphotoindex].url}>
+    </img>
     {props.photos.map((photo, index) => (
-      <div key={index} value={index}>thumbnail #{index} url: {photo.thumbnail_url}</div>
+      <img className='thumbnail' key={index} value={index} src={photo.thumbnail_url}></img>
     ))}
   </div>
 );
