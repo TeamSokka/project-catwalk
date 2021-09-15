@@ -98,10 +98,74 @@ class WriteReview extends React.Component {
 
   render() {
     return (
-      <div>Write Review Form</div>
+      // <div>Write Review Form</div>
+      <div>
+        <form>
+          <div className="form-title">
+            <h1>Write Your Review</h1>
+            <h3>About the Product Name: {this.props.productID}</h3>
+            <small>* Required fields</small>
+          </div>
+
+          <div className="overall-rating">
+            <b>* Overall</b>
+            <div>Star mouse over</div>
+            <div>
+              <div>1 star - Poor</div>
+              <div>2 star - Fair</div>
+              <div>3 star - Average</div>
+              <div>4 star - Good</div>
+              <div>5 star - Great</div>
+            </div>
+          </div>
+
+          <div className="recommend-product">
+            <input type="radio" id="recommend-yes" value="Yes" />
+            <label htmlFor="recommend-yes">Yes</label>
+
+            <input type="radio" id="recommend-no" value="No" />
+            <label htmlFor="recommend-no">No</label>
+          </div>
+
+          <div className="characteristics">
+          </div>
+
+          <div className="review-summary">
+            <label htmlFor="review-summary">Review Summary (optional)</label>
+            <br></br>
+            <textarea id="review-summary"
+              name="review-summary"
+              rows="5" cols="33"
+              placeholder="Example: Best purchase ever">
+            </textarea>
+          </div>
+
+          <div className="name">
+            <label htmlFor="name">Name</label>
+            <br></br>
+            <textarea id="name"
+              name="name"
+              rows="2" cols="33"
+              placeholder="Example:jackson11">
+            </textarea>
+            <br></br>
+            <small>For privacy reasons, do not use your full name or email address</small>
+          </div>
+
+
+        </form>
+      </div>
     )
   }
 }
 
 export default WriteReview;
+{/* Overall Rating */ }
+{/* Would you recommend this product? */ }
+{/* Buttons */ }
+{/* Review Summary */ }
+{/* Name */ }
+{/* Review */ }
+{/* Email */ }
+{/* Photos */ }
 
