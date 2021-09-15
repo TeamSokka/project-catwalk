@@ -4,6 +4,11 @@ const PORT = 3000;
 const app = express();
 const questions = require('./helper/questionsAPI');
 
+const axios = require('axios');
+const config = require('../config.js');
+
+const interactions = require('./helper/interactionsAPI');
+
 app.use(express.static(path.join(__dirname, '..', 'client/dist')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -73,6 +78,18 @@ app.put('/qa/answers/:answer_id/report', (req, res) => {
 });
 
 // Interactions
+
+//POST Interactions
+app.post('/interactions', (req, res) => {
+  interactions.postInteractions(something, (err, data) => {
+    if (err) {
+      console.log('Failed to Post interactions', err);
+      res.send(422);
+    } else {
+      res.send(201).send(data);
+    }
+  })
+})
 
 app.listen(PORT, () => {
   console.log(`Listening at localhost:${PORT}!`);
