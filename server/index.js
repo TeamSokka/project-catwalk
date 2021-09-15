@@ -40,8 +40,8 @@ app.get('/products/:product_id/styles', (req, res) => {
   });
 });
 
-app.get('/product/:product_id/related', (req, res) => {
-  product.getRelated(req.params.product_id, (err, data) => {
+app.get('/products/:product_id/related', (req, res) => {
+  products.getRelated(req.params.product_id, (err, data) => {
     if (err) {
       res.status(400).send(err);
     } else {

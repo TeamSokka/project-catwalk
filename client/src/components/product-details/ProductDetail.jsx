@@ -64,8 +64,8 @@ class ProductDetail extends React.Component {
     })
       .then((res) => {
         console.log('related products recd:', res.data);
-        this.steState({
-          related: res.data
+        this.setState({
+          relatedProducts: res.data
         })
       })
       .catch((err) => {
@@ -77,9 +77,9 @@ class ProductDetail extends React.Component {
     this.getProductInfo(this.state.currentProductId);
     this.getStyles(this.state.currentProductId);
     this.getRelated(this.state.currentProductId);
-    this.setState({
-      selectedStyle: this.state.styles[0]
-    });
+    // this.setState({
+    //   selectedStyle: this.state.styles[0]
+    // });
     console.log('styles:', this.state.styles);
     console.log('selected style:', this.state.selectedStyle);
     console.log('photos:', this.state.selectedStyle.photos);
