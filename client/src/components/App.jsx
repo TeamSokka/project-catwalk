@@ -26,19 +26,19 @@ class App extends React.Component {
   componentDidMount() {
     this.getRelated(this.state.currentProductId);
     this.getProductInfo(this.state.currentProductId);
-   }
+  }
 
   getProductInfo = () => {
     axios.get(`/products/${this.state.productID}`)
-    .then((res) => {
-      // console.log('productInfo recd:', res.data);
-      this.setState({
-        productInfo: res.data
+      .then((res) => {
+        // console.log('productInfo recd:', res.data);
+        this.setState({
+          productInfo: res.data
+        });
+      })
+      .catch((err) => {
+        console.error(err);
       });
-    })
-    .catch((err) => {
-      console.error(err);
-    });
   }
 
   getRelated = () => {
@@ -69,11 +69,7 @@ class App extends React.Component {
   }
 
   render() {
-    const {productID, productInfo, relatedProducts, metaData} = this.state;
-
-    console.log('app state// productInfo', productInfo);
-    console.log('app state// relatedPro', relatedProducts);
-
+    const { productID, productInfo, relatedProducts, metaData } = this.state;
     return (
       <div>
         <ProductDetail

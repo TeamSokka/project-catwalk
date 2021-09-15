@@ -45,7 +45,6 @@ class ProductDetail extends React.Component {
       }
     })
       .then((res) => {
-        console.log('styles recd:', res.data);
         this.setState({
           styles: res.data,
           selectedStyle: res.data.results[0]
