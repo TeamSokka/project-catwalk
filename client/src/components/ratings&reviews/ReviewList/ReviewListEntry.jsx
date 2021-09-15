@@ -62,7 +62,10 @@ class ReviewListEntry extends React.Component {
         {stars}
         <div>{this.props.review.reviewer_name}</div>
         <div> {new Date(this.props.review.date).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}</div>
-        <div>{this.props.review.summary}</div>
+        {
+          this.props.review.summary ?
+            <div>{this.props.review.summary}</div> : null
+        }
         <div>{this.props.review.body}</div>
         {
           this.props.review.response ?

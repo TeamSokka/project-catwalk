@@ -1,6 +1,7 @@
 import { thisExpression } from '@babel/types';
 import React from 'react';
 import ReviewList from './ReviewList/ReviewList';
+import WriteReview from './WriteReview/WriteReview';
 
 const axios = require('axios');
 
@@ -114,6 +115,11 @@ class RatingsAndReviews extends React.Component {
         />
         <button className="" type="button" onClick={this.writeReviewClick}>Add a Review</button>
         <button className="" type="button" onClick={this.moreReviewsClick}>More Reviews</button>
+        <WriteReview
+          handlePostReview={this.handlePostReview}
+          metaData={this.state.metaData}
+          productID={this.props.productID}
+        />
       </div >
     )
   }
