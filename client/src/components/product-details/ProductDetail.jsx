@@ -14,7 +14,7 @@ class ProductDetail extends React.Component {
       currentProductId: this.props.productid,
       productInfo: this.props.productinfo,
       styles: [],
-      relatedProducts: [],
+      // relatedProducts: this.props.related,
       reviews: [],
       selectedStyle: { photos: [], skus: {} },
       selectedSizeSKU: { quantity: 0 },
@@ -22,18 +22,18 @@ class ProductDetail extends React.Component {
     }
   }
 
-  getProductInfo() {
-    axios.get(`/products/${this.state.currentProductId}`)
-      .then((res) => {
-        console.log('productInfo recd:', res.data);
-        this.setState({
-          productInfo: res.data
-        });
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  }
+  // getProductInfo() {
+  //   axios.get(`/products/${this.state.currentProductId}`)
+  //     .then((res) => {
+  //       console.log('productInfo recd:', res.data);
+  //       this.setState({
+  //         productInfo: res.data
+  //       });
+  //     })
+  //     .catch((err) => {
+  //       console.error(err);
+  //     });
+  // }
 
   getStyles() {
     axios.get(`/products/${this.state.currentProductId}/styles`)
@@ -52,18 +52,18 @@ class ProductDetail extends React.Component {
       })
   }
 
-  getRelated() {
-    axios.get(`/products/${this.state.currentProductId}/related`)
-      .then((res) => {
-        console.log('related products recd:', res.data);
-        this.setState({
-          relatedProducts: res.data
-        })
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  }
+  // getRelated() {
+  //   axios.get(`/products/${this.state.currentProductId}/related`)
+  //     .then((res) => {
+  //       console.log('related products recd:', res.data);
+  //       this.setState({
+  //         relatedProducts: res.data
+  //       })
+  //     })
+  //     .catch((err) => {
+  //       console.error(err);
+  //     });
+  // }
 
   handleSizeSelect(event) {
     this.setState({
@@ -72,9 +72,9 @@ class ProductDetail extends React.Component {
   }
 
   componentDidMount() {
-    this.getProductInfo();
+    // this.getProductInfo();
     this.getStyles();
-    this.getRelated();
+    // this.getRelated();
     // this.setState({
     //   selectedStyle: this.state.styles[0]
     // });
