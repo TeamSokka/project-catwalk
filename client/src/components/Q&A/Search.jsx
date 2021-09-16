@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BiSearchAlt } from 'react-icons/bi';
 
 const Search = (props) => {
+  // const [search, setSearch] = useState('');
   return (
     <div className='search'>
       <input type='text' id='search' value={props.search}
@@ -14,3 +15,5 @@ const Search = (props) => {
 }
 
 export default Search;
+
+// onClick={props.onSearch}

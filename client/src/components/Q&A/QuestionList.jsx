@@ -6,12 +6,11 @@ const QuestionList = (props) => {
   return (
     <div>
       <div>
-        {props.questions.slice(0, 4).map((question) => (
+        {props.questions.length > 0 && props.questions.slice(0, 4).map((question) => (
           <Question key={question.question_id} question={question}
             answers={props.answers} />
-        ))}
-      </div>
-      <div>
+        ))
+        }
         <button className='more-answered-btn'>MORE ANSWERED QUESTIONS</button>
         <button className='add-question-btn'>ADD A QUESTION +</button>
       </div>
@@ -20,3 +19,6 @@ const QuestionList = (props) => {
 };
 
 export default QuestionList;
+
+// {props.questions.length > 0 && <Question key={question.question_id} question={question}
+// answers={props.answers} /> : }

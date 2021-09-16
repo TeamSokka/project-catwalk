@@ -119,7 +119,7 @@ app.put(`/reviews/:review_id/:method`, (req, res) => {
 // GET Questions
 app.get('/qa/questions', (req, res) => {
   // console.log('product id', req.query);
-  let id = req.query.product_id || 40344;
+  let id = req.query.product_id;
   questions.getQuestions(id, (err, data) => {
     if (err) {
       res.status(400).send(err);
@@ -135,8 +135,8 @@ app.get('/qa/questions/:question_id/answers', (req, res) => {
   //   product: req.query.product_id || 40344,
   //   question: req.params.question_id,
   // };
-  console.log('product id', req.query);
-  console.log('q id ', req.params.question_id);
+  // console.log('product id', req.query);
+  // console.log('q id ', req.params.question_id);
   questions.getAnswers(req.params.question_id, (err, data) => {
     if (err) {
       res.status(400).send(err);
@@ -148,7 +148,14 @@ app.get('/qa/questions/:question_id/answers', (req, res) => {
 
 // POST Questions
 app.post('/qa/questions', (req, res) => {
-  res.status(201).send('Post Qs from Server!');
+  console.log('body ', req.body);
+  questions.addQuestion(req.body, (err, data) => {
+    if (err) {
+      res.status(400).send(err);
+    } else {
+      res.status(201).send(data);
+    }
+  });
 });
 
 // POST Answers

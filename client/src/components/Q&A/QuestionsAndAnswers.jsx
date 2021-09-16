@@ -62,12 +62,15 @@ class QuestionsAndAnswers extends React.Component {
   // }
 
   onSearch() {
-    let results = this.state.questions.filter((question) =>
+    // if (e.target.value.length >= 3) {
+      let results = this.state.questions.filter((question) =>
       question.question_body.toLowerCase().includes(this.state.search.toLowerCase())
-    )
-    this.setState({
-      questions: results
-    })
+      )
+      this.setState({
+        questions: results,
+        // [e.target.id]: e.target.value
+      })
+    // }
   }
 
   render() {
