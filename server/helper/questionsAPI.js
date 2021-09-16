@@ -11,50 +11,92 @@ const api = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp';
 //   },
 // };
 
-getQuestions = (id, callback) => {
-  axios
-    .get(`${api}/qa/questions?product_id=${id}`, {
-      headers: {
-        'User-Agent': 'request',
-        Authorization: `${config.TOKEN}`,
-      },
-    })
-    .then((res) => {
-      console.log('data from response', res.data);
-      callback(null, res.data);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-  // let options = {
-  //   method: 'GET',
-  //   url: `${api}/qa/questions?product_id=${id}`,
-  //   headers: {
-  //     'User-Agent': 'request',
-  //     Authorization: `token ${config.TOKEN}`,
-  //   },
-  // };
-  // console.log('options ', options);
+
+const getQuestions = (id, callback) => {
+  axios.get(`${api}/qa/questions?product_id=${id}`, {
+    headers: {
+      'User-Agent': 'request',
+      Authorization: `${config.TOKEN}`,
+    }
+  })
+  .then((res) => {
+    callback(null, res.data);
+  })
+  .catch((err) => {
+    callback(err, null);
+  });
 };
 
-getAnswers = (id, callback) => {
+const getAnswers = (id, callback) => {
   axios
-    .get(`${api}/qa/questions/${id}/answers`, {
-      headers: {
-        'User-Agent': 'request',
-        Authorization: `${config.TOKEN}`,
-      },
-    })
-    .then((res) => {
-      console.log('answers ', res.data);
-      callback(null, res.data);
-    })
-    .catch((err) => {
-      callback(err, null);
-    });
+  .get(`${api}/qa/questions/${id}/answers`, {
+    headers: {
+      'User-Agent': 'request',
+      Authorization: `${config.TOKEN}`,
+    },
+  })
+  .then((res) => {
+    console.log('answers ', res.data);
+    callback(null, res.data);
+  })
+  .catch((err) => {
+    callback(err, null);
+  });
 };
+
+const postQuestion = (data, callback) => {
+  axios.post(`${api}/qa/questions`, data, {
+    headers: {
+      'User-Agent': 'request',
+      Authorization: `${config.TOKEN}`,
+    }
+  })
+  .then((res) => {
+    callback(null, res.data);
+  })
+  .catch((err) => {
+    callback(err, null);
+  });
+};
+
+const postAnswer = (id, data, callback) => {
+  axios.post(`${api}/qa/questions/${id}/answers`, data, {
+    headers: {
+      'User-Agent': 'request',
+      Authorization: `${config.TOKEN}`,
+    }
+  })
+  .then((res) => {
+    console.log('data in add ', res.data);
+    callback(null, res.data);
+  })
+  .catch((err) => {
+    callback(err, null);
+  });
+};
+
+const putRequest = (data, callback) => {
+  let { path, id, endpoint } = data;
+  axios.put(`${api}/qa/${path}/${id}/${endpoint}`, data, {
+    headers: {
+      'User-Agent': 'request',
+      Authorization: `${config.TOKEN}`,
+    }
+  })
+  .then((res) => {
+    console.log('data in put ', res);
+    callback(null, res.data);
+  })
+  .catch((err) => {
+    callback(err, null);
+  });
+}
+
 
 module.exports = {
   getQuestions,
   getAnswers,
+  postQuestion,
+  postAnswer,
+  putRequest
 };

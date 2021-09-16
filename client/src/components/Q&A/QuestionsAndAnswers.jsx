@@ -17,9 +17,7 @@ class QuestionsAndAnswers extends React.Component {
     this.getAnswers = this.getAnswers.bind(this);
   }
 
-  componentDidMount() {
-    Promise.all([this.getQuestions(), this.getAnswers()]);
-  }
+  componentDidMount() { this.getQuestions(); }
 
   getAnswers() {
     this.state.questions.forEach((question) =>
@@ -63,11 +61,24 @@ class QuestionsAndAnswers extends React.Component {
   //   })
   // }
 
+  onSearch() {
+    // if (e.target.value.length >= 3) {
+      let results = this.state.questions.filter((question) =>
+      question.question_body.toLowerCase().includes(this.state.search.toLowerCase())
+      )
+      this.setState({
+        questions: results,
+        // [e.target.id]: e.target.value
+      })
+    // }
+  }
+
   render() {
     return (
       <div>
         <h3>QUESTIONS & ANSWERS</h3>
-        <Search search={this.state.search} handleChange={this.handleChange} />
+        <Search search={this.state.search} handleChange={this.handleChange}
+          onSearch={this.onSearch.bind(this)} />
         <QuestionList
           questions={this.state.questions}
           answers={this.state.answers}
