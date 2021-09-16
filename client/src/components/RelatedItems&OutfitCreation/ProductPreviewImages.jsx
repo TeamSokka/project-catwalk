@@ -7,7 +7,9 @@ class ProductPreviewImages extends React.Component {
 
 
   render() {
-    const {selectedStyle} = this.props
+    const {selectedStyle} = this.props;
+    // const image = formatPreviewImage(selectedStyle)
+    console.log('selectedStyle: ', selectedStyle);
     return (
       <div id="product-preview-img">
         {/* <img src={selectedStyle.photos[0]} alt="" /> */}

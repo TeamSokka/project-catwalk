@@ -11,19 +11,14 @@ class ProductInformation extends React.Component {
     const {productInfo} = this.props;
     const information = formatRelatedItems(productInfo);
 
-    // console.log('price: ', price);
-    console.log('information: ', information);
-
     return (
       <div id="product-info">
-        <div id="info-category">
-          <p>{information.category}</p>
-        </div>
-        <div id="info-name">
-          <p>{information.name}</p>
-        </div>
-        <div id="info-price">
-          {/* <p>${price}</p> */}
+        <div>
+          <p>{information.category}
+            <br />{information.name}
+            <br />${information.price}
+            <br /> Star rating
+          </p>
         </div>
       </div>
     )
@@ -31,7 +26,3 @@ class ProductInformation extends React.Component {
 }
 
 export default ProductInformation;
-
-//props will have information (api)
-//this component will map over all the data
-//this information is read only
