@@ -6,19 +6,12 @@ import WriteReview from '../client/src/components/ratings&reviews/WriteReview/Wr
 import ReviewList from '../client/src/components/ratings&reviews/ReviewList/ReviewList';
 import ReviewListEntry from '../client/src/components/ratings&reviews/ReviewList/ReviewListEntry';
 
-describe("test suite", () => {
-  it("should not fail", () => {
-    jsdom.reconfigure({
-      url: "https://www.example.com/",
-    });
+
+describe('App', () => {
+  test('renders App component', () => {
+    render(<App />);
   });
 });
-
-// describe('App', () => {
-//   test('renders App component', () => {
-//     render(<App />);
-//   });
-// });
 
 // describe('<WriteReview />', () => {
 //   test('renders WriteReview component', () => {

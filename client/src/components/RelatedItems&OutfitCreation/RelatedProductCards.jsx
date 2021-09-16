@@ -24,9 +24,6 @@ class RelatedProductCards extends React.Component {
     // const { isProductClicked } = this.state;
     const { productInfo, relatedProducts } = this.props;
 
-    console.log('PRO INFO', productInfo);
-    console.log('RELATED PRO', relatedProducts);
-
     return (
       <div id="related-product-card">
            <div className="product-card">
