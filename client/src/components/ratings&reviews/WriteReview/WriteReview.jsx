@@ -20,6 +20,23 @@ class WriteReview extends React.Component {
       }
     }
 
+    // this.state = {
+    //   review: {
+    //     mouseOver: [0, 0, 0, 0, 0],
+    //     productID: productID,
+    //     recommend: null,
+    //     summary: '',
+    //     body: '',
+    //     photos: [],
+    //     name: '',
+    //     email: '',
+    //     rating: null,
+    //     characteristics: {
+    //     }
+    //   },
+    //   mouseOver: [0, 0, 0, 0, 0],
+    // }
+
     this.minCharCount = this.minCharCount.bind(this);
     this.submitReview = this.submitReview.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -52,8 +69,15 @@ class WriteReview extends React.Component {
   }
 
   handleRecommendClick(e) {
+    var bool;
+    if (e.target.value === "Yes") {
+      bool = true;
+    } else {
+      bool = false;
+    }
+
     this.setState({
-      [e.target.name]: Boolean(e.target.value),
+      [e.target.name]: bool,
     });
   }
 
@@ -87,6 +111,9 @@ class WriteReview extends React.Component {
     // Name - up to 60 characters
     // Email - up to 60 characters
     // alert with warning message if not satisfactory entry
+
+
+
     if (rating === null) {
       alert('Please fill out required ratings option.');
       e.preventDefault();
@@ -98,6 +125,7 @@ class WriteReview extends React.Component {
       e.preventDefault();
       return;
     }
+    // characteristics
 
     if (summary.length > 60) {
       alert('Review Summary must be 60 characters or less.');
@@ -110,6 +138,8 @@ class WriteReview extends React.Component {
       e.preventDefault();
       return;
     }
+
+    // photo check
 
     if (name.length > 60 || name.length === 0) {
       alert('Name must be less than 60 characters and cannot be empty.');
@@ -126,13 +156,20 @@ class WriteReview extends React.Component {
       return;
     }
 
-    alert('Your review has been submitted.');
+    // concat alert string
+    var alertMessage = '\n';
+    // check if alert message not empty - check length > 0
+    alert('You must enter the following: ');
+
 
     handlePostReview(this.state);
+    // handlePostReview(this.state.review);
+
   }
 
   render() {
     const { name } = this.props.productInfo;
+
     return (
       <div>
         <form onSubmit={this.submitReview}>
@@ -167,6 +204,7 @@ class WriteReview extends React.Component {
 
           <div className="characteristics">
             <CharacteristicsList />
+            {/* get keys Object.keys */}
           </div>
 
           <div className="review-summary">
@@ -201,6 +239,8 @@ class WriteReview extends React.Component {
             <textarea id="email"
               name="email"
               rows="2" cols="33"
+              value={this.state.email}
+              onChange={this.handleInputChange}
               placeholder="Example:jackson11@email.com">
             </textarea>
             <br></br>
@@ -211,9 +251,9 @@ class WriteReview extends React.Component {
             <label htmlFor="review"><b>* Review Body</b></label>
             <br></br>
             <textarea id="review"
-              name="review"
+              name="body"
               rows="5" cols="33"
-              value={this.state.email}
+              value={this.state.body}
               onChange={this.handleInputChange}
               placeholder="Why did you like the product or not?">
             </textarea>
@@ -225,7 +265,7 @@ class WriteReview extends React.Component {
             <button type="button">Add Photos</button>
           </div>
 
-          <button type="button" onClick={(e) => { submitReview(e) }}>Submit Review</button>
+          <button type="button" onClick={(e) => { this.submitReview(e) }}>Submit Review</button>
 
         </form >
       </div >

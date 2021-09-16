@@ -45,10 +45,11 @@ class RatingsAndReviews extends React.Component {
   }
 
   // Post a review
-  handlePostReview(reviewData) {
+  handlePostReview(reviewData) { // move to write review
     axios.post('/reviews', reviewData)
       .then((result) => {
         console.log('Success with handlePostReview');
+        // this.handleGetReview();
       })
       .catch((error) => {
         console.log('Error with handleGetReview ' + error);
