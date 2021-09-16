@@ -76,7 +76,8 @@ class App extends React.Component {
           productInfo={productInfo}
         /> */}
 
-        {/* <RatingsAndReviews
+        {/*
+        <RatingsAndReviews
           productID={productID}
           metaData={metaData}
           productInfo={productInfo}
