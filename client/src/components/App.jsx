@@ -15,6 +15,8 @@ class App extends React.Component {
       productID: '40348', // example product id
       productInfo: {},
       relatedProducts: [],
+      styles: [],
+      selectedStyle: { photos: [], skus: {} },
       metaData: {},
     }
 
@@ -24,6 +26,7 @@ class App extends React.Component {
   componentDidMount() {
     this.getRelated(this.state.productID);
     this.getProductInfo(this.state.productID);
+    this.getStyles();
    }
 
   getProductInfo = () => {
@@ -37,6 +40,23 @@ class App extends React.Component {
     .catch((err) => {
       console.error(err);
     });
+  }
+
+  getStyles() {
+    axios.get(`/products/${this.state.productID}/styles`)
+      .then((res) => {
+        // console.log('styles recd:', res.data.results);
+        console.log('skus[0]:', Object.keys(res.data.results[0].skus)[0])
+        this.setState({
+          styles: res.data.results,
+          selectedStyle: res.data.results[0],
+          // selectedSize: res.data.results[0].skus[Object.keys(res.data.results[0].skus)[0]]
+        });
+        console.log('state:', this.state)
+      })
+      .catch((err) => {
+        console.error(err);
+      })
   }
 
   getRelated = () => {
@@ -67,17 +87,19 @@ class App extends React.Component {
   }
 
   render() {
-    const {productID, productInfo, relatedProducts, metaData} = this.state;
+    const {productID, productInfo, relatedProducts, styles, selectedStyle, metaData} = this.state;
 
     // console.log('app state// productInfo', productInfo);
     // console.log('app state// relatedPro', relatedProducts);
 
     return (
       <div>
-        {/* <ProductDetail
+        <ProductDetail
           productID={productID}
           productInfo={productInfo}
-        /> */}
+          styles={styles}
+          selectedStyle={selectedStyle}
+        />
 
         {/*
         <RatingsAndReviews
@@ -92,6 +114,7 @@ class App extends React.Component {
           productID={productID}
           productInfo={productInfo}
           relatedProducts={relatedProducts}
+          selectedStyle={selectedStyle}
         />
       </div>
     )
