@@ -259,7 +259,8 @@ class WriteReview extends React.Component {
           <div className="photos">
             <label htmlFor="photos">Upload Photos (optional)</label>
             <br></br>
-            <button type="button">Add Photos</button>
+            {/* <button type="button" onClick={(e) => e.preventDefault}>Add Photos</button> */}
+            <input id="photos" type="file" name="filefield" multiple="multiple" ></input>
           </div>
 
           <button type="button" onClick={(e) => { this.submitReview(e) }}>Submit Review</button>
