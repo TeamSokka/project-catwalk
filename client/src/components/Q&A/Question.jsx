@@ -30,5 +30,6 @@ const Question = (props) => {
 
 export default Question;
 
+// sort answers by helpfulness and Seller name
 
 // <div className='helpful'>

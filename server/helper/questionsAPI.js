@@ -11,7 +11,40 @@ const api = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp';
 //   },
 // };
 
-const addQuestion = (data, callback) => {
+
+const getQuestions = (id, callback) => {
+  axios.get(`${api}/qa/questions?product_id=${id}`, {
+    headers: {
+      'User-Agent': 'request',
+      Authorization: `${config.TOKEN}`,
+    }
+  })
+  .then((res) => {
+    callback(null, res.data);
+  })
+  .catch((err) => {
+    callback(err, null);
+  });
+};
+
+const getAnswers = (id, callback) => {
+  axios
+  .get(`${api}/qa/questions/${id}/answers`, {
+    headers: {
+      'User-Agent': 'request',
+      Authorization: `${config.TOKEN}`,
+    },
+  })
+  .then((res) => {
+    console.log('answers ', res.data);
+    callback(null, res.data);
+  })
+  .catch((err) => {
+    callback(err, null);
+  });
+};
+
+const postQuestion = (data, callback) => {
   axios.post(`${api}/qa/questions`, data, {
     headers: {
       'User-Agent': 'request',
@@ -26,7 +59,7 @@ const addQuestion = (data, callback) => {
   });
 };
 
-const addAnswer = (id, data, callback) => {
+const postAnswer = (id, data, callback) => {
   axios.post(`${api}/qa/questions/${id}/answers`, data, {
     headers: {
       'User-Agent': 'request',
@@ -42,41 +75,28 @@ const addAnswer = (id, data, callback) => {
   });
 };
 
-const getQuestions = (id, callback) => {
-  axios.get(`${api}/qa/questions?product_id=${id}`, {
+const putRequest = (data, callback) => {
+  let { path, id, endpoint } = data;
+  axios.put(`${api}/qa/${path}/${id}/${endpoint}`, data, {
     headers: {
       'User-Agent': 'request',
       Authorization: `${config.TOKEN}`,
     }
   })
-    .then((res) => {
-      callback(null, res.data);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-};
+  .then((res) => {
+    console.log('data in put ', res);
+    callback(null, res.data);
+  })
+  .catch((err) => {
+    callback(err, null);
+  });
+}
 
-const getAnswers = (id, callback) => {
-  axios
-    .get(`${api}/qa/questions/${id}/answers`, {
-      headers: {
-        'User-Agent': 'request',
-        Authorization: `${config.TOKEN}`,
-      },
-    })
-    .then((res) => {
-      console.log('answers ', res.data);
-      callback(null, res.data);
-    })
-    .catch((err) => {
-      callback(err, null);
-    });
-};
 
 module.exports = {
-  addAnswer,
-  addQuestion,
   getQuestions,
   getAnswers,
+  postQuestion,
+  postAnswer,
+  putRequest
 };
