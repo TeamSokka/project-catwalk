@@ -39,7 +39,10 @@ var AddToCart = (props) => {
       </label>
     </div>
     <div>
-      <input id="add-to-cart-button" type="submit" value="Add to Cart"></input>
+      {props.selectedsize.quantity === 0
+        ? <span><em>Item out of stock in this style and size.</em></span>
+        : <input id="add-to-cart-button" type="submit" value="Add to Cart"></input>
+      }
       <button>Star</button>
     </div>
   </form>
