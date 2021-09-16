@@ -24,22 +24,23 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    this.fetchMeta();
     this.getRelated(this.state.productID);
     this.getProductInfo(this.state.productID);
     this.getStyles();
-   }
+  }
 
   getProductInfo = () => {
     axios.get(`/products/${this.state.productID}`)
-    .then((res) => {
-      // console.log('productInfo recd:', res.data);
-      this.setState({
-        productInfo: res.data
+      .then((res) => {
+        // console.log('productInfo recd:', res.data);
+        this.setState({
+          productInfo: res.data
+        });
+      })
+      .catch((err) => {
+        console.error(err);
       });
-    })
-    .catch((err) => {
-      console.error(err);
-    });
   }
 
   getStyles() {
@@ -86,7 +87,7 @@ class App extends React.Component {
   }
 
   render() {
-    const {productID, productInfo, relatedProducts, styles, selectedStyle, metaData} = this.state;
+    const { productID, productInfo, relatedProducts, styles, selectedStyle, metaData } = this.state;
 
     // console.log('app state// productInfo', productInfo);
     // console.log('app state// relatedPro', relatedProducts);
@@ -103,7 +104,7 @@ class App extends React.Component {
 
         <RatingsAndReviews
           productID={productID}
-          metaData={metaData}
+          metaData={this.state.metaData}
           productInfo={productInfo}
         />
 

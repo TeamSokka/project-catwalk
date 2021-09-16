@@ -1,0 +1,9 @@
+.individual-stars, .single-star {
+  color: black;
+  // height: 20px;
+  display: inline-block;
+  justify-content: flex-start;
+  transform: scale(0.6);
+  flex-direction: row;
+  align-content: left;
+}
