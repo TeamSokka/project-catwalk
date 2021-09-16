@@ -1,4 +1,5 @@
 import React from 'react';
+import CharacteristicsList from './CharacteristicsList';
 
 class WriteReview extends React.Component {
   constructor(props) {
@@ -165,6 +166,7 @@ class WriteReview extends React.Component {
           </div>
 
           <div className="characteristics">
+            <CharacteristicsList />
           </div>
 
           <div className="review-summary">
@@ -180,7 +182,7 @@ class WriteReview extends React.Component {
           </div>
 
           <div className="name">
-            <label htmlFor="name">Name</label>
+            <label htmlFor="name"><b>* Name</b></label>
             <br></br>
             <textarea id="name"
               name="name"
@@ -194,10 +196,10 @@ class WriteReview extends React.Component {
           </div>
 
           <div className="email">
-            <label htmlFor="email">Email</label>
+            <label htmlFor="email"><b>* Email</b></label>
             <br></br>
             <textarea id="email"
-              name="name"
+              name="email"
               rows="2" cols="33"
               placeholder="Example:jackson11@email.com">
             </textarea>
@@ -206,7 +208,7 @@ class WriteReview extends React.Component {
           </div>
 
           <div className="review-body">
-            <label htmlFor="review"><b>* Review</b></label>
+            <label htmlFor="review"><b>* Review Body</b></label>
             <br></br>
             <textarea id="review"
               name="review"
