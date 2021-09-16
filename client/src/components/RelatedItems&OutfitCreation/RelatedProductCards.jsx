@@ -3,36 +3,35 @@ import ProductPreviewImages from './ProductPreviewImages';
 import ProductInformation from './ProductInformation';
 import './related-items.scss';
 
-//this.props.productID
+//this.props.productID & this.props.relatedProducts
 class RelatedProductCards extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isProductClicked: false
+      // isProductClicked: false
     }
   }
 
-  handleUpdateClickedProduct = () => {
-    console.log('hit the product img');
-    this.setState({
-      ...this.state,
-      isProductClicked: true
-    })
-  }
+  // handleUpdateClickedProduct = () => {
+  //   console.log('hit the product img');
+  //   this.setState({
+  //     ...this.state,
+  //     isProductClicked: true
+  //   })
+  // }
 
   render() {
-    const { isProductClicked } = this.state;
+    // const { isProductClicked } = this.state;
+    const { productInfo, relatedProducts } = this.props;
+
+    console.log('PRO INFO', productInfo);
+    console.log('RELATED PRO', relatedProducts);
 
     return (
       <div id="related-product-card">
-        <h1>Related Product Cards</h1>
-          <div onClick={this.handleUpdateClickedProduct}className="product-card">
-
-            {isProductClicked ?
-              (<ProductInformation/>)
-            :
-              (<ProductPreviewImages/>)
-            }
+           <div className="product-card">
+              <ProductPreviewImages/>
+              <ProductInformation productInfo={productInfo}/>
           </div>
       </div>
     )
@@ -41,10 +40,8 @@ class RelatedProductCards extends React.Component {
 
 export default RelatedProductCards;
 
-//card will have the information to pass down to ProductInformation
-//card will show product preview images =>
-//when clicked on the images =>
-//open to product information
+//need to do something with relatedProducts={relatedProducts}
+//also build carousel here?
 
 /*
 1.4.2 List Behavior

@@ -5,8 +5,6 @@ import RelatedItems from './RelatedItems&OutfitCreation/RelatedItems';
 import RatingsAndReviews from './ratings&reviews/RatingsAndReviews';
 import ProductDetail from './product-details/ProductDetail.jsx';
 
-import { formatRelatedItems } from '../components/helpers/_functions.js';
-
 const axios = require('axios');
 
 class App extends React.Component {
@@ -24,8 +22,8 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.getRelated(this.state.currentProductId);
-    this.getProductInfo(this.state.currentProductId);
+    this.getRelated(this.state.productID);
+    this.getProductInfo(this.state.productID);
    }
 
   getProductInfo = () => {
@@ -71,23 +69,20 @@ class App extends React.Component {
   render() {
     const {productID, productInfo, relatedProducts, metaData} = this.state;
 
-    console.log('app state// productInfo', productInfo);
-    console.log('app state// relatedPro', relatedProducts);
-
     return (
       <div>
-        <ProductDetail
+        {/* <ProductDetail
           productID={productID}
           productInfo={productInfo}
-        />
+        /> */}
 
-        <RatingsAndReviews
+        {/* <RatingsAndReviews
           productID={productID}
           metaData={metaData}
           productInfo={productInfo}
-        />
+        /> */}
 
-        <QuestionsAndAnswers productID={productID} />
+        {/* <QuestionsAndAnswers productID={productID} /> */}
 
         <RelatedItems
           productID={productID}

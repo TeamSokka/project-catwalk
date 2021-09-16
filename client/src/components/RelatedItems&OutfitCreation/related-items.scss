@@ -21,16 +21,19 @@ $box-shadow-hover: 0 .75rem 1rem rgba($black, 0.30) !default;
 //   background-color: $ten;
 // }
 
-#product-info-cards {
+#product-info {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  height: 25%;
+  border: 1px solid pink;
 }
 
 #product-preview-img {
   display: flex;
   justify-items: center;
   align-items: center;
+  height: 75%;
 }
 
 .product-card {
@@ -41,11 +44,10 @@ $box-shadow-hover: 0 .75rem 1rem rgba($black, 0.30) !default;
 
   // border: 1px solid rgba(0, 0, 0, 0.26);
   color: $two;
-  background-color: $eight;
-  border-radius: $border-radius;
+  // background-color: $eight;
   box-shadow: $box-shadow;
-  width: 150px;
-  height: 175px;
+  width: 175px;
+  height: 225px;
 
   &:hover {
     cursor: pointer;
