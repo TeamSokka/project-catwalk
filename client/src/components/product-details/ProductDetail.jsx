@@ -113,7 +113,7 @@ class ProductDetail extends React.Component {
         />
         <div>
           <ProductInfo
-            productinfo={this.state.prodInfo}
+            productinfo={this.props.productInfo}
           />
           <StyleSelector
             styles={this.state.styles}
