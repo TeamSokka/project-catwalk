@@ -77,5 +77,39 @@ module.exports = {
       .catch((err) => {
         console.error(err);
       });
+  },
+
+  getCart: (callback) => {
+    axios
+      .get(`${api}/cart`, {
+        headers: {
+          'User-Agent': 'request',
+          'Authorization': config.TOKEN
+        }
+      })
+      .then((res) => {
+        console.log('GET cart processed. Response data:', res.data);
+        callback(null, res.data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  },
+
+  addToCart: (obj, callback) => {
+    axios
+      .post(`${api}/cart`, {
+        headers: {
+          'User-Agent': 'request',
+          'Authorization': config.TOKEN
+        }
+      })
+      .then((res) => {
+        console.log('POST (add to cart) processed. Response data:', res.data);
+        callback(null, res.data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   }
 }
