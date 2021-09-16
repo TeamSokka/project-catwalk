@@ -127,7 +127,6 @@ class RatingsAndReviews extends React.Component {
           reviewList={this.state.reviewList}
           handlePutReview={this.state.handlePutReview}
           reviewsDisplayed={this.state.reviewsDisplayed}
-          metaData={this.state.metaData}
         />
         <button className="" type="button" onClick={this.writeReviewClick}>Add a Review</button>
         <button className="" type="button" onClick={this.moreReviewsClick}>More Reviews</button>
@@ -146,7 +145,7 @@ class RatingsAndReviews extends React.Component {
                 <span className="close-button" onClick={this.exitWriteReviewClick}>&times;</span>
                 <WriteReview
                   handlePostReview={this.handlePostReview}
-                  metaData={this.state.metaData}
+                  metaData={this.props.metaData}
                   productID={this.props.productID}
                   productInfo={this.props.productInfo}
                 />

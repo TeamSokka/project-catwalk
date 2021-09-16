@@ -4,7 +4,7 @@ import CharacteristicsList from './CharacteristicsList';
 class WriteReview extends React.Component {
   constructor(props) {
     super(props);
-    const { productID } = this.props;
+    const { productID, metaData } = this.props;
 
     // this.state = {
     //   mouseOver: [0, 0, 0, 0, 0],
@@ -34,6 +34,7 @@ class WriteReview extends React.Component {
         }
       },
       mouseOver: [0, 0, 0, 0, 0],
+      metaData: metaData,
     }
 
     this.minCharCount = this.minCharCount.bind(this);
@@ -50,6 +51,12 @@ class WriteReview extends React.Component {
       [e.target.name]: e.target.value,
     });
   }
+
+  // "characteristics": {
+  //   "Size": {
+  //     "id": 135232,
+  //     "value": "4.0000000000000000"
+  //   },
 
   handleCharacteristicClick(e) {
     const { characteristics } = this.state;
@@ -200,8 +207,10 @@ class WriteReview extends React.Component {
           </div>
 
           <div className="characteristics">
-            <CharacteristicsList />
-            {/* get keys Object.keys */}
+            <CharacteristicsList
+              metaData={this.props.metaData}
+              handleCharacteristicClick={this.handleCharacteristicClick}
+            />
           </div>
 
           <div className="review-summary">

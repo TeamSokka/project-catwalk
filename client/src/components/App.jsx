@@ -26,6 +26,7 @@ class App extends React.Component {
   componentDidMount() {
     this.getRelated(this.state.currentProductId);
     this.getProductInfo(this.state.currentProductId);
+    this.fetchMeta();
   }
 
   getProductInfo = () => {
@@ -78,7 +79,7 @@ class App extends React.Component {
         /> */}
         <RatingsAndReviews
           productID={productID}
-          metaData={metaData}
+          metaData={this.state.metaData}
           productInfo={productInfo}
         />
 
