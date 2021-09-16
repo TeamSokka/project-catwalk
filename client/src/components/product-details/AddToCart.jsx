@@ -14,10 +14,10 @@ var AddToCart = (props) => {
   }
 
   return (
-  <form id="add-to-cart-form">
+  <form id="add-to-cart-form" onSubmit={props.handlecartsubmit}>
     <div>
       <label>Size:
-        <select id="size-selector" name="size" onChange={props.handlesizeselect}>
+        <select id="size-selector" name="sizesku" onChange={props.handlesizeselect}>
           <option value="">Select Size:</option>
           {props.selectedstyle.skus
           ? Object.keys(props.selectedstyle.skus).map((sku, index) => (
@@ -39,7 +39,7 @@ var AddToCart = (props) => {
       </label>
     </div>
     <div>
-      <button id="add-to-cart-button">Add to Cart</button>
+      <input id="add-to-cart-button" type="submit" value="Add to Cart"></input>
       <button>Star</button>
     </div>
   </form>

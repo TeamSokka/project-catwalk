@@ -17,6 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 
 
 // Products
+// GET /products
 app.get('/products', (req, res) => {
   products.getProducts((err, data) => {
     if (err) {
@@ -27,6 +28,7 @@ app.get('/products', (req, res) => {
   })
 })
 
+//GET /products/:product_id (info for one product)
 app.get('/products/:product_id', (req, res) => {
   products.getProductById(req.params.product_id, (err, data) => {
     if (err) {
@@ -38,6 +40,7 @@ app.get('/products/:product_id', (req, res) => {
   })
 })
 
+//GET /products styles of one product
 app.get('/products/:product_id/styles', (req, res) => {
   products.getStyles(req.params.product_id, (err, data) => {
     if (err) {
@@ -48,6 +51,7 @@ app.get('/products/:product_id/styles', (req, res) => {
   });
 });
 
+//GET /products related products
 app.get('/products/:product_id/related', (req, res) => {
   products.getRelated(req.params.product_id, (err, data) => {
     if (err) {
@@ -57,6 +61,28 @@ app.get('/products/:product_id/related', (req, res) => {
     }
   });
 });
+
+//GET /cart
+app.get('/cart', (req, res) => {
+  products.getCart((err, data) => {
+    if (err) {
+      res.status(400).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  });
+})
+
+//POST /cart
+app.post('/cart', (req, res) => {
+  products.addToCart(req.body, (err, data) => {
+    if (err) {
+      res.status(404).send(err);
+    } else {
+      res.status(201).send(data);
+    }
+  });
+})
 
 // Reviews
 // REVIEWS WIDGET

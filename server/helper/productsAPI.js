@@ -96,11 +96,10 @@ module.exports = {
       });
   },
 
-  addToCart: (obj, callback) => {
+  addToCart: (body, callback) => {
     axios
-      .post(`${api}/cart`, {
+      .post(`${api}/cart`, body, {
         headers: {
-          'User-Agent': 'request',
           'Authorization': config.TOKEN
         }
       })

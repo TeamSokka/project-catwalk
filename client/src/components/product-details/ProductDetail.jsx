@@ -19,7 +19,8 @@ class ProductDetail extends React.Component {
       selectedStyle: { photos: [], skus: {} },
       selectedSize: "",
       selectedQuantity: 1,
-      selectedPhotoIndex: 0
+      selectedPhotoIndex: 0,
+      cart: null
     }
   }
 
@@ -53,6 +54,41 @@ class ProductDetail extends React.Component {
       })
   }
 
+  getCart() {
+    axios.get(`/cart`)
+      .then((res) => {
+        // console.log('styles recd:', res.data.results);
+        console.log('cart data recd:', res.data)
+        this.setState({
+          cart: res.data
+        });
+      })
+      .catch((err) => {
+        console.error(err);
+      })
+  }
+
+  postToCart(cartData) {
+    axios.post(`/cart`, cartData)
+      .then((res) => {
+        // console.log('styles recd:', res.data.results);
+        console.log('cart data recd:', res.data)
+        this.setState({
+          cart: res.data
+        });
+      })
+      .catch((err) => {
+        console.error(err);
+      })
+  }
+
+  handleCartSubmit(event) {
+    event.preventDefault();
+    console.log('event.target.sizesku.value:', event.target.sizesku.value);
+    console.log('event.target.quantity.value:', event.target.quantity.value);
+    console.log('event.target.name:', event.target.name);
+
+  }
   // getRelated() {
   //   axios.get(`/products/${this.state.currentProductId}/related`)
   //     .then((res) => {
@@ -85,7 +121,7 @@ class ProductDetail extends React.Component {
 
   handleQuantitySelect(event) {
     event.preventDefault();
-    console.log('quantity entery:', event.target.value);
+    console.log('quantity entry:', event.target.value);
     this.setState({
       selectedQuantity: event.target.value
     });
@@ -94,6 +130,7 @@ class ProductDetail extends React.Component {
   componentDidMount() {
     // this.getProductInfo();
     this.getStyles();
+    this.getCart();
     // this.getRelated();
     // this.setState({
     //   selectedStyle: this.state.styles[0]
@@ -126,6 +163,7 @@ class ProductDetail extends React.Component {
             selectedquantity={this.state.selectedquantity}
             handlesizeselect={this.handleSizeSelect.bind(this)}
             handlequantityselect={this.handleQuantitySelect.bind(this)}
+            handlecartsubmit={this.handleCartSubmit.bind(this)}
           />
         </div>
       </div>
