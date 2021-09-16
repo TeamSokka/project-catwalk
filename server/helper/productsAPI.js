@@ -37,6 +37,7 @@ module.exports = {
         }
       })
       .then((res) => {
+        // console.log('GET product processed. Response data:', res.data);
         callback(null, res.data);
       })
       .catch((err) => {
@@ -69,6 +70,7 @@ module.exports = {
         }
       })
       .then((res) => {
+        // console.log('GET related processed. Response data:', res.data);
         callback(null, res.data);
       })
       .catch((err) => {

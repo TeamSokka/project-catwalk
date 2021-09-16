@@ -17,15 +17,13 @@ class QuestionsAndAnswers extends React.Component {
     this.getAnswers = this.getAnswers.bind(this);
   }
 
-  componentDidMount() {
-    Promise.all([this.getQuestions(), this.getAnswers()]);
-  }
+  componentDidMount() { this.getQuestions(); }
 
   getAnswers() {
     this.state.questions.forEach((question) =>
       // console.log(question.question_id)
       axios.get(`/qa/questions/${question.question_id}/answers`).then((res) => {
-        console.log('answers ', res);
+        // console.log('answers ', res);
         this.setState({
           answers: res.data.results
         });
@@ -41,7 +39,7 @@ class QuestionsAndAnswers extends React.Component {
       }
     })
       .then((res) => {
-        console.log('questions ', res.data);
+        // console.log('questions ', res.data);
         this.setState({
           questions: res.data.results,
         });
@@ -54,7 +52,7 @@ class QuestionsAndAnswers extends React.Component {
     this.setState({
       [e.target.id]: e.target.value,
     });
-    console.log(`${e.target.id}: ${e.target.value}`);
+    // console.log(`${e.target.id}: ${e.target.value}`);
   }
 
   // addQuestion() {
@@ -63,11 +61,24 @@ class QuestionsAndAnswers extends React.Component {
   //   })
   // }
 
+  onSearch() {
+    // if (e.target.value.length >= 3) {
+      let results = this.state.questions.filter((question) =>
+      question.question_body.toLowerCase().includes(this.state.search.toLowerCase())
+      )
+      this.setState({
+        questions: results,
+        // [e.target.id]: e.target.value
+      })
+    // }
+  }
+
   render() {
     return (
       <div>
         <h3>QUESTIONS & ANSWERS</h3>
-        <Search search={this.state.search} handleChange={this.handleChange} />
+        <Search search={this.state.search} handleChange={this.handleChange}
+          onSearch={this.onSearch.bind(this)} />
         <QuestionList
           questions={this.state.questions}
           answers={this.state.answers}
