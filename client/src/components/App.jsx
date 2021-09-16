@@ -71,8 +71,8 @@ class App extends React.Component {
   render() {
     const {productID, productInfo, relatedProducts, metaData} = this.state;
 
-    console.log('app state// productInfo', productInfo);
-    console.log('app state// relatedPro', relatedProducts);
+    // console.log('app state// productInfo', productInfo);
+    // console.log('app state// relatedPro', relatedProducts);
 
     return (
       <div>

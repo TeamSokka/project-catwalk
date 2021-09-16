@@ -12,7 +12,7 @@ class ProductDetail extends React.Component {
     super(props);
     this.state = {
       currentProductId: this.props.productID,
-      productInfo: this.props.productInfo,
+      prodInfo: this.props.productInfo,
       styles: [],
       // relatedProducts: this.props.related,
       reviews: [],
@@ -113,7 +113,7 @@ class ProductDetail extends React.Component {
         />
         <div>
           <ProductInfo
-            productinfo={this.state.productInfo}
+            productinfo={this.state.prodInfo}
           />
           <StyleSelector
             styles={this.state.styles}
