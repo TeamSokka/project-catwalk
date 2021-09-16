@@ -86,7 +86,8 @@ class ProductDetail extends React.Component {
     event.preventDefault();
     console.log('event.target.sizesku.value:', event.target.sizesku.value);
     console.log('event.target.quantity.value:', event.target.quantity.value);
-    console.log('event.target.name:', event.target.name);
+    // console.log('event.target.name:', event.target.name);
+    this.postToCart({ sku_id: event.target.sizesku.value, count: event.target.quantity.value});
 
   }
   // getRelated() {
