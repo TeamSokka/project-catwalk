@@ -1,6 +1,6 @@
 import React from 'react';
 // import ProductCard from './ProductCard';
-import './related-items.scss';
+// import './related-items.scss';
 
 class ProductInformation extends React.Component {
   constructor(props) {
@@ -10,10 +10,10 @@ class ProductInformation extends React.Component {
   render() {
     return (
       <div id="product-info">
-          <p>category</p>
-          <p>name</p>
-          <p>price</p>
-          <p>rating</p>
+        <p>category</p>
+        <p>name</p>
+        <p>price</p>
+        <p>rating</p>
       </div>
     )
   }
