@@ -6,36 +6,35 @@ class WriteReview extends React.Component {
     super(props);
     const { productID } = this.props;
 
-    this.state = {
-      mouseOver: [0, 0, 0, 0, 0],
-      productID: productID,
-      recommend: null,
-      summary: '',
-      body: '',
-      photos: [],
-      name: '',
-      email: '',
-      rating: null,
-      characteristics: {
-      }
-    }
-
     // this.state = {
-    //   review: {
-    //     mouseOver: [0, 0, 0, 0, 0],
-    //     productID: productID,
-    //     recommend: null,
-    //     summary: '',
-    //     body: '',
-    //     photos: [],
-    //     name: '',
-    //     email: '',
-    //     rating: null,
-    //     characteristics: {
-    //     }
-    //   },
     //   mouseOver: [0, 0, 0, 0, 0],
+    //   productID: productID,
+    //   recommend: null,
+    //   summary: '',
+    //   body: '',
+    //   photos: [],
+    //   name: '',
+    //   email: '',
+    //   rating: null,
+    //   characteristics: {
+    //   }
     // }
+
+    this.state = {
+      review: {
+        productID: productID,
+        recommend: null,
+        summary: '',
+        body: '',
+        photos: [],
+        name: '',
+        email: '',
+        rating: null,
+        characteristics: {
+        }
+      },
+      mouseOver: [0, 0, 0, 0, 0],
+    }
 
     this.minCharCount = this.minCharCount.bind(this);
     this.submitReview = this.submitReview.bind(this);
@@ -95,13 +94,13 @@ class WriteReview extends React.Component {
 
   submitReview(e) {
     const { handlePostReview } = this.props;
-    const { summary } = this.state;
-    const { body } = this.state;
-    const { recommend } = this.state;
-    const { name } = this.state;
-    const { email } = this.state;
-    const { rating } = this.state;
-    const { characteristics } = this.state;
+    const { summary } = this.state.review;
+    const { body } = this.state.review;
+    const { recommend } = this.state.review;
+    const { name } = this.state.review;
+    const { email } = this.state.review;
+    const { rating } = this.state.review;
+    const { characteristics } = this.state.review;
 
     // checks
     // Recommend - mandatory
@@ -112,29 +111,30 @@ class WriteReview extends React.Component {
     // Email - up to 60 characters
     // alert with warning message if not satisfactory entry
 
-
+    // concat alert string
+    var alertMessage = '';
 
     if (rating === null) {
-      alert('Please fill out required ratings option.');
+      alertMessage += 'Please fill out required ratings option. \n';
       e.preventDefault();
       return;
     }
 
     if (recommend === null) {
-      alert('Please fill out required recommended option.');
+      alertMessage += 'Please fill out required recommended option. \n';
       e.preventDefault();
       return;
     }
     // characteristics
 
     if (summary.length > 60) {
-      alert('Review Summary must be 60 characters or less.');
+      alertMessage += 'Review Summary must be 60 characters or less. \n';
       e.preventDefault();
       return;
     }
 
     if (body.length > 1000 || body.length < 50) {
-      alert('Review Body must be at least 50 characters.');
+      alertMessage += 'Review Body must be at least 50 characters. \n';
       e.preventDefault();
       return;
     }
@@ -142,7 +142,7 @@ class WriteReview extends React.Component {
     // photo check
 
     if (name.length > 60 || name.length === 0) {
-      alert('Name must be less than 60 characters and cannot be empty.');
+      alertMessage += 'Name must be less than 60 characters and cannot be empty. \n';
       e.preventDefault();
       return;
     }
@@ -151,20 +151,17 @@ class WriteReview extends React.Component {
     const result = emailValidate.test(String(email).toLowerCase());
 
     if (result === false || email.length > 60 || email.length === 0) {
-      alert('Please input a valid email address.');
+      alertMessage += 'Please input a valid email address.';
       e.preventDefault();
       return;
     }
 
-    // concat alert string
-    var alertMessage = '\n';
     // check if alert message not empty - check length > 0
-    alert('You must enter the following: ');
+    if (alertMessage.length > 0) {
+      alert('You must enter the following: \n' + alertMessage);
+    }
 
-
-    handlePostReview(this.state);
-    // handlePostReview(this.state.review);
-
+    handlePostReview(this.state.review);
   }
 
   render() {
@@ -274,15 +271,6 @@ class WriteReview extends React.Component {
 }
 
 export default WriteReview;
-{/* Overall Rating */ }
-{/* Would you recommend this product? */ }
-{/* Buttons */ }
-{/* Review Summary */ }
-{/* Name */ }
-{/* Review */ }
-{/* Email */ }
-{/* Photos */ }
-
 
 /*
 localhost:3000/reviews/?product_id=40344&page=1&count=5&sort="helpful"
