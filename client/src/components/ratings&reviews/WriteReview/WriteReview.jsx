@@ -6,6 +6,7 @@ class WriteReview extends React.Component {
     const { productID } = this.props;
 
     this.state = {
+      mouseOver: [0, 0, 0, 0, 0],
       productID: productID,
       recommend: null,
       summary: '',
@@ -20,14 +21,40 @@ class WriteReview extends React.Component {
 
     this.minCharCount = this.minCharCount.bind(this);
     this.submitReview = this.submitReview.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleCharacteristicClick = this.handleCharacteristicClick.bind(this);
+    this.handleStarClick = this.handleStarClick.bind(this);
+    this.handleRecommendClick = this.handleRecommendClick.bind(this);
   }
-
 
   // handle input change
-  handleInputChange() {
-
+  handleInputChange(e) {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
   }
 
+  handleCharacteristicClick(e) {
+    const { characteristics } = this.state;
+    this.setState({
+      characteristics: {
+        ...characteristics,
+        [e.target.name]: Number(e.target.value),
+      },
+    });
+  }
+
+  handleStarClick(e) {
+    this.setState({
+      [e.target.name]: Number(e.target.value),
+    });
+  }
+
+  handleRecommendClick(e) {
+    this.setState({
+      [e.target.name]: Boolean(e.target.value),
+    });
+  }
 
   // min char count
   minCharCount() {
@@ -44,6 +71,7 @@ class WriteReview extends React.Component {
   submitReview(e) {
     const { handlePostReview } = this.props;
     const { summary } = this.state;
+    const { body } = this.state;
     const { recommend } = this.state;
     const { name } = this.state;
     const { email } = this.state;
@@ -71,19 +99,19 @@ class WriteReview extends React.Component {
     }
 
     if (summary.length > 60) {
-      alert('Review Summary cannot be greater than 60 characters.');
+      alert('Review Summary must be 60 characters or less.');
       e.preventDefault();
       return;
     }
 
     if (body.length > 1000 || body.length < 50) {
-      alert('Review Body cannot be greater than 1000 characters.');
+      alert('Review Body must be at least 50 characters.');
       e.preventDefault();
       return;
     }
 
     if (name.length > 60 || name.length === 0) {
-      alert('Name cannot be greater than 60 characters or empty.');
+      alert('Name must be less than 60 characters and cannot be empty.');
       e.preventDefault();
       return;
     }
@@ -103,13 +131,13 @@ class WriteReview extends React.Component {
   }
 
   render() {
+    const { name } = this.props.productInfo;
     return (
-      // <div>Write Review Form</div>
       <div>
-        <form>
+        <form onSubmit={this.submitReview}>
           <div className="form-title">
             <h1>Write Your Review</h1>
-            <h3>About the Product Name: {this.props.productID}</h3>
+            <h3>About the Product Name: {name}</h3>
             <small>* Required fields</small>
           </div>
 
@@ -126,11 +154,14 @@ class WriteReview extends React.Component {
           </div>
 
           <div className="recommend-product">
-            <input type="radio" id="recommend-yes" value="Yes" />
-            <label htmlFor="recommend-yes">Yes</label>
+            <b>* Do you recommend this product</b>
+            <div>
+              <input type="radio" id="recommend-yes" name="recommend" value="Yes" onClick={this.handleRecommendClick} />
+              <label htmlFor="recommend-yes">Yes</label>
 
-            <input type="radio" id="recommend-no" value="No" />
-            <label htmlFor="recommend-no">No</label>
+              <input type="radio" id="recommend-no" name="recommend" value="No" onClick={this.handleRecommendClick} />
+              <label htmlFor="recommend-no">No</label>
+            </div>
           </div>
 
           <div className="characteristics">
@@ -140,8 +171,10 @@ class WriteReview extends React.Component {
             <label htmlFor="review-summary">Review Summary (optional)</label>
             <br></br>
             <textarea id="review-summary"
-              name="review-summary"
+              name="summary"
               rows="5" cols="33"
+              value={this.state.summary}
+              onChange={this.handleInputChange}
               placeholder="Example: Best purchase ever!">
             </textarea>
           </div>
@@ -152,6 +185,8 @@ class WriteReview extends React.Component {
             <textarea id="name"
               name="name"
               rows="2" cols="33"
+              value={this.state.name}
+              onChange={this.handleInputChange}
               placeholder="Example:jackson11">
             </textarea>
             <br></br>
@@ -176,6 +211,8 @@ class WriteReview extends React.Component {
             <textarea id="review"
               name="review"
               rows="5" cols="33"
+              value={this.state.email}
+              onChange={this.handleInputChange}
               placeholder="Why did you like the product or not?">
             </textarea>
           </div>
@@ -188,8 +225,8 @@ class WriteReview extends React.Component {
 
           <button type="button" onClick={(e) => { submitReview(e) }}>Submit Review</button>
 
-        </form>
-      </div>
+        </form >
+      </div >
     )
   }
 }
@@ -203,4 +240,40 @@ export default WriteReview;
 {/* Review */ }
 {/* Email */ }
 {/* Photos */ }
+
+
+/*
+localhost:3000/reviews/?product_id=40344&page=1&count=5&sort="helpful"
+
+Metadata for product 40348
+{
+    "product_id": "40348",
+    "ratings": {
+        "3": "1",
+        "4": "1"
+    },
+    "recommended": {
+        "true": "2"
+    },
+    "characteristics": {
+        "Size": {
+            "id": 135232,
+            "value": "4.0000000000000000"
+        },
+        "Width": {
+            "id": 135233,
+            "value": "3.5000000000000000"
+        },
+        "Comfort": {
+            "id": 135234,
+            "value": "4.0000000000000000"
+        },
+        "Quality": {
+            "id": 135235,
+            "value": "3.5000000000000000"
+        }
+    }
+}
+
+*/
 
