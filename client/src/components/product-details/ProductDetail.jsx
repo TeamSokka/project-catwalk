@@ -44,7 +44,7 @@ class ProductDetail extends React.Component {
           selectedStyle: res.data.results[0]
         });
         this.setState({
-          selectedSizeSKU: res.data.results[0][Object.keys(res.data.results[0].skus)][0]
+          selectedSizeSKU: res.data.results[0].skus[Object.keys(res.data.results[0].skus)[0]]
         })
       })
       .catch((err) => {

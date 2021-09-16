@@ -6,7 +6,7 @@ import React from 'react';
 //  add to cart button
 
 var AddToCart = (props) => {
-  // const quantities = []
+  // const quantities = [];
   // for (var i = 0; i <= props.selectedsizesku.quantity; i++) {
   //   quantities.push(i);
   // };
