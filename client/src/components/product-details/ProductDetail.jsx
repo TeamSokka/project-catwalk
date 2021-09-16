@@ -66,7 +66,14 @@ class ProductDetail extends React.Component {
   //     });
   // }
 
-
+  handleStyleSelect(event) {
+    event.preventDefault();
+    console.log('event.target:', event.target);
+    console.log('event.target.dataset.index:', event.target.dataset.index);
+    this.setState({
+      selectedStyle: this.state.styles[event.target.dataset.index]
+    })
+  }
 
   handleSizeSelect(event) {
     event.preventDefault();
@@ -111,6 +118,7 @@ class ProductDetail extends React.Component {
           <StyleSelector
             styles={this.state.styles}
             selectedstyle={this.state.selectedStyle}
+            handleStyleSelect={this.handleStyleSelect.bind(this)}
           />
           <AddToCart
             selectedsize={this.state.selectedSize}
