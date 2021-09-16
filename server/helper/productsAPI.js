@@ -54,7 +54,6 @@ module.exports = {
         }
       })
       .then((res) => {
-        console.log('GET style processed. Response data:', res.data);
         callback(null, res.data);
       })
       .catch((err) => {

@@ -15,7 +15,6 @@ app.use(express.static(path.join(__dirname, '..', 'client/dist')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-
 // Products
 app.get('/products', (req, res) => {
   products.getProducts((err, data) => {
@@ -113,8 +112,11 @@ app.put(`/reviews/:review_id/:method`, (req, res) => {
 })
 
 
-// Questions and Answers
 
+
+
+
+// Questions and Answers
 // GET Questions
 app.get('/qa/questions', (req, res) => {
   // console.log('product id', req.query);
@@ -254,3 +256,4 @@ app.post('/interactions', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Listening at localhost:${PORT}!`);
 });
+
