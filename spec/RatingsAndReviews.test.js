@@ -3,8 +3,6 @@ import { render } from '@testing-library/react';
 
 import App from '../../client/src/components/App';
 import WriteReview from '../client/src/components/ratings&reviews/WriteReview/WriteReview';
-import WriteReview from '../client/src/components/ratings&reviews/WriteReview/WriteReview';
-import WriteReview from '../client/src/components/ratings&reviews/WriteReview/WriteReview';
 import ReviewList from '../client/src/components/ratings&reviews/ReviewList/ReviewList';
 import ReviewListEntry from '../client/src/components/ratings&reviews/ReviewList/ReviewListEntry';
 
@@ -21,14 +19,14 @@ describe('<WriteReview />', () => {
   });
 });
 
-describe('<WriteReview />', () => {
-  test('renders WriteReview component', () => {
+describe('<ReviewList />', () => {
+  test('renders ReviewList component', () => {
     render(<ReviewList reviewList={reviewsDummy.results} />);
   });
 });
 
-describe('<WriteReview />', () => {
-  test('renders WriteReview component', () => {
+describe('<ReviewListEntry />', () => {
+  test('renders ReviewListEntry component', () => {
     render(<ReviewListEntry review={reviewsDummy.results[0]} />);
   });
 });
