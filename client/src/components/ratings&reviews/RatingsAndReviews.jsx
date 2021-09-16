@@ -2,9 +2,9 @@ import { thisExpression } from '@babel/types';
 import React from 'react';
 import ReviewList from './ReviewList/ReviewList';
 import WriteReview from './WriteReview/WriteReview';
+import './Styles/ratings-reviews.scss';
 
 const axios = require('axios');
-
 class RatingsAndReviews extends React.Component {
   constructor(props) {
     super(props);
@@ -16,6 +16,7 @@ class RatingsAndReviews extends React.Component {
       noReviews: false,
       hideMoreReviews: false,
       reviewsDisplayed: 2,
+      writeReviewModal: false,
     }
 
     this.handleGetReview = this.handleGetReview.bind(this);
@@ -23,6 +24,8 @@ class RatingsAndReviews extends React.Component {
     this.handlePutReview = this.handlePutReview.bind(this);
     this.moreReviewsClick = this.moreReviewsClick.bind(this);
     this.writeReviewClick = this.writeReviewClick.bind(this);
+    this.exitWriteReviewClick = this.exitWriteReviewClick.bind(this);
+
   }
 
   // Get reviews
@@ -84,21 +87,31 @@ class RatingsAndReviews extends React.Component {
       this.setState({
         reviewsDisplayed: newEnd
       })
-      // } else if (newEnd === this.state.reviewList.length || newEnd === this.state.reviewList.length - 1) {
-      //   this.setState({
-      //     hideMoreReviews: true,
-      //     reviewsDisplayed: newEnd
-      //   })
+
       if (newEnd === this.state.reviewList.length) {
         this.setState({
           hideMoreReviews: true
         })
       }
+
+      // } else if (newEnd === this.state.reviewList.length || newEnd === this.state.reviewList.length - 1) {
+      //   this.setState({
+      //     hideMoreReviews: true,
+      //     reviewsDisplayed: newEnd
+      //   })
     }
   }
 
-  writeReviewClick() {
+  writeReviewClick(e) {
+    this.setState({
+      writeReviewModal: true,
+    })
+  }
 
+  exitWriteReviewClick(e) {
+    this.setState({
+      writeReviewModal: false,
+    })
   }
 
   componentDidMount() {
@@ -106,6 +119,7 @@ class RatingsAndReviews extends React.Component {
   }
 
   render() {
+
     return (
       <div>
         Ratings and Reviews Section
@@ -117,12 +131,31 @@ class RatingsAndReviews extends React.Component {
         />
         <button className="" type="button" onClick={this.writeReviewClick}>Add a Review</button>
         <button className="" type="button" onClick={this.moreReviewsClick}>More Reviews</button>
-        <WriteReview
-          handlePostReview={this.handlePostReview}
-          metaData={this.state.metaData}
-          productID={this.props.productID}
-          productInfo={this.props.productInfo}
-        />
+
+        {
+          this.state.writeReviewModal
+          && (
+            <div
+              className="modal-style"
+              onClick={this.exitWriteReviewClick}
+            >
+              <div
+                className="inner-modal-style"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <span className="close-button" onClick={this.exitWriteReviewClick}>&times;</span>
+                <WriteReview
+                  handlePostReview={this.handlePostReview}
+                  metaData={this.state.metaData}
+                  productID={this.props.productID}
+                  productInfo={this.props.productInfo}
+                />
+                <br />
+              </div>
+            </div>
+          )
+        }
+
       </div >
     )
   }

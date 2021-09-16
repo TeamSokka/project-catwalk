@@ -72,10 +72,10 @@ class App extends React.Component {
     const { productID, productInfo, relatedProducts, metaData } = this.state;
     return (
       <div>
-        <ProductDetail
+        {/* <ProductDetail
           productID={productID}
           productInfo={productInfo}
-        />
+        /> */}
         <RatingsAndReviews
           productID={productID}
           metaData={metaData}
