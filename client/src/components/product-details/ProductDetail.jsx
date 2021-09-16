@@ -17,7 +17,8 @@ class ProductDetail extends React.Component {
       // relatedProducts: this.props.related,
       reviews: [],
       selectedStyle: { photos: [], skus: {} },
-      selectedSizeSKU: { quantity: 0 },
+      selectedSize: "",
+      selectedQuantity: 1,
       selectedPhotoIndex: 0
     }
   }
@@ -38,14 +39,14 @@ class ProductDetail extends React.Component {
   getStyles() {
     axios.get(`/products/${this.state.currentProductId}/styles`)
       .then((res) => {
-        console.log('styles recd:', res.data.results);
+        // console.log('styles recd:', res.data.results);
+        console.log('skus[0]:', Object.keys(res.data.results[0].skus)[0])
         this.setState({
           styles: res.data.results,
-          selectedStyle: res.data.results[0]
+          selectedStyle: res.data.results[0],
+          // selectedSize: res.data.results[0].skus[Object.keys(res.data.results[0].skus)[0]]
         });
-        this.setState({
-          selectedSizeSKU: res.data.results[0].skus[Object.keys(res.data.results[0].skus)[0]]
-        })
+        console.log('state:', this.state)
       })
       .catch((err) => {
         console.error(err);
@@ -65,10 +66,22 @@ class ProductDetail extends React.Component {
   //     });
   // }
 
+
+
   handleSizeSelect(event) {
+    event.preventDefault();
+    console.log('size select entry:', event.target.value);
     this.setState({
-      selectedSizeSKU: event.target.value
-    })
+      selectedSize: this.state.selectedStyle.skus[event.target.value]
+    });
+  }
+
+  handleQuantitySelect(event) {
+    event.preventDefault();
+    console.log('quantity entery:', event.target.value);
+    this.setState({
+      selectedQuantity: event.target.value
+    });
   }
 
   componentDidMount() {
@@ -81,6 +94,7 @@ class ProductDetail extends React.Component {
     // console.log('styles:', this.state.styles);
     // console.log('selected style:', this.state.selectedStyle);
     // console.log('photos:', this.state.selectedStyle.photos);
+
   }
 
   render() {
@@ -99,9 +113,11 @@ class ProductDetail extends React.Component {
             selectedstyle={this.state.selectedStyle}
           />
           <AddToCart
-            selectedsizesku={this.state.selectedSizeSKU}
+            selectedsize={this.state.selectedSize}
             selectedstyle={this.state.selectedStyle}
+            selectedquantity={this.state.selectedquantity}
             handlesizeselect={this.handleSizeSelect.bind(this)}
+            handlequantityselect={this.handleQuantitySelect.bind(this)}
           />
         </div>
       </div>

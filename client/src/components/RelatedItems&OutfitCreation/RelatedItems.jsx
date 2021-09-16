@@ -59,7 +59,7 @@ class RelatedItems extends React.Component {
   render() {
     const { productID } = this.props;
     // console.log('productID: from app //hardcoded', productID);
-    console.log('this is the state relate products', this.state.ProductInfo);
+    // console.log('this is the state relate products', this.state.ProductInfo);
     return (
       <div>
         <h1>Related Items</h1>

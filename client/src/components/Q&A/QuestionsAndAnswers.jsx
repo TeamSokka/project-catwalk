@@ -25,7 +25,7 @@ class QuestionsAndAnswers extends React.Component {
     this.state.questions.forEach((question) =>
       // console.log(question.question_id)
       axios.get(`/qa/questions/${question.question_id}/answers`).then((res) => {
-        console.log('answers ', res);
+        // console.log('answers ', res);
         this.setState({
           answers: res.data.results
         });
@@ -41,7 +41,7 @@ class QuestionsAndAnswers extends React.Component {
       }
     })
       .then((res) => {
-        console.log('questions ', res.data);
+        // console.log('questions ', res.data);
         this.setState({
           questions: res.data.results,
         });
@@ -54,7 +54,7 @@ class QuestionsAndAnswers extends React.Component {
     this.setState({
       [e.target.id]: e.target.value,
     });
-    console.log(`${e.target.id}: ${e.target.value}`);
+    // console.log(`${e.target.id}: ${e.target.value}`);
   }
 
   // addQuestion() {
