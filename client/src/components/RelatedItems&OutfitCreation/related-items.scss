@@ -23,17 +23,35 @@ $box-shadow-hover: 0 .75rem 1rem rgba($black, 0.30) !default;
 
 #product-info {
   display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  height: 25%;
+  flex-direction: column;
+  justify-content: center;
+  // align-items: center;
+  line-height: 1px;
+  height: 30%;
+  width: 100%;
   border: 1px solid pink;
+}
+
+#info-category {
+  font-size: 15px;
+  font-weight: 400;
+}
+
+#info-name {
+  font-size: 15px;
+  font-weight: 600;
+
+}
+
+#info-price {
+  font-size: 15px;
 }
 
 #product-preview-img {
   display: flex;
   justify-items: center;
   align-items: center;
-  height: 75%;
+  height: 70%;
 }
 
 .product-card {
@@ -43,7 +61,7 @@ $box-shadow-hover: 0 .75rem 1rem rgba($black, 0.30) !default;
   align-items: center;
 
   // border: 1px solid rgba(0, 0, 0, 0.26);
-  color: $two;
+  // color: $two;
   // background-color: $eight;
   box-shadow: $box-shadow;
   width: 175px;

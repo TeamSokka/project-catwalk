@@ -46,8 +46,7 @@ class App extends React.Component {
   getStyles() {
     axios.get(`/products/${this.state.productID}/styles`)
       .then((res) => {
-        // console.log('styles recd:', res.data.results);
-        console.log('skus[0]:', Object.keys(res.data.results[0].skus)[0])
+        // console.log('skus[0]:', Object.keys(res.data.results[0].skus)[0])
         this.setState({
           styles: res.data.results,
           selectedStyle: res.data.results[0],
