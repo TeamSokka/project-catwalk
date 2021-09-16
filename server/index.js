@@ -160,7 +160,8 @@ app.post('/qa/questions', (req, res) => {
 
 // POST Answers
 app.post('/qa/questions/:question_id/answers', (req, res) => {
-  console.log(req.params);
+  console.log('params ', req.params);
+  console.log('body from a ', req.body);
   questions.addAnswer(req.params.question_id, req.body, (err, data) => {
     if (err) {
       res.status(400).send(err);
