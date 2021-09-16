@@ -19,6 +19,21 @@ const addQuestion = (data, callback) => {
     }
   })
   .then((res) => {
+    callback(null, res.data);
+  })
+  .catch((err) => {
+    callback(err, null);
+  });
+};
+
+const addAnswer = (id, data, callback) => {
+  axios.post(`${api}/qa/questions/${id}/answers`, data, {
+    headers: {
+      'User-Agent': 'request',
+      Authorization: `${config.TOKEN}`,
+    }
+  })
+  .then((res) => {
     console.log('data in add ', res.data);
     callback(null, res.data);
   })
@@ -35,7 +50,6 @@ const getQuestions = (id, callback) => {
     }
   })
     .then((res) => {
-      console.log('data from response', res.data);
       callback(null, res.data);
     })
     .catch((err) => {
@@ -61,6 +75,7 @@ const getAnswers = (id, callback) => {
 };
 
 module.exports = {
+  addAnswer,
   addQuestion,
   getQuestions,
   getAnswers,

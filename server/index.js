@@ -160,7 +160,14 @@ app.post('/qa/questions', (req, res) => {
 
 // POST Answers
 app.post('/qa/questions/:question_id/answers', (req, res) => {
-  res.status(201).send('POST As from Server!');
+  console.log(req.params);
+  questions.addAnswer(req.params.question_id, req.body, (err, data) => {
+    if (err) {
+      res.status(400).send(err);
+    } else {
+      res.status(201).send(data);
+    }
+  });
 });
 
 // PUT Helpful Qs
