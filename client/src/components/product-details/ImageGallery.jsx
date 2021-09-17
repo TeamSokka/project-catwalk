@@ -35,6 +35,8 @@ var ImageGallery = (props) => (
           photos={props.photos}
           selectedphotoindex={props.selectedphotoindex}
           handleThumbnailClick={props.handleThumbnailClick}
+          handleUpArrowClick={props.handleUpArrowClick}
+          handleDownArrowClick={props.handleDownArrowClick}
          />
         : <p><em>No photos to display.</em></p>
       }

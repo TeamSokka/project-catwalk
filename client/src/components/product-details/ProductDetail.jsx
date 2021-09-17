@@ -182,6 +182,8 @@ class ProductDetail extends React.Component {
           selectedphotoindex={this.state.selectedPhotoIndex}
           handleThumbnailClick={this.handleThumbnailClick.bind(this)}
           topThumbnail={this.state.topThumbnail}
+          handleUpArrowClick={this.handleUpArrowClick.bind(this)}
+          handleDownArrowClick={this.handleDownArrowClick.bind(this)}
         />
         <div>
           <ProductInfo
