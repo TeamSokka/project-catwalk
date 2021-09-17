@@ -1,89 +1,55 @@
 import React from 'react';
 import RatingsBreakdownListEntry from './RatingBreakdownEntry';
 
-
-const gridLayout = {
-  display: 'grid',
-  gridTemplateColumns: '1fr',
-  gridTemplateRows: 'minwidth(5, 1fr) 50px',
-  margin: 'auto',
+const totalCount = (obj) => {
+  let total = 0;
+  for (const star in obj) {
+    total += Number(obj[star]);
+  }
+  return total;
 };
+class RatingBreakdownList extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
-const RatingBreakdownList = ({ metaData, sortByStar }) => (
-  <div style={gridLayout}>
-    {
-      ([5, 4, 3, 2, 1])
-        .map((rating) => (
-          <RatingsBreakdownListEntry
-            rating={rating}
-            ratings={metaData.ratings}
-            totalRating={metaData.ratings[rating] || 0}
-            sortByStar={sortByStar}
-            key={rating}
-          />
-        ))
+  render() {
+    var numbers = ["5", "4", "3", "2", "1"];
+    var list = [];
+    var sum = totalCount(this.props.ratings);
+
+    for (var i = 0; i < numbers.length; i++) {
+      var num = numbers[i];
+      var ratingCount;
+      if (this.props.ratings[num] === undefined) {
+        ratingCount = 0;
+      } else {
+        ratingCount = this.props.ratings[num];
+      }
+
+      var percentage = ((Number(ratingCount)) / sum).toFixed(2) * 100;
+
+      list.push(
+        <RatingsBreakdownListEntry
+          rating={num}
+          ratings={this.props.ratings}
+          ratingCount={ratingCount}
+          sortByStar={this.props.sortByStar}
+          key={num}
+          percentage={percentage}
+        />
+      )
     }
-  </div>
-);
-
-
-// class RatingBreakdownList extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     // alert(this.props.ratings);
-//     // alert((this.props.metaData));
-//   }
-//   render() {
-//     var numbers = ["5", "4", "3", "2", "1"];
-//     var list = [];
-
-//     for (var i = 0; i < numbers.length; i++) {
-//       var num = numbers[i];
-//       var ratingCount;
-//       if (this.props.ratings[num] === undefined) {
-//         ratingCount = 0;
-//       } else {
-//         ratingCount = this.props.ratings[num];
-//       }
-
-//       list.push(
-//         <RatingsBreakdownListEntry
-//           rating={num}
-//           ratings={this.props.ratings}
-//           ratingCount={ratingCount}
-//           sortByStar={this.props.sortByStar}
-//           key={num}
-//         />
-//       )
-//     }
-//     return (
-//       <div>
-
-//       </div>
-//     );
-//   }
-// }
+    return (
+      <div>
+        {list}
+      </div>
+    );
+  }
+}
 
 export default RatingBreakdownList;
 
-    // numbers.forEach((num) => {
-    //   var ratingCount = 0;
-    //   if (typeof ratings[num] === "undefined") {
-    //     ratingCount = 0;
-    //   } else {
-    //     ratingCount = this.props.metaData["ratings"][num];
-    //   }
-
-    //   list.push(
-    //     <RatingsBreakdownListEntry
-    //       rating={num}
-    //       ratings={this.props.metaData.ratings}
-    //       // ratingCount={ratingCount}
-    //       sortByStar={this.props.sortByStar}
-    //       key={num}
-    //     />
-    //   )
-    // })
 
 // "ratings": {
 //   "3": "1",
@@ -120,27 +86,3 @@ export default RatingBreakdownList;
   }
 }
 */
-
-// const gridLayout = {
-//   display: 'grid',
-//   gridTemplateColumns: '1fr',
-//   gridTemplateRows: 'minwidth(5, 1fr) 50px',
-//   margin: 'auto',
-// };
-
-// const RatingBreakdownList = ({ metaData, sortByStar }) => (
-//   <div style={gridLayout}>
-//     {
-//       ([5, 4, 3, 2, 1])
-//         .map((rating) => (
-//           <RatingsBreakdownListEntry
-//             rating={rating}
-//             ratings={metaData.ratings}
-//             totalRating={metaData.ratings[rating] || 0}
-//             sortByStar={sortByStar}
-//             key={rating}
-//           />
-//         ))
-//     }
-//   </div>
-// );

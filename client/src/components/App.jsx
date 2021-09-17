@@ -18,6 +18,7 @@ class App extends React.Component {
       styles: [],
       selectedStyle: { photos: [], skus: {} },
       metaData: {},
+      metaReady: false,
     }
     // this.fetchMeta = this.fetchMeta.bind(this);
   }
@@ -78,7 +79,8 @@ class App extends React.Component {
     axios.get(`/reviews/meta/?product_id=${productID}`)
       .then((result) => {
         this.setState({
-          metaData: result.data
+          metaData: result.data,
+          metaReady: true,
         });
       })
       .catch((error) => {
@@ -102,11 +104,17 @@ class App extends React.Component {
         /> */}
 
 
-        <RatingsAndReviews
-          productID={productID}
-          metaData={metaData}
-          productInfo={productInfo}
-        />
+        {
+          this.state.metaReady === true
+          &&
+          <RatingsAndReviews
+            productID={productID}
+            metaData={metaData}
+            productInfo={productInfo}
+          />
+
+        }
+
 
         <QuestionsAndAnswers productID={productID} />
 

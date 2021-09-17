@@ -23,18 +23,10 @@ const starFilterStyle = {
   flexWrap: 'wrap',
   justifyContent: 'center',
 };
-
 class RatingBreakdown extends React.Component {
   constructor(props) {
     super(props);
   }
-
-  /*
-  "ratings": {
-    "3": "1",
-    "4": "1"
-  },
-  */
 
   averageRating(obj) {
     var part = 0;
@@ -58,8 +50,8 @@ class RatingBreakdown extends React.Component {
   */
 
   averageRecommended(obj) {
-    const total = Number(2) + Number(2);
-    const result = Number(2) / total;
+    const total = Number(obj.true) + Number(obj.false);
+    const result = Number(obj.true) / total;
 
     if (isNaN(result.toFixed(2) * 100)) {
       return 0;
@@ -70,9 +62,6 @@ class RatingBreakdown extends React.Component {
   render() {
     const { ratings } = this.props.metaData;
     const { recommended } = this.props.metaData;
-    // console.log(recommended);
-    // console.log(this.props.metaData);
-
 
     var stars = StarRating(this.averageRating(ratings));
 

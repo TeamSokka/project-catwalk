@@ -168,7 +168,6 @@ class RatingsAndReviews extends React.Component {
             sortByStar={this.sortByStar}
             clearStarFilter={this.clearStarFilter}
           />)
-
         }
 
 
