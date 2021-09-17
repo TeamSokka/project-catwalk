@@ -92,7 +92,6 @@ class QuestionsAndAnswers extends React.Component {
           onSearch={this.onSearch.bind(this)} />
         <QuestionList
           questions={this.state.questions}
-          answers={this.state.answers}
           putRequest={this.putRequest}
           disabled={this.state.disabled}
         />

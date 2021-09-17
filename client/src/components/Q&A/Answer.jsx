@@ -3,6 +3,9 @@ import moment from 'moment';
 
 const Answer = (props) => {
   const { answer, putRequest, disabled } = props;
+  // const [helpfulBtn, setHelpfulBtn] = useState(false);
+  // const [reportBtn, setReportBtn] = useState(false);
+
   let answerer = <a style={{ fontWeight: answer.answerer_name === 'Seller' && 'bold' }} >{answer.answerer_name}</a>
 
   return (
