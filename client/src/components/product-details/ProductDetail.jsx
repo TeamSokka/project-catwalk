@@ -16,7 +16,7 @@ class ProductDetail extends React.Component {
       // styles: [],
       // relatedProducts: this.props.related,
       reviews: [],
-      // selectedStyle: { photos: [], skus: {} },
+      selectedStyle: { photos: [], skus: {} },
       selectedSize: "",
       selectedQuantity: 1,
       selectedPhotoIndex: 0,
@@ -106,14 +106,14 @@ class ProductDetail extends React.Component {
   //     });
   // }
 
-  handleStyleSelect(event) {
-    event.preventDefault();
-    console.log('event.target:', event.target);
-    console.log('event.target.dataset.index:', event.target.dataset.index);
-    this.setState({
-      selectedStyle: this.props.styles[event.target.dataset.index]
-    })
-  }
+  // handleStyleSelect(event) {
+  //   event.preventDefault();
+  //   console.log('event.target:', event.target);
+  //   console.log('event.target.dataset.index:', event.target.dataset.index);
+  //   this.setState({
+  //     selectedStyle: this.props.styles[event.target.dataset.index]
+  //   })
+  // }
 
   handleSizeSelect(event) {
     event.preventDefault();
@@ -140,12 +140,7 @@ class ProductDetail extends React.Component {
 
   componentDidMount() {
     // this.getProductInfo();
-<<<<<<< HEAD
-    this.getStyles();
-    this.getCart();
-=======
     // this.getStyles();
->>>>>>> bb64398436958845638f719c9527a5d4cb48df76
     // this.getRelated();
     // this.setState({
     //   selectedStyle: this.state.styles[0]
@@ -170,7 +165,7 @@ class ProductDetail extends React.Component {
           <StyleSelector
             styles={this.props.styles}
             selectedstyle={this.props.selectedStyle}
-            handleStyleSelect={this.handleStyleSelect.bind(this)}
+            handleStyleSelect={this.props.handleStyleSelect}
           />
           <AddToCart
             selectedsize={this.state.selectedSize}
