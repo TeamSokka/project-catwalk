@@ -12,16 +12,23 @@ class RatingBreakdownList extends React.Component {
     var numbers = [5, 4, 3, 2, 1];
     var list = [];
     const { ratings } = this.props.metaData;
-    // console.log("hello" + ratings);
-    numbers.forEach((num, index) => {
+    console.log(this.props.metaData.ratings);
+
+    numbers.forEach((num) => {
+      var totalRate;
+      // if (typeof this.props.metaData.ratings[num] === undefined) {
+      //   totalRate = 0;
+      // } else {
+      //   totalRate = this.props.metaData.ratings[num];
+      // }
+
       list.push(
         <RatingsBreakdownListEntry
           rating={num}
           ratings={this.props.metaData.ratings}
-          // totalRating={this.props.metaData.ratings[num] || 0}
           totalRating={5}
           sortByStar={this.props.sortByStar}
-          key={index}
+          key={num}
         />
       )
     })

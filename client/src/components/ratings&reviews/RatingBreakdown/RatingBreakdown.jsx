@@ -49,6 +49,8 @@ class RatingBreakdown extends React.Component {
     const { ratings } = this.props.metaData;
     const { recommended } = this.props.metaData;
     console.log(recommended);
+    console.log(this.props.metaData);
+
 
     var stars = StarRating(this.averageRating(ratings));
 
