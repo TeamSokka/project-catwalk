@@ -30,7 +30,7 @@ var ImageGallery = (props) => (
     <div id="thumbnail-list">
       {props.photos
         ? props.photos.map((photo, index) => (
-          <img className='thumbnail' key={index} value={index} src={photo.thumbnail_url} width="100"></img>
+          <img className='thumbnail' key={index} data-index={index} src={photo.thumbnail_url} width="100" onClick={props.handleThumbnailClick}></img>
           ))
         : <p><em>No photos to display.</em></p>
       }
