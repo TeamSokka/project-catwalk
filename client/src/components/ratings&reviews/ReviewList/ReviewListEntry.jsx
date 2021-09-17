@@ -1,6 +1,7 @@
 import React from "react";
 import ReviewList from "./ReviewList";
 import StarRating from "./StarRatings";
+import "../Styles/review-list-entry.scss";
 
 class ReviewListEntry extends React.Component {
   constructor(props) {
@@ -10,7 +11,9 @@ class ReviewListEntry extends React.Component {
   }
 
   handleHelpfulClick(e) {
-    this.props.handlePutReview(this.props.review_id, e.target.value);
+    // this.props.handlePutReview(this.props.review_id, e.target.value);
+    this.props.handlePutReview(this.props.review.review_id, e.target.id);
+
 
     // axios.put(`/reviews/${this.props.review_id}/${e.target.value}`, {
     //   review_id: this.props.review_id,
@@ -58,7 +61,7 @@ class ReviewListEntry extends React.Component {
     }
 
     return (
-      <div>
+      <div className="grid-layout-entry">
         {stars}
         <div>{this.props.review.reviewer_name}</div>
         <div> {new Date(this.props.review.date).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}</div>

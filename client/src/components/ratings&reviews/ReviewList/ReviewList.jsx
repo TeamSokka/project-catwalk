@@ -1,11 +1,12 @@
 import React from "react";
 import ReviewListEntry from "./ReviewListEntry";
+import "../Styles/review-list-entry.scss";
+
 
 class ReviewList extends React.Component {
   constructor(props) {
     super(props);
   }
-
 
   render() {
     console.log(this.props.reviewList);
@@ -15,7 +16,7 @@ class ReviewList extends React.Component {
       list.push(<ReviewListEntry review={review} key={value} handlePutReview={this.props.handlePutReview} />)
     })
     return (
-      <div>{list}</div>
+      <ul className="grid-layout">{list}</ul>
     )
   }
 }

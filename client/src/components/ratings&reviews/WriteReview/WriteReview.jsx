@@ -54,6 +54,10 @@ class WriteReview extends React.Component {
     this.setState({
       review: review2
     });
+
+    // this.setState({
+    //   [e.target.name]: e.target.value
+    // })
   }
 
   // "characteristics": {
