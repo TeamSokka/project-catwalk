@@ -1,0 +1,41 @@
+.modal-style {
+  backdrop-filter: blur(3px) contrast(50%);
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.2);
+  z-index: 150;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  padding-top: 65px;
+};
+
+.inner-modal-style {
+  background-color: white;
+  width: 50%;
+  min-width: 540px;
+  max-width: 100%;
+  max-height: 80%;
+  height: 80%;
+  margin: auto;
+  padding: 15px;
+  border: none;
+  overflow: auto;
+  border-radius: 20px;
+};
+
+.close-button {
+  float: right;
+  width: 1.5rem;
+  line-height: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  background-color: lightgray;
+}
+
+.close-button:hover {
+  background-color: darkgray;
+}

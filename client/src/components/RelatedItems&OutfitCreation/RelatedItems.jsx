@@ -1,23 +1,11 @@
 import React from 'react';
-import { formatRelatedItems } from '../helpers/_functions.js'
 import RelatedProductCards from './RelatedProductCards';
 import axios from 'axios';
 
-//this.props.productID
 class RelatedItems extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      currentProductId: 40347,
-      productInfo: [],
-      relatedProducts: []
-    }
   }
-
-  //  componentDidMount() {
-  //   this.getRelated(this.state.currentProductId);
-  //   this.getProductInfo(this.state.currentProductId);
-  //  }
 
   // getProductInfo(id) {
   // axios.get(`/products/${this.state.currentProductId}`, {
@@ -57,15 +45,17 @@ class RelatedItems extends React.Component {
   // }
 
   render() {
-    const { productID } = this.props;
+    const { productID, productInfo, relatedProducts, selectedStyle } = this.props;
     // console.log('productID: from app //hardcoded', productID);
     // console.log('this is the state relate products', this.state.ProductInfo);
     return (
       <div>
-        <h1>Related Items</h1>
+        <h3>RELATED PRODUCTS</h3>
 
         <RelatedProductCards
-          productID={productID}
+          productInfo={productInfo}
+          relatedProducts={relatedProducts}
+          selectedStyle={selectedStyle}
         />
       </div>
     )
