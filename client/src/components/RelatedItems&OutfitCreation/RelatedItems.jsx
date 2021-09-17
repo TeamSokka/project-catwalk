@@ -3,65 +3,22 @@ import RelatedProductCards from './RelatedProductCards';
 import OutfitCreations from './OutfitCreations';
 import axios from 'axios';
 
-class RelatedItems extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+const RelatedItems = (props) => {
+  const { productID, productInfo, relatedProducts, selectedStyle } = props;
+  // console.log('productID: from app //hardcoded', productID);
+  // console.log('this is the state relate products', this.state.ProductInfo);
+  return (
+    <div>
+      <h3>RELATED PRODUCTS</h3>
 
-  // getProductInfo(id) {
-  // axios.get(`/products/${this.state.currentProductId}`, {
-  //   params: {
-  //     product_id: id
-  //   }
-  // })
-  //   .then(({ data }) => {
-  //     const product = formatRelatedItems(data);
-  //     console.log('product: ', product);
-  //     this.setState({
-  //       productInfo: product
-  //     });
-  //   })
-  //   .catch((err) => {
-  //     console.error(err);
-  //   });
-  // }
-
-  // getRelated(id) {
-  //   //currentProductID check?
-  //   console.log(this.state.currentProductId);
-  //   axios.get(`/products/${this.state.currentProductId}/related`, {
-  //     params: {
-  //       product_id: id
-  //     }
-  //   })
-  //     .then((res) => {
-  //       console.log('related products recd: (related items)', res.data);
-  //       // this.setState({
-  //       //   relatedProducts: res.data
-  //       // })
-  //     })
-  //     .catch((err) => {
-  //       console.error(err);
-  //     });
-  // }
-
-  render() {
-    const { productID, productInfo, relatedProducts, selectedStyle } = this.props;
-    // console.log('productID: from app //hardcoded', productID);
-    // console.log('this is the state relate products', this.state.ProductInfo);
-    return (
-      <div>
-        <h3>RELATED PRODUCTS</h3>
-
-        <RelatedProductCards
-          productInfo={productInfo}
-          relatedProducts={relatedProducts}
-          selectedStyle={selectedStyle}
-        />
-        <OutfitCreations />
-      </div>
-    )
-  }
+      <RelatedProductCards
+        productInfo={productInfo}
+        relatedProducts={relatedProducts}
+        selectedStyle={selectedStyle}
+      />
+      <OutfitCreations />
+    </div>
+  )
 }
 
 export default RelatedItems;

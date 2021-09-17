@@ -3,35 +3,28 @@ import ProductPreviewImages from './ProductPreviewImages';
 import ProductInformation from './ProductInformation';
 import './related-items.scss';
 
-class RelatedProductCards extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+const RelatedProductCards = (props) => {
+  const { productInfo, relatedProducts, selectedStyle } = props;
+  const relatedProduct = relatedProducts.map(product => {
+    product.id
+  })
 
-  //map out the relateProducts
+  console.log('relatedProduct: ', relatedProduct);
+  // console.log('PRO INFO', productInfo);
+  console.log('RELATED PRO', relatedProducts);
+  // console.log('SELECT STYLE', selectedStyle.photos);
 
-  render() {
-    const { productInfo, relatedProducts, selectedStyle } = this.props;
-
-    // console.log('PRO INFO', productInfo);
-    // console.log('RELATED PRO', relatedProducts);
-    // console.log('SELECT STYLE', selectedStyle.photos);
-
-    return (
-      <div id="related-product-card">
-           <div className="product-card">
-              <ProductPreviewImages selectedStyle={selectedStyle}/>
-              <ProductInformation relatedProducts={relatedProducts} productInfo={productInfo}/>
-          </div>
-      </div>
-    )
-  }
+  return (
+    <div id="related-product-card">
+         <div className="product-card">
+            <ProductPreviewImages selectedStyle={selectedStyle}/>
+            <ProductInformation relatedProducts={relatedProducts} productInfo={productInfo}/>
+        </div>
+    </div>
+  )
 }
 
 export default RelatedProductCards;
-
-//need to do something with relatedProducts={relatedProducts}
-//also build carousel here?
 
 /*
 1.4.2 List Behavior

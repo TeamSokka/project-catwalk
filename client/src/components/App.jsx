@@ -59,6 +59,15 @@ class App extends React.Component {
       })
   }
 
+  handleStyleSelect(event) {
+    event.preventDefault();
+    console.log('event.target:', event.target);
+    console.log('event.target.dataset.index:', event.target.dataset.index);
+    this.setState({
+      selectedStyle: this.state.styles[event.target.dataset.index]
+    })
+  }
+
   getRelated = () => {
     axios.get(`/products/${this.state.productID}/related`)
       .then((res) => {
@@ -99,7 +108,8 @@ class App extends React.Component {
           productInfo={productInfo}
           styles={styles}
           selectedStyle={selectedStyle}
-        /> */}
+          handleStyleSelect={this.handleStyleSelect.bind(this)}
+        />
 
 
         {/* <RatingsAndReviews

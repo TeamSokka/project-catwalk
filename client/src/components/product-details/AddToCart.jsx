@@ -14,10 +14,11 @@ var AddToCart = (props) => {
   }
 
   return (
-  <form id="add-to-cart-form">
+  <form id="add-to-cart-form"
+    onSubmit={props.handlecartsubmit}>
     <div>
       <label>Size:
-        <select id="size-selector" name="size" onChange={props.handlesizeselect}>
+        <select id="size-selector" name="sizesku" onChange={props.handlesizeselect}>
           <option value="">Select Size:</option>
           {props.selectedstyle.skus
           ? Object.keys(props.selectedstyle.skus).map((sku, index) => (
@@ -39,7 +40,12 @@ var AddToCart = (props) => {
       </label>
     </div>
     <div>
-      <button id="add-to-cart-button">Add to Cart</button>
+      {props.selectedsize
+        ? props.selectedsize.quantity === 0
+          ? <span><em>Item out of stock in this style and size.</em></span>
+          : <input id="add-to-cart-button" type="submit" value="Add to Cart"></input>
+        : <button id="add-to-cart-button" value="Add to Cart" onClick={props.opensizeselect}>Add to Cart</button>
+      }
       <button>Star</button>
     </div>
   </form>
@@ -47,3 +53,15 @@ var AddToCart = (props) => {
 };
 
 export default AddToCart;
+
+// {props.selectedsize
+//   ? props.selectedsize.quantity === 0
+//     ? <span><em>Item out of stock in this style and size.</em></span>
+//     : <input id="add-to-cart-button" type="submit" value="Add to Cart"></input>
+//   : <button id="add-to-cart-button" value="Add to Cart" onClick={props.opensizeselect}>Add to Cart</button>
+// }
+
+// {props.selectedsize.quantity === 0
+//   ? <span><em>Item out of stock in this style and size.</em></span>
+//   : <input id="add-to-cart-button" type="submit" value="Add to Cart"></input>
+// }
