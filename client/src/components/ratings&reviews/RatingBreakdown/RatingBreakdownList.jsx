@@ -1,3 +1,4 @@
+import React from 'react';
 class RatingBreakdownList extends Component {
   constructor(props) {
     super(props);
