@@ -108,7 +108,10 @@ class App extends React.Component {
           productInfo={productInfo}
         />
 
-        <QuestionsAndAnswers productID={productID} />
+        <QuestionsAndAnswers
+        productID={productID}
+        productInfo={productInfo}
+        />
 
         <RelatedItems
           productID={productID}

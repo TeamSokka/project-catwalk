@@ -2,7 +2,7 @@ import React from 'react';
 import moment from 'moment';
 
 const Answer = (props) => {
-  const { answer, putRequest, disabled } = props;
+  const { answer, putRequest } = props;
   // const [helpfulBtn, setHelpfulBtn] = useState(false);
   // const [reportBtn, setReportBtn] = useState(false);
 
@@ -12,10 +12,10 @@ const Answer = (props) => {
     <div className='answer'>
       A: {answer.body}
       <br></br>
-        by {answerer},  {moment(answer.date).format('MMMM Do, YYYY')} | Helpful?{'  '}
-        <u style={{cursor: 'pointer'}} disabled={disabled}
+      by {answerer},  {moment(answer.date).format('MMMM Do, YYYY')} | Helpful?{'  '}
+      <u style={{ cursor: 'pointer' }}
         onClick={() => putRequest('answers', answer.id, 'helpful')} >Yes</u> ({answer.helpfulness}) |{'  '}
-        <u style={{cursor: 'pointer'}} disabled={disabled}
+      <u style={{ cursor: 'pointer' }}
         onClick={() => putRequest('answers', answer.id, 'report')} >Report</u>
     </div>
   )

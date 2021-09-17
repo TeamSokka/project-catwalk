@@ -8,9 +8,9 @@ class QuestionsAndAnswers extends React.Component {
     super(props);
 
     this.state = {
-      search: '',
+      // search: '',
       questions: [],
-      disabled: false,
+      // disabled: false,
     };
     this.handleChange = this.handleChange.bind(this);
     this.getQuestions = this.getQuestions.bind(this);
@@ -62,15 +62,16 @@ class QuestionsAndAnswers extends React.Component {
   //   })
   // }
 
-  onSearch() {
-    // if (e.target.value.length >= 3) {
-    let results = this.state.questions.filter((question) =>
-      question.question_body.toLowerCase().includes(this.state.search.toLowerCase())
-    )
-    this.setState({
-      questions: results,
-      // [e.target.id]: e.target.value
-    })
+  onSearch(query) {
+    if (query.length >= 3) {
+      let results = this.state.questions.filter((question) =>
+        question.question_body.toLowerCase().includes(query.toLowerCase())
+      )
+      this.setState({
+        questions: results,
+        // [e.target.id]: e.target.value
+      })
+    }
     // }
   }
 
@@ -89,11 +90,12 @@ class QuestionsAndAnswers extends React.Component {
       <div>
         <h3>QUESTIONS & ANSWERS</h3>
         <Search search={this.state.search} handleChange={this.handleChange}
-          onSearch={this.onSearch.bind(this)} />
+          onSearch={this.onSearch.bind(this)}
+          questions={this.state.questions} />
         <QuestionList
           questions={this.state.questions}
           putRequest={this.putRequest}
-          disabled={this.state.disabled}
+          productInfo={this.props.productInfo}
         />
       </div>
     );
