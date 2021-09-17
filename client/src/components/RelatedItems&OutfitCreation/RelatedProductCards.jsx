@@ -11,18 +11,23 @@ class RelatedProductCards extends React.Component {
   //map out the relateProducts
 
   render() {
-    const { productInfo, relatedProducts, selectedStyle } = this.props;
+    const { productId, productInfo, relatedProducts, selectedStyle } = this.props;
 
     // console.log('PRO INFO', productInfo);
-    // console.log('RELATED PRO', relatedProducts);
+    console.log('RELATED PRO', relatedProducts);
     // console.log('SELECT STYLE', selectedStyle.photos);
 
     return (
       <div id="related-product-card">
-           <div className="product-card">
-              <ProductPreviewImages selectedStyle={selectedStyle}/>
-              <ProductInformation relatedProducts={relatedProducts} productInfo={productInfo}/>
-          </div>
+        <ProductPreviewImages selectedStyle={selectedStyle}/>
+
+        <ul>
+        {relatedProducts.map(relatedProduct => {
+          <li className="product-card">
+            <ProductInformation relatedProduct={relatedProduct} productInfo={productInfo}/>
+          </li>
+        })}
+        </ul>
       </div>
     )
   }
