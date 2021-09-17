@@ -19,7 +19,7 @@ class ProductDetail extends React.Component {
       // selectedStyle: { photos: [], skus: {} },
       selectedSize: "",
       selectedQuantity: 1,
-      selectedPhotoIndex: 0,
+      // selectedPhotoIndex: 0,
       cart: null
     }
   }
@@ -133,20 +133,20 @@ class ProductDetail extends React.Component {
     });
   }
 
-  handleThumbnailClick(event) {
-    event.preventDefault();
-    console.log('event.target.dataset.index:', event.target.dataset.index);
-    this.setState({
-      selectedPhotoIndex: event.target.dataset.index
-    })
-  }
+  // handleThumbnailClick(event) {
+  //   event.preventDefault();
+  //   console.log('event.target.dataset.index:', event.target.dataset.index);
+  //   this.setState({
+  //     selectedPhotoIndex: event.target.dataset.index
+  //   })
+  // }
 
   openSizeSelect() {
     // document.getElementById('size-selector').size = `${Object.keys(this.state.selectedStyle.skus.length)}`;
     document.getElementById('size-selector').size = '12';
   }
 
-  componentDidMount() {
+  // componentDidMount() {
     // this.getProductInfo();
     // this.getStyles();
     // this.getRelated();
@@ -157,15 +157,15 @@ class ProductDetail extends React.Component {
     // console.log('selected style:', this.state.selectedStyle);
     // console.log('photos:', this.state.selectedStyle.photos);
 
-  }
+  // }
 
   render() {
     return (
       <div><h4>Product Details</h4>
         <ImageGallery
           photos={this.props.selectedStyle.photos}
-          selectedphotoindex={this.state.selectedPhotoIndex}
-          handleThumbnailClick={this.handleThumbnailClick.bind(this)}
+          selectedphotoindex={this.props.selectedPhotoIndex}
+          handleThumbnailClick={this.props.handleThumbnailClick}
         />
         <div>
           <ProductInfo
