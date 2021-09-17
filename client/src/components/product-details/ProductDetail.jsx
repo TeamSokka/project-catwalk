@@ -16,7 +16,7 @@ class ProductDetail extends React.Component {
       // styles: [],
       // relatedProducts: this.props.related,
       reviews: [],
-      selectedStyle: { photos: [], skus: {} },
+      // selectedStyle: { photos: [], skus: {} },
       selectedSize: "",
       selectedQuantity: 1,
       selectedPhotoIndex: 0,
