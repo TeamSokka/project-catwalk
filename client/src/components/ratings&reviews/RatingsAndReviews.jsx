@@ -13,6 +13,7 @@ class RatingsAndReviews extends React.Component {
 
     this.state = {
       reviewList: [],
+      starSort: [],
       metaData: metaData,
       noReviews: false,
       hideMoreReviews: false,

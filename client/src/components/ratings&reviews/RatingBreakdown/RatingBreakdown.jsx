@@ -1,6 +1,29 @@
 import React from 'react';
 import StarRating from '../ReviewList/StarRatings';
 import RatingBreakdownList from './RatingBreakdownList';
+import StarFilterEntry from './StarFilterEntry';
+
+
+const filtersContainer = {
+  display: 'flex',
+  marginBottom: '10px',
+  justifyContent: 'center',
+};
+
+const clearStarFilterStyle = {
+  display: 'flex',
+  marginBottom: '5px',
+  justifyContent: 'center',
+  cursor: 'pointer',
+};
+
+const starFilterStyle = {
+  display: 'flex',
+  marginBottom: '10px',
+  flexWrap: 'wrap',
+  justifyContent: 'center',
+};
+
 class RatingBreakdown extends React.Component {
   constructor(props) {
     super(props);
@@ -61,6 +84,33 @@ class RatingBreakdown extends React.Component {
         <div>Star rating: {stars}</div>
         <div>{`${this.averageRecommended(recommended)}%: Number of reviews recommend this product`}</div>
         <div>Star sort</div>
+
+        <div style={{
+          gridColumn: '1',
+          gridRow: '5',
+        }}
+        >
+          <div style={filtersContainer}>
+            {
+              this.props.starSort.length > 0
+              && (
+                <div>
+                  <div style={starFilterStyle}>
+                    {this.props.starSort
+                      .sort((a, b) => b - a)
+                      .map((star) => (
+                        <StarFilterEntry star={star} sortByStar={this.props.sortByStar} key={star} />
+                      ))}
+                  </div>
+                  <div style={clearStarFilterStyle} aria-hidden="true" onClick={this.props.clearStarFilter}>
+                    <u style={{ color: 'grey', fontSize: '13px' }}>Clear Star Review Filter</u>
+                  </div>
+                </div>
+              )
+            }
+          </div>
+        </div>
+
         <div>Ratings Breakdown List
           <RatingBreakdownList
             metaData={this.props.metaData}

@@ -1,4 +1,5 @@
 import React from 'react';
+import '../Styles/rating-breakdown-entry.scss'
 
 const starBar = {
   height: '8px',
@@ -42,22 +43,21 @@ class RatingBreakdownEntry extends React.Component {
 
   render() {
     return (
-      <div id={this.props.rating} aria-hidden="true" className="starBar" style={starBarFlex} onClick={this.props.sortByStar}>
+      <div id={this.props.rating} aria-hidden="true" className="starBar" className="star-bar-flex" onClick={this.props.sortByStar}>
         <u>{`${this.props.rating} stars`}</u>
 
-        <div id={this.props.rating} style={starBar}>
+        <div id={this.props.rating} className="star-bar">
           <div style={{
-            background: 'rgba(51, 170, 51, .8)',
+            background: 'rgb(50,205,50)',
             height: '100%',
             borderRadius: 'inherit',
             width: `75%`,
             // width: `${starPercentage(this.props.ratings, this.props.rating)}%`,
-
           }}
           />
         </div>
 
-        <div id={this.props.rating} style={starFont}>{this.props.totalRating}</div>
+        <div id={this.props.rating} className="star-font">{this.props.totalRating}</div>
 
       </div>
     );
