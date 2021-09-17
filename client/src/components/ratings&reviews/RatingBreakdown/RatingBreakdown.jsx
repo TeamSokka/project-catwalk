@@ -1,5 +1,6 @@
 import React from 'react';
 import StarRating from '../ReviewList/StarRatings';
+import RatingBreakdownList from './RatingBreakdownList';
 class RatingBreakdown extends React.Component {
   constructor(props) {
     super(props);
@@ -30,18 +31,24 @@ class RatingBreakdown extends React.Component {
   /*
   "recommended": {
     "true": "2"
+    "false": "2"
   },
   */
 
   averageRecommended(obj) {
+    const total = Number(2) + Number(2);
+    const result = Number(2) / total;
 
+    if (isNaN(result.toFixed(2) * 100)) {
+      return 0;
+    }
+    return result.toFixed(2) * 100;
   }
-
 
   render() {
     const { ratings } = this.props.metaData;
     const { recommended } = this.props.metaData;
-
+    console.log(recommended);
 
     var stars = StarRating(this.averageRating(ratings));
 
@@ -50,9 +57,14 @@ class RatingBreakdown extends React.Component {
         <div>Ratings and Reviews</div>
         <div>Average rating: {this.averageRating(ratings)}</div>
         <div>Star rating: {stars}</div>
-        <div>Number of reviews recommend this product</div>
+        <div>{`${this.averageRecommended(recommended)}%: Number of reviews recommend this product`}</div>
         <div>Star sort</div>
-        <div>Ratings Breakdown List</div>
+        <div>Ratings Breakdown List
+          <RatingBreakdownList
+            metaData={this.props.metaData}
+            sortByStar={this.props.sortByStar}
+          />
+        </div>
       </div>
     );
   }
