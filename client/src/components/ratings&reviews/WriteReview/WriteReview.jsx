@@ -192,9 +192,7 @@ class WriteReview extends React.Component {
     // var review2 = Object.assign({}, this.state.review);
     var review2 = Object.assign({}, this.state.review);
     // review2['characteristics'] = this.state.characteristics;
-    review2['characteristics'] = Object.assign({}, this.state.characteristics);
-
-
+    review2['characteristics'] = Object.assign(review2['characteristics'], this.state.characteristics);
     handlePostReview(review2);
   }
 

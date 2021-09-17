@@ -1,12 +1,17 @@
-// import React from 'react';
-// class RatingBreakdownList extends Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {}
-//   }
-//   render() {
-//     return (  );
-//   }
-// }
+import React from 'react';
+class RatingBreakdownList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
 
-// export default RatingBreakdownList;
+    }
+  }
+  render() {
+    return (
+      <div></div>
+    );
+  }
+}
+
+export default RatingBreakdownList;
+

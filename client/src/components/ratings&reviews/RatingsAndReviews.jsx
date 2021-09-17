@@ -26,7 +26,8 @@ class RatingsAndReviews extends React.Component {
     this.moreReviewsClick = this.moreReviewsClick.bind(this);
     this.writeReviewClick = this.writeReviewClick.bind(this);
     this.exitWriteReviewClick = this.exitWriteReviewClick.bind(this);
-
+    this.sortByStar = this.sortByStar.bind(this);
+    this.clearStarFilter = this.clearStarFilter.bind(this);
   }
 
   // Get reviews
@@ -115,6 +116,26 @@ class RatingsAndReviews extends React.Component {
     })
   }
 
+  sortByStar(e) {
+    const { starSort } = this.state;
+    if (starSort.indexOf(e.target.id) === -1) {
+      this.setState({
+        starSort: [...starSort, e.target.id],
+      });
+    } else {
+      starSort.splice(starSort.indexOf(e.target.id), 1);
+      this.setState({
+        starSort,
+      });
+    }
+  }
+
+  clearStarFilter() {
+    this.setState({
+      starSort: [],
+    });
+  }
+
   componentDidMount() {
     this.handleGetReview();
   }
@@ -123,8 +144,13 @@ class RatingsAndReviews extends React.Component {
 
     return (
       <div>
-        Ratings and Reviews Section
-        {/* <RatingBreakdown /> */}
+        <RatingBreakdown
+          metaData={this.props.metaData}
+          starSort={this.state.starSort}
+          sortByStar={this.sortByStar}
+          clearStarFilter={this.clearStarFilter}
+        />
+
         <ReviewList
           reviewList={this.state.reviewList}
           handlePutReview={this.state.handlePutReview}
