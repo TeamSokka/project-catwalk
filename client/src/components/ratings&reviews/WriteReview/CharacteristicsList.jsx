@@ -1,5 +1,6 @@
 import React from 'react';
 import CharacteristicsListEntry from './CharacteristicsListEntry'
+import characteristicOptions from './characteristicOptions';
 
 class CharacteristicsList extends React.Component {
   constructor(props) {
@@ -8,12 +9,13 @@ class CharacteristicsList extends React.Component {
 
   render() {
     const characteristics = [];
+
     const keys = Object.keys(this.props.metaData.characteristics);
-    keys.forEach((characteristic, index) => {
+    keys.forEach((propName, index) => {
       characteristics.push(
         <CharacteristicsListEntry
-          characteristic={characteristic}
-          characteristicID={this.props.metaData.characteristics["id"]}
+          characteristic={propName}
+          characteristicID={this.props.metaData.characteristics[propName]["id"]}
           key={index}
           handleCharacteristicClick={this.props.handleCharacteristicClick}
         />)

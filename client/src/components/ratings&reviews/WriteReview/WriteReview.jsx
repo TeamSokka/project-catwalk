@@ -29,12 +29,13 @@ class WriteReview extends React.Component {
         photos: [],
         name: '',
         email: '',
-        rating: null,
+        rating: 3,
         characteristics: {
         }
       },
       mouseOver: [0, 0, 0, 0, 0],
       metaData: metaData,
+      characteristics: {}
     }
 
     this.minCharCount = this.minCharCount.bind(this);
@@ -47,8 +48,11 @@ class WriteReview extends React.Component {
 
   // handle input change
   handleInputChange(e) {
+    var review2 = Object.assign({}, this.state.review);
+    review2[e.target.name] = e.target.value;
+
     this.setState({
-      [e.target.name]: e.target.value,
+      review: review2
     });
   }
 
@@ -58,20 +62,39 @@ class WriteReview extends React.Component {
   //     "value": "4.0000000000000000"
   //   },
 
-  handleCharacteristicClick(e) {
+  handleCharacteristicClick(name, e) {
     const { characteristics } = this.state;
+
+    var characteristics2 = Object.assign({}, this.state.characteristics);
+    characteristics2[name] = {
+      id: e.target.name,
+      value: Number(e.target.value)
+    }
+
+
     this.setState({
-      characteristics: {
-        ...characteristics,
-        [e.target.name]: Number(e.target.value),
-      },
+      characteristics: characteristics2
     });
+
+    // this.setState({
+    //   characteristics: {
+    //     ...characteristics,
+    //     [e.target.name]: Number(e.target.value),
+    //   },
+    // });
   }
 
   handleStarClick(e) {
+    var review2 = Object.assign({}, this.state.review);
+    review2[e.target.name] = Number(e.target.value);
+
     this.setState({
-      [e.target.name]: Number(e.target.value),
+      review: review2
     });
+
+    // this.setState({
+    //   [e.target.name]: Number(e.target.value),
+    // });
   }
 
   handleRecommendClick(e) {
@@ -82,9 +105,16 @@ class WriteReview extends React.Component {
       bool = false;
     }
 
+    var review2 = Object.assign({}, this.state.review);
+    review2[e.target.name] = bool;
+
     this.setState({
-      [e.target.name]: bool,
+      review: review2
     });
+
+    // this.setState({
+    //   [e.target.name]: bool,
+    // });
   }
 
   // min char count
@@ -119,39 +149,30 @@ class WriteReview extends React.Component {
     // alert with warning message if not satisfactory entry
 
     // concat alert string
+    e.preventDefault();
     var alertMessage = '';
 
     if (rating === null) {
       alertMessage += 'Please fill out required ratings option. \n';
-      e.preventDefault();
-      return;
     }
 
     if (recommend === null) {
       alertMessage += 'Please fill out required recommended option. \n';
-      e.preventDefault();
-      return;
     }
     // characteristics
 
     if (summary.length > 60) {
       alertMessage += 'Review Summary must be 60 characters or less. \n';
-      e.preventDefault();
-      return;
     }
 
     if (body.length > 1000 || body.length < 50) {
       alertMessage += 'Review Body must be at least 50 characters. \n';
-      e.preventDefault();
-      return;
     }
 
     // photo check
 
     if (name.length > 60 || name.length === 0) {
       alertMessage += 'Name must be less than 60 characters and cannot be empty. \n';
-      e.preventDefault();
-      return;
     }
 
     const emailValidate = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -159,16 +180,22 @@ class WriteReview extends React.Component {
 
     if (result === false || email.length > 60 || email.length === 0) {
       alertMessage += 'Please input a valid email address.';
-      e.preventDefault();
-      return;
     }
 
     // check if alert message not empty - check length > 0
     if (alertMessage.length > 0) {
       alert('You must enter the following: \n' + alertMessage);
+      return;
     }
 
-    handlePostReview(this.state.review);
+    // JSON.parse(JSON.stringify(this.state.review))
+    // var review2 = Object.assign({}, this.state.review);
+    var review2 = Object.assign({}, this.state.review);
+    // review2['characteristics'] = this.state.characteristics;
+    review2['characteristics'] = Object.assign({}, this.state.characteristics);
+
+
+    handlePostReview(review2);
   }
 
   render() {

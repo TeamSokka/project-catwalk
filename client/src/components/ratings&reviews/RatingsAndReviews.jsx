@@ -2,6 +2,7 @@ import { thisExpression } from '@babel/types';
 import React from 'react';
 import ReviewList from './ReviewList/ReviewList';
 import WriteReview from './WriteReview/WriteReview';
+import RatingBreakdown from './RatingBreakdown/RatingBreakdown';
 import './Styles/ratings-reviews.scss';
 
 const axios = require('axios');
@@ -123,6 +124,7 @@ class RatingsAndReviews extends React.Component {
     return (
       <div>
         Ratings and Reviews Section
+        {/* <RatingBreakdown /> */}
         <ReviewList
           reviewList={this.state.reviewList}
           handlePutReview={this.state.handlePutReview}
