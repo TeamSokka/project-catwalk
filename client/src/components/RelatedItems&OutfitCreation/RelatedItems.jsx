@@ -1,5 +1,6 @@
 import React from 'react';
 import RelatedProductCards from './RelatedProductCards';
+import OutfitCreations from './OutfitCreations';
 import axios from 'axios';
 
 class RelatedItems extends React.Component {
@@ -57,6 +58,7 @@ class RelatedItems extends React.Component {
           relatedProducts={relatedProducts}
           selectedStyle={selectedStyle}
         />
+        <OutfitCreations />
       </div>
     )
   }

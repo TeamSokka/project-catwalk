@@ -1,18 +1,27 @@
 import React from 'react';
+import { formatPreviewImage } from '../helpers/_functions.js'
 
 class ProductPreviewImages extends React.Component {
   constructor(props) {
     super(props);
   }
 
-
   render() {
     const {selectedStyle} = this.props;
-    // const image = formatPreviewImage(selectedStyle)
+    const images = formatPreviewImage(selectedStyle);
+
+    console.log('image: ', images);
     console.log('selectedStyle: ', selectedStyle);
+
     return (
       <div id="product-preview-img">
-        {/* <img src={selectedStyle.photos[0]} alt="" /> */}
+        {images.map(image => {
+          return
+            <img
+              src={image.thumbnail_url}
+              key={image.thumbnail_url}
+            />
+        })}
       </div>
     )
   }
