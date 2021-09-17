@@ -6,5 +6,4 @@ export const formatRelatedItems = ({ name, category, default_price: price }) => 
 
 export const formatPreviewImage = ({photos}) => (
   photos
-);
-
+)
