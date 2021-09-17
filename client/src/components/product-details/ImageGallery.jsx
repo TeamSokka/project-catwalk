@@ -1,4 +1,5 @@
 import React from 'react';
+import ThumbnailList from './ThumbnailList.jsx';
 
 //ImageGallery module
 //img urls in props.selectedstyle
@@ -29,9 +30,12 @@ var ImageGallery = (props) => (
     }
     <div id="thumbnail-list">
       {props.photos
-        ? props.photos.map((photo, index) => (
-          <img className='thumbnail' key={index} data-index={index} src={photo.thumbnail_url} width="100" onClick={props.handleThumbnailClick}></img>
-          ))
+        ? <ThumbnailList
+          topThumbnail={props.topThumbnail}
+          photos={props.photos}
+          selectedphotoindex={props.selectedphotoindex}
+          handleThumbnailClick={props.handleThumbnailClick}
+         />
         : <p><em>No photos to display.</em></p>
       }
     </div>
@@ -39,3 +43,8 @@ var ImageGallery = (props) => (
 );
 
 export default ImageGallery;
+
+// <i class="fas fa-chevron-circle-up"></i>
+// <i class="fas fa-chevron-circle-down"></i>
+// <i class="fas fa-chevron-circle-left"></i>
+// <i class="fas fa-chevron-circle-right"></i>

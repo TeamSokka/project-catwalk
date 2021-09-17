@@ -17,8 +17,7 @@ class App extends React.Component {
       relatedProducts: [],
       styles: [],
       selectedStyle: { photos: [], skus: {} },
-      selectedPhotoIndex: 0,
-      metaData: {},
+      metaData: {}
     }
 
     this.fetchMeta = this.fetchMeta.bind(this);
@@ -60,24 +59,6 @@ class App extends React.Component {
       })
   }
 
-  handleStyleSelect(event) {
-    event.preventDefault();
-    console.log('event.target:', event.target);
-    console.log('event.target.dataset.index:', event.target.dataset.index);
-    this.setState({
-      selectedStyle: this.state.styles[event.target.dataset.index],
-      selectedPhotoIndex: 0
-    })
-  }
-
-  handleThumbnailClick(event) {
-    event.preventDefault();
-    console.log('event.target.dataset.index:', event.target.dataset.index);
-    this.setState({
-      selectedPhotoIndex: event.target.dataset.index
-    })
-  }
-
   getRelated = () => {
     axios.get(`/products/${this.state.productID}/related`)
       .then((res) => {
@@ -106,7 +87,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { productID, productInfo, relatedProducts, styles, selectedStyle, selectedPhotoIndex, metaData } = this.state;
+    const { productID, productInfo, relatedProducts, styles, selectedStyle, metaData } = this.state;
 
     // console.log('app state// productInfo', productInfo);
     // console.log('app state// relatedPro', relatedProducts);
@@ -118,9 +99,6 @@ class App extends React.Component {
           productInfo={productInfo}
           styles={styles}
           selectedStyle={selectedStyle}
-          selectedPhotoIndex={selectedPhotoIndex}
-          handleStyleSelect={this.handleStyleSelect.bind(this)}
-          handleThumbnailClick={this.handleThumbnailClick.bind(this)}
         />
 
 
