@@ -8,7 +8,9 @@ const QuestionList = (props) => {
       <div>
         {props.questions.length > 0 && props.questions.slice(0, 4).map((question) => (
           <Question key={question.question_id} question={question}
-            answers={props.answers} />
+            answers={props.answers}
+            putRequest={props.putRequest}
+            disabled={props.disabled} />
         ))
         }
         <button className='more-answered-btn'>MORE ANSWERED QUESTIONS</button>
