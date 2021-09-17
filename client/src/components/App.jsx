@@ -94,12 +94,12 @@ class App extends React.Component {
 
     return (
       <div>
-        <ProductDetail
+        {/* <ProductDetail
           productID={productID}
           productInfo={productInfo}
           styles={styles}
           selectedStyle={selectedStyle}
-        />
+        /> */}
 
 
         <RatingsAndReviews

@@ -3,6 +3,9 @@ import React from 'react';
 import ReviewList from './ReviewList/ReviewList';
 import WriteReview from './WriteReview/WriteReview';
 import RatingBreakdown from './RatingBreakdown/RatingBreakdown';
+import ProductBreakdown from './ProductBreakdown/ProductBreakdown';
+import SortOptions from './SortOptions/SortOptions';
+
 import './Styles/ratings-reviews.scss';
 
 const axios = require('axios');
@@ -19,6 +22,7 @@ class RatingsAndReviews extends React.Component {
       hideMoreReviews: false,
       reviewsDisplayed: 2,
       writeReviewModal: false,
+      sortOption: 0
     }
 
     this.handleGetReview = this.handleGetReview.bind(this);
@@ -29,6 +33,8 @@ class RatingsAndReviews extends React.Component {
     this.exitWriteReviewClick = this.exitWriteReviewClick.bind(this);
     this.sortByStar = this.sortByStar.bind(this);
     this.clearStarFilter = this.clearStarFilter.bind(this);
+    this.sortChange = this.sortChange.bind(this);
+
   }
 
   // Get reviews
@@ -105,6 +111,12 @@ class RatingsAndReviews extends React.Component {
     }
   }
 
+  sortChange(e) {
+    this.setState({
+      sortOption: e.target.value,
+    });
+  }
+
   writeReviewClick(e) {
     this.setState({
       writeReviewModal: true,
@@ -150,6 +162,16 @@ class RatingsAndReviews extends React.Component {
           starSort={this.state.starSort}
           sortByStar={this.sortByStar}
           clearStarFilter={this.clearStarFilter}
+        />
+
+        {/* <ProductBreakdown
+          metaData={this.props.metaData}
+        /> */}
+
+        <SortOptions
+          metaData={this.props.metaData}
+          sortOption={this.state.sortOption}
+          sortChange={this.sortChange}
         />
 
         <ReviewList
