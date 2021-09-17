@@ -19,7 +19,6 @@ class App extends React.Component {
       selectedStyle: { photos: [], skus: {} },
       metaData: {},
     }
-
     this.fetchMeta = this.fetchMeta.bind(this);
   }
 
