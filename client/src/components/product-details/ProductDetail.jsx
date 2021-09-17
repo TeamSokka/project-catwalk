@@ -121,6 +121,8 @@ class ProductDetail extends React.Component {
     this.setState({
       selectedSize: this.state.selectedStyle.skus[event.target.value]
     });
+    event.target.size = '1';
+    // document.getElementById('size-selector').size = '1';
   }
 
   handleQuantitySelect(event) {
@@ -129,6 +131,11 @@ class ProductDetail extends React.Component {
     this.setState({
       selectedQuantity: event.target.value
     });
+  }
+
+  openSizeSelect() {
+    // document.getElementById('size-selector').size = `${Object.keys(this.state.selectedStyle.skus.length)}`;
+    document.getElementById('size-selector').size = '12';
   }
 
   componentDidMount() {
@@ -168,6 +175,7 @@ class ProductDetail extends React.Component {
             handlesizeselect={this.handleSizeSelect.bind(this)}
             handlequantityselect={this.handleQuantitySelect.bind(this)}
             handlecartsubmit={this.handleCartSubmit.bind(this)}
+            opensizeselect={this.openSizeSelect.bind(this)}
           />
         </div>
       </div>
