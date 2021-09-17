@@ -68,7 +68,7 @@ class RatingBreakdownEntry extends React.Component {
  <RatingsBreakdownListEntry
   rating={rating}
   ratings={this.props.metaData.ratings}
-  totalRating={5}
+  ratingCount={ratingCount}
   sortByStar={this.props.sortByStar}
   key={index}
 />

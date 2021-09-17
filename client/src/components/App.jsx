@@ -19,7 +19,7 @@ class App extends React.Component {
       selectedStyle: { photos: [], skus: {} },
       metaData: {},
     }
-    this.fetchMeta = this.fetchMeta.bind(this);
+    // this.fetchMeta = this.fetchMeta.bind(this);
   }
 
   componentDidMount() {
@@ -104,7 +104,7 @@ class App extends React.Component {
 
         <RatingsAndReviews
           productID={productID}
-          metaData={this.state.metaData}
+          metaData={metaData}
           productInfo={productInfo}
         />
 

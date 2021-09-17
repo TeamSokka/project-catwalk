@@ -12,17 +12,16 @@ const axios = require('axios');
 class RatingsAndReviews extends React.Component {
   constructor(props) {
     super(props);
-    const { metaData } = this.props;
 
     this.state = {
       reviewList: [],
       starSort: [],
-      metaData: metaData,
       noReviews: false,
       hideMoreReviews: false,
       reviewsDisplayed: 2,
       writeReviewModal: false,
-      sortOption: 0
+      sortOption: 0,
+      reviewsReady: false,
     }
 
     this.handleGetReview = this.handleGetReview.bind(this);
@@ -48,7 +47,8 @@ class RatingsAndReviews extends React.Component {
           });
         }
         this.setState({
-          reviewList: result.data.results
+          reviewList: result.data.results,
+          reviewsReady: true,
         })
       })
       .catch((error) => {
@@ -155,14 +155,22 @@ class RatingsAndReviews extends React.Component {
 
   render() {
 
+    const { metaData } = this.props;
+
     return (
       <div>
-        <RatingBreakdown
-          metaData={this.props.metaData}
-          starSort={this.state.starSort}
-          sortByStar={this.sortByStar}
-          clearStarFilter={this.clearStarFilter}
-        />
+        {
+          this.state.reviewsReady === true
+          &&
+          (<RatingBreakdown
+            metaData={metaData}
+            starSort={this.state.starSort}
+            sortByStar={this.sortByStar}
+            clearStarFilter={this.clearStarFilter}
+          />)
+
+        }
+
 
         {/* <ProductBreakdown
           metaData={this.props.metaData}

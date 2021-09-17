@@ -27,7 +27,6 @@ const starFilterStyle = {
 class RatingBreakdown extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {}
   }
 
   /*
@@ -71,8 +70,8 @@ class RatingBreakdown extends React.Component {
   render() {
     const { ratings } = this.props.metaData;
     const { recommended } = this.props.metaData;
-    console.log(recommended);
-    console.log(this.props.metaData);
+    // console.log(recommended);
+    // console.log(this.props.metaData);
 
 
     var stars = StarRating(this.averageRating(ratings));
@@ -114,6 +113,7 @@ class RatingBreakdown extends React.Component {
         <div>Ratings Breakdown List
           <RatingBreakdownList
             metaData={this.props.metaData}
+            ratings={this.props.metaData.ratings}
             sortByStar={this.props.sortByStar}
           />
         </div>
