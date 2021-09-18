@@ -177,7 +177,7 @@ app.get('/qa/questions/:question_id/answers', (req, res) => {
 
 // POST Questions
 app.post('/qa/questions', (req, res) => {
-  // console.log('body ', req.body);
+  console.log('body ', req.body);
   questions.postQuestion(req.body, (err, data) => {
     if (err) {
       res.status(400).send(err);

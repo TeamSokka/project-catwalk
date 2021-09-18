@@ -87,11 +87,18 @@ class QuestionsAndAnswers extends React.Component {
   }
 
   // post request from postman not working...
-  postRequest(body, id, endpoint) {
-    axios.post(`qa/questions/${id}/${endpoint}`, body)
+  postQuestion(body) {
+    axios.post('/qa/questions/', body)
     .then(() => this.getQuestions())
     .catch((err) => console.log('Error adding question ', err));
   }
+
+  postAnswer(body, id) {
+    axios.post(`/qa/questions/${id}/answers`, body)
+    .then(() => this.getQuestions())
+    .catch((err) => console.log('Error adding answer ', err));
+  }
+
 
   render() {
     return (
@@ -105,7 +112,8 @@ class QuestionsAndAnswers extends React.Component {
           putRequest={this.putRequest}
           productID={this.props.productID}
           productInfo={this.props.productInfo}
-          postRequest={this.postRequest.bind(this)}
+          postQuestion={this.postQuestion.bind(this)}
+          postAnswer={this.postAnswer.bind(this)}
         />
       </div>
     );

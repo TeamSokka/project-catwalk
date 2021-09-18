@@ -4,7 +4,7 @@ import AddQuestion from './AddQuestion.jsx';
 import '../ratings&reviews/Styles/ratings-reviews.scss';
 
 const QuestionList = (props) => {
-  const { questions, putRequest, handleClick, productID, productInfo, postRequest } = props;
+  const { questions, putRequest, handleClick, productID, productInfo, postQuestion, postAnswer } = props;
   const [display, setDisplay] = useState(4);
   const [modal, setModal] = useState(false);
   let loadMoreQuestions = questions.length > display &&
@@ -16,6 +16,9 @@ const QuestionList = (props) => {
         {questions.length > 0 && props.questions.slice(0, display).map((question) => (
           <Question key={question.question_id} question={question}
             putRequest={putRequest}
+            postAnswer={postAnswer}
+            productID={productID}
+            productInfo={productInfo}
           />
         ))
         }
@@ -36,7 +39,7 @@ const QuestionList = (props) => {
                 <AddQuestion
                   productID={productID}
                   productInfo={productInfo}
-                  postRequest={postRequest}
+                  postQuestion={postQuestion}
                 />
                 <br />
               </div>

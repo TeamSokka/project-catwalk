@@ -12,7 +12,7 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      productID: 40348, // example product id, change to num
+      productID: 40354, // example product id, change to num
       productInfo: {},
       relatedProducts: [],
       styles: [],
@@ -28,7 +28,7 @@ class App extends React.Component {
 
     this.fetchMeta();
     this.getRelated(productID);
-    this.getProductInfo(productInfo);
+    this.getProductInfo(productID);
     this.getStyles();
   }
 
@@ -111,15 +111,15 @@ class App extends React.Component {
 
     return (
       <div>
-         <ProductDetail
+         {/* <ProductDetail
           productID={productID}
           productInfo={productInfo}
           styles={styles}
           selectedStyle={selectedStyle}
           handleStyleSelect={this.handleStyleSelect.bind(this)}
-        />
+        /> */}
 
-        {
+        {/* {
           this.state.metaReady === true
           &&
           <RatingsAndReviews
@@ -127,20 +127,20 @@ class App extends React.Component {
             metaData={metaData}
             productInfo={productInfo}
           />
-        }
+        } */}
 
         <QuestionsAndAnswers
         productID={productID}
         productInfo={productInfo}
         />
 
-        <RelatedItems
+        {/* <RelatedItems
           productID={productID}
           productInfo={productInfo}
           relatedProducts={relatedProducts}
           selectedStyle={selectedStyle}
           getProductInfo={this.getProductInfo}
-        />
+        /> */}
       </div>
     )
   }
