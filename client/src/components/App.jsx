@@ -12,15 +12,15 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      productID: 40348, // example product id
+      productID: 40348, // example product id, change to num
       productInfo: {},
       relatedProducts: [],
       styles: [],
       selectedStyle: { photos: [], skus: {} },
       metaData: {},
+      metaReady: false,
     }
-
-    this.fetchMeta = this.fetchMeta.bind(this);
+    // this.fetchMeta = this.fetchMeta.bind(this);
   }
 
   componentDidMount() {
@@ -94,7 +94,8 @@ class App extends React.Component {
     axios.get(`/reviews/meta/?product_id=${productID}`)
       .then((result) => {
         this.setState({
-          metaData: result.data
+          metaData: result.data,
+          metaReady: true,
         });
       })
       .catch((error) => {
@@ -110,7 +111,7 @@ class App extends React.Component {
 
     return (
       <div>
-        {/* <ProductDetail
+         <ProductDetail
           productID={productID}
           productInfo={productInfo}
           styles={styles}
@@ -118,14 +119,17 @@ class App extends React.Component {
           handleStyleSelect={this.handleStyleSelect.bind(this)}
         />
 
+        {
+          this.state.metaReady === true
+          &&
+          <RatingsAndReviews
+            productID={productID}
+            metaData={metaData}
+            productInfo={productInfo}
+          />
+        }
 
-        {/* <RatingsAndReviews
-          productID={productID}
-          metaData={this.state.metaData}
-          productInfo={productInfo}
-        /> */}
-
-        {/* <QuestionsAndAnswers productID={productID} /> */}
+        <QuestionsAndAnswers productID={productID} />
 
         <RelatedItems
           productID={productID}

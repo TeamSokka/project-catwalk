@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import App from '../../client/src/components/App';
+import App from '../client/src/components/App';
 import WriteReview from '../client/src/components/ratings&reviews/WriteReview/WriteReview';
 import ReviewList from '../client/src/components/ratings&reviews/ReviewList/ReviewList';
 import ReviewListEntry from '../client/src/components/ratings&reviews/ReviewList/ReviewListEntry';
@@ -13,17 +13,17 @@ describe('App', () => {
   });
 });
 
-describe('<WriteReview />', () => {
-  test('renders WriteReview component', () => {
-    render(<WriteReview metaData={metaDummy} />);
-  });
-});
+// describe('<WriteReview />', () => {
+//   test('renders WriteReview component', () => {
+//     render(<WriteReview metaData={metaDummy} />);
+//   });
+// });
 
-describe('<ReviewList />', () => {
-  test('renders ReviewList component', () => {
-    render(<ReviewList reviewList={reviewsDummy.results} />);
-  });
-});
+// describe('<ReviewList />', () => {
+//   test('renders ReviewList component', () => {
+//     render(<ReviewList reviewList={reviewsDummy.results} />);
+//   });
+// });
 
 describe('<ReviewListEntry />', () => {
   test('renders ReviewListEntry component', () => {
