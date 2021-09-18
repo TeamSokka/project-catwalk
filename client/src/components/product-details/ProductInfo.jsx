@@ -7,7 +7,10 @@ var ProductInfo = (props) => (
     {/* <StarRating /> */}
     <span id="category">{props.productinfo.category}</span>
     <span id="name">{props.productinfo.name}</span>
-    <span id="price">${props.productinfo.default_price}</span>
+    <span id="price">${
+      props.selectedstyle.sale_price
+      ? props.selectedstyle.sale_price
+      : props.selectedstyle.original_price}</span>
     <h2>{props.productinfo.slogan}</h2>
     <p>
       {props.productinfo.description}

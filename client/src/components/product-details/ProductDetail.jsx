@@ -111,8 +111,7 @@ class ProductDetail extends React.Component {
     // });
     // console.log('styles:', this.state.styles);
     // console.log('selected style:', this.state.selectedStyle);
-    // console.log('photos:', this.state.selectedStyle.photos);
-
+    console.log('selectedStyle:', this.props.selectedStyle);
   }
 
   render() {
@@ -129,6 +128,7 @@ class ProductDetail extends React.Component {
         <div>
           <ProductInfo
             productinfo={this.props.productInfo}
+            selectedstyle={this.props.selectedStyle}
           />
           <StyleSelector
             styles={this.props.styles}

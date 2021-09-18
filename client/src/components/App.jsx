@@ -72,7 +72,9 @@ class App extends React.Component {
     // console.log('event.target.dataset.index:', event.target.dataset.index);
     this.setState({
       selectedStyle: this.state.styles[event.target.dataset.index]
-    })
+    });
+    console.log('selectedStyle:', this.state.selectedStyle);
+
   }
 
   getRelated = () => {
@@ -116,6 +118,7 @@ class App extends React.Component {
           productInfo={productInfo}
           styles={styles}
           selectedStyle={selectedStyle}
+          handleStyleSelect={this.handleStyleSelect.bind(this)}
         />
 
         {
