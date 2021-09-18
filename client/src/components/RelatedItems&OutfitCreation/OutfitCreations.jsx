@@ -1,18 +1,15 @@
 import React from 'react';
 
-class OutfitCreations extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <div>
-        <h1>Your Outfit</h1>
-
+const OutfitCreations = (props) => {
+  return (
+    <div id="outfit-card">
+      <h3>YOUR OUTFIT</h3>
+      <div className="product-card">
+        <div id="product-preview-img"></div>
+        <div id="product-info"></div>
       </div>
-    )
-  }
+    </div>
+  )
 }
 
 export default OutfitCreations;

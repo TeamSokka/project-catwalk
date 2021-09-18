@@ -8,44 +8,45 @@ class QuestionsAndAnswers extends React.Component {
     super(props);
 
     this.state = {
-      search: '',
+      // search: '',
       questions: [],
-      answers: [],
+      // disabled: false,
     };
     this.handleChange = this.handleChange.bind(this);
     this.getQuestions = this.getQuestions.bind(this);
-    this.getAnswers = this.getAnswers.bind(this);
+    this.putRequest = this.putRequest.bind(this);
   }
 
-  componentDidMount() { this.getQuestions(); }
+  componentDidMount() { this.getQuestions() }
 
-  getAnswers() {
-    this.state.questions.forEach((question) =>
-      // console.log(question.question_id)
-      axios.get(`/qa/questions/${question.question_id}/answers`).then((res) => {
-        // console.log('answers ', res);
-        this.setState({
-          answers: res.data.results
-        });
-      })
-    );
-  }
+  // getAnswers() {
+  //   this.state.questions.forEach((question) =>
+  //     // console.log(question.question_id)
+  //     axios.get(`/qa/questions/${question.question_id}/answers`).then((res) => {
+  //       // console.log('answers ', res);
+  //       this.setState({
+  //         answers: res.data.results
+  //       });
+  //     })
+  //   );
+  // }
 
   getQuestions() {
     const { productID } = this.props;
+    console.log('from questions ', productID);
     axios.get('/qa/questions', {
       params: {
         product_id: productID
       }
     })
       .then((res) => {
-        // console.log('questions ', res.data);
+        console.log('questions ', res.data);
         this.setState({
           questions: res.data.results,
-        });
-      });
+        })
+      })
+      .catch((err) => console.log('Error receiving questions ', err));
     // .then(this.getAnswers.bind(this))
-    // 'question id ', this.state.questions.map((question) => question.question_id));
   }
 
   handleChange(e) {
@@ -61,16 +62,35 @@ class QuestionsAndAnswers extends React.Component {
   //   })
   // }
 
-  onSearch() {
-    // if (e.target.value.length >= 3) {
+  // doesnt work
+  onSearch(query) {
+    if (query.length >= 3) {
       let results = this.state.questions.filter((question) =>
-      question.question_body.toLowerCase().includes(this.state.search.toLowerCase())
+        question.question_body.toLowerCase().includes(query.toLowerCase())
       )
       this.setState({
         questions: results,
         // [e.target.id]: e.target.value
       })
+    }
     // }
+  }
+
+  putRequest(path, id, endpoint) {
+    if (this.state.disabled) {
+      return;
+    }
+    axios.put(`/qa/${path}/${id}/${endpoint}`)
+      .then(() => this.getQuestions())
+      .then(() => this.setState({ disabled: true }))
+      .catch((err) => console.log('Error updating ', err));
+  }
+
+  // post request from postman not working...
+  postRequest(body, id, endpoint) {
+    axios.post(`qa/questions/${id}/${endpoint}`, body)
+    .then(() => this.getQuestions())
+    .catch((err) => console.log('Error adding question ', err));
   }
 
   render() {
@@ -78,10 +98,14 @@ class QuestionsAndAnswers extends React.Component {
       <div>
         <h3>QUESTIONS & ANSWERS</h3>
         <Search search={this.state.search} handleChange={this.handleChange}
-          onSearch={this.onSearch.bind(this)} />
+          onSearch={this.onSearch.bind(this)}
+          questions={this.state.questions} />
         <QuestionList
           questions={this.state.questions}
-          answers={this.state.answers}
+          putRequest={this.putRequest}
+          productID={this.props.productID}
+          productInfo={this.props.productInfo}
+          postRequest={this.postRequest.bind(this)}
         />
       </div>
     );

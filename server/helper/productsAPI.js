@@ -87,7 +87,7 @@ module.exports = {
         }
       })
       .then((res) => {
-        console.log('GET cart processed. Response data:', res.data);
+        // console.log('GET cart processed. Response data:', res.data);
         callback(null, res.data);
       })
       .catch((err) => {
@@ -103,7 +103,7 @@ module.exports = {
         }
       })
       .then((res) => {
-        console.log('POST (add to cart) processed. Response data:', res.data);
+        // console.log('POST (add to cart) processed. Response data:', res.data);
         callback(null, res.data);
       })
       .catch((err) => {

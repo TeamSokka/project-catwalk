@@ -9,7 +9,7 @@ const postInteractions = () => {
     }
   })
     .then((response) => {
-      console.log('interactions response' + response.data);
+      // console.log('interactions response' + response.data);
       callback(null, response.data);
     })
     .catch((error) => {

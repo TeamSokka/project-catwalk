@@ -2,15 +2,21 @@ import React from 'react';
 import moment from 'moment';
 
 const Answer = (props) => {
-  const { answer } = props;
+  const { answer, putRequest } = props;
+  // const [helpfulBtn, setHelpfulBtn] = useState(false);
+  // const [reportBtn, setReportBtn] = useState(false);
+
   let answerer = <a style={{ fontWeight: answer.answerer_name === 'Seller' && 'bold' }} >{answer.answerer_name}</a>
 
   return (
     <div className='answer'>
       A: {answer.body}
-      <p>
-        by {answerer},  {moment(answer.date).format('MMMM Do YYYY')} | Helpful? Yes ({answer.helpfulness}) | Report
-      </p>
+      <br></br>
+      by {answerer},  {moment(answer.date).format('MMMM Do, YYYY')} | Helpful?{'  '}
+      <u style={{ cursor: 'pointer' }}
+        onClick={() => putRequest('answers', answer.id, 'helpful')} >Yes</u> ({answer.helpfulness}) |{'  '}
+      <u style={{ cursor: 'pointer' }}
+        onClick={() => putRequest('answers', answer.id, 'report')} >Report</u>
     </div>
   )
 }
