@@ -16,10 +16,11 @@ class RatingsAndReviews extends React.Component {
     this.state = {
       reviewList: [],
       starSort: [],
-      noReviews: false,
+      // noReviews: false,
       reviewsDisplayed: 0,
       pageLoaded: 1,
       writeReviewModal: false,
+      hideMoreReviews: false,
       sortOption: 0,
       reviewsReady: false,
     }
@@ -44,7 +45,7 @@ class RatingsAndReviews extends React.Component {
       .then((result) => {
         if (result.data.results.length === 0) {
           this.setState({
-            noReviews: true
+            hideMoreReviews: true
           });
         }
 
@@ -213,16 +214,11 @@ class RatingsAndReviews extends React.Component {
           />
         </div>
 
-        {
-          this.state.reviewsDisplayed <= this.state.reviewList.length && this.state.reviewList.length > 0
-          && (
-            <button className="add-review-btn" type="button" onClick={this.writeReviewClick}>Add a Review</button>
-          )
-        }
+
+        <button className="add-review-btn" type="button" onClick={this.writeReviewClick}>Add a Review</button>
 
         {
-          this.state.reviewsDisplayed <= this.state.reviewList.length && this.state.reviewList.length > 0
-          && (
+          this.state.reviewsDisplayed <= this.state.reviewList.length && this.state.hideMoreReviews === false && (
             <button className="more-reviews-btn" type="button" onClick={this.moreReviewsClick}>More Reviews</button>
           )
         }

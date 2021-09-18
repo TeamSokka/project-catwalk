@@ -23,12 +23,6 @@ const getReviews = (query, callback) => {
     optionalString += `&sort=${query.sort}`;
   }
 
-  console.log(optionalString);
-
-  // axios.get(
-  //   `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews?product_id=${query.product_id}&page=${query.page}&count=${query.count}&sort=${query.sort}`,
-  //   {
-
   axios.get(
     `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews?product_id=${query.product_id}${optionalString}`,
     {
