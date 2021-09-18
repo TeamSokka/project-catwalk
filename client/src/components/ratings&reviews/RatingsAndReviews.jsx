@@ -82,14 +82,6 @@ class RatingsAndReviews extends React.Component {
   }
 
   moreReviewsClick() {
-    // add two every time
-    // check newReviewEnd + 2 is less than total reviews
-    // if true, hideReviewButton is false
-
-    // if no more reviews, hideReviewButton is true
-    // More Reviews Button is gone
-
-    // check if there is more reviews to be displayed
     if (reviewsDisplayed < this.state.reviewList.length) {
       const newEnd = this.state.reviewsDisplayed + 2;
       if (newEnd > this.state.reviewList.length) {
@@ -104,12 +96,6 @@ class RatingsAndReviews extends React.Component {
           hideMoreReviews: true
         })
       }
-
-      // } else if (newEnd === this.state.reviewList.length || newEnd === this.state.reviewList.length - 1) {
-      //   this.setState({
-      //     hideMoreReviews: true,
-      //     reviewsDisplayed: newEnd
-      //   })
     }
   }
 
@@ -160,37 +146,25 @@ class RatingsAndReviews extends React.Component {
     const { metaData } = this.props;
 
     return (
-      <div>
+      <div className="main-div">
         {
           this.state.reviewsReady === true
           &&
-          (<RatingBreakdown
-            metaData={metaData}
-            starSort={this.state.starSort}
-            sortByStar={this.sortByStar}
-            clearStarFilter={this.clearStarFilter}
-          />)
+          <div className="rating-grid">
+            <RatingBreakdown
+              metaData={metaData}
+              starSort={this.state.starSort}
+              sortByStar={this.sortByStar}
+              clearStarFilter={this.clearStarFilter}
+            />
+          </div>
         }
 
-
-        <ProductBreakdown
-          metaData={this.props.metaData}
-        />
-
-        <SortOptions
-          metaData={this.props.metaData}
-          sortOption={this.state.sortOption}
-          sortChange={this.sortChange}
-        />
-
-        <ReviewList
-          reviewList={this.state.reviewList}
-          starSort={this.state.starSort}
-          handlePutReview={this.handlePutReview}
-          reviewsDisplayed={this.state.reviewsDisplayed}
-        />
-        <button className="" type="button" onClick={this.writeReviewClick}>Add a Review</button>
-        <button className="" type="button" onClick={this.moreReviewsClick}>More Reviews</button>
+        <div className="product">
+          <ProductBreakdown
+            metaData={this.props.metaData}
+          />
+        </div>
 
         {
           this.state.writeReviewModal
@@ -215,6 +189,34 @@ class RatingsAndReviews extends React.Component {
             </div>
           )
         }
+
+        <div className="sort-options">
+          <SortOptions
+            metaData={this.props.metaData}
+            sortOption={this.state.sortOption}
+            sortChange={this.sortChange}
+          />
+        </div>
+
+        <div className="review-list">
+          <ReviewList
+            reviewList={this.state.reviewList}
+            starSort={this.state.starSort}
+            handlePutReview={this.handlePutReview}
+            reviewsDisplayed={this.state.reviewsDisplayed}
+          />
+        </div>
+
+
+        {/* <div className="review-buttons">
+          <div style={{ display: 'flex', margin: 'auto', justifyContent: 'space-evenly' }}>
+            <button className="add-review-btn" type="button" onClick={this.writeReviewClick}>Add a Review</button>
+            <button className="more-reviews-btn" type="button" onClick={this.moreReviewsClick}>More Reviews</button>
+          </div>
+        </div> */}
+
+        <button className="add-review-btn" type="button" onClick={this.writeReviewClick}>Add a Review</button>
+        <button className="more-reviews-btn" type="button" onClick={this.moreReviewsClick}>More Reviews</button>
 
       </div >
     )

@@ -6,30 +6,11 @@ import "../Styles/review-list-entry.scss";
 class ReviewListEntry extends React.Component {
   constructor(props) {
     super(props);
-    this.averageStarRating = this.averageStarRating.bind(this);
     this.handleHelpfulClick = this.handleHelpfulClick.bind(this);
   }
 
   handleHelpfulClick(e) {
-    // this.props.handlePutReview(this.props.review_id, e.target.value);
     this.props.handlePutReview(this.props.review.review_id, e.target.id);
-
-
-    // axios.put(`/reviews/${this.props.review_id}/${e.target.value}`, {
-    //   review_id: this.props.review_id,
-    //   type: e.target.value
-    // })
-    //   .then((result) => {
-    //     console.log('Success with handleHelpfulClick');
-    //   })
-    //   .catch((error) => {
-    //     console.log('Error with handleHelpfulClick ' + error);
-    //   })
-  }
-
-  averageStarRating(obj) {
-
-
   }
 
   render() {
@@ -94,13 +75,6 @@ class ReviewListEntry extends React.Component {
               </div>
             </div>) : null
         }
-
-        {/* <div>
-          Helpful?
-          <u onClick={this.handleHelpfulClick}>Yes</u>
-          {` ${this.props.review.helpfulness} | `}
-          <u onClick={this.handleHelpfulClick}>Report</u>
-        </div> */}
 
         <div className="helpfulness-layout">
           <div style={{ display: 'flex', justifyContent: 'flex-start' }}>

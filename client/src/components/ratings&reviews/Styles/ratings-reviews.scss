@@ -39,3 +39,98 @@
 .close-button:hover {
   background-color: darkgray;
 }
+
+.grid-layout {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: minmax(5, 1fr) 200px;
+  grid-gap: 10px;
+};
+
+.no-reviews-grid {
+  display: grid;
+  justify-content: center;
+  grid-gap: 20px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+};
+
+.main-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-height: 100%;
+  max-width: 80%;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  // marginTop: 30px;
+  margin-bottom: 30px;
+};
+
+.rating-grid {
+  grid-column: 1;
+  grid-row: 1;
+  max-height: 200px;
+};
+
+.add-review-btn {
+  border: 1px solid grey;
+  box-shadow: 2px 2px 4px grey;
+  background-color: white;
+  padding: 10px;
+  margin-left: 20px;
+  width: auto;
+  max-width: 300px;
+  min-width: 150px;
+};
+
+.no-reviews-add-btn {
+  border: 1px solid grey;
+  box-shadow: 2px 2px 4px grey;
+  background-color: white;
+  padding: 10px;
+  width: 300px;
+  margin: auto;
+  grid-row: 2;
+};
+
+.more-reviews-btn {
+  border: 1px solid grey;
+  width: 150px;
+  box-shadow: 2px 2px 4px grey;
+  background-color: white;
+  padding: 10px;
+};
+
+.product {
+  max-width: 100%;
+  margin: auto;
+  grid-column: 1;
+  grid-row: 2;
+};
+
+.sort-options {
+  margin-left: 30px;
+  grid-column: 2/-1;
+  grid-row: 1;
+};
+
+.review-list {
+  grid-column: 2/-1;
+  grid-row: 1/5;
+  overflow: auto;
+  max-width: 90%;
+  max-height: 520px;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  list-style: none;
+};
+
+.review-buttons {
+  width: 100%;
+  margin-top: 10px;
+  grid-column: 2/-1;
+  grid-row-end: 14;
+};
