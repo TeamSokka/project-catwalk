@@ -30,3 +30,17 @@
   color: grey;
   font-size: 13px;
 };
+
+.review-layout {
+  padding: 5px;
+  grid-row: 2;
+  grid-column-end: span 3;
+  font-weight: bold;
+};
+
+.body-layout {
+  padding: 5px;
+  font-size: 13px;
+  grid-row: 3;
+  grid-column-end: span 3;
+};

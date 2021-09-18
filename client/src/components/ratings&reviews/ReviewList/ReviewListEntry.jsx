@@ -71,9 +71,20 @@ class ReviewListEntry extends React.Component {
 
         {
           this.props.review.summary ?
-            <div>{this.props.review.summary}</div> : null
+            <div className="review-layout">
+              <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
+                {this.props.review.summary}
+              </div>
+            </div>
+            : null
         }
-        <div>{this.props.review.body}</div>
+
+        <div className="body-layout">
+          <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
+            {this.props.review.body}
+          </div>
+        </div>
+
         {
           this.props.review.response ?
             (<b>{`Response from seller: ${this.props.review.response}`}</b>) : null
