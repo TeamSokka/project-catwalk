@@ -1,0 +1,44 @@
+.grid-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: minwidth(6, 1fr) 100px;
+};
+
+.characteristics-bar {
+  height: 7px;
+  width: 100%;
+  border: none;
+  background-color: rgba(232, 232, 232, .8);
+};
+
+.margin-left {
+  margin-left: auto;
+  position: relative;
+};
+
+.margin-center {
+  margin-left: auto;
+  margin-right: auto;
+  margin: auto;
+  position: relative;
+};
+
+.margin-right {
+  margin-right: auto;
+  position: relative;
+};
+
+.characteristics-title {
+  display: flex;
+  font-size: 16px;
+  color: black;
+};
+
+.characteristics-trait {
+  display: flex;
+  font-size: 13px;
+  color: grey;
+  justify-content: space-evenly;
+};
+
+

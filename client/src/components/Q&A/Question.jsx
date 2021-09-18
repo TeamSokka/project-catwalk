@@ -1,29 +1,50 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Answer from './Answer.jsx';
 
 const Question = (props) => {
-  const { question } = props;
-  // make Yes a clickable event that increments Helpful
-  // const helpful = <a href={}
+  // need to update disable button to work once for all 3 buttons
+  // need to sort based on helpfulness and Seller
+  const { question, putRequest } = props;
+  // i need to refactor so that i can click once on each question
+  const [helpfulBtn, setHelpfulBtn] = useState(false);
+  const [display, setDisplay] = useState(2);
 
-  // create an answers storage
+  const handleClick = (button, setButton) => {
+    if (button) {
+      return;
+    }
+    setButton(true);
+  }
+
   let answers = [];
   let answerKeys = Object.keys(question.answers);
-  // iterate through the questions and push the answers to the storage
+
   for (let i = 0; i < answerKeys.length; i++) {
     answers.push(question.answers[answerKeys[i]]);
   };
-  let loadAnswers = answers.length > 2 ? <div className='load-answers'>LOAD MORE ANSWERS</div> : null;
+
+  let loadMoreAnswers = answers.length <= 2 ? null : answers.length > display ? <a className='load-answers' style={{ fontWeight: 'bold', cursor:'pointer' }} onClick={() => setDisplay(answers.length)} >SEE MORE ANSWERS</a> : <a className='load-answers' style={{ fontWeight: 'bold', cursor:'pointer' }} onClick={() => setDisplay(2)} >COLLAPSE ANSWERS</a>
+
+  let helpful = <a style={{ textDecorationLine: 'underline' }}>Yes</a>
   return (
     <div className='question'>
-      <span style={{fontWeight: 'bold'}}> Q: {question.question_body}
+      <span style={{ fontWeight: 'bold' }}> Q: {question.question_body}
       </span>
-        <div className='side-options'> Helpful? Yes ({question.question_helpfulness}) | Add Answer
-        </div>
-        {answers.slice(0, 2).map((answer, index) =>
-          <Answer key={index} answer={answer} />
-        )}
-        {loadAnswers}
+      <div className='side-options'> Helpful?{'  '}
+        <u style={{ cursor: 'pointer' }}
+          onClick={() => {
+            handleClick(helpfulBtn, setHelpfulBtn);
+            putRequest('questions', question.question_id, 'helpful');
+          }}>Yes</u> {'  '}
+        ({question.question_helpfulness}) |{'  '}
+        <u>Add Answer</u>
+      </div>
+      {answers.slice(0, display).map((answer, index) =>
+        <Answer key={index} answer={answer}
+          putRequest={putRequest}
+        />
+      )}
+      {loadMoreAnswers}
     </div>
   )
 }

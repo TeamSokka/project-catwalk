@@ -1,21 +1,21 @@
 import React from "react";
 import ReviewListEntry from "./ReviewListEntry";
+import "../Styles/review-list-entry.scss";
+
 
 class ReviewList extends React.Component {
   constructor(props) {
     super(props);
   }
 
-
   render() {
-    console.log(this.props.reviewList);
     const list = [];
     const curReviewList = this.props.reviewList.slice(0, this.props.reviewsDisplayed);
     curReviewList.forEach((review, value) => {
       list.push(<ReviewListEntry review={review} key={value} handlePutReview={this.props.handlePutReview} />)
     })
     return (
-      <div>{list}</div>
+      <ul className="grid-layout">{list}</ul>
     )
   }
 }

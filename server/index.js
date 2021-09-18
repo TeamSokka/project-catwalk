@@ -113,7 +113,9 @@ app.get('/reviews/meta', (req, res) => {
 
 // POST /reviews
 app.post('/reviews', (req, res) => {
-  console.log(req);
+  // console.log(req.body);
+  // console.log(req.body.characteristics);
+
   ratings.postReviews(req.body, (err, data) => {
     if (err) {
       console.log('Error app.post /reviews : ' + err);
@@ -175,7 +177,7 @@ app.get('/qa/questions/:question_id/answers', (req, res) => {
 
 // POST Questions
 app.post('/qa/questions', (req, res) => {
-  console.log('body ', req.body);
+  // console.log('body ', req.body);
   questions.postQuestion(req.body, (err, data) => {
     if (err) {
       res.status(400).send(err);
@@ -187,8 +189,8 @@ app.post('/qa/questions', (req, res) => {
 
 // POST Answers
 app.post('/qa/questions/:question_id/answers', (req, res) => {
-  console.log('params ', req.params);
-  console.log('body from a ', req.body);
+  // console.log('params ', req.params);
+  // console.log('body from a ', req.body);
   questions.postAnswer(req.params.question_id, req.body, (err, data) => {
     if (err) {
       res.status(400).send(err);
@@ -200,67 +202,67 @@ app.post('/qa/questions/:question_id/answers', (req, res) => {
 
 // PUT Helpful Qs
 app.put('/qa/questions/:question_id/helpful', (req, res) => {
-  let data = {
+  let info = {
     path: 'questions',
     id: req.params.question_id,
     endpoint: 'helpful'
   };
-  console.log('info ', data);
-  questions.putRequest(data, (err, res) => {
+  console.log('info ', info);
+  questions.putRequest(info, (err, data) => {
     if (err) {
-      res.status(400).send(err);
+      res.status(404).send(err);
     } else {
-      res.status(204).send('NO CONTENT');
+      res.status(204).send(data);
     }
   });
 });
 
 // PUT Helpful As
 app.put('/qa/answers/:answer_id/helpful', (req, res) => {
-  let data = {
+  let info = {
     path: 'answers',
     id: req.params.answer_id,
     endpoint: 'helpful'
   };
-  console.log('info ', data);
-  questions.putRequest(data, (err, res) => {
+  console.log('info ', info);
+  questions.putRequest(info, (err, data) => {
     if (err) {
-      res.status(400).send(err);
+      res.status(404).send(err);
     } else {
-      res.status(204).send('NO CONTENT');
+      res.status(204).send(data);
     }
   });
 });
 
 // PUT Report Qs
 app.put('/qa/questions/:question_id/report', (req, res) => {
-  let data = {
+  let info = {
     path: 'questions',
     id: req.params.question_id,
     endpoint: 'report'
   };
-  questions.putRequest(data, (err, res) => {
+  questions.putRequest(info, (err, data) => {
     if (err) {
       res.status(400).send(err);
     } else {
-      res.status(204).send('NO CONTENT');
+      res.status(204).send(data);
     }
   });
 });
 
 
-// PUT Report As
+// PUT Report Answers
 app.put('/qa/answers/:answer_id/report', (req, res) => {
-  let data = {
+  let info = {
     path: 'answers',
     id: req.params.answer_id,
     endpoint: 'report'
   };
-  questions.putRequest(data, (err, res) => {
+  questions.putRequest(info, (err, data) => {
     if (err) {
       res.status(400).send(err);
     } else {
-      res.status(204).send('NO CONTENT');
+      res.status(204).send(data);
     }
   });
 });

@@ -22,7 +22,7 @@ class WriteReview extends React.Component {
 
     this.state = {
       review: {
-        productID: productID,
+        product_id: productID,
         recommend: null,
         summary: '',
         body: '',
@@ -35,6 +35,8 @@ class WriteReview extends React.Component {
       },
       mouseOver: [0, 0, 0, 0, 0],
       metaData: metaData,
+      characteristics: {},
+      starDisplay: "",
     }
 
     this.minCharCount = this.minCharCount.bind(this);
@@ -47,31 +49,78 @@ class WriteReview extends React.Component {
 
   // handle input change
   handleInputChange(e) {
+    var review2 = Object.assign({}, this.state.review);
+    review2[e.target.name] = e.target.value;
+
     this.setState({
-      [e.target.name]: e.target.value,
+      review: review2
     });
+
+    // this.setState({
+    //   [e.target.name]: e.target.value
+    // })
   }
 
-  // "characteristics": {
-  //   "Size": {
-  //     "id": 135232,
-  //     "value": "4.0000000000000000"
-  //   },
 
-  handleCharacteristicClick(e) {
+
+  handleCharacteristicClick(name, e) {
     const { characteristics } = this.state;
+
+    // var characteristics2 = Object.assign({}, this.state.characteristics);
+    // characteristics2[name] = {
+    //   id: e.target.name,
+    //   value: Number(e.target.value)
+    // }
+
+    // var review2 = Object.assign({}, this.state.review);
+    // var review2 = JSON.parse(JSON.stringify(this.state.review));
+    // review2.characteristics.name["id"] = e.target.name;
+    // review2.characteristics.name["value"] = eNumber(e.target.value);
+    // "Size": { "id": 135232, "value": "1" },
+    // "Width": { "id": 135233, "value": "2" },
+    // "Comfort": { "id": 135234, "value": "3" },
+    // "Quality": { "id": 135235, "value": "4" }
+
+
+    var characteristics2 = Object.assign({}, this.state.characteristics);
+    characteristics2[name] = {
+      id: Number(e.target.name),
+      value: String(e.target.value)
+    }
+
+    // var review2 = Object.assign({}, this.state.review,
+    //   {
+    //     characteristics: Object.assign({}, this.state.review.characteristics, characteristics2)
+    //   }
+    // );
+
+    // this.setState({
+    //   review: review2
+    // });
+
     this.setState({
-      characteristics: {
-        ...characteristics,
-        [e.target.name]: Number(e.target.value),
-      },
+      characteristics: characteristics2
     });
+
+    // this.setState({
+    //   characteristics: {
+    //     ...characteristics,
+    //     [e.target.name]: Number(e.target.value),
+    //   },
+    // });
   }
 
   handleStarClick(e) {
+    var review2 = Object.assign({}, this.state.review);
+    review2[e.target.name] = Number(e.target.value);
+
     this.setState({
-      [e.target.name]: Number(e.target.value),
+      review: review2
     });
+
+    // this.setState({
+    //   [e.target.name]: Number(e.target.value),
+    // });
   }
 
   handleRecommendClick(e) {
@@ -82,9 +131,16 @@ class WriteReview extends React.Component {
       bool = false;
     }
 
+    var review2 = Object.assign({}, this.state.review);
+    review2[e.target.name] = bool;
+
     this.setState({
-      [e.target.name]: bool,
+      review: review2
     });
+
+    // this.setState({
+    //   [e.target.name]: bool,
+    // });
   }
 
   // min char count
@@ -119,39 +175,30 @@ class WriteReview extends React.Component {
     // alert with warning message if not satisfactory entry
 
     // concat alert string
+    e.preventDefault();
     var alertMessage = '';
 
     if (rating === null) {
       alertMessage += 'Please fill out required ratings option. \n';
-      e.preventDefault();
-      return;
     }
 
     if (recommend === null) {
       alertMessage += 'Please fill out required recommended option. \n';
-      e.preventDefault();
-      return;
     }
     // characteristics
 
     if (summary.length > 60) {
       alertMessage += 'Review Summary must be 60 characters or less. \n';
-      e.preventDefault();
-      return;
     }
 
     if (body.length > 1000 || body.length < 50) {
       alertMessage += 'Review Body must be at least 50 characters. \n';
-      e.preventDefault();
-      return;
     }
 
     // photo check
 
     if (name.length > 60 || name.length === 0) {
       alertMessage += 'Name must be less than 60 characters and cannot be empty. \n';
-      e.preventDefault();
-      return;
     }
 
     const emailValidate = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -159,14 +206,25 @@ class WriteReview extends React.Component {
 
     if (result === false || email.length > 60 || email.length === 0) {
       alertMessage += 'Please input a valid email address.';
-      e.preventDefault();
-      return;
     }
 
     // check if alert message not empty - check length > 0
     if (alertMessage.length > 0) {
       alert('You must enter the following: \n' + alertMessage);
+      return;
     }
+
+    // JSON.parse(JSON.stringify(this.state.review))
+    // var review2 = Object.assign({}, this.state.review);
+    // var review2 = Object.assign({}, this.state.review);
+    // var review2 = JSON.parse(JSON.stringify(this.state.review));
+
+    // review2['characteristics'] = this.state.characteristics;
+    // review2['characteristics'] = Object.assign(review2['characteristics'], this.state.characteristics);
+    // review2['characteristics'] = JSON.parse(JSON.stringify(this.state.characteristics));
+    // alert(review2['characteristics']);
+    console.log(this.state.review)
+    console.log(this.props.metaData)
 
     handlePostReview(this.state.review);
   }
@@ -185,14 +243,53 @@ class WriteReview extends React.Component {
 
           <div className="overall-rating">
             <b>* Overall</b>
-            <div>Star mouse over</div>
-            <div>
-              <div>1 star - Poor</div>
-              <div>2 star - Fair</div>
-              <div>3 star - Average</div>
-              <div>4 star - Good</div>
-              <div>5 star - Great</div>
+            <div style={{
+              display: 'flex', justifyContent: 'center', fontSize: '20px', marginTop: '5px', marginBottom: '5px',
+            }}
+            >
+              {/* <span className="fa fa-star" aria-hidden="true"
+                onClick={() => { this.setState({ rating: 1, mouseOver: [1, 0, 0, 0, 0], starRating: "Poor" }); }} />
+
+              <span className="fa fa-star" aria-hidden="true" onClick={() => { this.setState({ rating: 2, mouseOver: [1, 1, 0, 0, 0], starRating: "Fair" }); }} />
+
+              <span className="fa fa-star" aria-hidden="true" onClick={() => { this.setState({ rating: 3, mouseOver: [1, 1, 1, 0, 0], starRating: "Average" }); }} />
+
+              <span className="fa fa-star" aria-hidden="true" onClick={() => { this.setState({ rating: 4, mouseOver: [1, 1, 1, 1, 0], starRating: "Good" }); }} />
+
+              <span className="fa fa-star" aria-hidden="true" onKeyUp={this.handleKeyUp} onClick={() => { this.setState({ rating: 5, mouseOver: [1, 1, 1, 1, 1], starRating: "Great" }); }} /> */}
+
+              {
+                this.state.mouseOver[0] === 1
+                  ? <span className="fa fa-star" aria-hidden="true"
+                    onMouseEnter={() => { this.setState({ mouseOver: [1, 0, 0, 0, 0] }); }} onClick={() => { this.setState({ rating: 1, mouseOver: [1, 0, 0, 0, 0], starRating: "Poor" }); }} />
+                  : <span className="fa fa-star-o" onMouseEnter={() => { this.setState({ mouseOver: [1, 0, 0, 0, 0] }); }} />
+              }
+              {
+                this.state.mouseOver[1] === 1
+                  ? <span className="fa fa-star" aria-hidden="true" onMouseEnter={() => { this.setState({ mouseOver: [1, 1, 0, 0, 0] }); }} onClick={() => { this.setState({ rating: 2, mouseOver: [1, 1, 0, 0, 0], starRating: "Fair" }); }} />
+                  : <span className="fa fa-star-o" onMouseEnter={() => { this.setState({ mouseOver: [1, 1, 0, 0, 0] }); }} />
+              }
+              {
+                this.state.mouseOver[2] === 1
+                  ? <span className="fa fa-star" aria-hidden="true" onMouseEnter={() => { this.setState({ mouseOver: [1, 1, 1, 0, 0] }); }} onClick={() => { this.setState({ rating: 3, mouseOver: [1, 1, 1, 0, 0], starRating: "Average" }); }} />
+                  : <span className="fa fa-star-o" onMouseEnter={() => { this.setState({ mouseOver: [1, 1, 1, 0, 0] }); }} />
+              }
+              {
+                this.state.mouseOver[3] === 1
+                  ? <span className="fa fa-star" aria-hidden="true" onMouseEnter={() => { this.setState({ mouseOver: [1, 1, 1, 1, 0] }); }} onClick={() => { this.setState({ rating: 4, mouseOver: [1, 1, 1, 1, 0], starRating: "Good" }); }} />
+                  : <span className="fa fa-star-o" onMouseEnter={() => { this.setState({ mouseOver: [1, 1, 1, 1, 0] }); }} />
+              }
+              {
+                this.state.mouseOver[4] === 1
+                  ? <span className="fa fa-star" aria-hidden="true" onKeyUp={this.handleKeyUp} onClick={() => { this.setState({ rating: 5, mouseOver: [1, 1, 1, 1, 1], starRating: "Great" }); }} />
+                  : <span className="fa fa-star-o" onMouseEnter={() => { this.setState({ mouseOver: [1, 1, 1, 1, 1] }); }} />
+              }
             </div>
+            <div style={{
+              display: 'flex', justifyContent: 'right', fontSize: '20px', marginTop: '5px', marginBottom: '5px',
+            }}
+            > {this.state.starRating}</div>
+
           </div>
 
           <div className="recommend-product">

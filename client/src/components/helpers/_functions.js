@@ -3,3 +3,7 @@ export const formatRelatedItems = ({ name, category, default_price: price }) => 
   category,
   price
 });
+
+export const formatPreviewImage = ({photos}) => (
+  photos
+)
