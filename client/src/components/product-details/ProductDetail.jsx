@@ -37,7 +37,7 @@ class ProductDetail extends React.Component {
     axios.post(`/cart`, cartData)
       .then((res) => {
         // console.log('styles recd:', res.data.results);
-        console.log('cart data recd:', res.data);
+        // console.log('cart data recd:', res.data);
       })
       .catch((err) => {
         console.error(err);
@@ -46,9 +46,9 @@ class ProductDetail extends React.Component {
 
   handleCartSubmit(event) {
     event.preventDefault();
-    console.log('event.target.sizesku.value:', event.target.sizesku.value);
-    console.log('event.target.quantity.value:', event.target.quantity.value);
-    console.log('what type?', typeof event.target.quantity.value);
+    // console.log('event.target.sizesku.value:', event.target.sizesku.value);
+    // console.log('event.target.quantity.value:', event.target.quantity.value);
+    // console.log('what type?', typeof event.target.quantity.value);
 
     var count = parseInt(event.target.quantity.value);
     for (var i = 1; i <= count; i++) {
@@ -59,7 +59,7 @@ class ProductDetail extends React.Component {
 
   handleSizeSelect(event) {
     event.preventDefault();
-    console.log('size select entry:', event.target.value);
+    // console.log('size select entry:', event.target.value);
     this.setState({
       selectedSize: this.props.selectedStyle.skus[event.target.value]
     });
