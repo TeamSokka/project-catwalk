@@ -3,8 +3,11 @@ import { formatRelatedItems } from '../helpers/_functions.js'
 import './related-items.scss';
 
 const ProductInformation = (props) => {
-  const { productInfo } = props;
+  const { productInfo, product } = props;
   const information = formatRelatedItems(productInfo);
+
+  console.log('information: ', information);
+  console.log('product', product);
 
   return (
     <div id="product-info">

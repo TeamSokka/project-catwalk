@@ -113,7 +113,7 @@ app.get('/reviews/meta', (req, res) => {
 
 // POST /reviews
 app.post('/reviews', (req, res) => {
-  console.log(req);
+  // console.log(req);
   ratings.postReviews(req.body, (err, data) => {
     if (err) {
       console.log('Error app.post /reviews : ' + err);
@@ -175,7 +175,7 @@ app.get('/qa/questions/:question_id/answers', (req, res) => {
 
 // POST Questions
 app.post('/qa/questions', (req, res) => {
-  console.log('body ', req.body);
+  // console.log('body ', req.body);
   questions.postQuestion(req.body, (err, data) => {
     if (err) {
       res.status(400).send(err);
@@ -187,8 +187,8 @@ app.post('/qa/questions', (req, res) => {
 
 // POST Answers
 app.post('/qa/questions/:question_id/answers', (req, res) => {
-  console.log('params ', req.params);
-  console.log('body from a ', req.body);
+  // console.log('params ', req.params);
+  // console.log('body from a ', req.body);
   questions.postAnswer(req.params.question_id, req.body, (err, data) => {
     if (err) {
       res.status(400).send(err);
@@ -205,7 +205,7 @@ app.put('/qa/questions/:question_id/helpful', (req, res) => {
     id: req.params.question_id,
     endpoint: 'helpful'
   };
-  console.log('info ', data);
+  // console.log('info ', data);
   questions.putRequest(data, (err, res) => {
     if (err) {
       res.status(400).send(err);
@@ -222,7 +222,7 @@ app.put('/qa/answers/:answer_id/helpful', (req, res) => {
     id: req.params.answer_id,
     endpoint: 'helpful'
   };
-  console.log('info ', data);
+  // console.log('info ', data);
   questions.putRequest(data, (err, res) => {
     if (err) {
       res.status(400).send(err);

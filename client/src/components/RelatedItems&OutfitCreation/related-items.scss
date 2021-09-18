@@ -61,6 +61,7 @@ $box-shadow-hover: 0 .75rem 1rem rgba(black, 0.30) !default;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin: 5px;
 
   border: 1px solid rgba(0, 0, 0, 0.26);
   // color: $two;
@@ -73,4 +74,9 @@ $box-shadow-hover: 0 .75rem 1rem rgba(black, 0.30) !default;
     cursor: pointer;
     box-shadow: $box-shadow-hover;
   }
+}
+
+#related-product-card {
+  display: flex;
+  flex: row;
 }
