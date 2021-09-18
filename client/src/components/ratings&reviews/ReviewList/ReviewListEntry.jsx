@@ -6,8 +6,8 @@ import "../Styles/review-list-entry.scss";
 class ReviewListEntry extends React.Component {
   constructor(props) {
     super(props);
-
     this.averageStarRating = this.averageStarRating.bind(this);
+    this.handleHelpfulClick = this.handleHelpfulClick.bind(this);
   }
 
   handleHelpfulClick(e) {
@@ -33,19 +33,6 @@ class ReviewListEntry extends React.Component {
   }
 
   render() {
-    /*
-    body: "Now I can get to stomping!"
-    date: "2019-05-04T00:00:00.000Z" Ex: January 1, 2019
-    helpfulness: 12
-    photos: []
-    rating: 4
-    recommend: true
-    response: ""
-    review_id: 643584
-    reviewer_name: "chingy"
-    summary: "Great shoes!"
-    */
-
     var stars;
     if (this.props.review.rating) {
       stars = StarRating(this.props.review.rating);
@@ -128,9 +115,6 @@ class ReviewListEntry extends React.Component {
             </div>
           </div>
         </div>
-
-
-
         <br></br>
       </div>
     )
@@ -138,6 +122,21 @@ class ReviewListEntry extends React.Component {
 }
 
 export default ReviewListEntry;
+
+
+/*
+body: "Now I can get to stomping!"
+date: "2019-05-04T00:00:00.000Z" Ex: January 1, 2019
+helpfulness: 12
+photos: []
+rating: 4
+recommend: true
+response: ""
+review_id: 643584
+reviewer_name: "chingy"
+summary: "Great shoes!"
+*/
+
 
 /*
 <ReviewListEntry
@@ -147,23 +146,3 @@ export default ReviewListEntry;
 >
 */
 
-// <ul>
-//   {/* <StarRating averageStarRating={this.props.review.rating} /> */}
-//   <li>
-//     {this.props.review.review_id} {'review_id'}
-//     <br></br>
-//     {this.props.review.rating} {'rating'}
-//     <br></br>
-//     {this.props.review.summary} {'summary'}
-//     <br></br>
-//     {this.props.review.recommend} {'recommend'}
-//     <br></br>
-//     {this.props.review.response} {'response'}
-//     <br></br>
-//     {this.props.review.body} {'body'}
-//     <br></br>
-//     {this.props.review.helpfulness} {'helpfulness'}
-//     <br></br>
-//     {this.props.review.photos} {'photos'}
-//   </li>
-// </ul>

@@ -74,6 +74,7 @@ class RatingsAndReviews extends React.Component {
     axios.put(`/reviews/${review_id}/${type}`)
       .then((result) => {
         console.log('Success with handlePutReview');
+        this.handleGetReview();
       })
       .catch((error) => {
         console.log('Error with handleGetReview ' + error);
@@ -185,7 +186,7 @@ class RatingsAndReviews extends React.Component {
         <ReviewList
           reviewList={this.state.reviewList}
           starSort={this.state.starSort}
-          handlePutReview={this.state.handlePutReview}
+          handlePutReview={this.handlePutReview}
           reviewsDisplayed={this.state.reviewsDisplayed}
         />
         <button className="" type="button" onClick={this.writeReviewClick}>Add a Review</button>
