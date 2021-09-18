@@ -19,10 +19,10 @@ class RelatedProductCards extends React.Component {
 
     return (
       <div id="related-product-card">
-           <div className="product-card">
-              <ProductPreviewImages selectedStyle={selectedStyle}/>
-              <ProductInformation relatedProducts={relatedProducts} productInfo={productInfo}/>
-          </div>
+        <div className="product-card">
+          <ProductPreviewImages selectedStyle={selectedStyle} />
+          <ProductInformation relatedProducts={relatedProducts} productInfo={productInfo} />
+        </div>
       </div>
     )
   }

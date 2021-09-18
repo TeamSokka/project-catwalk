@@ -1,6 +1,7 @@
 import React from "react";
 import ReviewList from "./ReviewList";
 import StarRating from "./StarRatings";
+import "../Styles/review-list-entry.scss";
 
 class ReviewListEntry extends React.Component {
   constructor(props) {
@@ -10,7 +11,9 @@ class ReviewListEntry extends React.Component {
   }
 
   handleHelpfulClick(e) {
-    this.props.handlePutReview(this.props.review_id, e.target.value);
+    // this.props.handlePutReview(this.props.review_id, e.target.value);
+    this.props.handlePutReview(this.props.review.review_id, e.target.id);
+
 
     // axios.put(`/reviews/${this.props.review_id}/${e.target.value}`, {
     //   review_id: this.props.review_id,
@@ -30,15 +33,6 @@ class ReviewListEntry extends React.Component {
   }
 
   render() {
-    // Star Rating
-    // Date
-    // review summary
-    // review body
-    // recommend
-    // reviewer name
-    // response to review
-    // rating helpfulness
-
     /*
     body: "Now I can get to stomping!"
     date: "2019-05-04T00:00:00.000Z" Ex: January 1, 2019
@@ -58,10 +52,23 @@ class ReviewListEntry extends React.Component {
     }
 
     return (
-      <div>
+      <div className="grid-layout-entry">
         {stars}
-        <div>{this.props.review.reviewer_name}</div>
-        <div> {new Date(this.props.review.date).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}</div>
+
+        <div style={{ display: 'flex', marginLeft: 'auto' }}>
+          <div className="name-layout">
+            <div style={{ display: 'flex', marginLeft: 'auto' }}>
+              {this.props.review.reviewer_name}
+              ,
+            </div>
+          </div>
+          <div className="date-layout">
+            <div style={{ display: 'flex' }}>
+              {new Date(this.props.review.date).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}
+            </div>
+          </div>
+        </div>
+
         {
           this.props.review.summary ?
             <div>{this.props.review.summary}</div> : null
