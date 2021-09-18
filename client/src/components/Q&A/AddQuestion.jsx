@@ -30,16 +30,26 @@ const AddQuestion = (props) => {
     <form onSubmit={onSubmit}>
       <h1>Ask your Question</h1>
       <h3>About the Product {productInfo.name} </h3>
-      <div>Your Questions* <textarea value={body} placeholder='Why did you like the product or not?' onChange={(e) => setBody(e.target.value)} maxLength={1000} /> </div>
-      <div>What is your nickname?* <input type='text' placeholder='Example: jackson11!' value={name} onChange={(e) => setName(e.target.value)} maxLength={60} />
+      <div>
+        <h3 className='ask-headers'>Your Questions*</h3>
+        <textarea value={body} placeholder='Why did you like the product or not?' className='text-area-body' onChange={(e) => setBody(e.target.value)} maxLength={1000} /> </div>
+      <div>
+        <h3 className='ask-headers'>What is your nickname?*</h3>
+        <div className='input-div'>
+          <input type='text' className='ask-inputs' placeholder='Example: jackson11!' value={name} onChange={(e) => setName(e.target.value)} maxLength={60} />
+        </div>
       </div>
       <small>For privacy reasons, do not use your full name or email address</small>
       <div>
-        Your Email* <input type='text' placeholder='Example: jackson11@email.com' value={email} onChange={(e) => setEmail(e.target.value)} maxLength={60} />
+        <h3 className='ask-headers'>Your Email* </h3>
+        <div className='input-div'>
+          <input type='text' className='ask-inputs' placeholder='Example: jackson11@email.com' value={email} onChange={(e) => setEmail(e.target.value)} maxLength={60} />
+        </div>
       </div>
       <small>For authentication reasons, you will not be emailed</small>
-      <br />
-      <input type='submit' value='Submit' />
+      <div>
+        <input type='submit' className='btn' value='Submit' />
+      </div>
     </form>
   )
 }

@@ -11,12 +11,14 @@ const Answer = (props) => {
   return (
     <div className='answer'>
       A: {answer.body}
-      <br></br>
+      <br />
+      <div className='answer-info'>
       by {answerer},  {moment(answer.date).format('MMMM Do, YYYY')} | Helpful?{'  '}
       <u style={{ cursor: 'pointer' }}
         onClick={() => putRequest('answers', answer.id, 'helpful')} >Yes</u> ({answer.helpfulness}) |{'  '}
       <u style={{ cursor: 'pointer' }}
         onClick={() => putRequest('answers', answer.id, 'report')} >Report</u>
+        </div>
     </div>
   )
 }

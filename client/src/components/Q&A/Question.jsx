@@ -25,21 +25,23 @@ const Question = (props) => {
     answers.push(question.answers[answerKeys[i]]);
   };
 
-  let loadMoreAnswers = answers.length <= 2 ? null : answers.length > display ? <a className='load-answers' style={{ fontWeight: 'bold', cursor: 'pointer' }} onClick={() => setDisplay(answers.length)} >SEE MORE ANSWERS</a> : <a className='load-answers' style={{ fontWeight: 'bold', cursor: 'pointer' }} onClick={() => setDisplay(2)} >COLLAPSE ANSWERS</a>
+  let loadMoreAnswers = answers.length <= 2 ? null : answers.length > display ? <a className='load-answers' style={{ fontWeight: 'bold', cursor: 'pointer', fontSize: 14, margin: 12  }} onClick={() => setDisplay(answers.length)} >SEE MORE ANSWERS</a> : <a className='load-answers' style={{ fontWeight: 'bold', cursor: 'pointer', fontSize: 14, margin: 12 }} onClick={() => setDisplay(2)} >COLLAPSE ANSWERS</a>
 
   let helpful = <a style={{ textDecorationLine: 'underline' }}>Yes</a>
   return (
     <div className='question'>
-      <span style={{ fontWeight: 'bold' }}> Q: {question.question_body}
-      </span>
-      <div className='side-options'> Helpful?{'  '}
-        <u style={{ cursor: 'pointer' }}
-          onClick={() => {
-            handleClick(helpfulBtn, setHelpfulBtn);
-            putRequest('questions', question.question_id, 'helpful');
-          }}>Yes</u> {'  '}
-        ({question.question_helpfulness}) |{'  '}
-        <u onClick={(e) => setModal(true)} style={{ cursor: 'pointer' }} >Add Answer</u>
+      <div className='question-helpful'>
+        <span style={{ fontWeight: 'bold' }}> Q: {question.question_body}
+        </span>
+        <div className='side-options'> Helpful?{'  '}
+          <u style={{ cursor: 'pointer' }}
+            onClick={() => {
+              handleClick(helpfulBtn, setHelpfulBtn);
+              putRequest('questions', question.question_id, 'helpful');
+            }}>Yes</u> {'  '}
+          ({question.question_helpfulness}) |{'  '}
+          <u onClick={(e) => setModal(true)} style={{ cursor: 'pointer' }} >Add Answer</u>
+        </div>
         {
           modal
           && (

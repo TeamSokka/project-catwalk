@@ -12,12 +12,12 @@ const Search = (props) => {
   }
 
   return (
-    <div className='search-bar'>
-      <input type='text' id='search' value={search}
+    <div className='search'>
+      <input type='text' className='search-bar' value={search}
         style={{ width: '300px' }}
         onChange={(e) => handleSearch(e)}
         placeholder='HAVE A QUESTION? SEARCH FOR ANSWERS...' />
-      <BiSearchAlt onClick={props.onSearch} />
+      <BiSearchAlt onClick={props.onSearch} className='icon' />
     </div>
   )
 }

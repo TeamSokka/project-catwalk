@@ -2,6 +2,8 @@ import React from 'react';
 import Search from './Search.jsx';
 import QuestionList from './QuestionList.jsx';
 import axios from 'axios';
+import '../ratings&reviews/Styles/ratings-reviews.scss';
+import './q-and-a.scss';
 
 class QuestionsAndAnswers extends React.Component {
   constructor(props) {

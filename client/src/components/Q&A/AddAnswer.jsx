@@ -31,18 +31,36 @@ const AddAnswer = (props) => {
     <form onSubmit={onSubmit}>
       <h1>Submit your Answer</h1>
       <h3>{productInfo.name}: {question.question_body} </h3>
-      <div>Your Answer* <textarea value={body}  onChange={(e) => setBody(e.target.value)} maxLength={1000} /> </div>
-      <div>What is your nickname?* <input type='text' placeholder='Example: jack543!' value={name} onChange={(e) => setName(e.target.value)} maxLength={60} />
+      <div>
+        <h3 className='ask-headers'>Your Answer* </h3>
+        <div className='input-div'>
+          <textarea value={body}
+          className='text-area-body'
+          onChange={(e) => setBody(e.target.value)} maxLength={1000} /> </div>
+      </div>
+      <div>
+        <h3 className='ask-headers'> What is your nickname?* </h3>
+        <div className='input-div'>
+          <input type='text' className='ask-inputs' placeholder='Example: jack543!' value={name} onChange={(e) => setName(e.target.value)} maxLength={60} /> </div>
       </div>
       <small>For privacy reasons, do not use your full name or email address</small>
       <div>
-        Your Email* <input type='text' placeholder='Example: jack@email.com' value={email} onChange={(e) => setEmail(e.target.value)} maxLength={60} />
+        <h3 className='ask-headers'>Your Email* </h3>
+        <div className='input-div'>
+          <input type='text' className='ask-inputs'
+          placeholder='Example: jack@email.com' value={email} onChange={(e) => setEmail(e.target.value)} maxLength={60} />
+        </div>
       </div>
       <small>For authentication reasons, you will not be emailed</small>
-      <div>Upload your photos
-      </div>
       <br />
-      <input type='submit' value='Submit' />
+      <div>
+        <h3 className='ask-headers'>Upload your photos (optional) </h3>
+        <div className='input-div'>
+          <input id='photos' type='file' name='filefield' multiple='multiple'
+           />
+        </div>
+      </div>
+      <input type='submit' className='btn' value='Submit' />
     </form>
   )
 }
