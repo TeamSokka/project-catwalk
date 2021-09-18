@@ -3,32 +3,28 @@ import ProductPreviewImages from './ProductPreviewImages';
 import ProductInformation from './ProductInformation';
 import './related-items.scss';
 
-//this.props.productID & this.props.relatedProducts
 class RelatedProductCards extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      // isProductClicked: false
-    }
   }
 
-  // handleUpdateClickedProduct = () => {
-  //   console.log('hit the product img');
-  //   this.setState({
-  //     ...this.state,
-  //     isProductClicked: true
-  //   })
-  // }
+  //map out the relateProducts
 
   render() {
-    // const { isProductClicked } = this.state;
-    const { productInfo, relatedProducts } = this.props;
+    const { productInfo, relatedProducts, selectedStyle } = this.props;
 
+<<<<<<< HEAD
+=======
+    // console.log('PRO INFO', productInfo);
+    // console.log('RELATED PRO', relatedProducts);
+    // console.log('SELECT STYLE', selectedStyle.photos);
+
+>>>>>>> main
     return (
       <div id="related-product-card">
            <div className="product-card">
-              <ProductPreviewImages/>
-              <ProductInformation productInfo={productInfo}/>
+              <ProductPreviewImages selectedStyle={selectedStyle}/>
+              <ProductInformation relatedProducts={relatedProducts} productInfo={productInfo}/>
           </div>
       </div>
     )

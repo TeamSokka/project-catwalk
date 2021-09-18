@@ -46,8 +46,7 @@ class App extends React.Component {
   getStyles() {
     axios.get(`/products/${this.state.productID}/styles`)
       .then((res) => {
-        // console.log('styles recd:', res.data.results);
-        console.log('skus[0]:', Object.keys(res.data.results[0].skus)[0])
+        // console.log('skus[0]:', Object.keys(res.data.results[0].skus)[0])
         this.setState({
           styles: res.data.results,
           selectedStyle: res.data.results[0],
@@ -58,6 +57,15 @@ class App extends React.Component {
       .catch((err) => {
         console.error(err);
       })
+  }
+
+  handleStyleSelect(event) {
+    event.preventDefault();
+    console.log('event.target:', event.target);
+    console.log('event.target.dataset.index:', event.target.dataset.index);
+    this.setState({
+      selectedStyle: this.state.styles[event.target.dataset.index]
+    })
   }
 
   getRelated = () => {
@@ -101,6 +109,7 @@ class App extends React.Component {
           productInfo={productInfo}
           styles={styles}
           selectedStyle={selectedStyle}
+          handleStyleSelect={this.handleStyleSelect.bind(this)}
         />
 
 

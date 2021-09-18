@@ -19,7 +19,8 @@ class ProductDetail extends React.Component {
       // selectedStyle: { photos: [], skus: {} },
       selectedSize: "",
       selectedQuantity: 1,
-      selectedPhotoIndex: 0
+      selectedPhotoIndex: 0,
+      cart: null
     }
   }
 
@@ -53,6 +54,45 @@ class ProductDetail extends React.Component {
   //     })
   // }
 
+  getCart() {
+    axios.get(`/cart`)
+      .then((res) => {
+        // console.log('styles recd:', res.data.results);
+        console.log('cart data recd:', res.data)
+        this.setState({
+          cart: res.data
+        });
+      })
+      .catch((err) => {
+        console.error(err);
+      })
+  }
+
+  postToCart(cartData) {
+    axios.post(`/cart`, cartData)
+      .then((res) => {
+        // console.log('styles recd:', res.data.results);
+        console.log('cart data recd:', res.data);
+      })
+      .catch((err) => {
+        console.error(err);
+      })
+  }
+
+  handleCartSubmit(event) {
+    event.preventDefault();
+    console.log('event.target.sizesku.value:', event.target.sizesku.value);
+    console.log('event.target.quantity.value:', event.target.quantity.value);
+    console.log('what type?', typeof event.target.quantity.value);
+
+    var count = parseInt(event.target.quantity.value);
+    // console.log('event.target.name:', event.target.name);
+    for (var i = 1; i <= count; i++) {
+      this.postToCart({ sku_id: event.target.sizesku.value });
+    }
+    // this.postToCart({ sku_id: event.target.sizesku.value, count: event.target.quantity.value});
+
+  }
   // getRelated() {
   //   axios.get(`/products/${this.state.currentProductId}/related`)
   //     .then((res) => {
@@ -66,14 +106,14 @@ class ProductDetail extends React.Component {
   //     });
   // }
 
-  handleStyleSelect(event) {
-    event.preventDefault();
-    console.log('event.target:', event.target);
-    console.log('event.target.dataset.index:', event.target.dataset.index);
-    this.setState({
-      selectedStyle: this.props.styles[event.target.dataset.index]
-    })
-  }
+  // handleStyleSelect(event) {
+  //   event.preventDefault();
+  //   console.log('event.target:', event.target);
+  //   console.log('event.target.dataset.index:', event.target.dataset.index);
+  //   this.setState({
+  //     selectedStyle: this.props.styles[event.target.dataset.index]
+  //   })
+  // }
 
   handleSizeSelect(event) {
     event.preventDefault();
@@ -81,14 +121,21 @@ class ProductDetail extends React.Component {
     this.setState({
       selectedSize: this.props.selectedStyle.skus[event.target.value]
     });
+    event.target.size = '1';
+    // document.getElementById('size-selector').size = '1';
   }
 
   handleQuantitySelect(event) {
     event.preventDefault();
-    console.log('quantity entery:', event.target.value);
+    console.log('quantity entry:', event.target.value);
     this.setState({
       selectedQuantity: event.target.value
     });
+  }
+
+  openSizeSelect() {
+    // document.getElementById('size-selector').size = `${Object.keys(this.state.selectedStyle.skus.length)}`;
+    document.getElementById('size-selector').size = '12';
   }
 
   componentDidMount() {
@@ -118,7 +165,7 @@ class ProductDetail extends React.Component {
           <StyleSelector
             styles={this.props.styles}
             selectedstyle={this.props.selectedStyle}
-            handleStyleSelect={this.handleStyleSelect.bind(this)}
+            handleStyleSelect={this.props.handleStyleSelect}
           />
           <AddToCart
             selectedsize={this.state.selectedSize}
@@ -126,6 +173,8 @@ class ProductDetail extends React.Component {
             selectedquantity={this.state.selectedQuantity}
             handlesizeselect={this.handleSizeSelect.bind(this)}
             handlequantityselect={this.handleQuantitySelect.bind(this)}
+            handlecartsubmit={this.handleCartSubmit.bind(this)}
+            opensizeselect={this.openSizeSelect.bind(this)}
           />
         </div>
       </div>

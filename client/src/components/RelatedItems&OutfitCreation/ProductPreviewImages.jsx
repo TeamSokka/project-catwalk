@@ -5,9 +5,13 @@ class ProductPreviewImages extends React.Component {
     super(props);
   }
 
+
   render() {
+    const {selectedStyle} = this.props
     return (
-      <div id="product-preview-img">Product Preview Images</div>
+      <div id="product-preview-img">
+        {/* <img src={selectedStyle.photos[0]} alt="" /> */}
+      </div>
     )
   }
 }

@@ -1,16 +1,10 @@
 import React from 'react';
-import { formatRelatedItems } from '../helpers/_functions.js'
 import RelatedProductCards from './RelatedProductCards';
 import axios from 'axios';
 
 class RelatedItems extends React.Component {
   constructor(props) {
     super(props);
-    // this.state = {
-    //   currentProductId: this.props.productID,
-    //   productInfo: this.props.productInfo,
-    //   relatedProducts: this.props.relatedProducts
-    // }
   }
 
   // getProductInfo(id) {
@@ -51,16 +45,17 @@ class RelatedItems extends React.Component {
   // }
 
   render() {
-    const { productID, productInfo, relatedProducts } = this.props;
+    const { productID, productInfo, relatedProducts, selectedStyle } = this.props;
     // console.log('productID: from app //hardcoded', productID);
     // console.log('this is the state relate products', this.state.ProductInfo);
     return (
       <div>
-        <h3>Related Products</h3>
+        <h3>RELATED PRODUCTS</h3>
 
         <RelatedProductCards
           productInfo={productInfo}
           relatedProducts={relatedProducts}
+          selectedStyle={selectedStyle}
         />
       </div>
     )
