@@ -84,7 +84,7 @@ const putRequest = (data, callback) => {
     }
   })
   .then((res) => {
-    console.log('data in put ', res);
+    console.log('data in put ', res.data);
     callback(null, res.data);
   })
   .catch((err) => {
