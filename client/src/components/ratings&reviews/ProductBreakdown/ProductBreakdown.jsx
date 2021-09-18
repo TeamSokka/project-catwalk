@@ -22,7 +22,7 @@ class ProductBreakdown extends React.Component {
               gridColumn: '1',
               gridRow: '1',
               marginBottom: '10px',
-              width: '210px',
+              width: '228px',
             }}
             >
               <div className="characteristics-title">Comfort</div>
@@ -59,7 +59,7 @@ class ProductBreakdown extends React.Component {
               gridColumn: '1',
               gridRow: '2',
               marginBottom: '10px',
-              width: '210px',
+              width: '228px',
             }}
             >
               <div className="characteristics-title">Fit</div>
@@ -94,7 +94,7 @@ class ProductBreakdown extends React.Component {
               gridColumn: '1',
               gridRow: '3',
               marginBottom: '10px',
-              width: '210px',
+              width: '228px',
             }}
             >
               <div className="characteristics-title">Length</div>
@@ -120,9 +120,6 @@ class ProductBreakdown extends React.Component {
                   Runs long
                 </div>
               </div>
-
-
-
             </div>
           )
         }
@@ -133,7 +130,7 @@ class ProductBreakdown extends React.Component {
               gridColumn: '1',
               gridRow: '4',
               marginBottom: '10px',
-              width: '210px',
+              width: '228px',
             }}
             >
               <div className="characteristics-title">Quality</div>
@@ -159,9 +156,6 @@ class ProductBreakdown extends React.Component {
                   Perfect
                 </div>
               </div>
-
-
-
             </div>
           )
         }
@@ -172,7 +166,7 @@ class ProductBreakdown extends React.Component {
               gridColumn: '1',
               gridRow: '5',
               marginBottom: '10px',
-              width: '210px',
+              width: '228px',
             }}
             >
               <div className="characteristics-title">Size</div>
@@ -207,11 +201,10 @@ class ProductBreakdown extends React.Component {
               gridColumn: '1',
               gridRow: '6',
               marginBottom: '10px',
-              width: '210px',
+              width: '228px',
             }}
             >
               <div className="characteristics-title">Width</div>
-
               <span
                 className="fa fa-caret-down"
                 style={{
