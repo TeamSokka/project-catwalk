@@ -207,13 +207,8 @@ app.put('/qa/questions/:question_id/helpful', (req, res) => {
     id: req.params.question_id,
     endpoint: 'helpful'
   };
-<<<<<<< HEAD
-  console.log('info ', info);
-  questions.putRequest(info, (err, data) => {
-=======
   // console.log('info ', data);
   questions.putRequest(data, (err, res) => {
->>>>>>> fffef180dee36b1b4cf395fb9ba21a779e81efdc
     if (err) {
       res.status(404).send(err);
     } else {
@@ -229,13 +224,8 @@ app.put('/qa/answers/:answer_id/helpful', (req, res) => {
     id: req.params.answer_id,
     endpoint: 'helpful'
   };
-<<<<<<< HEAD
-  console.log('info ', info);
-  questions.putRequest(info, (err, data) => {
-=======
   // console.log('info ', data);
   questions.putRequest(data, (err, res) => {
->>>>>>> fffef180dee36b1b4cf395fb9ba21a779e81efdc
     if (err) {
       res.status(404).send(err);
     } else {
