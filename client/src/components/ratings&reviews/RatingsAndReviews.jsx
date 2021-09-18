@@ -17,7 +17,8 @@ class RatingsAndReviews extends React.Component {
       reviewList: [],
       starSort: [],
       noReviews: false,
-      reviewsDisplayed: 2,
+      reviewsDisplayed: 0,
+      pageLoaded: 1,
       writeReviewModal: false,
       sortOption: 0,
       reviewsReady: false,
@@ -39,17 +40,35 @@ class RatingsAndReviews extends React.Component {
   handleGetReview() {
     const { productID } = this.props;
     // axios.get(`/reviews?product_id=${productID}&page=1&count=5&sort=helpful`)
-    axios.get(`/reviews?product_id=${productID}`)
+    axios.get(`/reviews?product_id=${productID}&count=2&page=${this.state.pageLoaded}`)
       .then((result) => {
         if (result.data.results.length === 0) {
           this.setState({
             noReviews: true
           });
         }
+
+        var pageTemp = this.state.pageLoaded + 1;
+        var reviewListTemp = this.state.reviewList.concat(result.data.results);
+        var reviewsDisplayedTemp = this.state.reviewsDisplayed + result.data.results.length;
+
         this.setState({
-          reviewList: result.data.results,
+          reviewList: reviewListTemp,
           reviewsReady: true,
+          pageLoaded: pageTemp,
+          reviewsDisplayed: reviewsDisplayedTemp,
         })
+
+        // if (this.state.reviewsDisplayed < this.state.reviewList.length) {
+        //   var newEnd = this.state.reviewsDisplayed + 2;
+        //   if (newEnd > this.state.reviewList.length) {
+        //     newEnd--;
+        //   }
+        //   this.setState({
+        //     reviewsDisplayed: newEnd
+        //   })
+        // }
+
       })
       .catch((error) => {
         console.log('Error with handleGetReview ' + error);
@@ -82,21 +101,7 @@ class RatingsAndReviews extends React.Component {
   }
 
   moreReviewsClick() {
-    if (this.state.reviewsDisplayed < this.state.reviewList.length) {
-      var newEnd = this.state.reviewsDisplayed + 2;
-      if (newEnd > this.state.reviewList.length) {
-        newEnd--;
-      }
-      this.setState({
-        reviewsDisplayed: newEnd
-      })
-
-      // if (newEnd === this.state.reviewList.length) {
-      //   this.setState({
-      //     hideMoreReviews: true
-      //   })
-      // }
-    }
+    this.handleGetReview();
   }
 
   sortChange(e) {
@@ -209,14 +214,14 @@ class RatingsAndReviews extends React.Component {
         </div>
 
         {
-          this.state.reviewsDisplayed < this.state.reviewList.length && this.state.reviewList.length > 0
+          this.state.reviewsDisplayed <= this.state.reviewList.length && this.state.reviewList.length > 0
           && (
             <button className="add-review-btn" type="button" onClick={this.writeReviewClick}>Add a Review</button>
           )
         }
 
         {
-          this.state.reviewsDisplayed < this.state.reviewList.length && this.state.reviewList.length > 0
+          this.state.reviewsDisplayed <= this.state.reviewList.length && this.state.reviewList.length > 0
           && (
             <button className="more-reviews-btn" type="button" onClick={this.moreReviewsClick}>More Reviews</button>
           )
