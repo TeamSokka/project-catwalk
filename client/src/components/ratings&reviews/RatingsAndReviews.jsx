@@ -216,7 +216,12 @@ class RatingsAndReviews extends React.Component {
         </div> */}
 
         <button className="add-review-btn" type="button" onClick={this.writeReviewClick}>Add a Review</button>
-        <button className="more-reviews-btn" type="button" onClick={this.moreReviewsClick}>More Reviews</button>
+        {
+          this.state.reviewList.length > 2 && this.state.hideMoreReviews === false
+          && (
+            <button className="more-reviews-btn" type="button" onClick={this.moreReviewsClick}>More Reviews</button>
+          )
+        }
 
       </div >
     )
