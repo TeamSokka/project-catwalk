@@ -111,7 +111,7 @@ class App extends React.Component {
 
     return (
       <div>
-         <ProductDetail
+         {/* <ProductDetail
           productID={productID}
           productInfo={productInfo}
           styles={styles}
@@ -129,7 +129,7 @@ class App extends React.Component {
           />
         }
 
-        <QuestionsAndAnswers productID={productID} />
+        <QuestionsAndAnswers productID={productID} /> */}
 
         <RelatedItems
           productID={productID}
