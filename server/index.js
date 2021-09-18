@@ -87,7 +87,9 @@ app.get('/reviews/meta', (req, res) => {
 
 // POST /reviews
 app.post('/reviews', (req, res) => {
-  console.log(req);
+  console.log(req.body);
+  console.log(req.body.characteristics);
+
   ratings.postReviews(req.body, (err, data) => {
     if (err) {
       console.log('Error app.post /reviews : ' + err);

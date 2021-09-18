@@ -22,7 +22,7 @@ class WriteReview extends React.Component {
 
     this.state = {
       review: {
-        productID: productID,
+        product_id: Number(productID),
         recommend: null,
         summary: '',
         body: '',
@@ -73,24 +73,34 @@ class WriteReview extends React.Component {
     // }
 
     // var review2 = Object.assign({}, this.state.review);
-    var review2 = JSON.parse(JSON.stringify(this.state.review));
-    review2.characteristics.name["id"] = e.target.name;
-    review2.characteristics.name["value"] = eNumber(e.target.value);
+    // var review2 = JSON.parse(JSON.stringify(this.state.review));
+    // review2.characteristics.name["id"] = e.target.name;
+    // review2.characteristics.name["value"] = eNumber(e.target.value);
+    // "Size": { "id": 135232, "value": "1" },
+    // "Width": { "id": 135233, "value": "2" },
+    // "Comfort": { "id": 135234, "value": "3" },
+    // "Quality": { "id": 135235, "value": "4" }
 
 
-    // var characteristics2 = Object.assign({}, this.state.characteristics);
-    // characteristics2[name] = {
-    //   id: e.target.name,
-    //   value: Number(e.target.value)
-    // }
+    var characteristics2 = Object.assign({}, this.state.characteristics);
+    characteristics2[name] = {
+      id: Number(e.target.name),
+      value: String(e.target.value)
+    }
 
-    this.setState({
-      review: review2
-    });
+    // var review2 = Object.assign({}, this.state.review,
+    //   {
+    //     characteristics: Object.assign({}, this.state.review.characteristics, characteristics2)
+    //   }
+    // );
 
     // this.setState({
-    //   characteristics: characteristics2
+    //   review: review2
     // });
+
+    this.setState({
+      characteristics: characteristics2
+    });
 
     // this.setState({
     //   characteristics: {
@@ -206,10 +216,17 @@ class WriteReview extends React.Component {
 
     // JSON.parse(JSON.stringify(this.state.review))
     // var review2 = Object.assign({}, this.state.review);
-    var review2 = Object.assign({}, this.state.review);
+    // var review2 = Object.assign({}, this.state.review);
+    // var review2 = JSON.parse(JSON.stringify(this.state.review));
+
     // review2['characteristics'] = this.state.characteristics;
-    review2['characteristics'] = Object.assign(review2['characteristics'], this.state.characteristics);
-    handlePostReview(review2);
+    // review2['characteristics'] = Object.assign(review2['characteristics'], this.state.characteristics);
+    // review2['characteristics'] = JSON.parse(JSON.stringify(this.state.characteristics));
+    // alert(review2['characteristics']);
+    console.log(this.state.review)
+    console.log(this.props.metaData)
+
+    handlePostReview(this.state.review);
   }
 
   render() {

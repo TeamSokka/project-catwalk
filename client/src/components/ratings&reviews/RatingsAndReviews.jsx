@@ -58,6 +58,7 @@ class RatingsAndReviews extends React.Component {
 
   // Post a review
   handlePostReview(reviewData) { // move to write review
+    console.log(reviewData)
     axios.post('/reviews', reviewData)
       .then((result) => {
         console.log('Success with handlePostReview');
