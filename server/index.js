@@ -16,6 +16,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Products
+// GET /products
 app.get('/products', (req, res) => {
   products.getProducts((err, data) => {
     if (err) {
@@ -26,6 +27,7 @@ app.get('/products', (req, res) => {
   })
 })
 
+//GET /products/:product_id (info for one product)
 app.get('/products/:product_id', (req, res) => {
   products.getProductById(req.params.product_id, (err, data) => {
     if (err) {
@@ -37,6 +39,7 @@ app.get('/products/:product_id', (req, res) => {
   })
 })
 
+//GET /products styles of one product
 app.get('/products/:product_id/styles', (req, res) => {
   products.getStyles(req.params.product_id, (err, data) => {
     if (err) {
@@ -47,6 +50,7 @@ app.get('/products/:product_id/styles', (req, res) => {
   });
 });
 
+//GET /products related products
 app.get('/products/:product_id/related', (req, res) => {
   products.getRelated(req.params.product_id, (err, data) => {
     if (err) {
@@ -56,6 +60,28 @@ app.get('/products/:product_id/related', (req, res) => {
     }
   });
 });
+
+//GET /cart
+app.get('/cart', (req, res) => {
+  products.getCart((err, data) => {
+    if (err) {
+      res.status(400).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  });
+})
+
+//POST /cart
+app.post('/cart', (req, res) => {
+  products.addToCart(req.body, (err, data) => {
+    if (err) {
+      res.status(404).send(err);
+    } else {
+      res.status(201).send(data);
+    }
+  });
+})
 
 // Reviews
 // REVIEWS WIDGET
@@ -87,7 +113,9 @@ app.get('/reviews/meta', (req, res) => {
 
 // POST /reviews
 app.post('/reviews', (req, res) => {
-  console.log(req);
+  // console.log(req.body);
+  // console.log(req.body.characteristics);
+
   ratings.postReviews(req.body, (err, data) => {
     if (err) {
       console.log('Error app.post /reviews : ' + err);
@@ -149,7 +177,7 @@ app.get('/qa/questions/:question_id/answers', (req, res) => {
 
 // POST Questions
 app.post('/qa/questions', (req, res) => {
-  console.log('body ', req.body);
+  // console.log('body ', req.body);
   questions.postQuestion(req.body, (err, data) => {
     if (err) {
       res.status(400).send(err);
@@ -161,8 +189,8 @@ app.post('/qa/questions', (req, res) => {
 
 // POST Answers
 app.post('/qa/questions/:question_id/answers', (req, res) => {
-  console.log('params ', req.params);
-  console.log('body from a ', req.body);
+  // console.log('params ', req.params);
+  // console.log('body from a ', req.body);
   questions.postAnswer(req.params.question_id, req.body, (err, data) => {
     if (err) {
       res.status(400).send(err);
@@ -179,8 +207,13 @@ app.put('/qa/questions/:question_id/helpful', (req, res) => {
     id: req.params.question_id,
     endpoint: 'helpful'
   };
+<<<<<<< HEAD
   console.log('info ', info);
   questions.putRequest(info, (err, data) => {
+=======
+  // console.log('info ', data);
+  questions.putRequest(data, (err, res) => {
+>>>>>>> fffef180dee36b1b4cf395fb9ba21a779e81efdc
     if (err) {
       res.status(404).send(err);
     } else {
@@ -196,8 +229,13 @@ app.put('/qa/answers/:answer_id/helpful', (req, res) => {
     id: req.params.answer_id,
     endpoint: 'helpful'
   };
+<<<<<<< HEAD
   console.log('info ', info);
   questions.putRequest(info, (err, data) => {
+=======
+  // console.log('info ', data);
+  questions.putRequest(data, (err, res) => {
+>>>>>>> fffef180dee36b1b4cf395fb9ba21a779e81efdc
     if (err) {
       res.status(404).send(err);
     } else {

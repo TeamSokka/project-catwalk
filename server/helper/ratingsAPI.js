@@ -19,7 +19,7 @@ const getReviews = (query, callback) => {
       },
     })
     .then((response) => {
-      console.log('getReviews API data: ' + response);
+      // console.log('getReviews API data: ' + response);
       callback(null, response.data);
     })
     .catch((error) => {
@@ -36,7 +36,7 @@ const getMetaReviews = (query, callback) => {
     }
   })
     .then((response) => {
-      console.log('getMetaReviews API data: ' + response);
+      // console.log('getMetaReviews API data: ' + response);
       callback(null, response.data);
     })
     .catch((error) => {

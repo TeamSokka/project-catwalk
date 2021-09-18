@@ -1,65 +1,24 @@
 import React from 'react';
 import RelatedProductCards from './RelatedProductCards';
+import OutfitCreations from './OutfitCreations';
 import axios from 'axios';
 
-class RelatedItems extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+const RelatedItems = (props) => {
+  const { productID, productInfo, relatedProducts, selectedStyle, getProductInfo } = props;
 
-  // getProductInfo(id) {
-  // axios.get(`/products/${this.state.currentProductId}`, {
-  //   params: {
-  //     product_id: id
-  //   }
-  // })
-  //   .then(({ data }) => {
-  //     const product = formatRelatedItems(data);
-  //     console.log('product: ', product);
-  //     this.setState({
-  //       productInfo: product
-  //     });
-  //   })
-  //   .catch((err) => {
-  //     console.error(err);
-  //   });
-  // }
+  return (
+    <div>
+      <h3>RELATED PRODUCTS</h3>
 
-  // getRelated(id) {
-  //   //currentProductID check?
-  //   console.log(this.state.currentProductId);
-  //   axios.get(`/products/${this.state.currentProductId}/related`, {
-  //     params: {
-  //       product_id: id
-  //     }
-  //   })
-  //     .then((res) => {
-  //       console.log('related products recd: (related items)', res.data);
-  //       // this.setState({
-  //       //   relatedProducts: res.data
-  //       // })
-  //     })
-  //     .catch((err) => {
-  //       console.error(err);
-  //     });
-  // }
-
-  render() {
-    const { productID, productInfo, relatedProducts, selectedStyle } = this.props;
-    // console.log('productID: from app //hardcoded', productID);
-    // console.log('this is the state relate products', this.state.ProductInfo);
-    return (
-      <div>
-        <h3>RELATED PRODUCTS</h3>
-
-        <RelatedProductCards
-          productInfo={productInfo}
-          relatedProducts={relatedProducts}
-          selectedStyle={selectedStyle}
-        />
-      </div>
-    )
-  }
+      <RelatedProductCards
+        productInfo={productInfo}
+        relatedProducts={relatedProducts}
+        selectedStyle={selectedStyle}
+        getProductInfo={getProductInfo}
+      />
+      <OutfitCreations />
+    </div>
+  )
 }
 
 export default RelatedItems;
@@ -69,5 +28,3 @@ export default RelatedItems;
 A button will appear on the top right corner of each product card.  This button will trigger different functionality depending on which list, Related Products or Your Outfit, the card appears within. The button will also display a different value depending on which list the card appears within.
 */
 
-//import axios
-//index.js has get request : getRelated

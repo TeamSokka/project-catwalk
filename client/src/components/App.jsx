@@ -12,31 +12,38 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      productID: 40348, // example product id
+      productID: 40348, // example product id, change to num
       productInfo: {},
       relatedProducts: [],
       styles: [],
       selectedStyle: { photos: [], skus: {} },
       metaData: {},
+      metaReady: false,
     }
-
-    this.fetchMeta = this.fetchMeta.bind(this);
+    // this.fetchMeta = this.fetchMeta.bind(this);
   }
 
   componentDidMount() {
+    const { productInfo, productID } = this.state;
+
     this.fetchMeta();
-    this.getRelated(this.state.productID);
-    this.getProductInfo(this.state.productID);
+    this.getRelated(productID);
+    this.getProductInfo(productInfo);
     this.getStyles();
   }
 
-  getProductInfo = () => {
-    axios.get(`/products/${this.state.productID}`)
-      .then((res) => {
-        // console.log('productInfo recd:', res.data);
-        this.setState({
-          productInfo: res.data
-        });
+  setProductInfo = (data) => {
+    this.setState({
+      productInfo: data
+    })
+  }
+  /*stormi: refactor function to take in id, callback. The callback is defaulted to setProductInfo.
+    This allows me to pass in a custom callback without changing the productInfo state
+  */
+  getProductInfo = (id, callback = this.setProductInfo) => {
+    axios.get(`/products/${id}`)
+      .then(({ data }) => {
+        callback(data);
       })
       .catch((err) => {
         console.error(err);
@@ -52,11 +59,20 @@ class App extends React.Component {
           selectedStyle: res.data.results[0],
           // selectedSize: res.data.results[0].skus[Object.keys(res.data.results[0].skus)[0]]
         });
-        console.log('state:', this.state)
+        // console.log('state:', this.state)
       })
       .catch((err) => {
         console.error(err);
       })
+  }
+
+  handleStyleSelect(event) {
+    event.preventDefault();
+    // console.log('event.target:', event.target);
+    // console.log('event.target.dataset.index:', event.target.dataset.index);
+    this.setState({
+      selectedStyle: this.state.styles[event.target.dataset.index]
+    })
   }
 
   getRelated = () => {
@@ -78,7 +94,8 @@ class App extends React.Component {
     axios.get(`/reviews/meta/?product_id=${productID}`)
       .then((result) => {
         this.setState({
-          metaData: result.data
+          metaData: result.data,
+          metaReady: true,
         });
       })
       .catch((error) => {
@@ -94,19 +111,23 @@ class App extends React.Component {
 
     return (
       <div>
-        <ProductDetail
+         <ProductDetail
           productID={productID}
           productInfo={productInfo}
           styles={styles}
           selectedStyle={selectedStyle}
+          handleStyleSelect={this.handleStyleSelect.bind(this)}
         />
 
-
-        <RatingsAndReviews
-          productID={productID}
-          metaData={this.state.metaData}
-          productInfo={productInfo}
-        />
+        {
+          this.state.metaReady === true
+          &&
+          <RatingsAndReviews
+            productID={productID}
+            metaData={metaData}
+            productInfo={productInfo}
+          />
+        }
 
         <QuestionsAndAnswers
         productID={productID}
@@ -118,6 +139,7 @@ class App extends React.Component {
           productInfo={productInfo}
           relatedProducts={relatedProducts}
           selectedStyle={selectedStyle}
+          getProductInfo={this.getProductInfo}
         />
       </div>
     )

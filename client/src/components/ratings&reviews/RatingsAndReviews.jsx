@@ -2,21 +2,26 @@ import { thisExpression } from '@babel/types';
 import React from 'react';
 import ReviewList from './ReviewList/ReviewList';
 import WriteReview from './WriteReview/WriteReview';
+import RatingBreakdown from './RatingBreakdown/RatingBreakdown';
+import ProductBreakdown from './ProductBreakdown/ProductBreakdown';
+import SortOptions from './SortOptions/SortOptions';
+
 import './Styles/ratings-reviews.scss';
 
 const axios = require('axios');
 class RatingsAndReviews extends React.Component {
   constructor(props) {
     super(props);
-    const { metaData } = this.props;
 
     this.state = {
       reviewList: [],
-      metaData: metaData,
+      starSort: [],
       noReviews: false,
       hideMoreReviews: false,
       reviewsDisplayed: 2,
       writeReviewModal: false,
+      sortOption: 0,
+      reviewsReady: false,
     }
 
     this.handleGetReview = this.handleGetReview.bind(this);
@@ -25,6 +30,9 @@ class RatingsAndReviews extends React.Component {
     this.moreReviewsClick = this.moreReviewsClick.bind(this);
     this.writeReviewClick = this.writeReviewClick.bind(this);
     this.exitWriteReviewClick = this.exitWriteReviewClick.bind(this);
+    this.sortByStar = this.sortByStar.bind(this);
+    this.clearStarFilter = this.clearStarFilter.bind(this);
+    this.sortChange = this.sortChange.bind(this);
 
   }
 
@@ -39,7 +47,8 @@ class RatingsAndReviews extends React.Component {
           });
         }
         this.setState({
-          reviewList: result.data.results
+          reviewList: result.data.results,
+          reviewsReady: true,
         })
       })
       .catch((error) => {
@@ -49,6 +58,7 @@ class RatingsAndReviews extends React.Component {
 
   // Post a review
   handlePostReview(reviewData) { // move to write review
+    console.log(reviewData)
     axios.post('/reviews', reviewData)
       .then((result) => {
         console.log('Success with handlePostReview');
@@ -102,6 +112,12 @@ class RatingsAndReviews extends React.Component {
     }
   }
 
+  sortChange(e) {
+    this.setState({
+      sortOption: e.target.value,
+    });
+  }
+
   writeReviewClick(e) {
     this.setState({
       writeReviewModal: true,
@@ -114,17 +130,61 @@ class RatingsAndReviews extends React.Component {
     })
   }
 
+  sortByStar(e) {
+    const { starSort } = this.state;
+    if (starSort.indexOf(e.target.id) === -1) {
+      this.setState({
+        starSort: [...starSort, e.target.id],
+      });
+    } else {
+      starSort.splice(starSort.indexOf(e.target.id), 1);
+      this.setState({
+        starSort,
+      });
+    }
+  }
+
+  clearStarFilter() {
+    this.setState({
+      starSort: [],
+    });
+  }
+
   componentDidMount() {
     this.handleGetReview();
   }
 
   render() {
 
+    const { metaData } = this.props;
+
     return (
       <div>
-        Ratings and Reviews Section
+        {
+          this.state.reviewsReady === true
+          &&
+          (<RatingBreakdown
+            metaData={metaData}
+            starSort={this.state.starSort}
+            sortByStar={this.sortByStar}
+            clearStarFilter={this.clearStarFilter}
+          />)
+        }
+
+
+        <ProductBreakdown
+          metaData={this.props.metaData}
+        />
+
+        <SortOptions
+          metaData={this.props.metaData}
+          sortOption={this.state.sortOption}
+          sortChange={this.sortChange}
+        />
+
         <ReviewList
           reviewList={this.state.reviewList}
+          starSort={this.state.starSort}
           handlePutReview={this.state.handlePutReview}
           reviewsDisplayed={this.state.reviewsDisplayed}
         />

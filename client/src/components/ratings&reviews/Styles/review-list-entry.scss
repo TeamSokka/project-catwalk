@@ -1,0 +1,32 @@
+.grid-layout-entry {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  border-bottom: 1px solid grey;
+  padding-top: 10px;
+  padding-bottom: 8px;
+};
+
+.grid-layout {
+  display: grid;
+  padding: 10px;
+  align-items: center;
+};
+
+.name-layout {
+  padding: 5px;
+  text-align: right;
+  grid-row: 1;
+  grid-column: 2;
+  color: grey;
+  font-size: 13px;
+};
+
+.date-layout {
+  padding: 5px;
+  text-align: center;
+  grid-row: 1;
+  grid-column: 3;
+  color: grey;
+  font-size: 13px;
+};

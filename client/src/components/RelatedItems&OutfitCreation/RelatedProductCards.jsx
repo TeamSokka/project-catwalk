@@ -1,37 +1,55 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ProductPreviewImages from './ProductPreviewImages';
 import ProductInformation from './ProductInformation';
+import 'regenerator-runtime/runtime'
 import './related-items.scss';
 
-class RelatedProductCards extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+const RelatedProductCards = (props) => {
+  const { productInfo, relatedProducts, selectedStyle, getProductInfo } = props;
+  // const [products, setProducts] = useState([]);
 
-  //map out the relateProducts
+  // useEffect(() => {
+  //   const getAllRelatedProducts = (relatedProducts) => {
+  //     const promises = relatedProducts?.map(async (id) => {
+  //       const product =  await getProductInfo(id, data => data)
+  //       console.log('product : ', product );
+  //       return product;
+  //     });
 
-  render() {
-    const { productInfo, relatedProducts, selectedStyle } = this.props;
+  //     const products = Promise.all(promises);
+  //   }
 
-    // console.log('PRO INFO', productInfo);
-    // console.log('RELATED PRO', relatedProducts);
-    // console.log('SELECT STYLE', selectedStyle.photos);
+  //   console.log('getAllRelatedProducts: ', getAllRelatedProducts(relatedProducts));
+  // }, [])
 
-    return (
-      <div id="related-product-card">
-           <div className="product-card">
-              <ProductPreviewImages selectedStyle={selectedStyle}/>
-              <ProductInformation relatedProducts={relatedProducts} productInfo={productInfo}/>
-          </div>
-      </div>
-    )
-  }
+
+
+  const products = relatedProducts.map(product =>
+    <div className="product-card">
+      <ProductPreviewImages selectedStyle={selectedStyle} product={product}/>
+      <ProductInformation relatedProducts={relatedProducts} productInfo={productInfo} product={product}/>
+    </div>
+  );
+
+  // console.log('Product', product);
+  // console.log('related', relatedProducts);
+  // console.log('info', productInfo);
+  // console.log('photos', selectedStyle.photos);
+
+  return (
+    <div id="related-product-card">
+      {products}
+
+         {/* <div className="product-card">
+            <ProductPreviewImages selectedStyle={selectedStyle}/>
+            <ProductInformation relatedProducts={relatedProducts} productInfo={productInfo}/>
+        </div> */}
+
+    </div>
+  )
 }
 
 export default RelatedProductCards;
-
-//need to do something with relatedProducts={relatedProducts}
-//also build carousel here?
 
 /*
 1.4.2 List Behavior
