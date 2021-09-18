@@ -62,6 +62,7 @@ class QuestionsAndAnswers extends React.Component {
   //   })
   // }
 
+  // doesnt work
   onSearch(query) {
     if (query.length >= 3) {
       let results = this.state.questions.filter((question) =>
@@ -85,6 +86,13 @@ class QuestionsAndAnswers extends React.Component {
       .catch((err) => console.log('Error updating ', err));
   }
 
+  // post request from postman not working...
+  postRequest(body, id, endpoint) {
+    axios.post(`qa/questions/${id}/${endpoint}`, body)
+    .then(() => this.getQuestions())
+    .catch((err) => console.log('Error adding question ', err));
+  }
+
   render() {
     return (
       <div>
@@ -95,7 +103,9 @@ class QuestionsAndAnswers extends React.Component {
         <QuestionList
           questions={this.state.questions}
           putRequest={this.putRequest}
+          productID={this.props.productID}
           productInfo={this.props.productInfo}
+          postRequest={this.postRequest.bind(this)}
         />
       </div>
     );

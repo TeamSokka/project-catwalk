@@ -4,7 +4,7 @@ import AddQuestion from './AddQuestion.jsx';
 import '../ratings&reviews/Styles/ratings-reviews.scss';
 
 const QuestionList = (props) => {
-  const { questions, putRequest, handleClick, productInfo } = props;
+  const { questions, putRequest, handleClick, productID, productInfo, postRequest } = props;
   const [display, setDisplay] = useState(4);
   const [modal, setModal] = useState(false);
   let loadMoreQuestions = questions.length > display &&
@@ -34,7 +34,9 @@ const QuestionList = (props) => {
               >
                 <span className="close-button" onClick={(e) => setModal(false)}>&times;</span>
                 <AddQuestion
+                  productID={productID}
                   productInfo={productInfo}
+                  postRequest={postRequest}
                 />
                 <br />
               </div>
