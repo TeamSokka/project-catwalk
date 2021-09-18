@@ -22,14 +22,14 @@ class WriteReview extends React.Component {
 
     this.state = {
       review: {
-        product_id: Number(productID),
+        product_id: productID,
         recommend: null,
         summary: '',
         body: '',
         photos: [],
         name: '',
         email: '',
-        rating: 3,
+        rating: null,
         characteristics: {
         }
       },
@@ -247,9 +247,21 @@ class WriteReview extends React.Component {
               display: 'flex', justifyContent: 'center', fontSize: '20px', marginTop: '5px', marginBottom: '5px',
             }}
             >
+              {/* <span className="fa fa-star" aria-hidden="true"
+                onClick={() => { this.setState({ rating: 1, mouseOver: [1, 0, 0, 0, 0], starRating: "Poor" }); }} />
+
+              <span className="fa fa-star" aria-hidden="true" onClick={() => { this.setState({ rating: 2, mouseOver: [1, 1, 0, 0, 0], starRating: "Fair" }); }} />
+
+              <span className="fa fa-star" aria-hidden="true" onClick={() => { this.setState({ rating: 3, mouseOver: [1, 1, 1, 0, 0], starRating: "Average" }); }} />
+
+              <span className="fa fa-star" aria-hidden="true" onClick={() => { this.setState({ rating: 4, mouseOver: [1, 1, 1, 1, 0], starRating: "Good" }); }} />
+
+              <span className="fa fa-star" aria-hidden="true" onKeyUp={this.handleKeyUp} onClick={() => { this.setState({ rating: 5, mouseOver: [1, 1, 1, 1, 1], starRating: "Great" }); }} /> */}
+
               {
                 this.state.mouseOver[0] === 1
-                  ? <span className="fa fa-star" aria-hidden="true" onMouseEnter={() => { this.setState({ mouseOver: [1, 0, 0, 0, 0] }); }} onClick={() => { this.setState({ rating: 1, mouseOver: [1, 0, 0, 0, 0], starRating: "Poor" }); }} />
+                  ? <span className="fa fa-star" aria-hidden="true"
+                    onMouseEnter={() => { this.setState({ mouseOver: [1, 0, 0, 0, 0] }); }} onClick={() => { this.setState({ rating: 1, mouseOver: [1, 0, 0, 0, 0], starRating: "Poor" }); }} />
                   : <span className="fa fa-star-o" onMouseEnter={() => { this.setState({ mouseOver: [1, 0, 0, 0, 0] }); }} />
               }
               {
@@ -272,12 +284,11 @@ class WriteReview extends React.Component {
                   ? <span className="fa fa-star" aria-hidden="true" onKeyUp={this.handleKeyUp} onClick={() => { this.setState({ rating: 5, mouseOver: [1, 1, 1, 1, 1], starRating: "Great" }); }} />
                   : <span className="fa fa-star-o" onMouseEnter={() => { this.setState({ mouseOver: [1, 1, 1, 1, 1] }); }} />
               }
-
-              <div style={{
-                display: 'flex', justifyContent: 'right', fontSize: '20px', marginTop: '5px', marginBottom: '5px',
-              }}
-              > {this.state.starRating}</div>
             </div>
+            <div style={{
+              display: 'flex', justifyContent: 'right', fontSize: '20px', marginTop: '5px', marginBottom: '5px',
+            }}
+            > {this.state.starRating}</div>
 
           </div>
 

@@ -172,9 +172,9 @@ class RatingsAndReviews extends React.Component {
         }
 
 
-        {/* <ProductBreakdown
+        <ProductBreakdown
           metaData={this.props.metaData}
-        /> */}
+        />
 
         <SortOptions
           metaData={this.props.metaData}

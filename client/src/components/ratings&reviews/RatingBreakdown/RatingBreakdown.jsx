@@ -53,10 +53,10 @@ class RatingBreakdown extends React.Component {
     const total = Number(obj.true) + Number(obj.false);
     const result = Number(obj.true) / total;
 
-    if (isNaN(result.toFixed(2) * 100)) {
+    if (isNaN(result.toFixed(1) * 100)) {
       return 0;
     }
-    return result.toFixed(2) * 100;
+    return result.toFixed(1) * 100;
   }
 
   render() {
@@ -68,7 +68,7 @@ class RatingBreakdown extends React.Component {
     return (
       <div>
         <div>Ratings and Reviews</div>
-        <div>Average rating: {this.averageRating(ratings)}</div>
+        <div>Average rating: {this.averageRating(ratings).toFixed(1)}</div>
         <div>Star rating: {stars}</div>
         <div>{`${this.averageRecommended(recommended)}%: Number of reviews recommend this product`}</div>
         <div>Star sort</div>
