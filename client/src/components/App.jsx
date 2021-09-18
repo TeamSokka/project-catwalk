@@ -129,7 +129,14 @@ class App extends React.Component {
           />
         }
 
+<<<<<<< HEAD
         <QuestionsAndAnswers productID={productID} /> */}
+=======
+        <QuestionsAndAnswers
+        productID={productID}
+        productInfo={productInfo}
+        />
+>>>>>>> 6bf4617cea29d8e39907c940d87c366938831c41
 
         <RelatedItems
           productID={productID}

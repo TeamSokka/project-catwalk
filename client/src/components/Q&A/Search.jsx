@@ -2,7 +2,29 @@ import React, { useState } from 'react';
 import { BiSearchAlt } from 'react-icons/bi';
 
 const Search = (props) => {
-  // const [search, setSearch] = useState('');
+  const { onSearch } = props;
+  const [search, setSearch] = useState('');
+
+  const handleSearch = (e) => {
+    setSearch(e.target.value);
+    console.log('search term ', search.length);
+    onSearch(search);
+  }
+
+  return (
+    <div className='search-bar'>
+      <input type='text' id='search' value={search}
+        style={{ width: '300px' }}
+        onChange={(e) => handleSearch(e)}
+        placeholder='HAVE A QUESTION? SEARCH FOR ANSWERS...' />
+      <BiSearchAlt onClick={props.onSearch} />
+    </div>
+  )
+}
+
+export default Search;
+
+/*
   return (
     <div className='search'>
       <input type='text' id='search' value={props.search}
@@ -12,8 +34,8 @@ const Search = (props) => {
       <BiSearchAlt onClick={props.onSearch} />
     </div>
   )
-}
 
-export default Search;
-
-// onClick={props.onSearch}
+  styling
+  remove all borders
+  set border to white
+  */
