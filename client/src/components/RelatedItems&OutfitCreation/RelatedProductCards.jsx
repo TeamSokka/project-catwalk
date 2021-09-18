@@ -13,19 +13,16 @@ class RelatedProductCards extends React.Component {
   render() {
     const { productInfo, relatedProducts, selectedStyle } = this.props;
 
-<<<<<<< HEAD
-=======
     // console.log('PRO INFO', productInfo);
     // console.log('RELATED PRO', relatedProducts);
     // console.log('SELECT STYLE', selectedStyle.photos);
 
->>>>>>> main
     return (
       <div id="related-product-card">
-           <div className="product-card">
-              <ProductPreviewImages selectedStyle={selectedStyle}/>
-              <ProductInformation relatedProducts={relatedProducts} productInfo={productInfo}/>
-          </div>
+        <div className="product-card">
+          <ProductPreviewImages selectedStyle={selectedStyle} />
+          <ProductInformation relatedProducts={relatedProducts} productInfo={productInfo} />
+        </div>
       </div>
     )
   }
