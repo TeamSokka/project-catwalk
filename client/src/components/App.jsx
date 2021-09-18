@@ -28,7 +28,7 @@ class App extends React.Component {
 
     this.fetchMeta();
     this.getRelated(productID);
-    this.getProductInfo(productInfo);
+    this.getProductInfo(productID);
     this.getStyles();
   }
 
@@ -111,7 +111,7 @@ class App extends React.Component {
 
     return (
       <div>
-         <ProductDetail
+        <ProductDetail
           productID={productID}
           productInfo={productInfo}
           styles={styles}
@@ -130,8 +130,8 @@ class App extends React.Component {
         }
 
         <QuestionsAndAnswers
-        productID={productID}
-        productInfo={productInfo}
+          productID={productID}
+          productInfo={productInfo}
         />
 
         <RelatedItems

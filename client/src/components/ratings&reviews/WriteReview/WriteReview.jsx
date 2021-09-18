@@ -223,8 +223,8 @@ class WriteReview extends React.Component {
     // review2['characteristics'] = Object.assign(review2['characteristics'], this.state.characteristics);
     // review2['characteristics'] = JSON.parse(JSON.stringify(this.state.characteristics));
     // alert(review2['characteristics']);
-    console.log(this.state.review)
-    console.log(this.props.metaData)
+    // console.log(this.state.review)
+    // console.log(this.props.metaData)
 
     handlePostReview(this.state.review);
   }
