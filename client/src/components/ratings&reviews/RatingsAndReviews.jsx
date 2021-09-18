@@ -184,6 +184,7 @@ class RatingsAndReviews extends React.Component {
 
         <ReviewList
           reviewList={this.state.reviewList}
+          starSort={this.state.starSort}
           handlePutReview={this.state.handlePutReview}
           reviewsDisplayed={this.state.reviewsDisplayed}
         />
