@@ -53,7 +53,12 @@ class ReviewListEntry extends React.Component {
 
     return (
       <div className="grid-layout-entry">
-        {stars}
+
+        <div className="star-layout">
+          <div style={{ display: 'flex', zIndex: '-1', marginRight: 'auto', height: '18', width: '15' }}>
+            {stars}
+          </div>
+        </div>
 
         <div style={{ display: 'flex', marginLeft: 'auto' }}>
           <div className="name-layout">
@@ -87,18 +92,45 @@ class ReviewListEntry extends React.Component {
 
         {
           this.props.review.response ?
-            (<b>{`Response from seller: ${this.props.review.response}`}</b>) : null
+            (<div className="response-layout">
+              <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
+                <b>{`Response from seller: ${this.props.review.response}`}</b>
+              </div>
+            </div>) : null
         }
+
         {
           this.props.review.recommend ?
-            (<div>{`✓ I recommend this product: ${this.props.review.recommend}`}</div>) : null
+            (<div className="recommend-layout">
+              <div style={{ display: 'flex' }}>
+                ✓ I recommend this product
+              </div>
+            </div>) : null
         }
-        <div>
+
+        {/* <div>
           Helpful?
           <u onClick={this.handleHelpfulClick}>Yes</u>
           {` ${this.props.review.helpfulness} | `}
           <u onClick={this.handleHelpfulClick}>Report</u>
+        </div> */}
+
+        <div className="helpfulness-layout">
+          <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
+            <div style={{
+              display: 'flex', justifyContent: 'flex-end', float: 'right', marginLeft: 'auto', marginTop: 'auto',
+            }}
+            >
+              Helpful?
+              <u onClick={this.handleHelpfulClick} aria-hidden="true" id="helpful" style={{ marginLeft: '4px', marginRight: '2px' }}>Yes</u>
+              {`(${this.props.review.helpfulness}) | `}
+              <u onClick={this.handleHelpfulClick} aria-hidden="true" id="report" style={{ marginLeft: '4px' }}>Report</u>
+            </div>
+          </div>
         </div>
+
+
+
         <br></br>
       </div>
     )
