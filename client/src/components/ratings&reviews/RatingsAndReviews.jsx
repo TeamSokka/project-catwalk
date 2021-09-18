@@ -17,7 +17,6 @@ class RatingsAndReviews extends React.Component {
       reviewList: [],
       starSort: [],
       noReviews: false,
-      hideMoreReviews: false,
       reviewsDisplayed: 2,
       writeReviewModal: false,
       sortOption: 0,
@@ -39,7 +38,8 @@ class RatingsAndReviews extends React.Component {
   // Get reviews
   handleGetReview() {
     const { productID } = this.props;
-    axios.get(`/reviews?product_id=${productID}&page=1&count=5&sort=helpful`)
+    // axios.get(`/reviews?product_id=${productID}&page=1&count=5&sort=helpful`)
+    axios.get(`/reviews?product_id=${productID}`)
       .then((result) => {
         if (result.data.results.length === 0) {
           this.setState({
@@ -82,8 +82,8 @@ class RatingsAndReviews extends React.Component {
   }
 
   moreReviewsClick() {
-    if (reviewsDisplayed < this.state.reviewList.length) {
-      const newEnd = this.state.reviewsDisplayed + 2;
+    if (this.state.reviewsDisplayed < this.state.reviewList.length) {
+      var newEnd = this.state.reviewsDisplayed + 2;
       if (newEnd > this.state.reviewList.length) {
         newEnd--;
       }
@@ -91,11 +91,11 @@ class RatingsAndReviews extends React.Component {
         reviewsDisplayed: newEnd
       })
 
-      if (newEnd === this.state.reviewList.length) {
-        this.setState({
-          hideMoreReviews: true
-        })
-      }
+      // if (newEnd === this.state.reviewList.length) {
+      //   this.setState({
+      //     hideMoreReviews: true
+      //   })
+      // }
     }
   }
 
@@ -198,6 +198,7 @@ class RatingsAndReviews extends React.Component {
           />
         </div>
 
+
         <div className="review-list">
           <ReviewList
             reviewList={this.state.reviewList}
@@ -207,6 +208,19 @@ class RatingsAndReviews extends React.Component {
           />
         </div>
 
+        {
+          this.state.reviewsDisplayed < this.state.reviewList.length && this.state.reviewList.length > 0
+          && (
+            <button className="add-review-btn" type="button" onClick={this.writeReviewClick}>Add a Review</button>
+          )
+        }
+
+        {
+          this.state.reviewsDisplayed < this.state.reviewList.length && this.state.reviewList.length > 0
+          && (
+            <button className="more-reviews-btn" type="button" onClick={this.moreReviewsClick}>More Reviews</button>
+          )
+        }
 
         {/* <div className="review-buttons">
           <div style={{ display: 'flex', margin: 'auto', justifyContent: 'space-evenly' }}>
@@ -214,14 +228,6 @@ class RatingsAndReviews extends React.Component {
             <button className="more-reviews-btn" type="button" onClick={this.moreReviewsClick}>More Reviews</button>
           </div>
         </div> */}
-
-        <button className="add-review-btn" type="button" onClick={this.writeReviewClick}>Add a Review</button>
-        {
-          this.state.reviewList.length > 2 && this.state.hideMoreReviews === false
-          && (
-            <button className="more-reviews-btn" type="button" onClick={this.moreReviewsClick}>More Reviews</button>
-          )
-        }
 
       </div >
     )

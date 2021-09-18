@@ -67,7 +67,7 @@ class RatingBreakdown extends React.Component {
     var stars = StarRating(this.averageRating(ratings));
 
     return (
-      <div class="grid-layout">
+      <div className="grid-layout">
         <div className="header">
           Ratings and Reviews
         </div>

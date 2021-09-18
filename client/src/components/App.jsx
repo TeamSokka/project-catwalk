@@ -10,9 +10,9 @@ const axios = require('axios');
 class App extends React.Component {
   constructor(props) {
     super(props);
-
+    // 40348
     this.state = {
-      productID: 40348, // example product id, change to num
+      productID: 40344, // example product id, change to num
       productInfo: {},
       relatedProducts: [],
       styles: [],
