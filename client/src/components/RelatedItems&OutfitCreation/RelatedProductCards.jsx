@@ -6,22 +6,24 @@ import './related-items.scss';
 
 const RelatedProductCards = (props) => {
   const { productInfo, relatedProducts, selectedStyle, getProductInfo } = props;
+  // console.log('relatedProducts: ', relatedProducts);
   // const [products, setProducts] = useState([]);
 
   // useEffect(() => {
-  //   const getAllRelatedProducts = (relatedProducts) => {
+  //   const getAllRelatedProducts = async (relatedProducts) => {
+  //     console.log('relatedProducts: ', relatedProducts);
   //     const promises = relatedProducts?.map(async (id) => {
   //       const product =  await getProductInfo(id, data => data)
-  //       console.log('product : ', product );
+  //       console.log('product in useEffects: ', product );
   //       return product;
   //     });
 
-  //     const products = Promise.all(promises);
+  //     const products = await Promise.all(promises);
+  //     console.log('products: ', products);
   //   }
 
   //   console.log('getAllRelatedProducts: ', getAllRelatedProducts(relatedProducts));
-  // }, [])
-
+  // }, [relatedProducts])
 
 
   const products = relatedProducts.map(product =>

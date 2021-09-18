@@ -207,7 +207,7 @@ app.put('/qa/questions/:question_id/helpful', (req, res) => {
     id: req.params.question_id,
     endpoint: 'helpful'
   };
-  console.log('info ', info);
+  // console.log('info ', info);
   questions.putRequest(info, (err, data) => {
     if (err) {
       res.status(404).send(err);
@@ -224,7 +224,7 @@ app.put('/qa/answers/:answer_id/helpful', (req, res) => {
     id: req.params.answer_id,
     endpoint: 'helpful'
   };
-  console.log('info ', info);
+  // console.log('info ', info);
   questions.putRequest(info, (err, data) => {
     if (err) {
       res.status(404).send(err);

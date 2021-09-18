@@ -6,8 +6,8 @@ const ProductInformation = (props) => {
   const { productInfo, product } = props;
   const information = formatRelatedItems(productInfo);
 
-  console.log('information: ', information);
-  console.log('product', product);
+  // console.log('information: ', information);
+  // console.log('product', product);
 
   return (
     <div id="product-info">
