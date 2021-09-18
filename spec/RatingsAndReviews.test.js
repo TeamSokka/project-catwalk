@@ -25,11 +25,11 @@ describe('App', () => {
 //   });
 // });
 
-// describe('<ReviewListEntry />', () => {
-//   test('renders ReviewListEntry component', () => {
-//     render(<ReviewListEntry review={reviewsDummy.results[0]} />);
-//   });
-// });
+describe('<ReviewListEntry />', () => {
+  test('renders ReviewListEntry component', () => {
+    render(<ReviewListEntry review={reviewsDummy.results[0]} />);
+  });
+});
 
 const reviewsDummy = {
   product: '24345',

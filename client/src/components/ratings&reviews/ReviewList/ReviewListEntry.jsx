@@ -67,7 +67,6 @@ class ReviewListEntry extends React.Component {
               {new Date(this.props.review.date).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}
             </div>
           </div>
-
         </div>
 
         {
