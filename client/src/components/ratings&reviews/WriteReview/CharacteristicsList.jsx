@@ -18,6 +18,7 @@ class CharacteristicsList extends React.Component {
           characteristicID={this.props.metaData.characteristics[propName]["id"]}
           key={index}
           handleCharacteristicClick={this.props.handleCharacteristicClick}
+          options={characteristicOptions[propName]}
         />)
     })
     return (
@@ -29,6 +30,7 @@ class CharacteristicsList extends React.Component {
 }
 
 export default CharacteristicsList;
+
 
 
 /*
@@ -61,4 +63,3 @@ export default CharacteristicsList;
   }
 }
 */
-{/* get keys Object.keys */ }

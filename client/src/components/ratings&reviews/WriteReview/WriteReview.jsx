@@ -215,6 +215,7 @@ class WriteReview extends React.Component {
           <div className="overall-rating">
             <b>* Overall</b>
             <div>Star mouse over</div>
+
             <div>
               <div>1 star - Poor</div>
               <div>2 star - Fair</div>
@@ -222,6 +223,7 @@ class WriteReview extends React.Component {
               <div>4 star - Good</div>
               <div>5 star - Great</div>
             </div>
+
           </div>
 
           <div className="recommend-product">

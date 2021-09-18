@@ -1,7 +1,5 @@
-const options = [
-
-  {
-    name: 'Size',
+const options = {
+  'Size': {
     1: 'A size too small',
     2: '½ a size too small',
     3: 'Perfect',
@@ -9,8 +7,7 @@ const options = [
     5: 'A size too big',
   },
 
-  {
-    name: 'Width',
+  'Width': {
     1: 'Too narrow',
     2: 'Slightly narrow',
     3: 'Perfect',
@@ -18,8 +15,7 @@ const options = [
     5: 'Too wide',
   },
 
-  {
-    name: 'Comfort',
+  'Comfort': {
     1: 'Uncomfortable',
     2: 'Slightly uncomfortable',
     3: 'Ok',
@@ -27,8 +23,7 @@ const options = [
     5: 'Perfect',
   },
 
-  {
-    name: 'Quality',
+  'Quality': {
     1: 'Poor',
     2: 'Below average',
     3: 'What I expected',
@@ -36,8 +31,7 @@ const options = [
     5: 'Perfect',
   },
 
-  {
-    name: 'Length',
+  'Length': {
     1: 'Runs Short',
     2: 'Runs slightly short',
     3: 'Perfect',
@@ -45,15 +39,13 @@ const options = [
     5: 'Runs long',
   },
 
-  {
-    name: 'Fit',
+  'Fit': {
     1: 'Runs tight',
     2: 'Runs slightly tight',
     3: 'Perfect',
     4: 'Runs slightly long',
     5: 'Runs long',
-  },
-
-];
+  }
+};
 
 export default options;
