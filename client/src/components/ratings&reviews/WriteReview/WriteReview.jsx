@@ -35,7 +35,8 @@ class WriteReview extends React.Component {
       },
       mouseOver: [0, 0, 0, 0, 0],
       metaData: metaData,
-      characteristics: {}
+      characteristics: {},
+      starDisplay: "",
     }
 
     this.minCharCount = this.minCharCount.bind(this);
@@ -60,25 +61,36 @@ class WriteReview extends React.Component {
     // })
   }
 
-  // "characteristics": {
-  //   "Size": {
-  //     "id": 135232,
-  //     "value": "4.0000000000000000"
-  //   },
+
 
   handleCharacteristicClick(name, e) {
     const { characteristics } = this.state;
 
-    var characteristics2 = Object.assign({}, this.state.characteristics);
-    characteristics2[name] = {
-      id: e.target.name,
-      value: Number(e.target.value)
-    }
+    // var characteristics2 = Object.assign({}, this.state.characteristics);
+    // characteristics2[name] = {
+    //   id: e.target.name,
+    //   value: Number(e.target.value)
+    // }
 
+    // var review2 = Object.assign({}, this.state.review);
+    var review2 = JSON.parse(JSON.stringify(this.state.review));
+    review2.characteristics.name["id"] = e.target.name;
+    review2.characteristics.name["value"] = eNumber(e.target.value);
+
+
+    // var characteristics2 = Object.assign({}, this.state.characteristics);
+    // characteristics2[name] = {
+    //   id: e.target.name,
+    //   value: Number(e.target.value)
+    // }
 
     this.setState({
-      characteristics: characteristics2
+      review: review2
     });
+
+    // this.setState({
+    //   characteristics: characteristics2
+    // });
 
     // this.setState({
     //   characteristics: {
@@ -214,14 +226,40 @@ class WriteReview extends React.Component {
 
           <div className="overall-rating">
             <b>* Overall</b>
-            <div>Star mouse over</div>
+            <div style={{
+              display: 'flex', justifyContent: 'center', fontSize: '20px', marginTop: '5px', marginBottom: '5px',
+            }}
+            >
+              {
+                this.state.mouseOver[0] === 1
+                  ? <span className="fa fa-star" aria-hidden="true" onMouseEnter={() => { this.setState({ mouseOver: [1, 0, 0, 0, 0] }); }} onClick={() => { this.setState({ rating: 1, mouseOver: [1, 0, 0, 0, 0], starRating: "Poor" }); }} />
+                  : <span className="fa fa-star-o" onMouseEnter={() => { this.setState({ mouseOver: [1, 0, 0, 0, 0] }); }} />
+              }
+              {
+                this.state.mouseOver[1] === 1
+                  ? <span className="fa fa-star" aria-hidden="true" onMouseEnter={() => { this.setState({ mouseOver: [1, 1, 0, 0, 0] }); }} onClick={() => { this.setState({ rating: 2, mouseOver: [1, 1, 0, 0, 0], starRating: "Fair" }); }} />
+                  : <span className="fa fa-star-o" onMouseEnter={() => { this.setState({ mouseOver: [1, 1, 0, 0, 0] }); }} />
+              }
+              {
+                this.state.mouseOver[2] === 1
+                  ? <span className="fa fa-star" aria-hidden="true" onMouseEnter={() => { this.setState({ mouseOver: [1, 1, 1, 0, 0] }); }} onClick={() => { this.setState({ rating: 3, mouseOver: [1, 1, 1, 0, 0], starRating: "Average" }); }} />
+                  : <span className="fa fa-star-o" onMouseEnter={() => { this.setState({ mouseOver: [1, 1, 1, 0, 0] }); }} />
+              }
+              {
+                this.state.mouseOver[3] === 1
+                  ? <span className="fa fa-star" aria-hidden="true" onMouseEnter={() => { this.setState({ mouseOver: [1, 1, 1, 1, 0] }); }} onClick={() => { this.setState({ rating: 4, mouseOver: [1, 1, 1, 1, 0], starRating: "Good" }); }} />
+                  : <span className="fa fa-star-o" onMouseEnter={() => { this.setState({ mouseOver: [1, 1, 1, 1, 0] }); }} />
+              }
+              {
+                this.state.mouseOver[4] === 1
+                  ? <span className="fa fa-star" aria-hidden="true" onKeyUp={this.handleKeyUp} onClick={() => { this.setState({ rating: 5, mouseOver: [1, 1, 1, 1, 1], starRating: "Great" }); }} />
+                  : <span className="fa fa-star-o" onMouseEnter={() => { this.setState({ mouseOver: [1, 1, 1, 1, 1] }); }} />
+              }
 
-            <div>
-              <div>1 star - Poor</div>
-              <div>2 star - Fair</div>
-              <div>3 star - Average</div>
-              <div>4 star - Good</div>
-              <div>5 star - Great</div>
+              <div style={{
+                display: 'flex', justifyContent: 'right', fontSize: '20px', marginTop: '5px', marginBottom: '5px',
+              }}
+              > {this.state.starRating}</div>
             </div>
 
           </div>
