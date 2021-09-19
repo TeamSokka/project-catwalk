@@ -35,7 +35,7 @@ const expandedImg = {
   overflow: 'hidden',
 };
 
-class PhotoMapEntry extends React.Component {
+class PhotoEntry extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -62,4 +62,4 @@ class PhotoMapEntry extends React.Component {
   }
 }
 
-export default PhotoMapEntry;
+export default PhotoEntry;

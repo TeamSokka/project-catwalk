@@ -1,11 +1,11 @@
 import React from 'react';
-import PhotoMapEntry from './photoMapEntry';
+import PhotoEntry from './PhotoEntry';
 
 const imgContainer = {
   display: 'flex',
 };
 
-class PhotosMap extends React.Component {
+class PhotoList extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -15,7 +15,7 @@ class PhotosMap extends React.Component {
       <div>
         <div style={imgContainer}>
           {values.map((photo) => (
-            <PhotoMapEntry photo={photo} key={photo.id} />
+            <PhotoEntry photo={photo} key={photo.id} />
           ))}
         </div>
       </div>
@@ -23,4 +23,4 @@ class PhotosMap extends React.Component {
   }
 }
 
-export default PhotosMap;
+export default PhotoList;

@@ -1,6 +1,8 @@
 import React from "react";
 import ReviewList from "./ReviewList";
 import StarRating from "./StarRatings";
+import PhotoList from "./PhotoList";
+
 import "../Styles/review-list-entry.scss";
 
 class ReviewListEntry extends React.Component {
@@ -83,7 +85,7 @@ class ReviewListEntry extends React.Component {
               this.props.review.photos.length > 0
                 ? (
                   <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
-                    <PhotosMap photos={this.props.review.photos} />
+                    <PhotoList photos={this.props.review.photos} />
                   </div>
                 )
                 : null
