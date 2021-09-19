@@ -1,5 +1,6 @@
 import React from 'react';
 import CharacteristicsList from './CharacteristicsList';
+import '../Styles/write-review.scss';
 
 class WriteReview extends React.Component {
   constructor(props) {
@@ -242,7 +243,9 @@ class WriteReview extends React.Component {
           </div>
 
           <div className="overall-rating">
-            <b>* Overall</b>
+            <b style={{
+              display: 'flex', justifyContent: 'center', padding: '10px'
+            }}>* Overall</b>
             <div style={{
               display: 'flex', justifyContent: 'center', fontSize: '20px', marginTop: '5px', marginBottom: '5px',
             }}
@@ -284,21 +287,20 @@ class WriteReview extends React.Component {
                   ? <span className="fa fa-star" aria-hidden="true" onKeyUp={this.handleKeyUp} onClick={() => { this.setState({ rating: 5, mouseOver: [1, 1, 1, 1, 1], starRating: "Great" }); }} />
                   : <span className="fa fa-star-o" onMouseEnter={() => { this.setState({ mouseOver: [1, 1, 1, 1, 1] }); }} />
               }
+              <div style={{
+                display: 'flex', justifyContent: 'right', fontSize: '13px', marginTop: '5px', marginBottom: '5px', marginLeft: '10px'
+              }}
+              > {this.state.starRating}</div>
             </div>
-            <div style={{
-              display: 'flex', justifyContent: 'right', fontSize: '20px', marginTop: '5px', marginBottom: '5px',
-            }}
-            > {this.state.starRating}</div>
-
           </div>
 
           <div className="recommend-product">
             <b>* Do you recommend this product</b>
             <div>
-              <input type="radio" id="recommend-yes" name="recommend" value="Yes" onClick={this.handleRecommendClick} />
+              <input className="recommend-product" type="radio" id="recommend-yes" name="recommend" value="Yes" onClick={this.handleRecommendClick} />
               <label htmlFor="recommend-yes">Yes</label>
 
-              <input type="radio" id="recommend-no" name="recommend" value="No" onClick={this.handleRecommendClick} />
+              <input className="recommend-product" type="radio" id="recommend-no" name="recommend" value="No" onClick={this.handleRecommendClick} />
               <label htmlFor="recommend-no">No</label>
             </div>
           </div>
@@ -310,24 +312,12 @@ class WriteReview extends React.Component {
             />
           </div>
 
-          <div className="review-summary">
-            <label htmlFor="review-summary">Review Summary (optional)</label>
-            <br></br>
-            <textarea id="review-summary"
-              name="summary"
-              rows="5" cols="33"
-              value={this.state.summary}
-              onChange={this.handleInputChange}
-              placeholder="Example: Best purchase ever!">
-            </textarea>
-          </div>
-
           <div className="name">
             <label htmlFor="name"><b>* Name</b></label>
             <br></br>
             <textarea id="name"
               name="name"
-              rows="2" cols="33"
+              rows="1" cols="33"
               value={this.state.name}
               onChange={this.handleInputChange}
               placeholder="Example:jackson11">
@@ -348,6 +338,18 @@ class WriteReview extends React.Component {
             </textarea>
             <br></br>
             <small>For authentication reasons, you will not be emailed</small>
+          </div>
+
+          <div className="review-summary">
+            <label htmlFor="review-summary">Review Summary (optional)</label>
+            <br></br>
+            <textarea id="review-summary"
+              name="summary"
+              rows="5" cols="33"
+              value={this.state.summary}
+              onChange={this.handleInputChange}
+              placeholder="Example: Best purchase ever!">
+            </textarea>
           </div>
 
           <div className="review-body">
@@ -371,7 +373,7 @@ class WriteReview extends React.Component {
             <input id="photos" type="file" name="filefield" multiple="multiple" ></input>
           </div>
 
-          <button type="button" onClick={(e) => { this.submitReview(e) }}>Submit Review</button>
+          <button className="button" type="button" onClick={(e) => { this.submitReview(e) }}>Submit Review</button>
 
         </form >
       </div >

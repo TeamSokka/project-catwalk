@@ -94,6 +94,7 @@ class RatingsAndReviews extends React.Component {
   }
 
   // Mark review as report vs Helpful
+  // need to fix --- updates 2 every time
   handlePutReview(review_id, type) {
     axios.put(`/reviews/${review_id}/${type}`)
       .then((result) => {
