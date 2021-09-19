@@ -110,13 +110,12 @@ class RatingBreakdown extends React.Component {
                 <div>
                   <div className="star-filter">
                     {this.props.starSort
-                      .sort((a, b) => b - a)
                       .map((star) => (
                         <StarFilterEntry star={star} sortByStar={this.props.sortByStar} key={star} />
                       ))}
                   </div>
                   <div className="clear-star-filter" aria-hidden="true" onClick={this.props.clearStarFilter}>
-                    <u style={{ color: 'grey', fontSize: '13px' }}>Clear Star Review Filter</u>
+                    <u style={{ color: 'grey', fontSize: '13px' }}>Remove all filters</u>
                   </div>
                 </div>
               )

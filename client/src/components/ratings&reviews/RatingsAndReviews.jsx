@@ -79,17 +79,15 @@ class RatingsAndReviews extends React.Component {
         }
 
         var startIndex = (this.state.curPage - 1) * 2;
-        var list1;
-        var list2;
         var reviewListTemp = [];
         if (startIndex !== 0) {
-          list1 = this.state.reviewList.slice(0, startIndex);
-          reviewListTemp.concat(list1);
+          var list1 = this.state.reviewList.slice(0, startIndex);
+          reviewListTemp = reviewListTemp.concat(list1);
         }
-        reviewListTemp.concat(result.data.results);
+        reviewListTemp = reviewListTemp.concat(result.data.results);
         if (startIndex + 2 < this.state.reviewList.length) {
-          list2 = this.state.reviewList.slice(startIndex, this.state.reviewList.length);
-          reviewListTemp.concat(list1);
+          var list2 = this.state.reviewList.slice(startIndex, this.state.reviewList.length);
+          reviewListTemp = reviewListTemp.concat(list2);
         }
 
 
@@ -176,7 +174,6 @@ class RatingsAndReviews extends React.Component {
           curPage: pageIndex,
         })
 
-        alert(pageIndex);
         this.getReviewHelpful(2, this.state.sortOption, pageIndex);
       })
       .catch((error) => {
@@ -214,15 +211,24 @@ class RatingsAndReviews extends React.Component {
   sortByStar(e) {
     const { starSort } = this.state;
     if (starSort.indexOf(e.target.id) === -1) {
+      var starSortTemp = this.state.starSort.slice();
+      starSortTemp.push(Number(e.target.id));
+      this.sorting(starSortTemp);
       this.setState({
-        starSort: [...starSort, e.target.id],
+        starSort: starSortTemp
       });
     } else {
-      starSort.splice(starSort.indexOf(e.target.id), 1);
+      var starSortTemp = this.state.starSort.slice();
+      starSortTemp.splice(starSortTemp.indexOf(e.target.id), 1);
       this.setState({
-        starSort,
+        starSort: starSortTemp
       });
     }
+  }
+
+  sorting(starSortArray) {
+    starSortArray.sort((a, b) => b - a);
+    return starSortArray;
   }
 
   clearStarFilter() {
