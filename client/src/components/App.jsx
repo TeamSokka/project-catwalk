@@ -11,6 +11,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      // 40344
       productID: 40344,
       productInfo: {},
       relatedProducts: [],
@@ -19,7 +20,7 @@ class App extends React.Component {
       metaData: {},
       metaReady: false,
     }
-    // this.fetchMeta = this.fetchMeta.bind(this);
+    this.fetchMeta = this.fetchMeta.bind(this);
   }
 
   componentDidMount() {

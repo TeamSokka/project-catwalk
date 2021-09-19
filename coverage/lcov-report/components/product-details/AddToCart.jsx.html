@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">11.11% </span>
+                <span class="strong">44.44% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>1/9</span>
+                <span class='fraction'>4/9</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">33.33% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/12</span>
+                <span class='fraction'>4/12</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">33.33% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/3</span>
+                <span class='fraction'>1/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">12.5% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>1/8</span>
+                <span class='fraction'>4/8</span>
             </div>
         
             
@@ -131,14 +131,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -196,15 +196,15 @@
 //  quantity selector
 //  add to cart button
 &nbsp;
-var AddToCart = <span class="fstat-no" title="function not covered" >(p</span>rops) =&gt; {
-  const quantities = <span class="cstat-no" title="statement not covered" >[];</span>
-<span class="cstat-no" title="statement not covered" >  if (typeof props.selectedsize === 'object') {</span>
+var AddToCart = (props) =&gt; {
+  const quantities = [];
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (typeof props.selectedsize === 'object') {
 <span class="cstat-no" title="statement not covered" >    for (var i = <span class="cstat-no" title="statement not covered" >1;</span> i &lt;= props.selectedsize.quantity &amp;&amp; i &lt;= 15; i++) {</span>
 <span class="cstat-no" title="statement not covered" >      quantities.push(i);</span>
     };
   }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  return (</span>
+  return (
   &lt;form id="add-to-cart-form"
     onSubmit={props.handlecartsubmit}&gt;
     &lt;div&gt;
@@ -215,14 +215,14 @@ var AddToCart = <span class="fstat-no" title="function not covered" >(p</span>ro
           ? Object.keys(props.selectedstyle.skus).map(<span class="fstat-no" title="function not covered" >(s</span>ku, index) =&gt; (
 <span class="cstat-no" title="statement not covered" >              &lt;option key={index} value={sku}&gt;{props.selectedstyle.skus[sku].size}&lt;/option&gt;</span>
             ))
-          : &lt;option&gt;OUT OF STOCK&lt;/option&gt;
+          : <span class="branch-1 cbranch-no" title="branch not covered" >&lt;option&gt;OUT OF STOCK&lt;/option&gt;</span>
           }
         &lt;/select&gt;
       &lt;/label&gt;
       &lt;label&gt;Quantity:
         &lt;select id="quantity-selector" name="quantity" value={props.selectedquantity} onChange={props.handlequantityselect}&gt;
           {props.selectedsize
-            ? quantities.map(<span class="fstat-no" title="function not covered" >(q</span>uantity, index) =&gt; (
+            ? <span class="branch-0 cbranch-no" title="branch not covered" >quantities.map(<span class="fstat-no" title="function not covered" >(q</span>uantity, index) =&gt; (</span>
 <span class="cstat-no" title="statement not covered" >              &lt;option value={quantity} key={index}&gt;{quantity}&lt;/option&gt;</span>
             ))
             : &lt;option&gt;-&lt;/option&gt;
@@ -232,7 +232,7 @@ var AddToCart = <span class="fstat-no" title="function not covered" >(p</span>ro
     &lt;/div&gt;
     &lt;div&gt;
       {props.selectedsize
-        ? props.selectedsize.quantity === 0
+        ? <span class="branch-0 cbranch-no" title="branch not covered" >props.selectedsize.quantity === 0</span>
           ? &lt;span&gt;&lt;em&gt;Item out of stock in this style and size.&lt;/em&gt;&lt;/span&gt;
           : &lt;input id="add-to-cart-button" type="submit" value="Add to Cart"&gt;&lt;/input&gt;
         : &lt;button id="add-to-cart-button" value="Add to Cart" onClick={props.opensizeselect}&gt;Add to Cart&lt;/button&gt;
@@ -262,7 +262,7 @@ export default AddToCart;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Sat Sep 18 2021 22:34:33 GMT-0700 (Pacific Daylight Time)
+                at Sun Sep 19 2021 10:19:58 GMT-0700 (Pacific Daylight Time)
             </div>
         </div>
         <script src="../../prettify.js"></script>

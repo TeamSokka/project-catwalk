@@ -8,6 +8,12 @@ import ReviewListEntry from '../client/src/components/ratings&reviews/ReviewList
 import SortOptions from '../client/src/components/ratings&reviews/SortOptions/SortOptions'
 import RatingBreakdown from '../client/src/components/ratings&reviews/RatingBreakdown/RatingBreakdown'
 import ProductBreakdown from '../client/src/components/ratings&reviews/ProductBreakdown/ProductBreakdown'
+import CharacteristicsList from '../client/src/components/ratings&reviews/WriteReview/CharacteristicsList';
+import CharacteristicsListEntry from '../client/src/components/ratings&reviews/WriteReview/CharacteristicsListEntry';
+import characteristicOptions from '../client/src/components/ratings&reviews/WriteReview/characteristicOptions';
+
+
+// npm test -- --coverage
 
 describe('App', () => {
   test('renders App component', () => {
@@ -27,6 +33,18 @@ describe('<WriteReview />', () => {
     render(<WriteReview metaData={metaDummy} />);
   });
 });
+
+describe('<CharacteristicsList />', () => {
+  test('renders CharacteristicsList component', () => {
+    render(<CharacteristicsList metaData={metaDummy} />);
+  });
+});
+
+// describe('<CharacteristicsListEntry />', () => {
+//   test('renders CharacteristicsListEntry component', () => {
+//     render(<CharacteristicsListEntry characteristic={metaDummy.characteristics[Size]} options={characteristicOptions[Size]} />);
+//   });
+// });
 
 describe('<ReviewList />', () => {
   test('renders ReviewList component', () => {
