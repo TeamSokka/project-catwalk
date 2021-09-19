@@ -78,6 +78,17 @@ class ReviewListEntry extends React.Component {
 
         <div className="helpfulness-layout">
           <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
+
+            {
+              this.props.review.photos.length > 0
+                ? (
+                  <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
+                    <PhotosMap photos={this.props.review.photos} />
+                  </div>
+                )
+                : null
+            }
+
             <div style={{
               display: 'flex', justifyContent: 'flex-end', float: 'right', marginLeft: 'auto', marginTop: 'auto',
             }}
