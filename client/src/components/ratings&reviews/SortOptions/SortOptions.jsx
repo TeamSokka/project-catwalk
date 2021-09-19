@@ -13,7 +13,7 @@ class SortOptions extends React.Component {
 
   render() {
     return (
-      <div>
+      <div style={{ fontFamily: 'arial' }}>
         {`${this.totalReviews(this.props.metaData.recommended)} reviews, sorted by`}
         <select value={this.props.sortOption} className="options-bar" onChange={this.props.sortChange}>
           <option value="Helpful">Helpful</option>
