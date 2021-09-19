@@ -81,16 +81,20 @@ class RatingsAndReviews extends React.Component {
         var startIndex = (this.state.curPage - 1) * 2;
         var list1;
         var list2;
+        var reviewListTemp = [];
         if (startIndex !== 0) {
           list1 = this.state.reviewList.slice(0, startIndex);
+          reviewListTemp.concat(list1);
         }
+        reviewListTemp.concat(result.data.results);
         if (startIndex + 2 < this.state.reviewList.length) {
           list2 = this.state.reviewList.slice(startIndex, this.state.reviewList.length);
+          reviewListTemp.concat(list1);
         }
 
-        var totalList = [];
-        var reviewListTemp = totalList.concat(list1, result.data.results, list2);
-        alert(result.data.results.length);
+
+        // reviewListTemp = totalList.concat(list1, result.data.results, list2);
+        // alert(result.data.results.length);
 
         this.setState({
           reviewList: reviewListTemp,
