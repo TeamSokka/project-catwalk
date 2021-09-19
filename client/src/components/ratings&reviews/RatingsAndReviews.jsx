@@ -21,7 +21,7 @@ class RatingsAndReviews extends React.Component {
       pageLoaded: 1,
       writeReviewModal: false,
       hideMoreReviews: false,
-      sortOption: 0,
+      sortOption: 'Relevant',
       reviewsReady: false,
     }
 
@@ -38,10 +38,18 @@ class RatingsAndReviews extends React.Component {
   }
 
   // Get reviews
-  handleGetReview() {
+  handleGetReview(sort, pageLoaded) {
+    var sortOptionTemp = this.state.sortOption.toLowerCase();
+    var pageLoadedTemp = this.state.pageLoaded;
+    if (sort !== undefined && pageLoaded !== undefined) {
+      sortOptionTemp = sort.toLowerCase();
+      pageLoadedTemp = pageLoaded;
+    }
+
     const { productID } = this.props;
     // axios.get(`/reviews?product_id=${productID}&page=1&count=5&sort=helpful`)
-    axios.get(`/reviews?product_id=${productID}&count=2&page=${this.state.pageLoaded}`)
+
+    axios.get(`/reviews?product_id=${productID}&count=2&page=${pageLoadedTemp}&sort=${sortOptionTemp}`)
       .then((result) => {
         if (result.data.results.length === 0) {
           this.setState({
@@ -106,9 +114,15 @@ class RatingsAndReviews extends React.Component {
   }
 
   sortChange(e) {
+    var sort = e.target.value;
+    alert(sort);
     this.setState({
-      sortOption: e.target.value,
+      sortOption: sort,
+      pageLoaded: 1,
+      reviewsDisplayed: 0,
+      reviewList: [],
     });
+    this.handleGetReview(sort, 1);
   }
 
   writeReviewClick(e) {

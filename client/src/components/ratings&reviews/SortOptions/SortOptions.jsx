@@ -25,9 +25,8 @@ class SortOptions extends React.Component {
   render() {
     return (
       <div>
-        {`${this.totalReviews(this.props.metaData.recommended)} reviews, sorted by most `}
-
-        <select style={optionsBar} onChange={this.props.sortChange}>
+        {`${this.totalReviews(this.props.metaData.recommended)} reviews, sorted by`}
+        <select value={this.props.sortOption} style={optionsBar} onChange={this.props.sortChange}>
           <option value="Helpful">Helpful</option>
           <option value="Newest">Newest</option>
           <option value="Relevant">Relevant</option>
