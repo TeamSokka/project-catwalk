@@ -21,6 +21,8 @@ const QuestionList = (props) => {
           />
         ))
         }
+        </div>
+        <div>
         {loadMoreQuestions}
         <button className='btn' onClick={(e) => setModal(true)} >ADD A QUESTION +</button>
         {

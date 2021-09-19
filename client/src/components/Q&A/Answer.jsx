@@ -1,10 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import moment from 'moment';
+import axios from 'axios';
 
 const Answer = (props) => {
-  const { answer, putRequest } = props;
-  // const [helpfulBtn, setHelpfulBtn] = useState(false);
-  // const [reportBtn, setReportBtn] = useState(false);
+  const { answer } = props;
+  const [helpfulBtn, setHelpfulBtn] = useState(false);
+  const [reportBtn, setReportBtn] = useState(false);
+  const [helpCount, setHelpCount] = useState(answer.helpfulness);
+
+  const helpfulClick = () => {
+    if (helpfulBtn) {
+      return;
+    }
+    axios.put(`/qa/answers/${answer.id}/helpful`)
+        .then(() => setHelpCount((prevState) => prevState + 1))
+        .catch((err) => console.log('Error updating ', err));
+    setHelpfulBtn(true);
+  }
+
+  const reportClick = () => {
+    if (reportBtn) {
+      return;
+    }
+    axios.put(`/qa/answers/${answer.id}/report`)
+    .catch((err) => console.log('Error reporting ', err));
+  }
 
   let answerer = <a style={{ fontWeight: answer.answerer_name === 'Seller' && 'bold' }} >{answer.answerer_name}</a>
 
@@ -12,14 +32,15 @@ const Answer = (props) => {
     <div className='answer'>
       A: {answer.body}
       <br />
+      {answer.photos.length > 0 && <img src={answer.photos} alt='some image' width='150' height='100' />}
       <div className='answer-info'>
-      by {answerer},  {moment(answer.date).format('MMMM Do, YYYY')} | Helpful?{'  '}
+        by {answerer},  {moment(answer.date).format('MMMM Do, YYYY')} | Helpful?{'  '}
+        <u style={{ cursor: 'pointer' }}
+          onClick={() => helpfulClick()} >Yes</u> ({helpCount}) |{'  '}
       <u style={{ cursor: 'pointer' }}
-        onClick={() => putRequest('answers', answer.id, 'helpful')} >Yes</u> ({answer.helpfulness}) |{'  '}
-      <u style={{ cursor: 'pointer' }}
-        onClick={() => putRequest('answers', answer.id, 'report')} >Report</u>
-        </div>
+        onClick={() => reportClick()} >Report</u>
     </div>
+    </div >
   )
 }
 

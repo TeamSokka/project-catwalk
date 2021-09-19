@@ -16,7 +16,6 @@ class QuestionsAndAnswers extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.getQuestions = this.getQuestions.bind(this);
-    this.putRequest = this.putRequest.bind(this);
   }
 
   componentDidMount() { this.getQuestions() }
@@ -78,15 +77,15 @@ class QuestionsAndAnswers extends React.Component {
     // }
   }
 
-  putRequest(path, id, endpoint) {
-    if (this.state.disabled) {
-      return;
-    }
-    axios.put(`/qa/${path}/${id}/${endpoint}`)
-      .then(() => this.getQuestions())
-      .then(() => this.setState({ disabled: true }))
-      .catch((err) => console.log('Error updating ', err));
-  }
+  // putRequest(path, id, endpoint) {
+  //   if (this.state.disabled) {
+  //     return;
+  //   }
+  //   axios.put(`/qa/${path}/${id}/${endpoint}`)
+  //     .then(() => this.getQuestions())
+  //     .then(() => this.setState({ disabled: true }))
+  //     .catch((err) => console.log('Error updating ', err));
+  // }
 
   // post request from postman not working...
   postQuestion(body) {
@@ -111,7 +110,6 @@ class QuestionsAndAnswers extends React.Component {
           questions={this.state.questions} />
         <QuestionList
           questions={this.state.questions}
-          putRequest={this.putRequest}
           productID={this.props.productID}
           productInfo={this.props.productInfo}
           postQuestion={this.postQuestion.bind(this)}
