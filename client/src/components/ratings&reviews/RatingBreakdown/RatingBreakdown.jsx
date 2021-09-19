@@ -81,7 +81,7 @@ class RatingBreakdown extends React.Component {
           gridRow: '3',
         }}
         >
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-around', marginLeft: '-90px', paddingBottom: '20px' }}>
             {stars}
           </div>
         </div>
