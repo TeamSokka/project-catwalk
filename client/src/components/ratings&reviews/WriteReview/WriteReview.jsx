@@ -238,7 +238,7 @@ class WriteReview extends React.Component {
         <form onSubmit={this.submitReview}>
           <div className="form-title">
             <h1>Write Your Review</h1>
-            <h3>About the Product Name: {name}</h3>
+            <h3>About the Product Name: <i>{name}</i> </h3>
             <small>* Required fields</small>
           </div>
 
@@ -370,7 +370,7 @@ class WriteReview extends React.Component {
             <label htmlFor="photos">Upload Photos (optional)</label>
             <br></br>
             {/* <button type="button" onClick={(e) => e.preventDefault}>Add Photos</button> */}
-            <input id="photos" type="file" name="filefield" multiple="multiple" ></input>
+            <input className="photosFile" id="photos" type="file" name="filefield" multiple="multiple" ></input>
           </div>
 
           <button className="button" type="button" onClick={(e) => { this.submitReview(e) }}>Submit Review</button>

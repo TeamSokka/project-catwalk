@@ -69,7 +69,7 @@ class RatingBreakdown extends React.Component {
     return (
       <div className="grid-layout">
         <div className="header">
-          Ratings and Reviews
+          RATINGS AND REVIEWS
         </div>
 
         <div className="avg-rating-spacing">

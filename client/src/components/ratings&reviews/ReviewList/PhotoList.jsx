@@ -10,11 +10,10 @@ class PhotoList extends React.Component {
     super(props);
   }
   render() {
-    var values = this.props.photos;
     return (
       <div>
         <div style={imgContainer}>
-          {values.map((photo) => (
+          {this.props.photos.map((photo) => (
             <PhotoEntry photo={photo} key={photo.id} />
           ))}
         </div>
@@ -24,3 +23,8 @@ class PhotoList extends React.Component {
 }
 
 export default PhotoList;
+
+/*
+photos: [{…}]
+{id: 1595336, url: "wwww.etc"}
+*/
