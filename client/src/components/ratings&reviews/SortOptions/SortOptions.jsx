@@ -1,22 +1,11 @@
 import React from 'react';
-
-const optionsBar = {
-  width: '100px',
-  boxShadow: '2px 2px 4px grey',
-  marginLeft: '10px',
-  border: '1px solid grey',
-  textAlign: 'center',
-  cursor: 'pointer',
-};
-
+import '../Styles/ratings-reviews.scss'
 class SortOptions extends React.Component {
   constructor(props) {
     super(props);
-
     this.totalReviews = this.totalReviews.bind(this);
   }
 
-  // total reviews
   totalReviews(obj) {
     const total = Number(obj.false) + Number(obj.true);
     return total;
@@ -26,7 +15,7 @@ class SortOptions extends React.Component {
     return (
       <div>
         {`${this.totalReviews(this.props.metaData.recommended)} reviews, sorted by`}
-        <select value={this.props.sortOption} style={optionsBar} onChange={this.props.sortChange}>
+        <select value={this.props.sortOption} className="options-bar" onChange={this.props.sortChange}>
           <option value="Helpful">Helpful</option>
           <option value="Newest">Newest</option>
           <option value="Relevant">Relevant</option>

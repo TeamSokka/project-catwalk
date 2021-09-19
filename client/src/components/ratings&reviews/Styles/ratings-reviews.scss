@@ -130,7 +130,17 @@
 
 .review-buttons {
   width: 100%;
-  margin-top: 10px;
+  margin: 15px;
   grid-column: 2/-1;
   grid-row-end: 14;
+};
+
+
+.options-bar {
+  box-shadow: 1px 1px 2px grey;
+  width: 120px;
+  margin: 15px;
+  padding: 6px;
+  text-align: center;
+  cursor: pointer;
 };
