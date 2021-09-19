@@ -23,6 +23,7 @@ class ProductBreakdown extends React.Component {
               gridRow: '1',
               marginBottom: '10px',
               width: '228px',
+              paddingTop: '65px'
             }}
             >
               <div className="characteristics-title">Comfort</div>

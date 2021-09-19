@@ -1,4 +1,5 @@
 .grid-layout {
+  padding-top: 50px;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: minwidth(6, 1fr) 100px;
