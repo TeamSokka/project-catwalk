@@ -28,7 +28,7 @@ class App extends React.Component {
 
     this.fetchMeta();
     this.getRelated(productID);
-    this.getProductInfo(productInfo);
+    this.getProductInfo(productID);
     this.getStyles();
   }
 

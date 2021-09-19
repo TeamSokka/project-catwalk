@@ -2,17 +2,90 @@ app {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-#image-gallery {
-  z-index: 5;
+#overview-box {
+  display: flex;
+  flex-direction: row;
+
 }
+
+
+/* #image-gallery {
+  z-index: 5;
+} */
 
 #thumbnail-list {
   z-index: 0;
   display: flex;
   flex-direction: column;
+  position: absolute;
+}
+
+#main-image {
+  z-index: 10;
+}
+
+#next-to-image {
+  margin: 5px;
+  padding: 5px;
+  width: 450px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#details {
+  display: flex;
+  flex-direction: column;
+}
+
+#style-selector {
+  margin: 5px;
+}
+
+#add-to-cart-form {
+  margin: 5px;
+  padding: 5px;
+  width: 150px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#cart-selectors {
+  margin: 5px;
+  /* padding: 5px; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+/* .selector {
+  margin: 5px;
+} */
+
+#cart-buttons {
+  margin: 5px;
+  padding: 5px;
+  /* width: 150px; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .thumbnail {
   margin: 5px;
 }
 
+.style {
+  border-radius: 50%;
+  /* padding-top: 75%; */
+  width: 100px;
+  height: 100px;
+  /* background-position: center center;
+  background-repeat: no-repeat; */
+}
+
+/* button {
+  margin: 5px;
+} */

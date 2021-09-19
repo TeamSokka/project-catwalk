@@ -3,7 +3,7 @@ import React from 'react';
 //ProductInfo module
 
 var ProductInfo = (props) => (
-  <div>
+  <div id="selected-product-info">
     {/* <StarRating /> */}
     <span id="category">{props.productinfo.category}</span>
     <span id="name">{props.productinfo.name}</span>

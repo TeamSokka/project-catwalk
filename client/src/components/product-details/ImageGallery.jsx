@@ -24,7 +24,7 @@ import ThumbnailList from './ThumbnailList.jsx';
 var ImageGallery = (props) => (
   <div id="image-gallery">
     {props.photos.length
-      ? <img className="main-image" src={props.photos[props.selectedphotoindex].url} width="750">
+      ? <img id="main-image" src={props.photos[props.selectedphotoindex].url} width="750">
       </img>
       : <p><em>No photo to display.</em></p>
     }

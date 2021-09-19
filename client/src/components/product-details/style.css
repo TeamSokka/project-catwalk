@@ -1,0 +1,39 @@
+app {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+#overview-box {
+  margin: 5px;
+}
+
+#next-to-image {
+  margin: 5px;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#image-gallery {
+  z-index: 5;
+}
+
+#thumbnail-list {
+  z-index: 0;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+}
+
+.thumbnail {
+  margin: 5px;
+}
+
+.style {
+  border-radius: 50%;
+  /* padding-top: 75%; */
+  width: 100px;
+  height: 100px;
+  /* background-position: center center;
+  background-repeat: no-repeat; */
+}

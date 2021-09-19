@@ -111,12 +111,11 @@ class ProductDetail extends React.Component {
     // });
     // console.log('styles:', this.state.styles);
     // console.log('selected style:', this.state.selectedStyle);
-    console.log('selectedStyle:', this.props.selectedStyle);
   }
 
   render() {
     return (
-      <div><h4>Product Details</h4>
+      <div id="overview-box">
         <ImageGallery
           photos={this.props.selectedStyle.photos}
           selectedphotoindex={this.state.selectedPhotoIndex}
@@ -125,7 +124,7 @@ class ProductDetail extends React.Component {
           handleUpArrowClick={this.handleUpArrowClick.bind(this)}
           handleDownArrowClick={this.handleDownArrowClick.bind(this)}
         />
-        <div>
+        <div id="next-to-image">
           <ProductInfo
             productinfo={this.props.productInfo}
             selectedstyle={this.props.selectedStyle}

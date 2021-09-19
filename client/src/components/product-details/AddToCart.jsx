@@ -16,9 +16,9 @@ var AddToCart = (props) => {
   return (
   <form id="add-to-cart-form"
     onSubmit={props.handlecartsubmit}>
-    <div>
+    <div id="cart-selectors">
       <label>Size:
-        <select id="size-selector" name="sizesku" onChange={props.handlesizeselect}>
+        <select className="size selector" name="sizesku" onChange={props.handlesizeselect}>
           <option value="">Select Size:</option>
           {props.selectedstyle.skus
           ? Object.keys(props.selectedstyle.skus).map((sku, index) => (
@@ -29,7 +29,7 @@ var AddToCart = (props) => {
         </select>
       </label>
       <label>Quantity:
-        <select id="quantity-selector" name="quantity" value={props.selectedquantity} onChange={props.handlequantityselect}>
+        <select className="quantity selector" name="quantity" value={props.selectedquantity} onChange={props.handlequantityselect}>
           {props.selectedsize
             ? quantities.map((quantity, index) => (
               <option value={quantity} key={index}>{quantity}</option>
@@ -39,14 +39,14 @@ var AddToCart = (props) => {
         </select>
       </label>
     </div>
-    <div>
+    <div id="cart-buttons">
       {props.selectedsize
         ? props.selectedsize.quantity === 0
           ? <span><em>Item out of stock in this style and size.</em></span>
           : <input id="add-to-cart-button" type="submit" value="Add to Cart"></input>
         : <button id="add-to-cart-button" value="Add to Cart" onClick={props.opensizeselect}>Add to Cart</button>
       }
-      <button>Star</button>
+      {/* <button>Star</button> */}
     </div>
   </form>
   );
