@@ -8,11 +8,24 @@ import "../Styles/review-list-entry.scss";
 class ReviewListEntry extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      'yes': 0,
+      'no': 0,
+    }
     this.handleHelpfulClick = this.handleHelpfulClick.bind(this);
   }
 
+  // helpfulClick(e) {
+  //   var temp = e.target.value + 1;
+  //   this.setState({
+  //     [e.target.name]: temp;
+  //   })
+  // }
+
+
   handleHelpfulClick(e) {
-    this.props.handlePutReview(this.props.review.review_id, e.target.id);
+    this.props.handlePutReview(this.props.review.review_id, e.target.id, this.props.index);
   }
 
   render() {

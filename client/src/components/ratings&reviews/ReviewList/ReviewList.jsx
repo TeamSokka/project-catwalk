@@ -11,8 +11,9 @@ class ReviewList extends React.Component {
   render() {
     const list = [];
     const curReviewList = this.props.reviewList.slice(0, this.props.reviewsDisplayed);
-    curReviewList.forEach((review, value) => {
-      list.push(<ReviewListEntry review={review} key={value} handlePutReview={this.props.handlePutReview} />)
+    var index = 0;
+    curReviewList.forEach((review, index) => {
+      list.push(<ReviewListEntry review={review} key={index} index={index} handlePutReview={this.props.handlePutReview} />)
     })
     return (
       <ul className="grid-layout">{list}</ul>

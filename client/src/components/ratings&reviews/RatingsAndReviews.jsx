@@ -18,14 +18,17 @@ class RatingsAndReviews extends React.Component {
       starSort: [],
       // noReviews: false,
       reviewsDisplayed: 0,
-      pageLoaded: 1,
+      pageLoaded: 0,
       writeReviewModal: false,
       hideMoreReviews: false,
       sortOption: 'Relevant',
       reviewsReady: false,
+      curPage: 0,
     }
 
     this.handleGetReview = this.handleGetReview.bind(this);
+    this.getReviewSortChange = this.getReviewSortChange.bind(this);
+    this.getReviewHelpful = this.getReviewHelpful.bind(this);
     this.handlePostReview = this.handlePostReview.bind(this);
     this.handlePutReview = this.handlePutReview.bind(this);
     this.moreReviewsClick = this.moreReviewsClick.bind(this);
@@ -38,23 +41,16 @@ class RatingsAndReviews extends React.Component {
   }
 
   // Get reviews
-  handleGetReview(sort, pageLoaded) {
-    var sortOptionTemp = this.state.sortOption.toLowerCase();
-    var pageLoadedTemp = this.state.pageLoaded;
-    if (sort !== undefined && pageLoaded !== undefined) {
-      sortOptionTemp = sort.toLowerCase();
-      pageLoadedTemp = pageLoaded;
-    }
-
+  handleGetReview(count, sort, pageLoaded) {
     const { productID } = this.props;
-    axios.get(`/reviews?product_id=${productID}&count=2&page=${pageLoadedTemp}&sort=${sortOptionTemp}`)
+    var sortLowerCase = sort.toLowerCase();
+    axios.get(`/reviews?product_id=${productID}&count=${count}&page=${pageLoaded}&sort=${sortLowerCase}`)
       .then((result) => {
         if (result.data.results.length === 0) {
           this.setState({
             hideMoreReviews: true
           });
         }
-
         var pageTemp = this.state.pageLoaded + 1;
         var reviewListTemp = this.state.reviewList.concat(result.data.results);
         var reviewsDisplayedTemp = this.state.reviewsDisplayed + result.data.results.length;
@@ -65,20 +61,91 @@ class RatingsAndReviews extends React.Component {
           pageLoaded: pageTemp,
           reviewsDisplayed: reviewsDisplayedTemp,
         })
-
-        // if (this.state.reviewsDisplayed < this.state.reviewList.length) {
-        //   var newEnd = this.state.reviewsDisplayed + 2;
-        //   if (newEnd > this.state.reviewList.length) {
-        //     newEnd--;
-        //   }
-        //   this.setState({
-        //     reviewsDisplayed: newEnd
-        //   })
-        // }
       })
       .catch((error) => {
         console.log('Error with handleGetReview ' + error);
       })
+  }
+  //  this.getReviewHelpful(2, this.state.sortOption, pageIndex);
+  getReviewHelpful(count, sort, pageLoaded) {
+    const { productID } = this.props;
+    var sortLowerCase = sort.toLowerCase();
+    axios.get(`/reviews?product_id=${productID}&count=${count}&page=${pageLoaded}&sort=${sortLowerCase}`)
+      .then((result) => {
+        if (result.data.results.length === 0) {
+          this.setState({
+            hideMoreReviews: true
+          });
+        }
+
+        var startIndex = (this.state.curPage - 1) * 2;
+        var list1;
+        var list2;
+        if (startIndex !== 0) {
+          list1 = this.state.reviewList.slice(0, startIndex);
+        }
+        if (startIndex + 2 < this.state.reviewList.length) {
+          list2 = this.state.reviewList.slice(startIndex, this.state.reviewList.length);
+        }
+
+        var totalList = [];
+        var reviewListTemp = totalList.concat(list1, result.data.results, list2);
+        alert(result.data.results.length);
+
+        this.setState({
+          reviewList: reviewListTemp,
+          reviewsReady: true,
+        })
+      })
+      .catch((error) => {
+        console.log('Error with handleGetReview ' + error);
+      })
+  }
+
+
+  getReviewSortChange(sort, pageLoaded) {
+    // var sortOptionTemp = this.state.sortOption.toLowerCase();
+    // var pageLoadedTemp = this.state.pageLoaded;
+    // if (sort !== undefined && pageLoaded !== undefined) {
+    //   sortOptionTemp = sort.toLowerCase();
+    //   pageLoadedTemp = pageLoaded;
+    // }
+
+    this.handleGetReview(2, sort, pageLoaded);
+
+    // const { productID } = this.props;
+    // axios.get(`/reviews?product_id=${productID}&count=2&page=${pageLoaded}&sort=${sort}`)
+    //   .then((result) => {
+    //     if (result.data.results.length === 0) {
+    //       this.setState({
+    //         hideMoreReviews: true
+    //       });
+    //     }
+
+    //     var pageTemp = this.state.pageLoaded + 1;
+    //     var reviewListTemp = this.state.reviewList.concat(result.data.results);
+    //     var reviewsDisplayedTemp = this.state.reviewsDisplayed + result.data.results.length;
+
+    //     this.setState({
+    //       reviewList: reviewListTemp,
+    //       reviewsReady: true,
+    //       pageLoaded: pageTemp,
+    //       reviewsDisplayed: reviewsDisplayedTemp,
+    //     })
+
+    //     // if (this.state.reviewsDisplayed < this.state.reviewList.length) {
+    //     //   var newEnd = this.state.reviewsDisplayed + 2;
+    //     //   if (newEnd > this.state.reviewList.length) {
+    //     //     newEnd--;
+    //     //   }
+    //     //   this.setState({
+    //     //     reviewsDisplayed: newEnd
+    //     //   })
+    //     // }
+    //   })
+    //   .catch((error) => {
+    //     console.log('Error with handleGetReview ' + error);
+    //   })
   }
 
   // Post a review
@@ -95,11 +162,18 @@ class RatingsAndReviews extends React.Component {
 
   // Mark review as report vs Helpful
   // need to fix --- updates 2 every time
-  handlePutReview(review_id, type) {
+  handlePutReview(review_id, type, index) {
     axios.put(`/reviews/${review_id}/${type}`)
       .then((result) => {
         console.log('Success with handlePutReview');
-        this.handleGetReview();
+
+        var pageIndex = Math.floor((index / 2) + 1);
+        this.setState({
+          curPage: pageIndex,
+        })
+
+        alert(pageIndex);
+        this.getReviewHelpful(2, this.state.sortOption, pageIndex);
       })
       .catch((error) => {
         console.log('Error with handleGetReview ' + error);
@@ -107,18 +181,18 @@ class RatingsAndReviews extends React.Component {
   }
 
   moreReviewsClick() {
-    this.handleGetReview();
+    this.handleGetReview(2, this.state.sortOption, this.state.pageLoaded + 1);
   }
 
   sortChange(e) {
     var sort = e.target.value;
     this.setState({
       sortOption: sort,
-      pageLoaded: 1,
+      pageLoaded: 0,
       reviewsDisplayed: 0,
       reviewList: [],
     });
-    this.handleGetReview(sort, 1);
+    this.getReviewSortChange(sort.toLowerCase(), 1);
   }
 
   writeReviewClick(e) {
@@ -154,7 +228,7 @@ class RatingsAndReviews extends React.Component {
   }
 
   componentDidMount() {
-    this.handleGetReview();
+    this.handleGetReview(2, this.state.sortOption, this.state.pageLoaded + 1);
   }
 
   render() {
