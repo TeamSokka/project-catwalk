@@ -10,9 +10,8 @@ const axios = require('axios');
 class App extends React.Component {
   constructor(props) {
     super(props);
-    // 40348
     this.state = {
-      productID: 40344, // example product id, change to num
+      productID: 40344,
       productInfo: {},
       relatedProducts: [],
       styles: [],
@@ -25,7 +24,6 @@ class App extends React.Component {
 
   componentDidMount() {
     const { productInfo, productID } = this.state;
-
     this.fetchMeta();
     this.getRelated(productID);
     this.getProductInfo(productID);
@@ -105,19 +103,15 @@ class App extends React.Component {
 
   render() {
     const { productID, productInfo, relatedProducts, styles, selectedStyle, metaData } = this.state;
-
-    // console.log('app state// productInfo', productInfo);
-    // console.log('app state// relatedPro', relatedProducts);
-
     return (
       <div>
-        <ProductDetail
+        {/* <ProductDetail
           productID={productID}
           productInfo={productInfo}
           styles={styles}
           selectedStyle={selectedStyle}
           handleStyleSelect={this.handleStyleSelect.bind(this)}
-        />
+        /> */}
 
         {
           this.state.metaReady === true
