@@ -5,25 +5,6 @@ import StarFilterEntry from './StarFilterEntry';
 import '../Styles/rating-breakdown-entry.scss';
 
 
-const filtersContainer = {
-  display: 'flex',
-  marginBottom: '10px',
-  justifyContent: 'center',
-};
-
-const clearStarFilterStyle = {
-  display: 'flex',
-  marginBottom: '5px',
-  justifyContent: 'center',
-  cursor: 'pointer',
-};
-
-const starFilterStyle = {
-  display: 'flex',
-  marginBottom: '10px',
-  flexWrap: 'wrap',
-  justifyContent: 'center',
-};
 class RatingBreakdown extends React.Component {
   constructor(props) {
     super(props);
@@ -42,13 +23,6 @@ class RatingBreakdown extends React.Component {
     }
     return result;
   }
-
-  /*
-  "recommended": {
-    "true": "2"
-    "false": "2"
-  },
-  */
 
   averageRecommended(obj) {
     const total = Number(obj.true) + Number(obj.false);
@@ -114,7 +88,7 @@ class RatingBreakdown extends React.Component {
                         <StarFilterEntry star={star} sortByStar={this.props.sortByStar} key={star} />
                       ))}
                   </div>
-                  <div className="clear-star-filter" aria-hidden="true" onClick={this.props.clearStarFilter}>
+                  <div className="clear-star-filter" onClick={this.props.clearStarFilter}>
                     <u style={{ color: 'grey', fontSize: '13px' }}>Remove all filters</u>
                   </div>
                 </div>
