@@ -145,7 +145,7 @@ class WriteReview extends React.Component {
 
   // min char count
   minCharCount() {
-    const { body } = this.state;
+    const { body } = this.state.review;
     if (body.length >= 50) {
       return 'Minimum body character count reached.';
     }
@@ -360,6 +360,8 @@ class WriteReview extends React.Component {
               onChange={this.handleInputChange}
               placeholder="Why did you like the product or not?">
             </textarea>
+            <br></br>
+            <small>{this.minCharCount()}</small>
           </div>
 
           <div className="photos">

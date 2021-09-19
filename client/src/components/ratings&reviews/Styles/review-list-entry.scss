@@ -5,6 +5,7 @@
   border-bottom: 1px solid grey;
   padding-top: 10px;
   padding-bottom: 8px;
+  width: 600px;
 };
 
 .grid-layout {
@@ -19,7 +20,7 @@
   grid-row: 1;
   grid-column: 2;
   color: grey;
-  font-size: 13px;
+  font-size: 16px;
 };
 
 .date-layout {
@@ -28,7 +29,7 @@
   grid-row: 1;
   grid-column: 3;
   color: grey;
-  font-size: 13px;
+  font-size: 16px;
 };
 
 .review-layout {
@@ -40,7 +41,7 @@
 
 .body-layout {
   padding: 5px;
-  font-size: 13px;
+  font-size: 15px;
   grid-row: 3;
   grid-column-end: span 3;
 };
@@ -62,9 +63,9 @@
 };
 
 .helpfulness-layout {
-  padding: 5px;
+  padding: 7px;
   color: grey;
-  font-size: 11px;
+  font-size: 14px;
   grid-row-end: 7;
   grid-column-end: span 3;
 };

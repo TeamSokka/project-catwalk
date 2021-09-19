@@ -82,10 +82,10 @@ class ReviewListEntry extends React.Component {
               display: 'flex', justifyContent: 'flex-end', float: 'right', marginLeft: 'auto', marginTop: 'auto',
             }}
             >
-              Helpful?
+              Was this review helpful?
               <u onClick={this.handleHelpfulClick} aria-hidden="true" id="helpful" style={{ marginLeft: '4px', marginRight: '2px' }}>Yes</u>
               {`(${this.props.review.helpfulness}) | `}
-              <u onClick={this.handleHelpfulClick} aria-hidden="true" id="report" style={{ marginLeft: '4px' }}>Report</u>
+              <u onClick={this.handleHelpfulClick} aria-hidden="true" id="report" style={{ marginLeft: '4px' }}>No</u>
             </div>
           </div>
         </div>
