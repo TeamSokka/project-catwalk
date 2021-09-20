@@ -1,26 +1,31 @@
 import React, { useState } from 'react';
 import Question from './Question.jsx';
 import AddQuestion from './AddQuestion.jsx';
-import '../ratings&reviews/Styles/ratings-reviews.scss';
 
 const QuestionList = (props) => {
-  const { questions, putRequest, handleClick, productID, productInfo, postRequest } = props;
+  const { questions, handleClick, productID, productInfo, postQuestion, postAnswer } = props;
   const [display, setDisplay] = useState(4);
   const [modal, setModal] = useState(false);
   let loadMoreQuestions = questions.length > display &&
-    <button className='more-answered-btn' onClick={() => setDisplay(display + 2)} >MORE ANSWERED QUESTIONS</button>;
+    <button className='btn' onClick={() => setDisplay(display + 2)} >MORE ANSWERED QUESTIONS</button>;
 
   return (
     <div>
+      {questions.length > 0 &&
+        <div className='question-list'>
+          {questions.length > 0 && props.questions.slice(0, display).map((question) => (
+            <Question key={question.question_id} question={question}
+              postAnswer={postAnswer}
+              productID={productID}
+              productInfo={productInfo}
+            />
+          ))
+          }
+        </div>
+      }
       <div>
-        {questions.length > 0 && props.questions.slice(0, display).map((question) => (
-          <Question key={question.question_id} question={question}
-            putRequest={putRequest}
-          />
-        ))
-        }
         {loadMoreQuestions}
-        <button className='add-question-btn' onClick={(e) => setModal(true)} >ADD A QUESTION +</button>
+        <button className='btn' onClick={(e) => setModal(true)} >ADD A QUESTION +</button>
         {
           modal
           && (
@@ -36,7 +41,7 @@ const QuestionList = (props) => {
                 <AddQuestion
                   productID={productID}
                   productInfo={productInfo}
-                  postRequest={postRequest}
+                  postQuestion={postQuestion}
                 />
                 <br />
               </div>

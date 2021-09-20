@@ -11,8 +11,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // 40344
-      productID: 40344,
+      productID: 40355, // example product id, change to num
       productInfo: {},
       relatedProducts: [],
       styles: [],
@@ -29,11 +28,14 @@ class App extends React.Component {
     this.getRelated(productID);
     this.getProductInfo(productID);
     this.getStyles();
+
   }
 
   setProductInfo = (data) => {
     this.setState({
-      productInfo: data
+      productInfo: data,
+      styles: data.styles,
+      selectedStyle: data.styles[0]
     })
   }
   /*stormi: refactor function to take in id, callback. The callback is defaulted to setProductInfo.
@@ -49,21 +51,21 @@ class App extends React.Component {
       });
   }
 
-  getStyles() {
-    axios.get(`/products/${this.state.productID}/styles`)
-      .then((res) => {
-        // console.log('skus[0]:', Object.keys(res.data.results[0].skus)[0])
-        this.setState({
-          styles: res.data.results,
-          selectedStyle: res.data.results[0],
-          // selectedSize: res.data.results[0].skus[Object.keys(res.data.results[0].skus)[0]]
-        });
-        // console.log('state:', this.state)
-      })
-      .catch((err) => {
-        console.error(err);
-      })
-  }
+  // getStyles() {
+  //   axios.get(`/products/${this.state.productID}/styles`)
+  //     .then((res) => {
+  //       // console.log('skus[0]:', Object.keys(res.data.results[0].skus)[0])
+  //       this.setState({
+  //         styles: res.data.results,
+  //         selectedStyle: res.data.results[0],
+  //         // selectedSize: res.data.results[0].skus[Object.keys(res.data.results[0].skus)[0]]
+  //       });
+  //       // console.log('state:', this.state)
+  //     })
+  //     .catch((err) => {
+  //       console.error(err);
+  //     })
+  // }
 
   handleStyleSelect(event) {
     event.preventDefault();
