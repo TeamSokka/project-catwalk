@@ -30,11 +30,14 @@ class App extends React.Component {
     this.getRelated(productID);
     this.getProductInfo(productID);
     this.getStyles();
+
   }
 
   setProductInfo = (data) => {
     this.setState({
-      productInfo: data
+      productInfo: data,
+      styles: data.styles,
+      selectedStyle: data.styles[0]
     })
   }
   /*stormi: refactor function to take in id, callback. The callback is defaulted to setProductInfo.
@@ -50,21 +53,21 @@ class App extends React.Component {
       });
   }
 
-  getStyles() {
-    axios.get(`/products/${this.state.productID}/styles`)
-      .then((res) => {
-        // console.log('skus[0]:', Object.keys(res.data.results[0].skus)[0])
-        this.setState({
-          styles: res.data.results,
-          selectedStyle: res.data.results[0],
-          // selectedSize: res.data.results[0].skus[Object.keys(res.data.results[0].skus)[0]]
-        });
-        // console.log('state:', this.state)
-      })
-      .catch((err) => {
-        console.error(err);
-      })
-  }
+  // getStyles() {
+  //   axios.get(`/products/${this.state.productID}/styles`)
+  //     .then((res) => {
+  //       // console.log('skus[0]:', Object.keys(res.data.results[0].skus)[0])
+  //       this.setState({
+  //         styles: res.data.results,
+  //         selectedStyle: res.data.results[0],
+  //         // selectedSize: res.data.results[0].skus[Object.keys(res.data.results[0].skus)[0]]
+  //       });
+  //       // console.log('state:', this.state)
+  //     })
+  //     .catch((err) => {
+  //       console.error(err);
+  //     })
+  // }
 
   handleStyleSelect(event) {
     event.preventDefault();
@@ -111,15 +114,17 @@ class App extends React.Component {
 
     return (
       <div>
-         {/* <ProductDetail
+
+
+        <ProductDetail
           productID={productID}
           productInfo={productInfo}
           styles={styles}
           selectedStyle={selectedStyle}
           handleStyleSelect={this.handleStyleSelect.bind(this)}
-        /> */}
+        />
 
-        {/* {
+        {
           this.state.metaReady === true
           &&
           <RatingsAndReviews
@@ -127,20 +132,20 @@ class App extends React.Component {
             metaData={metaData}
             productInfo={productInfo}
           />
-        } */}
+        }
 
         <QuestionsAndAnswers
-        productID={productID}
-        productInfo={productInfo}
+          productID={productID}
+          productInfo={productInfo}
         />
 
-        {/* <RelatedItems
+        <RelatedItems
           productID={productID}
           productInfo={productInfo}
           relatedProducts={relatedProducts}
           selectedStyle={selectedStyle}
           getProductInfo={this.getProductInfo}
-        /> */}
+        />
       </div>
     )
   }
