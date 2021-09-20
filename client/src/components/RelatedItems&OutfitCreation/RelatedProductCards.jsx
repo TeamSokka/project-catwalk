@@ -3,12 +3,15 @@ import ProductPreviewImages from './ProductPreviewImages';
 import ProductInformation from './ProductInformation';
 import './related-items.scss';
 
+import { BsFillStarFill } from 'react-icons/bs';
+
+
 const RelatedProductCards = (props) => {
   const { productInfo, relatedProducts, getProductInfo } = props;
-  const products = relatedProducts.map(product, index =>
-    <div className="product-card">
 
-      <i className="fa fa-star-o" id="fa-star-o"></i>
+  const products = relatedProducts.map((product, index) =>
+    <div className="product-card" key={index}>
+      <BsFillStarFill id="fa-star-o"/>
       <ProductPreviewImages
         productStyles={product.styles}
         key={index}
@@ -17,7 +20,6 @@ const RelatedProductCards = (props) => {
         relatedProducts={relatedProducts}
         productInfo={productInfo}
         product={product}
-        key={index}
         />
     </div>
   );
