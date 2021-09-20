@@ -1,6 +1,7 @@
 import React from "react";
 import ReviewListEntry from "./ReviewListEntry";
 import "../Styles/review-list-entry.scss";
+import { thisExpression } from "@babel/types";
 
 
 class ReviewList extends React.Component {
@@ -11,8 +12,12 @@ class ReviewList extends React.Component {
   render() {
     const list = [];
     const curReviewList = this.props.reviewList.slice(0, this.props.reviewsDisplayed);
-    curReviewList.forEach((review, value) => {
-      list.push(<ReviewListEntry review={review} key={value} handlePutReview={this.props.handlePutReview} />)
+
+    var index = 0;
+    curReviewList.forEach((review, index) => {
+      if (this.props.starSort.length === 0 || this.props.starSort.indexOf(review.rating) > -1) {
+        list.push(<ReviewListEntry review={review} key={index} index={index} handlePutReview={this.props.handlePutReview} />)
+      }
     })
     return (
       <ul className="grid-layout">{list}</ul>

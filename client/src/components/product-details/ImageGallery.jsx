@@ -1,4 +1,9 @@
 import React from 'react';
+import ThumbnailList from './ThumbnailList.jsx';
+import { library, dom } from '@fortawesome/fontawesome-svg-core';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { far } from '@fortawesome/free-regular-svg-icons';
+import { fab } from '@fortawesome/free-brands-svg-icons';
 
 //ImageGallery module
 //img urls in props.selectedstyle
@@ -21,21 +26,42 @@ import React from 'react';
 //      clicking again zooms out to standard expanded view
 
 var ImageGallery = (props) => (
-  <div id="image-gallery">
-    {props.photos.length
-      ? <img className="main-image" src={props.photos[props.selectedphotoindex].url} width="750">
-      </img>
-      : <p><em>No photo to display.</em></p>
-    }
+  <div id="image-gallery" width="60%" height="700px">
     <div id="thumbnail-list">
       {props.photos
-        ? props.photos.map((photo, index) => (
-          <img className='thumbnail' key={index} value={index} src={photo.thumbnail_url} width="100"></img>
-          ))
+        ? <ThumbnailList
+          topThumbnail={props.topThumbnail}
+          photos={props.photos}
+          selectedphotoindex={props.selectedphotoindex}
+          handleThumbnailClick={props.handleThumbnailClick}
+          handleUpArrowClick={props.handleUpArrowClick}
+          handleDownArrowClick={props.handleDownArrowClick}
+         />
         : <p><em>No photos to display.</em></p>
       }
     </div>
+    {props.photos.length
+      ? <img
+          id="main-image"
+          src={props.photos[props.selectedphotoindex].url} width="750"
+          // style={{
+          //   backgroundImage: `url(${props.photos[props.selectedphotoindex].url})`,
+          //   backgroundSize: 'cover',
+          //   backgroundRepeat: 'no-repeat',
+          //   zIndex: '10',
+          //   maxHeight: '100%',
+          //   maxWidth: '100%'
+          // }}
+        >
+      </img>
+      : <p><em>No photo to display.</em></p>
+    }
   </div>
 );
 
 export default ImageGallery;
+
+// <i class="fas fa-chevron-circle-up"></i>
+// <i class="fas fa-chevron-circle-down"></i>
+// <i class="fas fa-chevron-circle-left"></i>
+// <i class="fas fa-chevron-circle-right"></i>

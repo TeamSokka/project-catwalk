@@ -7,7 +7,7 @@ var StyleSelector = (props) => (
     <div>Available Styles:</div>
     {props.styles.length
       ? props.styles.map((style, index) => (
-        <img className="style thumbnail" key={index} data-index={index} src={style.photos[0].thumbnail_url} width="90" onClick={props.handleStyleSelect}></img>
+        <img className="style thumbnail" id={props.styles.indexOf(props.selectedstyle) === index ? "selected-style" : ""} key={index} data-index={index} src={style.photos[0].thumbnail_url} onClick={props.handleStyleSelect}></img>
         ))
       : <p><em>No styles to display.</em></p>
     }

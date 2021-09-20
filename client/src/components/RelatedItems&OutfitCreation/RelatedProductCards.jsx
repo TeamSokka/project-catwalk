@@ -1,50 +1,28 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import ProductPreviewImages from './ProductPreviewImages';
 import ProductInformation from './ProductInformation';
-import 'regenerator-runtime/runtime'
 import './related-items.scss';
 
 const RelatedProductCards = (props) => {
-  const { productInfo, relatedProducts, selectedStyle, getProductInfo } = props;
-  // const [products, setProducts] = useState([]);
+  const { productInfo, relatedProducts, getProductInfo } = props;
+  const products = relatedProducts.map((product, index) =>
+    <div className="product-card" key={index}>
 
-  // useEffect(() => {
-  //   const getAllRelatedProducts = (relatedProducts) => {
-  //     const promises = relatedProducts?.map(async (id) => {
-  //       const product =  await getProductInfo(id, data => data)
-  //       console.log('product : ', product );
-  //       return product;
-  //     });
-
-  //     const products = Promise.all(promises);
-  //   }
-
-  //   console.log('getAllRelatedProducts: ', getAllRelatedProducts(relatedProducts));
-  // }, [])
-
-
-
-  const products = relatedProducts.map(product =>
-    <div className="product-card">
-      <ProductPreviewImages selectedStyle={selectedStyle} product={product}/>
-      <ProductInformation relatedProducts={relatedProducts} productInfo={productInfo} product={product}/>
+      <i className="fa fa-star-o" id="fa-star-o"></i>
+      <ProductPreviewImages
+        productStyles={product.styles}
+      />
+      <ProductInformation
+        relatedProducts={relatedProducts}
+        productInfo={productInfo}
+        product={product}
+        />
     </div>
   );
-
-  // console.log('Product', product);
-  // console.log('related', relatedProducts);
-  // console.log('info', productInfo);
-  // console.log('photos', selectedStyle.photos);
 
   return (
     <div id="related-product-card">
       {products}
-
-         {/* <div className="product-card">
-            <ProductPreviewImages selectedStyle={selectedStyle}/>
-            <ProductInformation relatedProducts={relatedProducts} productInfo={productInfo}/>
-        </div> */}
-
     </div>
   )
 }

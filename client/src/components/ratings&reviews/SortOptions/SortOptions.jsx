@@ -1,25 +1,21 @@
 import React from 'react';
-
+import '../Styles/ratings-reviews.scss'
 class SortOptions extends React.Component {
   constructor(props) {
     super(props);
-
     this.totalReviews = this.totalReviews.bind(this);
   }
 
-  // total reviews
   totalReviews(obj) {
-    // var total = Number(obj["true"]);
-    // return total;
+    const total = Number(obj.false) + Number(obj.true);
+    return total;
   }
 
   render() {
     return (
-      <div>
-        {/* {`${this.totalReviews(this.props.metaData.recommended)} reviews, sorted by most `} */}
-
-
-        <select onChange={this.props.sortChange}>
+      <div style={{ fontFamily: 'arial' }}>
+        {`${this.totalReviews(this.props.metaData.recommended)} reviews, sorted by`}
+        <select value={this.props.sortOption} className="options-bar" onChange={this.props.sortChange}>
           <option value="Helpful">Helpful</option>
           <option value="Newest">Newest</option>
           <option value="Relevant">Relevant</option>

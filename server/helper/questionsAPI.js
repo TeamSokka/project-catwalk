@@ -36,7 +36,7 @@ const getAnswers = (id, callback) => {
     },
   })
   .then((res) => {
-    console.log('answers ', res.data);
+    // console.log('answers ', res.data);
     callback(null, res.data);
   })
   .catch((err) => {
@@ -67,7 +67,7 @@ const postAnswer = (id, data, callback) => {
     }
   })
   .then((res) => {
-    console.log('data in add ', res.data);
+    // console.log('data in add ', res.data);
     callback(null, res.data);
   })
   .catch((err) => {
@@ -84,7 +84,7 @@ const putRequest = (data, callback) => {
     }
   })
   .then((res) => {
-    console.log('data in put ', res.data);
+    // console.log('data in put ', res.data);
     callback(null, res.data);
   })
   .catch((err) => {

@@ -8,7 +8,7 @@ const Search = (props) => {
 
   const handleSearch = (e) => {
     setSearch(e.target.value);
-    console.log('search term ', search.length);
+    // console.log('search term ', search.length);
     onSearch(search);
   }
 

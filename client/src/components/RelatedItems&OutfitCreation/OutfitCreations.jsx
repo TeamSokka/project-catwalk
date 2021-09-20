@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useState }from 'react';
 
 const OutfitCreations = (props) => {
+  const { productInfo, relatedProducts } = props;
+  // console.log('productInfo: ', productInfo);
+  // console.log('relatedProducts: ', relatedProducts);
+
+
   return (
     <div id="outfit-card">
       <h3>YOUR OUTFIT</h3>
       <div className="product-card">
+        <i className="fa fa-star-o " id="fa-star-o"></i>
         <div id="product-preview-img"></div>
         <div id="product-info"></div>
       </div>

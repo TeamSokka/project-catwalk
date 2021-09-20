@@ -1,23 +1,19 @@
 import React from 'react';
-import { formatRelatedItems } from '../helpers/_functions.js'
 import './related-items.scss';
 
 const ProductInformation = (props) => {
   const { productInfo, product } = props;
-  const information = formatRelatedItems(productInfo);
 
-  console.log('information: ', information);
-  console.log('product', product);
+  let price = product.default_price.split('.');
+  price = Number(price[0]);
+  let category = product.category
 
   return (
     <div id="product-info">
-      <div>
-        <p>{information.category}
-          <br />{information.name}
-          <br />${information.price}
-          <br /> Star rating
-        </p>
-      </div>
+      <span id="info-category">{product.category}</span>
+      <span id="info-name">{product.name}</span>
+      <span id="info-price">${price}</span>
+      <span>Star Rating</span>
     </div>
   )
 }
