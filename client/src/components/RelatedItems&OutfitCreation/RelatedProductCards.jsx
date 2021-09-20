@@ -28,8 +28,8 @@ const RelatedProductCards = (props) => {
 
   const products = relatedProducts.map(product =>
     <div className="product-card">
-      <ProductPreviewImages selectedStyle={selectedStyle} product={product}/>
-      <ProductInformation relatedProducts={relatedProducts} productInfo={productInfo} product={product}/>
+      <ProductPreviewImages selectedStyle={selectedStyle} product={product} />
+      <ProductInformation relatedProducts={relatedProducts} productInfo={productInfo} product={product} />
     </div>
   );
 
@@ -42,7 +42,7 @@ const RelatedProductCards = (props) => {
     <div id="related-product-card">
       {products}
 
-         {/* <div className="product-card">
+      {/* <div className="product-card">
             <ProductPreviewImages selectedStyle={selectedStyle}/>
             <ProductInformation relatedProducts={relatedProducts} productInfo={productInfo}/>
         </div> */}

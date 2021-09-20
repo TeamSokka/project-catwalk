@@ -5,7 +5,15 @@ import App from '../client/src/components/App';
 import WriteReview from '../client/src/components/ratings&reviews/WriteReview/WriteReview';
 import ReviewList from '../client/src/components/ratings&reviews/ReviewList/ReviewList';
 import ReviewListEntry from '../client/src/components/ratings&reviews/ReviewList/ReviewListEntry';
+import SortOptions from '../client/src/components/ratings&reviews/SortOptions/SortOptions'
+import RatingBreakdown from '../client/src/components/ratings&reviews/RatingBreakdown/RatingBreakdown'
+import ProductBreakdown from '../client/src/components/ratings&reviews/ProductBreakdown/ProductBreakdown'
+import CharacteristicsList from '../client/src/components/ratings&reviews/WriteReview/CharacteristicsList';
+import CharacteristicsListEntry from '../client/src/components/ratings&reviews/WriteReview/CharacteristicsListEntry';
+import characteristicOptions from '../client/src/components/ratings&reviews/WriteReview/characteristicOptions';
 
+
+// npm test -- --coverage
 
 describe('App', () => {
   test('renders App component', () => {
@@ -13,23 +21,60 @@ describe('App', () => {
   });
 });
 
-// describe('<WriteReview />', () => {
-//   test('renders WriteReview component', () => {
-//     render(<WriteReview metaData={metaDummy} />);
-//   });
-// });
+describe('App', () => {
+  test('renders App component', () => {
+    render(<App />);
+  });
+});
 
-// describe('<ReviewList />', () => {
-//   test('renders ReviewList component', () => {
-//     render(<ReviewList reviewList={reviewsDummy.results} />);
-//   });
-// });
+describe('<WriteReview />', () => {
+  test('renders WriteReview component', () => {
+    render(<WriteReview metaData={metaDummy} />);
+  });
+});
+
+describe('<CharacteristicsList />', () => {
+  test('renders CharacteristicsList component', () => {
+    render(<CharacteristicsList metaData={metaDummy} />);
+  });
+});
+
+describe('<CharacteristicsListEntry />', () => {
+  test('renders CharacteristicsListEntry component', () => {
+    render(<CharacteristicsListEntry characteristic={metaDummy.characteristics[Size]} options={characteristicOptions[Size]} />);
+  });
+});
+
+describe('<ReviewList />', () => {
+  test('renders ReviewList component', () => {
+    render(<ReviewList reviewList={reviewsDummy.results} />);
+  });
+});
 
 describe('<ReviewListEntry />', () => {
   test('renders ReviewListEntry component', () => {
     render(<ReviewListEntry review={reviewsDummy.results[0]} />);
   });
 });
+
+describe('<SortOptions />', () => {
+  test('renders SortOptions component', () => {
+    render(<SortOptions metaData={metaDummy} />);
+  });
+});
+
+describe('<RatingBreakdown />', () => {
+  test('renders RatingBreakdown component', () => {
+    render(<RatingBreakdown metaData={metaDummy} starSort={[]} />);
+  });
+});
+
+describe('<ProductBreakdown />', () => {
+  test('renders ProductBreakdown component', () => {
+    render(<ProductBreakdown metaData={metaDummy} />);
+  });
+});
+
 
 const reviewsDummy = {
   product: '24345',

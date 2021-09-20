@@ -19,3 +19,53 @@
   font-size: 12px;
   color: grey;
 };
+
+.grid-layout {
+  display: grid;
+  grid-template-columns: repeat(1 1fr);
+  grid-template-rows: min-width(10 1fr) 100px;
+  align-items: center;
+};
+
+.recommended-avg {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+};
+
+.avg-rating-spacing {
+  grid-column: 1;
+  grid-row: 2;
+  font-size: 80px;
+  text-align: center;
+};
+
+.header {
+  grid-row: 1;
+  grid-column: 1;
+  color: grey;
+  text-align: center;
+  font-size: 15px;
+  font-weight: bold;
+};
+
+.clear-star-filter {
+  display: flex;
+  margin-bottom: 5px;
+  justify-content: center;
+  cursor: pointer;
+  padding-top: 5px;
+};
+
+.star-filter {
+  display: flex;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+};
+
+.filters-container {
+  display: flex;
+  margin-bottom: 10px;
+  justify-content: center;
+};
