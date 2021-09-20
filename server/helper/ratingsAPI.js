@@ -24,6 +24,7 @@ const getReviews = (query, callback) => {
   }
   // console.log(optionalString);
 
+
   axios.get(
     `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews?product_id=${query.product_id}${optionalString}`,
     {
