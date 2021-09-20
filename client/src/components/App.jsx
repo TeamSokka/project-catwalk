@@ -106,13 +106,13 @@ class App extends React.Component {
     const { productID, productInfo, relatedProducts, styles, selectedStyle, metaData } = this.state;
     return (
       <div>
-        {/* <ProductDetail
+        <ProductDetail
           productID={productID}
           productInfo={productInfo}
           styles={styles}
           selectedStyle={selectedStyle}
           handleStyleSelect={this.handleStyleSelect.bind(this)}
-        /> */}
+        />
 
         {
           this.state.metaReady === true
