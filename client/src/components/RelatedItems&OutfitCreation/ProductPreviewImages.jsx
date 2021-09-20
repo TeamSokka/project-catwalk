@@ -1,5 +1,5 @@
 import React from 'react';
-import { formatPreviewImage } from '../helpers/_functions.js'
+import { BsFillStarFill } from 'react-icons/bs';
 
 const ProductPreviewImages = (props) => {
   const { productStyles } = props;
@@ -8,7 +8,7 @@ const ProductPreviewImages = (props) => {
 
   return (
     <div id="product-preview-img">
-       {/* <i class="fa fa-star-o " id="fa-star-o"></i> */}
+      <BsFillStarFill id="fa-star-o"/>
       <img src={images.thumbnail_url} id="preview-img"/>
     </div>
   )

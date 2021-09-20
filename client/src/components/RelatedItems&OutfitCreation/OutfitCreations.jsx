@@ -1,4 +1,5 @@
 import React, { useState }from 'react';
+// import { BsFillStarFill } from 'react-icons/bs'; needs to be an X
 
 const OutfitCreations = (props) => {
   const { productInfo, relatedProducts } = props;
@@ -10,7 +11,7 @@ const OutfitCreations = (props) => {
     <div id="outfit-card">
       <h3>YOUR OUTFIT</h3>
       <div className="product-card">
-        <i className="fa fa-star-o " id="fa-star-o"></i>
+        {/* <BsFillStarFill id="fa-star-o"/> */}
         <div id="product-preview-img"></div>
         <div id="product-info"></div>
       </div>
