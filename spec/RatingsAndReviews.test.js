@@ -21,7 +21,6 @@ describe('App', () => {
   });
 });
 
-
 describe('App', () => {
   test('renders App component', () => {
     render(<App />);
@@ -40,11 +39,11 @@ describe('<CharacteristicsList />', () => {
   });
 });
 
-// describe('<CharacteristicsListEntry />', () => {
-//   test('renders CharacteristicsListEntry component', () => {
-//     render(<CharacteristicsListEntry characteristic={metaDummy.characteristics[Size]} options={characteristicOptions[Size]} />);
-//   });
-// });
+describe('<CharacteristicsListEntry />', () => {
+  test('renders CharacteristicsListEntry component', () => {
+    render(<CharacteristicsListEntry characteristic={metaDummy.characteristics[Size]} options={characteristicOptions[Size]} />);
+  });
+});
 
 describe('<ReviewList />', () => {
   test('renders ReviewList component', () => {
