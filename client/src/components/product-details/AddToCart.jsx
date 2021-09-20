@@ -18,7 +18,7 @@ var AddToCart = (props) => {
     onSubmit={props.handlecartsubmit}>
     <div id="cart-selectors">
       <label>Size:
-        <select className="size selector" name="sizesku" onChange={props.handlesizeselect}>
+        <select className="selector" id="size-selector" name="sizesku" onChange={props.handlesizeselect}>
           <option value="">Select Size:</option>
           {props.selectedstyle.skus
           ? Object.keys(props.selectedstyle.skus).map((sku, index) => (
@@ -29,7 +29,7 @@ var AddToCart = (props) => {
         </select>
       </label>
       <label>Quantity:
-        <select className="quantity selector" name="quantity" value={props.selectedquantity} onChange={props.handlequantityselect}>
+        <select className="selector" id="quantity-selector" name="quantity" value={props.selectedquantity} onChange={props.handlequantityselect}>
           {props.selectedsize
             ? quantities.map((quantity, index) => (
               <option value={quantity} key={index}>{quantity}</option>
