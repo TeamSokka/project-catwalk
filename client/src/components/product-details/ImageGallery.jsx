@@ -1,9 +1,5 @@
 import React from 'react';
 import ThumbnailList from './ThumbnailList.jsx';
-import { library, dom } from '@fortawesome/fontawesome-svg-core';
-import { fas } from '@fortawesome/free-solid-svg-icons';
-import { far } from '@fortawesome/free-regular-svg-icons';
-import { fab } from '@fortawesome/free-brands-svg-icons';
 
 //ImageGallery module
 //img urls in props.selectedstyle
