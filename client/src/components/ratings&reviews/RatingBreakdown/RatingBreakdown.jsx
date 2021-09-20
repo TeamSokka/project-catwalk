@@ -2,27 +2,9 @@ import React from 'react';
 import StarRating from '../ReviewList/StarRatings';
 import RatingBreakdownList from './RatingBreakdownList';
 import StarFilterEntry from './StarFilterEntry';
+import '../Styles/rating-breakdown-entry.scss';
 
 
-const filtersContainer = {
-  display: 'flex',
-  marginBottom: '10px',
-  justifyContent: 'center',
-};
-
-const clearStarFilterStyle = {
-  display: 'flex',
-  marginBottom: '5px',
-  justifyContent: 'center',
-  cursor: 'pointer',
-};
-
-const starFilterStyle = {
-  display: 'flex',
-  marginBottom: '10px',
-  flexWrap: 'wrap',
-  justifyContent: 'center',
-};
 class RatingBreakdown extends React.Component {
   constructor(props) {
     super(props);
@@ -42,13 +24,6 @@ class RatingBreakdown extends React.Component {
     return result;
   }
 
-  /*
-  "recommended": {
-    "true": "2"
-    "false": "2"
-  },
-  */
-
   averageRecommended(obj) {
     const total = Number(obj.true) + Number(obj.false);
     const result = Number(obj.true) / total;
@@ -66,32 +41,55 @@ class RatingBreakdown extends React.Component {
     var stars = StarRating(this.averageRating(ratings));
 
     return (
-      <div>
-        <div>Ratings and Reviews</div>
-        <div>Average rating: {this.averageRating(ratings).toFixed(1)}</div>
-        <div>Star rating: {stars}</div>
-        <div>{`${this.averageRecommended(recommended)}%: Number of reviews recommend this product`}</div>
-        <div>Star sort</div>
+      <div className="grid-layout">
+        <div className="header">
+          RATINGS AND REVIEWS
+        </div>
+
+        <div className="avg-rating-spacing">
+          {this.averageRating(ratings).toFixed(1)}
+        </div>
+
+        <div style={{
+          gridColumn: '1',
+          gridRow: '3',
+        }}
+        >
+          <div style={{ display: 'flex', justifyContent: 'space-around', marginLeft: '-90px', paddingBottom: '20px' }}>
+            {stars}
+          </div>
+        </div>
+
+        <div style={{
+          gridColumn: '1',
+          gridRow: '4',
+          color: 'grey',
+          textAlign: 'center',
+        }}
+        >
+          <div className="recommended-avg">
+            {`${this.averageRecommended(recommended)}%: Number of reviews recommend this product`}
+          </div>
+        </div>
 
         <div style={{
           gridColumn: '1',
           gridRow: '5',
         }}
         >
-          <div style={filtersContainer}>
+          <div className="filters-containers">
             {
               this.props.starSort.length > 0
               && (
                 <div>
-                  <div style={starFilterStyle}>
+                  <div className="star-filter">
                     {this.props.starSort
-                      .sort((a, b) => b - a)
                       .map((star) => (
                         <StarFilterEntry star={star} sortByStar={this.props.sortByStar} key={star} />
                       ))}
                   </div>
-                  <div style={clearStarFilterStyle} aria-hidden="true" onClick={this.props.clearStarFilter}>
-                    <u style={{ color: 'grey', fontSize: '13px' }}>Clear Star Review Filter</u>
+                  <div className="clear-star-filter" onClick={this.props.clearStarFilter}>
+                    <u style={{ color: 'grey', fontSize: '13px' }}>Remove all filters</u>
                   </div>
                 </div>
               )
@@ -99,12 +97,20 @@ class RatingBreakdown extends React.Component {
           </div>
         </div>
 
-        <div>Ratings Breakdown List
-          <RatingBreakdownList
-            metaData={this.props.metaData}
-            ratings={this.props.metaData.ratings}
-            sortByStar={this.props.sortByStar}
-          />
+        <div style={{
+          gridColumn: '1',
+          gridRow: '6',
+          display: 'flex',
+          justifyContent: 'center',
+        }}
+        >
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <RatingBreakdownList
+              metaData={this.props.metaData}
+              ratings={this.props.metaData.ratings}
+              sortByStar={this.props.sortByStar}
+            />
+          </div>
         </div>
       </div>
     );

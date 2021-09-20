@@ -7,17 +7,17 @@ const Search = (props) => {
 
   const handleSearch = (e) => {
     setSearch(e.target.value);
-    console.log('search term ', search.length);
+    // console.log('search term ', search.length);
     onSearch(search);
   }
 
   return (
-    <div className='search-bar'>
-      <input type='text' id='search' value={search}
-        style={{ width: '300px' }}
+    <div className='search'>
+      <input type='text' className='search-bar' value={search}
+        style={{ width: '100%', height: '30px' }}
         onChange={(e) => handleSearch(e)}
-        placeholder='HAVE A QUESTION? SEARCH FOR ANSWERS...' />
-      <BiSearchAlt onClick={props.onSearch} />
+        placeholder='  HAVE A QUESTION? SEARCH FOR ANSWERS...' />
+      <BiSearchAlt onClick={props.onSearch} className='icon' />
     </div>
   )
 }

@@ -85,9 +85,19 @@ const getRelated = async (id, callback) => {
   try {
     const { data } =  await axios.get(`${api}/products/${id}/related`, { headers: defaultHeaders });
 
-    //get each product by id
+    let uniqueIDs = {}
+    for (let i = 0; i < data.length; i++) {
+      if (uniqueIDs[data[i]]) {
+        continue;
+      } else {
+        uniqueIDs[data[i]] = true
+      }
+    }
+    const filteredIds = Object.keys(uniqueIDs);
+
+
     const rawRelatedProducts = [];
-    data.forEach(productId => {
+    filteredIds.forEach(productId => {
       const data = new Promise(resolve => {
         getProductById(productId)
           .then(res => resolve(res));
@@ -96,8 +106,8 @@ const getRelated = async (id, callback) => {
     });
     const relatedProducts = await Promise.all(rawRelatedProducts);
 
-    //
     callback(null, relatedProducts);
+
 
   } catch (err) {
     console.error(err);

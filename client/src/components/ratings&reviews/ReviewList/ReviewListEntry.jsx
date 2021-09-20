@@ -1,51 +1,34 @@
 import React from "react";
 import ReviewList from "./ReviewList";
 import StarRating from "./StarRatings";
+import PhotoList from "./PhotoList";
+
 import "../Styles/review-list-entry.scss";
 
 class ReviewListEntry extends React.Component {
   constructor(props) {
     super(props);
 
-    this.averageStarRating = this.averageStarRating.bind(this);
+    this.state = {
+      'yes': 0,
+      'no': 0,
+    }
+    this.handleHelpfulClick = this.handleHelpfulClick.bind(this);
   }
+
+  // helpfulClick(e) {
+  //   var temp = e.target.value + 1;
+  //   this.setState({
+  //     [e.target.name]: temp;
+  //   })
+  // }
+
 
   handleHelpfulClick(e) {
-    // this.props.handlePutReview(this.props.review_id, e.target.value);
-    this.props.handlePutReview(this.props.review.review_id, e.target.id);
-
-
-    // axios.put(`/reviews/${this.props.review_id}/${e.target.value}`, {
-    //   review_id: this.props.review_id,
-    //   type: e.target.value
-    // })
-    //   .then((result) => {
-    //     console.log('Success with handleHelpfulClick');
-    //   })
-    //   .catch((error) => {
-    //     console.log('Error with handleHelpfulClick ' + error);
-    //   })
-  }
-
-  averageStarRating(obj) {
-
-
+    this.props.handlePutReview(this.props.review.review_id, e.target.id, this.props.index);
   }
 
   render() {
-    /*
-    body: "Now I can get to stomping!"
-    date: "2019-05-04T00:00:00.000Z" Ex: January 1, 2019
-    helpfulness: 12
-    photos: []
-    rating: 4
-    recommend: true
-    response: ""
-    review_id: 643584
-    reviewer_name: "chingy"
-    summary: "Great shoes!"
-    */
-
     var stars;
     if (this.props.review.rating) {
       stars = StarRating(this.props.review.rating);
@@ -53,7 +36,12 @@ class ReviewListEntry extends React.Component {
 
     return (
       <div className="grid-layout-entry">
-        {stars}
+
+        <div className="star-layout">
+          <div style={{ display: 'flex', zIndex: '-1', marginRight: 'auto', height: '18', width: '15' }}>
+            {stars}
+          </div>
+        </div>
 
         <div style={{ display: 'flex', marginLeft: 'auto' }}>
           <div className="name-layout">
@@ -71,22 +59,61 @@ class ReviewListEntry extends React.Component {
 
         {
           this.props.review.summary ?
-            <div>{this.props.review.summary}</div> : null
+            <div className="review-layout">
+              <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
+                {this.props.review.summary}
+              </div>
+            </div>
+            : null
         }
-        <div>{this.props.review.body}</div>
+
+        <div className="body-layout">
+          <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
+            {this.props.review.body}
+          </div>
+        </div>
+
         {
           this.props.review.response ?
-            (<b>{`Response from seller: ${this.props.review.response}`}</b>) : null
+            (<div className="response-layout">
+              <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
+                <b>{`Response from seller: ${this.props.review.response}`}</b>
+              </div>
+            </div>) : null
         }
+
         {
           this.props.review.recommend ?
-            (<div>{`✓ I recommend this product: ${this.props.review.recommend}`}</div>) : null
+            (<div className="recommend-layout">
+              <div style={{ display: 'flex' }}>
+                ✓ I recommend this product
+              </div>
+            </div>) : null
         }
-        <div>
-          Helpful?
-          <u onClick={this.handleHelpfulClick}>Yes</u>
-          {` ${this.props.review.helpfulness} | `}
-          <u onClick={this.handleHelpfulClick}>Report</u>
+
+        <div className="helpfulness-layout">
+          <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
+
+            {
+              this.props.review.photos.length > 0
+                ? (
+                  <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
+                    <PhotoList photos={this.props.review.photos} />
+                  </div>
+                )
+                : null
+            }
+
+            <div style={{
+              display: 'flex', justifyContent: 'flex-end', float: 'right', marginLeft: 'auto', marginTop: 'auto',
+            }}
+            >
+              Was this review helpful?
+              <u onClick={this.handleHelpfulClick} aria-hidden="true" id="helpful" style={{ marginLeft: '4px', marginRight: '2px' }}>Yes</u>
+              {`(${this.props.review.helpfulness}) | `}
+              <u onClick={this.handleHelpfulClick} aria-hidden="true" id="report" style={{ marginLeft: '4px' }}>No</u>
+            </div>
+          </div>
         </div>
         <br></br>
       </div>
@@ -96,6 +123,21 @@ class ReviewListEntry extends React.Component {
 
 export default ReviewListEntry;
 
+
+/*
+body: "Now I can get to stomping!"
+date: "2019-05-04T00:00:00.000Z" Ex: January 1, 2019
+helpfulness: 12
+photos: []
+rating: 4
+recommend: true
+response: ""
+review_id: 643584
+reviewer_name: "chingy"
+summary: "Great shoes!"
+*/
+
+
 /*
 <ReviewListEntry
     review={review}
@@ -104,23 +146,3 @@ export default ReviewListEntry;
 >
 */
 
-// <ul>
-//   {/* <StarRating averageStarRating={this.props.review.rating} /> */}
-//   <li>
-//     {this.props.review.review_id} {'review_id'}
-//     <br></br>
-//     {this.props.review.rating} {'rating'}
-//     <br></br>
-//     {this.props.review.summary} {'summary'}
-//     <br></br>
-//     {this.props.review.recommend} {'recommend'}
-//     <br></br>
-//     {this.props.review.response} {'response'}
-//     <br></br>
-//     {this.props.review.body} {'body'}
-//     <br></br>
-//     {this.props.review.helpfulness} {'helpfulness'}
-//     <br></br>
-//     {this.props.review.photos} {'photos'}
-//   </li>
-// </ul>

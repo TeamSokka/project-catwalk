@@ -10,9 +10,8 @@ const axios = require('axios');
 class App extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      productID: 40348, // example product id, change to num
+      productID: 40355, // example product id, change to num
       productInfo: {},
       relatedProducts: [],
       styles: [],
@@ -20,16 +19,16 @@ class App extends React.Component {
       metaData: {},
       metaReady: false,
     }
-    // this.fetchMeta = this.fetchMeta.bind(this);
+    this.fetchMeta = this.fetchMeta.bind(this);
   }
 
   componentDidMount() {
     const { productInfo, productID } = this.state;
-
     this.fetchMeta();
     this.getRelated(productID);
     this.getProductInfo(productID);
-    // this.getStyles();
+    this.getStyles();
+
   }
 
   setProductInfo = (data) => {
@@ -70,8 +69,6 @@ class App extends React.Component {
 
   handleStyleSelect(event) {
     event.preventDefault();
-    // console.log('event.target:', event.target);
-    // console.log('event.target.dataset.index:', event.target.dataset.index);
     this.setState({
       selectedStyle: this.state.styles[event.target.dataset.index]
     });
@@ -83,7 +80,6 @@ class App extends React.Component {
   getRelated = () => {
     axios.get(`/products/${this.state.productID}/related`)
       .then((res) => {
-        // console.log('related products recd:', res.data);
         this.setState({
           relatedProducts: res.data
         })
@@ -110,10 +106,6 @@ class App extends React.Component {
 
   render() {
     const { productID, productInfo, relatedProducts, styles, selectedStyle, metaData } = this.state;
-
-    // console.log('app state// productInfo', productInfo);
-    // console.log('app state// relatedPro', relatedProducts);
-
     return (
       <div>
         <ProductDetail
@@ -140,11 +132,8 @@ class App extends React.Component {
         />
 
         <RelatedItems
-          productID={productID}
           productInfo={productInfo}
           relatedProducts={relatedProducts}
-          selectedStyle={selectedStyle}
-          getProductInfo={this.getProductInfo}
         />
       </div>
     )

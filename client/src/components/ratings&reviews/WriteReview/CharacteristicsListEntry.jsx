@@ -9,8 +9,12 @@ class CharacteristicsListEntry extends React.Component {
     const { characteristic, characteristicID, handleCharacteristicClick, options } = this.props;
     return (
       <div>
-        <div style={{ textAlign: 'center' }} className="container">{`* ${characteristic}`}</div>
-        <div style={{ display: 'flex', justifyContent: 'space-evenly' }}>
+
+        <div style={{ textAlign: 'center' }} className="container">
+          {`* ${characteristic}`}
+        </div>
+
+        <div style={{ display: 'flex', justifyContent: 'space-evenly', marginBottom: '15px' }}>
           <div className="center-flex">
             <input type="radio" id={`${characteristic}1`} name={characteristicID} value="1"
               onClick={(e) => { handleCharacteristicClick(characteristic, e) }} />
