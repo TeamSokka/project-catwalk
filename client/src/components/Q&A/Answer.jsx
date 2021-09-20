@@ -13,8 +13,8 @@ const Answer = (props) => {
       return;
     }
     axios.put(`/qa/answers/${answer.id}/helpful`)
-        .then(() => setHelpCount((prevState) => prevState + 1))
-        .catch((err) => console.log('Error updating ', err));
+      .then(() => setHelpCount((prevState) => prevState + 1))
+      .catch((err) => console.log('Error updating ', err));
     setHelpfulBtn(true);
   }
 
@@ -23,7 +23,7 @@ const Answer = (props) => {
       return;
     }
     axios.put(`/qa/answers/${answer.id}/report`)
-    .catch((err) => console.log('Error reporting ', err));
+      .catch((err) => console.log('Error reporting ', err));
   }
 
   let answerer = <a style={{ fontWeight: answer.answerer_name === 'Seller' && 'bold' }} >{answer.answerer_name}</a>
@@ -32,14 +32,16 @@ const Answer = (props) => {
     <div className='answer'>
       A: {answer.body}
       <br />
-      {answer.photos.length > 0 && <img src={answer.photos} alt='some image' width='150' height='100' />}
+      {answer.photos.length > 0 && answer.photos.map((photo) =>
+        <img src={photo} alt='some image' width='150' height='100' />)
+      }
       <div className='answer-info'>
         by {answerer},  {moment(answer.date).format('MMMM Do, YYYY')} | Helpful?{'  '}
         <u style={{ cursor: 'pointer' }}
           onClick={() => helpfulClick()} >Yes</u> ({helpCount}) |{'  '}
-      <u style={{ cursor: 'pointer' }}
-        onClick={() => reportClick()} >Report</u>
-    </div>
+        <u style={{ cursor: 'pointer' }}
+          onClick={() => reportClick()} >Report</u>
+      </div>
     </div >
   )
 }
