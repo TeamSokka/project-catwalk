@@ -228,6 +228,89 @@ class WriteReview extends React.Component {
     // console.log(this.props.metaData)
 
     handlePostReview(this.state.review);
+    alert("Review successfully submitted");
+  }
+
+  handleStarClick(index) {
+    var review2 = Object.assign({}, this.state.review);
+    review2["rating"] = index + 1;
+
+    var mouseOverArray = [0, 0, 0, 0, 0];
+    var newStarRating = "";
+
+    if (index === 0) {
+      if (this.state.mouseOver[index] === 0) {
+        mouseOverArray = [1, 0, 0, 0, 0];
+        newStarRating = "Poor";
+      }
+      this.setState({
+        review: review2,
+        mouseOver: mouseOverArray,
+        starRating: newStarRating
+      });
+    } else if (index === 1) {
+
+      if (this.state.mouseOver[index] === 0) {
+        mouseOverArray = [1, 1, 0, 0, 0];
+        newStarRating = "Fair";
+      }
+
+      this.setState({
+        review: review2,
+        mouseOver: mouseOverArray,
+        starRating: newStarRating
+      });
+    } else if (index === 2) {
+
+      if (this.state.mouseOver[index] === 0) {
+        mouseOverArray = [1, 1, 1, 0, 0];
+        newStarRating = "Average";
+      }
+
+      this.setState({
+        review: review2,
+        mouseOver: mouseOverArray,
+        starRating: newStarRating
+      });
+    } else if (index === 3) {
+
+      if (this.state.mouseOver[index] === 0) {
+        mouseOverArray = [1, 1, 1, 1, 0];
+        newStarRating = "Good";
+      }
+
+      this.setState({
+        review: review2,
+        mouseOver: mouseOverArray,
+        starRating: newStarRating
+      });
+    } else if (index === 4) {
+
+      if (this.state.mouseOver[index] === 0) {
+        mouseOverArray = [1, 1, 1, 1, 1];
+        newStarRating = "Great";
+      }
+
+      this.setState({
+        review: review2,
+        mouseOver: mouseOverArray,
+        starRating: newStarRating
+      });
+    }
+  }
+
+  mouseOverCB(index) {
+    // var mouseOver2 = this.state.mouseOver.slice();
+
+    // if (mouseOver2[index] === 1) {
+    //   mouseOver2[index] = 0;
+    // } else {
+    //   mouseOver2[index] = 1;
+    // }
+
+    // this.setState({
+    //   mouseOver: mouseOver2
+    // });
   }
 
   render() {
@@ -264,29 +347,54 @@ class WriteReview extends React.Component {
               {
                 this.state.mouseOver[0] === 1
                   ? <span className="fa fa-star" aria-hidden="true"
-                    onMouseEnter={() => { this.setState({ mouseOver: [1, 0, 0, 0, 0] }); }} onClick={() => { this.setState({ rating: 1, mouseOver: [1, 0, 0, 0, 0], starRating: "Poor" }); }} />
-                  : <span className="fa fa-star-o" onMouseEnter={() => { this.setState({ mouseOver: [1, 0, 0, 0, 0] }); }} />
+                    onMouseEnter={() => { this.mouseOverCB(0) }}
+                    onClick={() => { this.handleStarClick(0) }} />
+                  :
+                  <span className="fa fa-star-o"
+                    onMouseEnter={() => { this.mouseOverCB(0) }}
+                    onClick={() => { this.handleStarClick(0) }} />
               }
               {
                 this.state.mouseOver[1] === 1
-                  ? <span className="fa fa-star" aria-hidden="true" onMouseEnter={() => { this.setState({ mouseOver: [1, 1, 0, 0, 0] }); }} onClick={() => { this.setState({ rating: 2, mouseOver: [1, 1, 0, 0, 0], starRating: "Fair" }); }} />
-                  : <span className="fa fa-star-o" onMouseEnter={() => { this.setState({ mouseOver: [1, 1, 0, 0, 0] }); }} />
+                  ? <span className="fa fa-star" aria-hidden="true"
+                    onMouseEnter={() => { this.mouseOverCB(1) }}
+                    onClick={() => { this.handleStarClick(1) }} />
+                  :
+                  <span className="fa fa-star-o"
+                    onMouseEnter={() => { this.mouseOverCB(1) }}
+                    onClick={() => { this.handleStarClick(1) }} />
               }
               {
                 this.state.mouseOver[2] === 1
-                  ? <span className="fa fa-star" aria-hidden="true" onMouseEnter={() => { this.setState({ mouseOver: [1, 1, 1, 0, 0] }); }} onClick={() => { this.setState({ rating: 3, mouseOver: [1, 1, 1, 0, 0], starRating: "Average" }); }} />
-                  : <span className="fa fa-star-o" onMouseEnter={() => { this.setState({ mouseOver: [1, 1, 1, 0, 0] }); }} />
+                  ? <span className="fa fa-star" aria-hidden="true"
+                    onMouseEnter={() => { this.mouseOverCB(2) }}
+                    onClick={() => { this.handleStarClick(2) }} />
+                  :
+                  <span className="fa fa-star-o"
+                    onMouseEnter={() => { this.mouseOverCB(2) }}
+                    onClick={() => { this.handleStarClick(2) }} />
               }
               {
                 this.state.mouseOver[3] === 1
-                  ? <span className="fa fa-star" aria-hidden="true" onMouseEnter={() => { this.setState({ mouseOver: [1, 1, 1, 1, 0] }); }} onClick={() => { this.setState({ rating: 4, mouseOver: [1, 1, 1, 1, 0], starRating: "Good" }); }} />
-                  : <span className="fa fa-star-o" onMouseEnter={() => { this.setState({ mouseOver: [1, 1, 1, 1, 0] }); }} />
+                  ? <span className="fa fa-star" aria-hidden="true"
+                    onMouseEnter={() => { this.mouseOverCB(3) }}
+                    onClick={() => { this.handleStarClick(3) }} />
+                  :
+                  <span className="fa fa-star-o"
+                    onMouseEnter={() => { this.mouseOverCB(3) }}
+                    onClick={() => { this.handleStarClick(3) }} />
               }
               {
                 this.state.mouseOver[4] === 1
-                  ? <span className="fa fa-star" aria-hidden="true" onKeyUp={this.handleKeyUp} onClick={() => { this.setState({ rating: 5, mouseOver: [1, 1, 1, 1, 1], starRating: "Great" }); }} />
-                  : <span className="fa fa-star-o" onMouseEnter={() => { this.setState({ mouseOver: [1, 1, 1, 1, 1] }); }} />
+                  ? <span className="fa fa-star" aria-hidden="true" onKeyUp={this.handleKeyUp}
+                    onMouseEnter={() => { this.mouseOverCB(4) }}
+                    onClick={() => { this.handleStarClick(4) }} />
+                  :
+                  <span className="fa fa-star-o"
+                    onMouseEnter={() => { this.mouseOverCB(4) }}
+                    onClick={() => { this.handleStarClick(4) }} />
               }
+
               <div style={{
                 display: 'flex', justifyContent: 'right', fontSize: '13px', marginTop: '5px', marginBottom: '5px', marginLeft: '10px'
               }}
@@ -297,10 +405,12 @@ class WriteReview extends React.Component {
           <div className="recommend-product">
             <b>* Do you recommend this product</b>
             <div>
-              <input className="recommend-product" type="radio" id="recommend-yes" name="recommend" value="Yes" onClick={this.handleRecommendClick} />
+              <input className="recommend-product" type="radio" id="recommend-yes" name="recommend" value="Yes"
+                onClick={this.handleRecommendClick} />
               <label htmlFor="recommend-yes">Yes</label>
 
-              <input className="recommend-product" type="radio" id="recommend-no" name="recommend" value="No" onClick={this.handleRecommendClick} />
+              <input className="recommend-product" type="radio" id="recommend-no" name="recommend" value="No"
+                onClick={this.handleRecommendClick} />
               <label htmlFor="recommend-no">No</label>
             </div>
           </div>
@@ -331,7 +441,7 @@ class WriteReview extends React.Component {
             <br></br>
             <textarea id="email"
               name="email"
-              rows="2" cols="33"
+              rows="1" cols="33"
               value={this.state.email}
               onChange={this.handleInputChange}
               placeholder="Example:jackson11@email.com">
@@ -369,7 +479,7 @@ class WriteReview extends React.Component {
           <div className="photos">
             <label htmlFor="photos">Upload Photos (optional)</label>
             <br></br>
-            {/* <button type="button" onClick={(e) => e.preventDefault}>Add Photos</button> */}
+
             <input className="photosFile" id="photos" type="file" name="filefield" multiple="multiple" ></input>
           </div>
 
