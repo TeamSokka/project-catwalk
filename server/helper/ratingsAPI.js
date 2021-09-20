@@ -108,8 +108,8 @@ const putReviews = (req, callback) => {
     }
   })
     .then((response) => {
-      console.log('putReviews API data: ' + response.data);
-      console.log('res ', response);
+      // console.log('putReviews API data: ' + response.data);
+      // console.log('res ', response);
       callback(null, response.data);
     })
     .catch((error) => {

@@ -22,12 +22,7 @@ import ThumbnailList from './ThumbnailList.jsx';
 //      clicking again zooms out to standard expanded view
 
 var ImageGallery = (props) => (
-  <div id="image-gallery">
-    {props.photos.length
-      ? <img id="main-image" src={props.photos[props.selectedphotoindex].url} width="750">
-      </img>
-      : <p><em>No photo to display.</em></p>
-    }
+  <div id="image-gallery" width="60%" height="700px">
     <div id="thumbnail-list">
       {props.photos
         ? <ThumbnailList
@@ -41,6 +36,22 @@ var ImageGallery = (props) => (
         : <p><em>No photos to display.</em></p>
       }
     </div>
+    {props.photos.length
+      ? <img
+          id="main-image"
+          src={props.photos[props.selectedphotoindex].url} width="750"
+          // style={{
+          //   backgroundImage: `url(${props.photos[props.selectedphotoindex].url})`,
+          //   backgroundSize: 'cover',
+          //   backgroundRepeat: 'no-repeat',
+          //   zIndex: '10',
+          //   maxHeight: '100%',
+          //   maxWidth: '100%'
+          // }}
+        >
+      </img>
+      : <p><em>No photo to display.</em></p>
+    }
   </div>
 );
 
