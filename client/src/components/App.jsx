@@ -12,7 +12,7 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      productID: 40355, // example product id, change to num
+      productID: 40344, // example product id, change to num
       productInfo: {},
       relatedProducts: [],
       styles: [],

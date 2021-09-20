@@ -24,7 +24,7 @@ const AddAnswer = (props) => {
       return;
     }
     console.log('answers ', { body, name, email });
-    postAnswer({ body, name, email, photos }, question.question_id);
+    postAnswer({ body, name, email }, question.question_id);
     console.log('photos', photos);
   }
 
