@@ -79,7 +79,7 @@ app {
   margin: 5px;
 }
 
-.selected {
+#selected-image {
   box-shadow: 0px 0px 5px yellow;
 }
 
