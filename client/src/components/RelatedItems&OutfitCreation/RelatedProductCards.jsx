@@ -5,17 +5,19 @@ import './related-items.scss';
 
 const RelatedProductCards = (props) => {
   const { productInfo, relatedProducts, getProductInfo } = props;
-  const products = relatedProducts.map(product =>
+  const products = relatedProducts.map(product, index =>
     <div className="product-card">
 
-      <i className="fa fa-star-o " id="fa-star-o"></i>
+      <i className="fa fa-star-o" id="fa-star-o"></i>
       <ProductPreviewImages
         productStyles={product.styles}
+        key={index}
       />
       <ProductInformation
         relatedProducts={relatedProducts}
         productInfo={productInfo}
         product={product}
+        key={index}
         />
     </div>
   );
