@@ -12,7 +12,7 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      productID: 40350, // example product id, change to num
+      productID: 40355, // example product id, change to num
       productInfo: {},
       relatedProducts: [],
       styles: [],
@@ -119,7 +119,7 @@ class App extends React.Component {
           handleStyleSelect={this.handleStyleSelect.bind(this)}
         /> */}
 
-        {
+        {/* {
           this.state.metaReady === true
           &&
           <RatingsAndReviews
@@ -127,7 +127,7 @@ class App extends React.Component {
             metaData={metaData}
             productInfo={productInfo}
           />
-        }
+        } */}
 
         <QuestionsAndAnswers
         productID={productID}

@@ -14,9 +14,9 @@ const Search = (props) => {
   return (
     <div className='search'>
       <input type='text' className='search-bar' value={search}
-        style={{ width: '300px' }}
+        style={{ width: '100%', height: '30px' }}
         onChange={(e) => handleSearch(e)}
-        placeholder='HAVE A QUESTION? SEARCH FOR ANSWERS...' />
+        placeholder='  HAVE A QUESTION? SEARCH FOR ANSWERS...' />
       <BiSearchAlt onClick={props.onSearch} className='icon' />
     </div>
   )
