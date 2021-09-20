@@ -7,7 +7,20 @@ class SortOptions extends React.Component {
   }
 
   totalReviews(obj) {
-    const total = Number(obj.false) + Number(obj.true);
+    var sum1;
+    var sum2;
+    if (isNaN(obj.false)) {
+      sum1 = 0;
+    } else {
+      sum1 = Number(obj.false);
+    }
+
+    if (obj.true === null) {
+      sum2 = 0;
+    } else {
+      sum2 = Number(obj.true);
+    }
+    const total = sum1 + sum2;
     return total;
   }
 

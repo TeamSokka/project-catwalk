@@ -25,8 +25,21 @@ class RatingBreakdown extends React.Component {
   }
 
   averageRecommended(obj) {
-    const total = Number(obj.true) + Number(obj.false);
-    const result = Number(obj.true) / total;
+    var sum1;
+    var sum2;
+    if (isNaN(obj.false)) {
+      sum1 = 0;
+    } else {
+      sum1 = Number(obj.false);
+    }
+
+    if (obj.true === null) {
+      sum2 = 0;
+    } else {
+      sum2 = Number(obj.true);
+    }
+    const total = sum1 + sum2;
+    const result = sum2 / total;
 
     if (isNaN(result.toFixed(1) * 100)) {
       return 0;
