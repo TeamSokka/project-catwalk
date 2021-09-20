@@ -2,6 +2,8 @@ import React from 'react';
 import Search from './Search.jsx';
 import QuestionList from './QuestionList.jsx';
 import axios from 'axios';
+import '../ratings&reviews/Styles/ratings-reviews.scss';
+import './q-and-a.scss';
 
 class QuestionsAndAnswers extends React.Component {
   constructor(props) {
@@ -14,7 +16,6 @@ class QuestionsAndAnswers extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.getQuestions = this.getQuestions.bind(this);
-    this.putRequest = this.putRequest.bind(this);
   }
 
   componentDidMount() { this.getQuestions() }
@@ -75,22 +76,29 @@ class QuestionsAndAnswers extends React.Component {
     // }
   }
 
-  putRequest(path, id, endpoint) {
-    if (this.state.disabled) {
-      return;
-    }
-    axios.put(`/qa/${path}/${id}/${endpoint}`)
-      .then(() => this.getQuestions())
-      .then(() => this.setState({ disabled: true }))
-      .catch((err) => console.log('Error updating ', err));
-  }
+  // putRequest(path, id, endpoint) {
+  //   if (this.state.disabled) {
+  //     return;
+  //   }
+  //   axios.put(`/qa/${path}/${id}/${endpoint}`)
+  //     .then(() => this.getQuestions())
+  //     .then(() => this.setState({ disabled: true }))
+  //     .catch((err) => console.log('Error updating ', err));
+  // }
 
   // post request from postman not working...
-  postRequest(body, id, endpoint) {
-    axios.post(`qa/questions/${id}/${endpoint}`, body)
+  postQuestion(body) {
+    axios.post('/qa/questions/', body)
     .then(() => this.getQuestions())
     .catch((err) => console.log('Error adding question ', err));
   }
+
+  postAnswer(body, id) {
+    axios.post(`/qa/questions/${id}/answers`, body)
+    .then(() => this.getQuestions())
+    .catch((err) => console.log('Error adding answer ', err));
+  }
+
 
   render() {
     return (
@@ -101,10 +109,10 @@ class QuestionsAndAnswers extends React.Component {
           questions={this.state.questions} />
         <QuestionList
           questions={this.state.questions}
-          putRequest={this.putRequest}
           productID={this.props.productID}
           productInfo={this.props.productInfo}
-          postRequest={this.postRequest.bind(this)}
+          postQuestion={this.postQuestion.bind(this)}
+          postAnswer={this.postAnswer.bind(this)}
         />
       </div>
     );

@@ -17,7 +17,8 @@ class ProductDetail extends React.Component {
       selectedSize: "",
       selectedQuantity: 1,
       selectedPhotoIndex: 0,
-      cart: null
+      cart: null,
+      topThumbnail: 0
     }
   }
 
@@ -37,7 +38,7 @@ class ProductDetail extends React.Component {
     axios.post(`/cart`, cartData)
       .then((res) => {
         // console.log('styles recd:', res.data.results);
-        console.log('cart data recd:', res.data);
+        // console.log('cart data recd:', res.data);
       })
       .catch((err) => {
         console.error(err);
@@ -46,9 +47,9 @@ class ProductDetail extends React.Component {
 
   handleCartSubmit(event) {
     event.preventDefault();
-    console.log('event.target.sizesku.value:', event.target.sizesku.value);
-    console.log('event.target.quantity.value:', event.target.quantity.value);
-    console.log('what type?', typeof event.target.quantity.value);
+    // console.log('event.target.sizesku.value:', event.target.sizesku.value);
+    // console.log('event.target.quantity.value:', event.target.quantity.value);
+    // console.log('what type?', typeof event.target.quantity.value);
 
     var count = parseInt(event.target.quantity.value);
     for (var i = 1; i <= count; i++) {
@@ -59,7 +60,7 @@ class ProductDetail extends React.Component {
 
   handleSizeSelect(event) {
     event.preventDefault();
-    console.log('size select entry:', event.target.value);
+    // console.log('size select entry:', event.target.value);
     this.setState({
       selectedSize: this.props.selectedStyle.skus[event.target.value]
     });
@@ -71,6 +72,32 @@ class ProductDetail extends React.Component {
     event.preventDefault();
     this.setState({
       selectedQuantity: event.target.value
+    });
+  }
+
+  handleThumbnailClick(event) {
+    event.preventDefault();
+    console.log('event.target.dataset.index:', event.target.dataset.index);
+    this.setState({
+      selectedPhotoIndex: event.target.dataset.index
+    });
+
+    document.getElementById('selected-image').id = '';
+    event.target.id = 'selected-image';
+    // event.target.classList.toggle('selected');
+  }
+
+  handleUpArrowClick(event) {
+    event.preventDefault();
+    this.setState({
+      topThumbnail: this.state.topThumbnail - 1
+    });
+  }
+
+  handleDownArrowClick(event) {
+    event.preventDefault();
+    this.setState({
+      topThumbnail: this.state.topThumbnail + 1
     });
   }
 
@@ -88,20 +115,23 @@ class ProductDetail extends React.Component {
     // });
     // console.log('styles:', this.state.styles);
     // console.log('selected style:', this.state.selectedStyle);
-    // console.log('photos:', this.state.selectedStyle.photos);
-
   }
 
   render() {
     return (
-      <div><h4>Product Details</h4>
+      <div id="overview-box">
         <ImageGallery
           photos={this.props.selectedStyle.photos}
           selectedphotoindex={this.state.selectedPhotoIndex}
+          handleThumbnailClick={this.handleThumbnailClick.bind(this)}
+          topThumbnail={this.state.topThumbnail}
+          handleUpArrowClick={this.handleUpArrowClick.bind(this)}
+          handleDownArrowClick={this.handleDownArrowClick.bind(this)}
         />
-        <div>
+        <div id="next-to-image">
           <ProductInfo
             productinfo={this.props.productInfo}
+            selectedstyle={this.props.selectedStyle}
           />
           <StyleSelector
             styles={this.props.styles}

@@ -11,8 +11,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // 40344
-      productID: 40344,
+      productID: 40355, // example product id, change to num
       productInfo: {},
       relatedProducts: [],
       styles: [],
@@ -29,11 +28,14 @@ class App extends React.Component {
     this.getRelated(productID);
     this.getProductInfo(productID);
     this.getStyles();
+
   }
 
   setProductInfo = (data) => {
     this.setState({
-      productInfo: data
+      productInfo: data,
+      styles: data.styles,
+      selectedStyle: data.styles[0]
     })
   }
   /*stormi: refactor function to take in id, callback. The callback is defaulted to setProductInfo.
@@ -67,17 +69,17 @@ class App extends React.Component {
 
   handleStyleSelect(event) {
     event.preventDefault();
-    // console.log('event.target:', event.target);
-    // console.log('event.target.dataset.index:', event.target.dataset.index);
     this.setState({
       selectedStyle: this.state.styles[event.target.dataset.index]
-    })
+    });
+    console.log('selectedStyle:', this.state.selectedStyle);
+    document.getElementById('selected-style').id = '';
+    event.target.id = 'selected-style';
   }
 
   getRelated = () => {
     axios.get(`/products/${this.state.productID}/related`)
       .then((res) => {
-        // console.log('related products recd:', res.data);
         this.setState({
           relatedProducts: res.data
         })
@@ -114,6 +116,16 @@ class App extends React.Component {
           handleStyleSelect={this.handleStyleSelect.bind(this)}
         />
 
+        <RelatedItems
+          productInfo={productInfo}
+          relatedProducts={relatedProducts}
+        />
+
+        <QuestionsAndAnswers
+          productID={productID}
+          productInfo={productInfo}
+        />
+
         {
           this.state.metaReady === true
           &&
@@ -123,19 +135,6 @@ class App extends React.Component {
             productInfo={productInfo}
           />
         }
-
-        <QuestionsAndAnswers
-          productID={productID}
-          productInfo={productInfo}
-        />
-
-        <RelatedItems
-          productID={productID}
-          productInfo={productInfo}
-          relatedProducts={relatedProducts}
-          selectedStyle={selectedStyle}
-          getProductInfo={this.getProductInfo}
-        />
       </div>
     )
   }

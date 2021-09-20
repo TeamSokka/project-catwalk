@@ -2,21 +2,14 @@ import React from 'react';
 import { formatPreviewImage } from '../helpers/_functions.js'
 
 const ProductPreviewImages = (props) => {
-  const {selectedStyle} = props;
-  const images = formatPreviewImage(selectedStyle);
+  const { productStyles } = props;
 
-  // console.log('image: ', images);
-  // console.log('selectedStyle: ', selectedStyle);
+  let images = productStyles[0].photos[0];
 
   return (
     <div id="product-preview-img">
-      {images.map(image => {
-        return
-          <img
-            src={image.thumbnail_url}
-            key={image.thumbnail_url}
-          />
-      })}
+      <i className="fa fa-star-o " id="fa-star-o"></i>
+      <img src={images.thumbnail_url} id="preview-img" />
     </div>
   )
 }
