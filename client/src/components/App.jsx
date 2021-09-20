@@ -12,7 +12,7 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      productID: 40348, // example product id, change to num
+      productID: 40355, // example product id, change to num
       productInfo: {},
       relatedProducts: [],
       styles: [],
@@ -29,7 +29,8 @@ class App extends React.Component {
     this.fetchMeta();
     this.getRelated(productID);
     this.getProductInfo(productID);
-    // this.getStyles();
+    this.getStyles();
+
   }
 
   setProductInfo = (data) => {
@@ -113,6 +114,8 @@ class App extends React.Component {
 
     return (
       <div>
+
+
         <ProductDetail
           productID={productID}
           productInfo={productInfo}
