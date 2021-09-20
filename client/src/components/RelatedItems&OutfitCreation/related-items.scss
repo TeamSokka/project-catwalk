@@ -26,25 +26,26 @@ $box-shadow-hover: 0 .75rem 1rem rgba(black, 0.30) !default;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  // align-items: center;
-  // line-height: 1px;
   height: 30%;
   width: 100%;
-  background-color: pink;
+
+  padding-left: 10px;
 }
 
 #info-category {
-  font-size: 15px;
-  font-weight: 400;
+  font-size: 13px;
+  font-weight: 200;
 }
 
 #info-name {
   font-size: 15px;
   font-weight: 600;
+  padding: 3px 0;
 }
 
 #info-price {
-  font-size: 15px;
+  font-size: 14px;
+  padding-bottom: 4px;
 }
 
 #product-preview-img {
@@ -52,8 +53,22 @@ $box-shadow-hover: 0 .75rem 1rem rgba(black, 0.30) !default;
   justify-items: center;
   align-items: center;
   height: 70%;
-  // height: 190px;
-  // width: 100%
+  position: relative;
+}
+
+#preview-img {
+  float: left;
+  width:  200px;
+  height: 197px;
+  object-fit: cover;
+  position: block;
+}
+
+#fa-star-o {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 7px 6px 0 0;
 }
 
 .product-card {
@@ -64,14 +79,11 @@ $box-shadow-hover: 0 .75rem 1rem rgba(black, 0.30) !default;
   margin: 5px;
 
   border: 1px solid rgba(0, 0, 0, 0.26);
-  // color: $two;
-  // background-color: $eight;
   box-shadow: $box-shadow;
   width: 200px;
-  height: 275px;
+  height: 280px;
 
   &:hover {
-    cursor: pointer;
     box-shadow: $box-shadow-hover;
   }
 }
