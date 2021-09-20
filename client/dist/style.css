@@ -83,6 +83,10 @@ app {
   box-shadow: 0px 0px 5px yellow;
 }
 
+#selected-style {
+  box-shadow: 0px 0px 10px blue;
+}
+
 .style {
   border-radius: 50%;
   /* padding-top: 75%; */

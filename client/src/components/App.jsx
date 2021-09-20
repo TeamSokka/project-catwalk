@@ -76,7 +76,8 @@ class App extends React.Component {
       selectedStyle: this.state.styles[event.target.dataset.index]
     });
     console.log('selectedStyle:', this.state.selectedStyle);
-
+    document.getElementById('selected-style').id = '';
+    event.target.id = 'selected-style';
   }
 
   getRelated = () => {
