@@ -82,9 +82,9 @@ class ProductDetail extends React.Component {
       selectedPhotoIndex: event.target.dataset.index
     });
 
-    // document.getElementById('selected-image').id = '';
-    // event.target.id = 'selected-image';
-    event.target.classList.toggle('selected');
+    document.getElementById('selected-image').id = '';
+    event.target.id = 'selected-image';
+    // event.target.classList.toggle('selected');
   }
 
   handleUpArrowClick(event) {
