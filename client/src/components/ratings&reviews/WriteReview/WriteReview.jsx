@@ -1,5 +1,6 @@
 import React from 'react';
 import CharacteristicsList from './CharacteristicsList';
+import '../Styles/write-review.scss';
 
 class WriteReview extends React.Component {
   constructor(props) {
@@ -145,7 +146,7 @@ class WriteReview extends React.Component {
 
   // min char count
   minCharCount() {
-    const { body } = this.state;
+    const { body } = this.state.review;
     if (body.length >= 50) {
       return 'Minimum body character count reached.';
     }
@@ -223,10 +224,93 @@ class WriteReview extends React.Component {
     // review2['characteristics'] = Object.assign(review2['characteristics'], this.state.characteristics);
     // review2['characteristics'] = JSON.parse(JSON.stringify(this.state.characteristics));
     // alert(review2['characteristics']);
-    console.log(this.state.review)
-    console.log(this.props.metaData)
+    // console.log(this.state.review)
+    // console.log(this.props.metaData)
 
     handlePostReview(this.state.review);
+    alert("Review successfully submitted");
+  }
+
+  handleStarClick(index) {
+    var review2 = Object.assign({}, this.state.review);
+    review2["rating"] = index + 1;
+
+    var mouseOverArray = [0, 0, 0, 0, 0];
+    var newStarRating = "";
+
+    if (index === 0) {
+      if (this.state.mouseOver[index] === 0) {
+        mouseOverArray = [1, 0, 0, 0, 0];
+        newStarRating = "Poor";
+      }
+      this.setState({
+        review: review2,
+        mouseOver: mouseOverArray,
+        starRating: newStarRating
+      });
+    } else if (index === 1) {
+
+      if (this.state.mouseOver[index] === 0) {
+        mouseOverArray = [1, 1, 0, 0, 0];
+        newStarRating = "Fair";
+      }
+
+      this.setState({
+        review: review2,
+        mouseOver: mouseOverArray,
+        starRating: newStarRating
+      });
+    } else if (index === 2) {
+
+      if (this.state.mouseOver[index] === 0) {
+        mouseOverArray = [1, 1, 1, 0, 0];
+        newStarRating = "Average";
+      }
+
+      this.setState({
+        review: review2,
+        mouseOver: mouseOverArray,
+        starRating: newStarRating
+      });
+    } else if (index === 3) {
+
+      if (this.state.mouseOver[index] === 0) {
+        mouseOverArray = [1, 1, 1, 1, 0];
+        newStarRating = "Good";
+      }
+
+      this.setState({
+        review: review2,
+        mouseOver: mouseOverArray,
+        starRating: newStarRating
+      });
+    } else if (index === 4) {
+
+      if (this.state.mouseOver[index] === 0) {
+        mouseOverArray = [1, 1, 1, 1, 1];
+        newStarRating = "Great";
+      }
+
+      this.setState({
+        review: review2,
+        mouseOver: mouseOverArray,
+        starRating: newStarRating
+      });
+    }
+  }
+
+  mouseOverCB(index) {
+    // var mouseOver2 = this.state.mouseOver.slice();
+
+    // if (mouseOver2[index] === 1) {
+    //   mouseOver2[index] = 0;
+    // } else {
+    //   mouseOver2[index] = 1;
+    // }
+
+    // this.setState({
+    //   mouseOver: mouseOver2
+    // });
   }
 
   render() {
@@ -237,12 +321,14 @@ class WriteReview extends React.Component {
         <form onSubmit={this.submitReview}>
           <div className="form-title">
             <h1>Write Your Review</h1>
-            <h3>About the Product Name: {name}</h3>
+            <h3>About the Product Name: <i>{name}</i> </h3>
             <small>* Required fields</small>
           </div>
 
           <div className="overall-rating">
-            <b>* Overall</b>
+            <b style={{
+              display: 'flex', justifyContent: 'center', padding: '10px'
+            }}>* Overall</b>
             <div style={{
               display: 'flex', justifyContent: 'center', fontSize: '20px', marginTop: '5px', marginBottom: '5px',
             }}
@@ -261,44 +347,70 @@ class WriteReview extends React.Component {
               {
                 this.state.mouseOver[0] === 1
                   ? <span className="fa fa-star" aria-hidden="true"
-                    onMouseEnter={() => { this.setState({ mouseOver: [1, 0, 0, 0, 0] }); }} onClick={() => { this.setState({ rating: 1, mouseOver: [1, 0, 0, 0, 0], starRating: "Poor" }); }} />
-                  : <span className="fa fa-star-o" onMouseEnter={() => { this.setState({ mouseOver: [1, 0, 0, 0, 0] }); }} />
+                    onMouseEnter={() => { this.mouseOverCB(0) }}
+                    onClick={() => { this.handleStarClick(0) }} />
+                  :
+                  <span className="fa fa-star-o"
+                    onMouseEnter={() => { this.mouseOverCB(0) }}
+                    onClick={() => { this.handleStarClick(0) }} />
               }
               {
                 this.state.mouseOver[1] === 1
-                  ? <span className="fa fa-star" aria-hidden="true" onMouseEnter={() => { this.setState({ mouseOver: [1, 1, 0, 0, 0] }); }} onClick={() => { this.setState({ rating: 2, mouseOver: [1, 1, 0, 0, 0], starRating: "Fair" }); }} />
-                  : <span className="fa fa-star-o" onMouseEnter={() => { this.setState({ mouseOver: [1, 1, 0, 0, 0] }); }} />
+                  ? <span className="fa fa-star" aria-hidden="true"
+                    onMouseEnter={() => { this.mouseOverCB(1) }}
+                    onClick={() => { this.handleStarClick(1) }} />
+                  :
+                  <span className="fa fa-star-o"
+                    onMouseEnter={() => { this.mouseOverCB(1) }}
+                    onClick={() => { this.handleStarClick(1) }} />
               }
               {
                 this.state.mouseOver[2] === 1
-                  ? <span className="fa fa-star" aria-hidden="true" onMouseEnter={() => { this.setState({ mouseOver: [1, 1, 1, 0, 0] }); }} onClick={() => { this.setState({ rating: 3, mouseOver: [1, 1, 1, 0, 0], starRating: "Average" }); }} />
-                  : <span className="fa fa-star-o" onMouseEnter={() => { this.setState({ mouseOver: [1, 1, 1, 0, 0] }); }} />
+                  ? <span className="fa fa-star" aria-hidden="true"
+                    onMouseEnter={() => { this.mouseOverCB(2) }}
+                    onClick={() => { this.handleStarClick(2) }} />
+                  :
+                  <span className="fa fa-star-o"
+                    onMouseEnter={() => { this.mouseOverCB(2) }}
+                    onClick={() => { this.handleStarClick(2) }} />
               }
               {
                 this.state.mouseOver[3] === 1
-                  ? <span className="fa fa-star" aria-hidden="true" onMouseEnter={() => { this.setState({ mouseOver: [1, 1, 1, 1, 0] }); }} onClick={() => { this.setState({ rating: 4, mouseOver: [1, 1, 1, 1, 0], starRating: "Good" }); }} />
-                  : <span className="fa fa-star-o" onMouseEnter={() => { this.setState({ mouseOver: [1, 1, 1, 1, 0] }); }} />
+                  ? <span className="fa fa-star" aria-hidden="true"
+                    onMouseEnter={() => { this.mouseOverCB(3) }}
+                    onClick={() => { this.handleStarClick(3) }} />
+                  :
+                  <span className="fa fa-star-o"
+                    onMouseEnter={() => { this.mouseOverCB(3) }}
+                    onClick={() => { this.handleStarClick(3) }} />
               }
               {
                 this.state.mouseOver[4] === 1
-                  ? <span className="fa fa-star" aria-hidden="true" onKeyUp={this.handleKeyUp} onClick={() => { this.setState({ rating: 5, mouseOver: [1, 1, 1, 1, 1], starRating: "Great" }); }} />
-                  : <span className="fa fa-star-o" onMouseEnter={() => { this.setState({ mouseOver: [1, 1, 1, 1, 1] }); }} />
+                  ? <span className="fa fa-star" aria-hidden="true" onKeyUp={this.handleKeyUp}
+                    onMouseEnter={() => { this.mouseOverCB(4) }}
+                    onClick={() => { this.handleStarClick(4) }} />
+                  :
+                  <span className="fa fa-star-o"
+                    onMouseEnter={() => { this.mouseOverCB(4) }}
+                    onClick={() => { this.handleStarClick(4) }} />
               }
-            </div>
-            <div style={{
-              display: 'flex', justifyContent: 'right', fontSize: '20px', marginTop: '5px', marginBottom: '5px',
-            }}
-            > {this.state.starRating}</div>
 
+              <div style={{
+                display: 'flex', justifyContent: 'right', fontSize: '13px', marginTop: '5px', marginBottom: '5px', marginLeft: '10px'
+              }}
+              > {this.state.starRating}</div>
+            </div>
           </div>
 
           <div className="recommend-product">
             <b>* Do you recommend this product</b>
             <div>
-              <input type="radio" id="recommend-yes" name="recommend" value="Yes" onClick={this.handleRecommendClick} />
+              <input className="recommend-product" type="radio" id="recommend-yes" name="recommend" value="Yes"
+                onClick={this.handleRecommendClick} />
               <label htmlFor="recommend-yes">Yes</label>
 
-              <input type="radio" id="recommend-no" name="recommend" value="No" onClick={this.handleRecommendClick} />
+              <input className="recommend-product" type="radio" id="recommend-no" name="recommend" value="No"
+                onClick={this.handleRecommendClick} />
               <label htmlFor="recommend-no">No</label>
             </div>
           </div>
@@ -308,6 +420,34 @@ class WriteReview extends React.Component {
               metaData={this.props.metaData}
               handleCharacteristicClick={this.handleCharacteristicClick}
             />
+          </div>
+
+          <div className="name">
+            <label htmlFor="name"><b>* Name</b></label>
+            <br></br>
+            <textarea id="name"
+              name="name"
+              rows="1" cols="33"
+              value={this.state.name}
+              onChange={this.handleInputChange}
+              placeholder="Example:jackson11">
+            </textarea>
+            <br></br>
+            <small>For privacy reasons, do not use your full name or email address</small>
+          </div>
+
+          <div className="email">
+            <label htmlFor="email"><b>* Email</b></label>
+            <br></br>
+            <textarea id="email"
+              name="email"
+              rows="1" cols="33"
+              value={this.state.email}
+              onChange={this.handleInputChange}
+              placeholder="Example:jackson11@email.com">
+            </textarea>
+            <br></br>
+            <small>For authentication reasons, you will not be emailed</small>
           </div>
 
           <div className="review-summary">
@@ -322,34 +462,6 @@ class WriteReview extends React.Component {
             </textarea>
           </div>
 
-          <div className="name">
-            <label htmlFor="name"><b>* Name</b></label>
-            <br></br>
-            <textarea id="name"
-              name="name"
-              rows="2" cols="33"
-              value={this.state.name}
-              onChange={this.handleInputChange}
-              placeholder="Example:jackson11">
-            </textarea>
-            <br></br>
-            <small>For privacy reasons, do not use your full name or email address</small>
-          </div>
-
-          <div className="email">
-            <label htmlFor="email"><b>* Email</b></label>
-            <br></br>
-            <textarea id="email"
-              name="email"
-              rows="2" cols="33"
-              value={this.state.email}
-              onChange={this.handleInputChange}
-              placeholder="Example:jackson11@email.com">
-            </textarea>
-            <br></br>
-            <small>For authentication reasons, you will not be emailed</small>
-          </div>
-
           <div className="review-body">
             <label htmlFor="review"><b>* Review Body</b></label>
             <br></br>
@@ -360,16 +472,18 @@ class WriteReview extends React.Component {
               onChange={this.handleInputChange}
               placeholder="Why did you like the product or not?">
             </textarea>
+            <br></br>
+            <small>{this.minCharCount()}</small>
           </div>
 
           <div className="photos">
             <label htmlFor="photos">Upload Photos (optional)</label>
             <br></br>
-            {/* <button type="button" onClick={(e) => e.preventDefault}>Add Photos</button> */}
-            <input id="photos" type="file" name="filefield" multiple="multiple" ></input>
+
+            <input className="photosFile" id="photos" type="file" name="filefield" multiple="multiple" ></input>
           </div>
 
-          <button type="button" onClick={(e) => { this.submitReview(e) }}>Submit Review</button>
+          <button className="button" type="button" onClick={(e) => { this.submitReview(e) }}>Submit Review</button>
 
         </form >
       </div >

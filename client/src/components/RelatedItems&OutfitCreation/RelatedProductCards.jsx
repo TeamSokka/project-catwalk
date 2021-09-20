@@ -7,6 +7,7 @@ const RelatedProductCards = (props) => {
   const { productInfo, relatedProducts, getProductInfo } = props;
   const products = relatedProducts.map(product =>
     <div className="product-card">
+
       <i className="fa fa-star-o " id="fa-star-o"></i>
       <ProductPreviewImages
         productStyles={product.styles}
