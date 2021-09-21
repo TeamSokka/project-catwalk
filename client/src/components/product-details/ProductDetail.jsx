@@ -47,25 +47,18 @@ class ProductDetail extends React.Component {
 
   handleCartSubmit(event) {
     event.preventDefault();
-    // console.log('event.target.sizesku.value:', event.target.sizesku.value);
-    // console.log('event.target.quantity.value:', event.target.quantity.value);
-    // console.log('what type?', typeof event.target.quantity.value);
-
     var count = parseInt(event.target.quantity.value);
     for (var i = 1; i <= count; i++) {
       this.postToCart({ sku_id: event.target.sizesku.value });
     }
-    // this.postToCart({ sku_id: event.target.sizesku.value, count: event.target.quantity.value});
   }
 
   handleSizeSelect(event) {
     event.preventDefault();
-    // console.log('size select entry:', event.target.value);
     this.setState({
       selectedSize: this.props.selectedStyle.skus[event.target.value]
     });
     event.target.size = '1';
-    // document.getElementById('size-selector').size = '1';
   }
 
   handleQuantitySelect(event) {
@@ -101,6 +94,18 @@ class ProductDetail extends React.Component {
     });
   }
 
+  handleLeftArrowClick(event) {
+    this.setState({
+      selectedPhotoIndex: this.state.selectedPhotoIndex - 1
+    })
+  }
+
+  handleRightArrowClick(event) {
+    this.setState({
+      selectedPhotoIndex: this.state.selectedPhotoIndex + 1
+    })
+  }
+
   openSizeSelect() {
     // document.getElementById('size-selector').size = `${Object.keys(this.state.selectedStyle.skus.length)}`;
     document.getElementById('size-selector').size = '12';
@@ -128,6 +133,8 @@ class ProductDetail extends React.Component {
           topThumbnail={this.state.topThumbnail}
           handleUpArrowClick={this.handleUpArrowClick.bind(this)}
           handleDownArrowClick={this.handleDownArrowClick.bind(this)}
+          handleLeftArrowClick={this.handleLeftArrowClick.bind(this)}
+          handleRightArrowClick={this.handleRightArrowClick.bind(this)}
         />
         <div id="next-to-image">
           <ProductInfo
