@@ -25,7 +25,6 @@ const Question = (props) => {
 
   let answers = [];
   let answerKeys = Object.keys(question.answers);
-
   for (let i = 0; i < answerKeys.length; i++) {
     answers.push(question.answers[answerKeys[i]]);
   };
@@ -68,7 +67,8 @@ const Question = (props) => {
           )
         }
       </div>
-      {answers.slice(0, display).map((answer, index) =>
+      {answers.sort((a, b) => a.helpfulness > b.helpfulness ? -1 : 1)
+        .slice(0, display).map((answer, index) =>
         <Answer key={index} answer={answer}
         />
       )}
