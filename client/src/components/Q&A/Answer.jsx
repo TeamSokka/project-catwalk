@@ -30,7 +30,7 @@ const Answer = (props) => {
 
   return (
     <div className='answer'>
-      A: {answer.body}
+      <div><b>A:</b> {answer.body}</div>
       <br />
       {answer.photos.length > 0 && answer.photos.map((photo, index) =>
         <img key={index} src={photo} alt='some image' width='150' height='100' />)
