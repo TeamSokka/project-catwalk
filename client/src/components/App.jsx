@@ -119,6 +119,16 @@ class App extends React.Component {
           handleStyleSelect={this.handleStyleSelect.bind(this)}
         />
 
+        <RelatedItems
+          productInfo={productInfo}
+          relatedProducts={relatedProducts}
+        />
+
+        <QuestionsAndAnswers
+          productID={productID}
+          productInfo={productInfo}
+        />
+
         {
           this.state.metaReady === true
           &&
@@ -128,19 +138,6 @@ class App extends React.Component {
             productInfo={productInfo}
           />
         }
-
-        <QuestionsAndAnswers
-        productID={productID}
-        productInfo={productInfo}
-        />
-
-        <RelatedItems
-          productID={productID}
-          productInfo={productInfo}
-          relatedProducts={relatedProducts}
-          selectedStyle={selectedStyle}
-          getProductInfo={this.getProductInfo}
-        />
       </div>
     )
   }
