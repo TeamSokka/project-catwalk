@@ -5,15 +5,15 @@ import React from 'react';
 var ProductInfo = (props) => (
   <div id="selected-product-info">
     {/* <StarRating /> */}
-    <span id="category">{props.productinfo.category}</span>
-    <span id="name">{props.productinfo.name}</span>
+    <span id="category">{props.productInfo.category}</span>
+    <span id="name">{props.productInfo.name}</span>
     <span id="price">${
-      props.selectedstyle.sale_price
-      ? props.selectedstyle.sale_price
-      : props.selectedstyle.original_price}</span>
-    <h2>{props.productinfo.slogan}</h2>
+      props.selectedStyle.sale_price
+      ? props.selectedStyle.sale_price
+      : props.selectedStyle.original_price}</span>
+    <h2>{props.productInfo.slogan}</h2>
     <p>
-      {props.productinfo.description}
+      {props.productInfo.description}
     </p>
     <div>Share:</div>
     <div>

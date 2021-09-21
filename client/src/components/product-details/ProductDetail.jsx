@@ -53,6 +53,11 @@ class ProductDetail extends React.Component {
     }
   }
 
+  openSizeSelect() {
+    // document.getElementById('size-selector').size = `${Object.keys(this.state.selectedStyle.skus.length)}`;
+    document.getElementById('size-selector').size = '12';
+  }
+
   handleSizeSelect(event) {
     event.preventDefault();
     this.setState({
@@ -106,10 +111,6 @@ class ProductDetail extends React.Component {
     })
   }
 
-  openSizeSelect() {
-    // document.getElementById('size-selector').size = `${Object.keys(this.state.selectedStyle.skus.length)}`;
-    document.getElementById('size-selector').size = '12';
-  }
 
   componentDidMount() {
     // this.getProductInfo();
@@ -128,7 +129,7 @@ class ProductDetail extends React.Component {
       <div id="overview-box">
         <ImageGallery
           photos={this.props.selectedStyle.photos}
-          selectedphotoindex={this.state.selectedPhotoIndex}
+          selectedPhotoIndex={this.state.selectedPhotoIndex}
           handleThumbnailClick={this.handleThumbnailClick.bind(this)}
           topThumbnail={this.state.topThumbnail}
           handleUpArrowClick={this.handleUpArrowClick.bind(this)}
@@ -138,22 +139,22 @@ class ProductDetail extends React.Component {
         />
         <div id="next-to-image">
           <ProductInfo
-            productinfo={this.props.productInfo}
-            selectedstyle={this.props.selectedStyle}
+            productInfo={this.props.productInfo}
+            selectedStyle={this.props.selectedStyle}
           />
           <StyleSelector
             styles={this.props.styles}
-            selectedstyle={this.props.selectedStyle}
+            selectedStyle={this.props.selectedStyle}
             handleStyleSelect={this.props.handleStyleSelect}
           />
           <AddToCart
-            selectedsize={this.state.selectedSize}
-            selectedstyle={this.props.selectedStyle}
-            selectedquantity={this.state.selectedQuantity}
-            handlesizeselect={this.handleSizeSelect.bind(this)}
-            handlequantityselect={this.handleQuantitySelect.bind(this)}
-            handlecartsubmit={this.handleCartSubmit.bind(this)}
-            opensizeselect={this.openSizeSelect.bind(this)}
+            selectedSize={this.state.selectedSize}
+            selectedStyle={this.props.selectedStyle}
+            selectedQuantity={this.state.selectedQuantity}
+            handleSizeSelect={this.handleSizeSelect.bind(this)}
+            handleQuantitySelect={this.handleQuantitySelect.bind(this)}
+            handleCartSubmit={this.handleCartSubmit.bind(this)}
+            openSizeSelect={this.openSizeSelect.bind(this)}
           />
         </div>
       </div>

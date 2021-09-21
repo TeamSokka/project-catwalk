@@ -30,7 +30,7 @@ var ImageGallery = (props) => (
         ? <ThumbnailList
           topThumbnail={props.topThumbnail}
           photos={props.photos}
-          selectedphotoindex={props.selectedphotoindex}
+          selectedPhotoIndex={props.selectedPhotoIndex}
           handleThumbnailClick={props.handleThumbnailClick}
           handleUpArrowClick={props.handleUpArrowClick}
           handleDownArrowClick={props.handleDownArrowClick}
@@ -43,9 +43,9 @@ var ImageGallery = (props) => (
       {props.photos.length
         ? <img
             id="main-image"
-            src={props.photos[props.selectedphotoindex].url} width="750"
+            src={props.photos[props.selectedPhotoIndex].url} width="750"
             // style={{
-            //   backgroundImage: `url(${props.photos[props.selectedphotoindex].url})`,
+            //   backgroundImage: `url(${props.photos[props.selectedPhotoIndex].url})`,
             //   backgroundSize: 'cover',
             //   backgroundRepeat: 'no-repeat',
             //   zIndex: '10',
@@ -62,8 +62,3 @@ var ImageGallery = (props) => (
 );
 
 export default ImageGallery;
-
-// <i class="fas fa-chevron-circle-up"></i>
-// <i class="fas fa-chevron-circle-down"></i>
-// <i class="fas fa-chevron-circle-left"></i>
-// <i class="fas fa-chevron-circle-right"></i>
