@@ -1,9 +1,7 @@
 import React from 'react';
 import ThumbnailList from './ThumbnailList.jsx';
-import { library, dom } from '@fortawesome/fontawesome-svg-core';
-import { fas } from '@fortawesome/free-solid-svg-icons';
-import { far } from '@fortawesome/free-regular-svg-icons';
-import { fab } from '@fortawesome/free-brands-svg-icons';
+import { FaChevronCircleRight } from 'react-icons/fa';
+import { FaChevronCircleLeft } from 'react-icons/fa';
 
 //ImageGallery module
 //img urls in props.selectedstyle
@@ -32,7 +30,7 @@ var ImageGallery = (props) => (
         ? <ThumbnailList
           topThumbnail={props.topThumbnail}
           photos={props.photos}
-          selectedphotoindex={props.selectedphotoindex}
+          selectedPhotoIndex={props.selectedPhotoIndex}
           handleThumbnailClick={props.handleThumbnailClick}
           handleUpArrowClick={props.handleUpArrowClick}
           handleDownArrowClick={props.handleDownArrowClick}
@@ -40,28 +38,29 @@ var ImageGallery = (props) => (
         : <p><em>No photos to display.</em></p>
       }
     </div>
+    <div>
     {props.photos.length
-      ? <img
+      ? <div> {props.selectedPhotoIndex > 0 && <FaChevronCircleLeft className="gallery-arrow left" onClick={props.handleLeftArrowClick}/>}
+        <img
           id="main-image"
-          src={props.photos[props.selectedphotoindex].url} width="750"
+          src={props.photos[props.selectedPhotoIndex].url} width="750"
           // style={{
-          //   backgroundImage: `url(${props.photos[props.selectedphotoindex].url})`,
+          //   backgroundImage: `url(${props.photos[props.selectedPhotoIndex].url})`,
           //   backgroundSize: 'cover',
           //   backgroundRepeat: 'no-repeat',
           //   zIndex: '10',
           //   maxHeight: '100%',
           //   maxWidth: '100%'
           // }}
-        >
-      </img>
+          >
+        </img>
+      {props.selectedPhotoIndex < props.photos.length - 1 &&
+      <FaChevronCircleRight className="gallery-arrow left" onClick={props.handleRightArrowClick}/>}
+      </div>
       : <p><em>No photo to display.</em></p>
     }
+    </div>
   </div>
 );
 
 export default ImageGallery;
-
-// <i class="fas fa-chevron-circle-up"></i>
-// <i class="fas fa-chevron-circle-down"></i>
-// <i class="fas fa-chevron-circle-left"></i>
-// <i class="fas fa-chevron-circle-right"></i>

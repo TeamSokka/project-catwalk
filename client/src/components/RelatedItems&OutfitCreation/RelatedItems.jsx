@@ -5,7 +5,7 @@ import axios from 'axios';
 
 const RelatedItems = (props) => {
   const { productInfo, relatedProducts } = props;
-  console.log('relatedProducts: ', relatedProducts);
+  // console.log('relatedProducts: ', relatedProducts);
 
   const [outfits, setOutfits] = useState([]);
 
