@@ -4,6 +4,9 @@ import QuestionsAndAnswers from '../components/Q&A/QuestionsAndAnswers.jsx';
 import RelatedItems from './RelatedItems&OutfitCreation/RelatedItems';
 import RatingsAndReviews from './ratings&reviews/RatingsAndReviews';
 import ProductDetail from './product-details/ProductDetail.jsx';
+import { ThemeProvider } from 'styled-components';
+import { GlobalStyles } from './components/themes/GlobalStyles.js';
+import { lightTheme, darkTheme } from './components/themes/Themes.js';
 
 const axios = require('axios');
 
@@ -18,6 +21,7 @@ class App extends React.Component {
       selectedStyle: { photos: [], skus: {} },
       metaData: {},
       metaReady: false,
+      theme: 'light'
     }
     this.fetchMeta = this.fetchMeta.bind(this);
   }
@@ -102,6 +106,10 @@ class App extends React.Component {
       .catch((error) => {
         console.log('Error with fetchMeta ' + error);
       })
+  }
+
+  toggleTheme() {
+    this.state.theme === 'light' ? this.setState({ 'dark'}) : this.setState({ 'light'})
   }
 
   render() {

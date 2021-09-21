@@ -35,7 +35,8 @@
     "react-fontawesome": "^1.7.1",
     "react-icons": "^4.2.0",
     "regenerator-runtime": "^0.13.9",
-    "sass": "^1.39.0"
+    "sass": "^1.39.0",
+    "styled-components": "^5.3.1"
   },
   "devDependencies": {
     "@babel/core": "^7.15.5",
