@@ -18,7 +18,7 @@ const Search = (props) => {
         style={{ width: '100%', height: '30px' }}
         onChange={(e) => handleSearch(e)}
         placeholder='  HAVE A QUESTION? SEARCH FOR ANSWERS...' />
-      <FaSearch onClick={props.onSearch} className='icon' />
+      <FaSearch className='icon' />
     </div>
   )
 }

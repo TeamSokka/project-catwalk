@@ -64,13 +64,18 @@ class QuestionsAndAnswers extends React.Component {
 
   // doesnt work
   onSearch(query) {
-    if (query.length >= 3) {
+    let allQuestions = this.state.questions.slice();
+    if (query.length >= 2) {
       let results = this.state.questions.filter((question) =>
         question.question_body.toLowerCase().includes(query.toLowerCase())
       )
       this.setState({
         questions: results,
         // [e.target.id]: e.target.value
+      })
+    } else {
+      this.setState({
+        questions: allQuestions,
       })
     }
     // }
