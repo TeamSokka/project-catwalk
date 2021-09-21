@@ -1,4 +1,7 @@
 import React from 'react';
+import { FaFacebook } from 'react-icons/fa';
+import { FaTwitter } from 'react-icons/fa';
+import { FaPinterest } from 'react-icons/fa';
 
 //ProductInfo module
 
@@ -6,20 +9,21 @@ var ProductInfo = (props) => (
   <div id="selected-product-info">
     {/* <StarRating /> */}
     <span id="category">{props.productInfo.category}</span>
-    <span id="name">{props.productInfo.name}</span>
-    <span id="price">${
-      props.selectedStyle.sale_price
-      ? props.selectedStyle.sale_price
-      : props.selectedStyle.original_price}</span>
-    <h2>{props.productInfo.slogan}</h2>
+    <span id="name"><h2>{props.productInfo.name}</h2></span>
+    <div>
+      <span className={props.selectedStyle.sale_price ? "price old" : "price"}>${props.selectedStyle.original_price}</span>
+      {props.selectedStyle.sale_price &&
+        <span className="price new">{props.selectedStyle.sale_price}</span>}
+    </div>
+    <h4>{props.productInfo.slogan}</h4>
     <p>
       {props.productInfo.description}
     </p>
     <div>Share:</div>
-    <div>
-      <i>F</i>
-      <i>T</i>
-      <i>P</i>
+    <div className="social-media">
+      <FaFacebook className="icon"/>
+      <FaTwitter className="icon"/>
+      <FaPinterest className="icon"/>
     </div>
   </div>
 );
