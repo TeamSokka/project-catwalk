@@ -9,13 +9,13 @@ class SortOptions extends React.Component {
   totalReviews(obj) {
     var sum1;
     var sum2;
-    if (isNaN(obj.false)) {
+    if (obj.false === undefined) {
       sum1 = 0;
     } else {
       sum1 = Number(obj.false);
     }
 
-    if (obj.true === null) {
+    if (obj.true === undefined) {
       sum2 = 0;
     } else {
       sum2 = Number(obj.true);
@@ -28,7 +28,8 @@ class SortOptions extends React.Component {
     return (
       <div style={{ fontFamily: 'arial' }}>
         {/* fix */}
-        {`${this.totalReviews(this.props.metaData.recommended)} reviews, sorted by`}
+        {/* {`${this.totalReviews(this.props.metaData.recommended)} reviews, sorted by`} */}
+        {`${this.props.reviewsDisplayed} reviews, sorted by`}
         <select value={this.props.sortOption} className="options-bar" onChange={this.props.sortChange}>
           <option value="Helpful">Helpful</option>
           <option value="Newest">Newest</option>

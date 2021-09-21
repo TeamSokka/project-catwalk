@@ -54,12 +54,14 @@ class RatingsAndReviews extends React.Component {
         var pageTemp = this.state.pageLoaded + 1;
         var reviewListTemp = this.state.reviewList.concat(result.data.results);
         var reviewsDisplayedTemp = this.state.reviewsDisplayed + result.data.results.length;
+        var hide = (result.data.results.length === 1);
 
         this.setState({
           reviewList: reviewListTemp,
           reviewsReady: true,
           pageLoaded: pageTemp,
           reviewsDisplayed: reviewsDisplayedTemp,
+          hideMoreReviews: hide
         })
       })
       .catch((error) => {
@@ -96,7 +98,7 @@ class RatingsAndReviews extends React.Component {
 
         this.setState({
           reviewList: reviewListTemp,
-          reviewsReady: true,
+          reviewsReady: true
         })
       })
       .catch((error) => {
@@ -293,6 +295,7 @@ class RatingsAndReviews extends React.Component {
                   metaData={this.props.metaData}
                   sortOption={this.state.sortOption}
                   sortChange={this.sortChange}
+                  reviewsDisplayed={this.state.reviewsDisplayed}
                 />
               </div>
 
@@ -310,7 +313,7 @@ class RatingsAndReviews extends React.Component {
                   <button className="add-review-btn" type="button" onClick={this.writeReviewClick}>Add a Review</button>
 
                   {
-                    this.state.reviewsDisplayed <= this.state.reviewList.length && this.state.hideMoreReviews === false && (
+                    this.state.hideMoreReviews === false && (
                       <button className="more-reviews-btn" type="button" onClick={this.moreReviewsClick}>More Reviews</button>
                     )
                   }
