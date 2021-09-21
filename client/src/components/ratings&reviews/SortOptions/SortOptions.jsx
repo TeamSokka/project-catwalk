@@ -26,8 +26,7 @@ class SortOptions extends React.Component {
 
   render() {
     return (
-      <div style={{ fontFamily: 'arial' }}>
-        {/* fix */}
+      <div>
         {/* {`${this.totalReviews(this.props.metaData.recommended)} reviews, sorted by`} */}
         {`${this.props.reviewsDisplayed} reviews, sorted by`}
         <select value={this.props.sortOption} className="options-bar" onChange={this.props.sortChange}>
@@ -35,7 +34,7 @@ class SortOptions extends React.Component {
           <option value="Newest">Newest</option>
           <option value="Relevant">Relevant</option>
         </select>
-      </div>
+      </div >
     )
   }
 }

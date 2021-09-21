@@ -9,6 +9,10 @@ const config = require('../../config');
 // http://example.com/page?parameter=value&also=another
 // `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?product_id=${body.product_id}&page=${body.page}&count=${body.count}&sort=${body.sort}`
 
+// page 1
+// count default to 5
+// we get 2 every time - missing the rest of 3 reviews, skipping them when we change pages
+
 const getReviews = (query, callback) => {
   var optionalString = "";
   if (query.page !== undefined) {
@@ -23,9 +27,10 @@ const getReviews = (query, callback) => {
     optionalString += `&sort=${query.sort}`;
   }
   // console.log(optionalString);
+  // console.log(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?product_id=${query.product_id}${optionalString}`);
 
   axios.get(
-    `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews?product_id=${query.product_id}${optionalString}`,
+    `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?product_id=${query.product_id}${optionalString}`,
     {
       headers: {
         'User-Agent': 'request',
