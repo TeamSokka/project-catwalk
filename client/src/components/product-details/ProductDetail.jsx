@@ -5,6 +5,7 @@ import ImageGallery from './ImageGallery.jsx';
 import ProductInfo from './ProductInfo.jsx';
 import StyleSelector from './StyleSelector.jsx';
 import AddToCart from './AddToCart.jsx';
+import StarRatings from '../ratings&reviews/ReviewList/StarRatings.jsx';
 import data from './data/dummy-data.js';
 
 class ProductDetail extends React.Component {
