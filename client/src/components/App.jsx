@@ -1,7 +1,7 @@
 import React from 'react';
 
 import QuestionsAndAnswers from '../components/Q&A/QuestionsAndAnswers.jsx';
-import RelatedItems from './RelatedItems&OutfitCreation/RelatedItems';
+import Cards from './RelatedItems&OutfitCreation/Cards';
 import RatingsAndReviews from './ratings&reviews/RatingsAndReviews';
 import ProductDetail from './product-details/ProductDetail.jsx';
 
@@ -108,20 +108,20 @@ class App extends React.Component {
     const { productID, productInfo, relatedProducts, styles, selectedStyle, metaData } = this.state;
     return (
       <div>
-        <ProductDetail
+        {/* <ProductDetail
           productID={productID}
           productInfo={productInfo}
           styles={styles}
           selectedStyle={selectedStyle}
           handleStyleSelect={this.handleStyleSelect.bind(this)}
-        />
+        /> */}
 
-        <RelatedItems
+        <Cards
           productInfo={productInfo}
           relatedProducts={relatedProducts}
         />
 
-        <QuestionsAndAnswers
+        {/* <QuestionsAndAnswers
           productID={productID}
           productInfo={productInfo}
         />
@@ -134,7 +134,7 @@ class App extends React.Component {
             metaData={metaData}
             productInfo={productInfo}
           />
-        }
+        }*/}
       </div>
     )
   }

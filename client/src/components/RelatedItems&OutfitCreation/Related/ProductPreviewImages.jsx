@@ -8,13 +8,10 @@ const ProductPreviewImages = (props) => {
 
   return (
     <div id="product-preview-img">
-      <BsFillStarFill id="fa-star-o"/>
+      <BsFillStarFill id="bs-fill-star-fill"/>
       <img src={images.thumbnail_url} id="preview-img"/>
     </div>
   )
 }
 
 export default ProductPreviewImages
-
-//this will default to show
-// when clicked ProductInformation will show
