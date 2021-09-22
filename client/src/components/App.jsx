@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 
-import QuestionsAndAnswers from '../components/Q&A/QuestionsAndAnswers.jsx';
-import RelatedItems from './RelatedItems&OutfitCreation/RelatedItems';
-import RatingsAndReviews from './ratings&reviews/RatingsAndReviews';
-import ProductDetail from './product-details/ProductDetail.jsx';
+// import QuestionsAndAnswers from '../components/Q&A/QuestionsAndAnswers.jsx';
+// import RelatedItems from './RelatedItems&OutfitCreation/RelatedItems';
+// import RatingsAndReviews from './ratings&reviews/RatingsAndReviews';
+// import ProductDetail from './product-details/ProductDetail.jsx';
+
+
+const QuestionsAndAnswers = React.lazy(() => import('../components/Q&A/QuestionsAndAnswers.jsx'));
+const RelatedItems = React.lazy(() => import('./RelatedItems&OutfitCreation/RelatedItems'));
+const RatingsAndReviews = React.lazy(() => import('./ratings&reviews/RatingsAndReviews'));
+const ProductDetail = React.lazy(() => import('./product-details/ProductDetail.jsx'));
 
 const axios = require('axios');
 
@@ -109,33 +115,37 @@ class App extends React.Component {
     const { productID, productInfo, relatedProducts, styles, selectedStyle, metaData } = this.state;
     return (
       <div>
-        <ProductDetail
-          productID={productID}
-          productInfo={productInfo}
-          styles={styles}
-          selectedStyle={selectedStyle}
-          handleStyleSelect={this.handleStyleSelect.bind(this)}
-        />
+        <Suspense fallback={<div>Loading...</div>}>
+          <section>
+            <ProductDetail
+              productID={productID}
+              productInfo={productInfo}
+              styles={styles}
+              selectedStyle={selectedStyle}
+              handleStyleSelect={this.handleStyleSelect.bind(this)}
+            />
 
-        <RelatedItems
-          productInfo={productInfo}
-          relatedProducts={relatedProducts}
-        />
+            <RelatedItems
+              productInfo={productInfo}
+              relatedProducts={relatedProducts}
+            />
 
-        <QuestionsAndAnswers
-          productID={productID}
-          productInfo={productInfo}
-        />
+            <QuestionsAndAnswers
+              productID={productID}
+              productInfo={productInfo}
+            />
 
-        {
-          this.state.metaReady === true
-          &&
-          <RatingsAndReviews
-            productID={productID}
-            metaData={metaData}
-            productInfo={productInfo}
-          />
-        }
+            {
+              this.state.metaReady === true
+              &&
+              <RatingsAndReviews
+                productID={productID}
+                metaData={metaData}
+                productInfo={productInfo}
+              />
+            }
+          </section>
+        </Suspense>
       </div>
     )
   }
