@@ -3,7 +3,7 @@ import Question from './Question.jsx';
 import AddQuestion from './AddQuestion.jsx';
 
 const QuestionList = (props) => {
-  const { questions, handleClick, productID, productInfo, postQuestion, postAnswer } = props;
+  const { questions, productID, productInfo, postQuestion, postAnswer } = props;
   const [display, setDisplay] = useState(4);
   const [modal, setModal] = useState(false);
   let loadMoreQuestions = questions.length > display &&

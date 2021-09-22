@@ -11,7 +11,7 @@ const Search = (props) => {
   const searchList = (array) => {
     let filtered = [];
 
-    if (query.length >= 2) {
+    if (query.length >= 3) {
       return questions.filter((question) =>
         question.question_body.toLowerCase().includes(query.toLowerCase()));
     } else {
