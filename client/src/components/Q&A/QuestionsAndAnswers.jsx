@@ -56,28 +56,26 @@ class QuestionsAndAnswers extends React.Component {
     // console.log(`${e.target.id}: ${e.target.value}`);
   }
 
-  // addQuestion() {
-  //   axios.post('.qa.questions')
-  //   .then((res) => {
-  //   })
-  // }
-
   // doesnt work
   onSearch(query) {
-    let allQuestions = this.state.questions.slice();
+    let filtered = [];
+    let allQuestions = this.props.questions;
     if (query.length >= 2) {
-      let results = this.state.questions.filter((question) =>
-        question.question_body.toLowerCase().includes(query.toLowerCase())
-      )
-      this.setState({
-        questions: results,
-        // [e.target.id]: e.target.value
-      })
-    } else {
-      this.setState({
-        questions: allQuestions,
-      })
+      allQuestions = this.props.questions;
+      filtered = allQuestions.filter((question) =>
+        question.question_body.toLowerCase().includes(query.toLowerCase()));
+      // } else {
+      //   this.setState({
+      //     questions: this.state.questions,
+      //   })
+    } else if (query === '') {
+      filtered = allQuestions;
     }
+    this.setState({
+      questions: filtered,
+      // [e.target.id]: e.target.value
+    });
+    console.log('filter ', filtered);
     // }
   }
 
@@ -94,14 +92,14 @@ class QuestionsAndAnswers extends React.Component {
   // post request from postman not working...
   postQuestion(body) {
     axios.post('/qa/questions/', body)
-    .then(() => this.getQuestions())
-    .catch((err) => console.log('Error adding question ', err));
+      .then(() => this.getQuestions())
+      .catch((err) => console.log('Error adding question ', err));
   }
 
   postAnswer(body, id) {
     axios.post(`/qa/questions/${id}/answers`, body)
-    .then(() => this.getQuestions())
-    .catch((err) => console.log('Error adding answer ', err));
+      .then(() => this.getQuestions())
+      .catch((err) => console.log('Error adding answer ', err));
   }
 
 
@@ -109,16 +107,20 @@ class QuestionsAndAnswers extends React.Component {
     return (
       <div>
         <h3>QUESTIONS & ANSWERS</h3>
-        <Search search={this.state.search} handleChange={this.handleChange}
-          onSearch={this.onSearch.bind(this)}
-          questions={this.state.questions} />
-        <QuestionList
+        <Search
           questions={this.state.questions}
           productID={this.props.productID}
           productInfo={this.props.productInfo}
           postQuestion={this.postQuestion.bind(this)}
           postAnswer={this.postAnswer.bind(this)}
-        />
+           />
+        {/* <QuestionList
+          questions={this.state.questions}
+          productID={this.props.productID}
+          productInfo={this.props.productInfo}
+          postQuestion={this.postQuestion.bind(this)}
+          postAnswer={this.postAnswer.bind(this)}
+        /> */}
       </div>
     );
   }

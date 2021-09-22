@@ -14,7 +14,8 @@ const QuestionList = (props) => {
       {questions.length > 0 &&
         <div className='question-list'>
           {questions.length > 0 && props.questions.slice(0, display).map((question) => (
-            <Question key={question.question_id} question={question}
+            <Question key={question.question_id}
+              question={question}
               postAnswer={postAnswer}
               productID={productID}
               productInfo={productInfo}

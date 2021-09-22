@@ -24,6 +24,7 @@ const Answer = (props) => {
     }
     axios.put(`/qa/answers/${answer.id}/report`)
       .catch((err) => console.log('Error reporting ', err));
+      setReportBtn(true);
   }
 
   let answerer = <a style={{ fontWeight: answer.answerer_name === 'Seller' && 'bold' }} >{answer.answerer_name}</a>
@@ -40,7 +41,7 @@ const Answer = (props) => {
         <u style={{ cursor: 'pointer' }}
           onClick={() => helpfulClick()} >Yes</u> ({helpCount}) |{'  '}
         <u style={{ cursor: 'pointer' }}
-          onClick={() => reportClick()} >Report</u>
+          onClick={() => reportClick()} >{!reportBtn ? 'Report' : 'Reported'}</u>
       </div>
     </div >
   )
