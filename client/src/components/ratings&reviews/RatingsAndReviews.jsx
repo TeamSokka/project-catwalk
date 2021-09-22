@@ -50,19 +50,21 @@ class RatingsAndReviews extends React.Component {
           this.setState({
             hideMoreReviews: true
           });
-        }
-        var pageTemp = this.state.pageLoaded + 1;
-        var reviewListTemp = this.state.reviewList.concat(result.data.results);
-        var reviewsDisplayedTemp = this.state.reviewsDisplayed + result.data.results.length;
-        var hide = (result.data.results.length === 1);
 
-        this.setState({
-          reviewList: reviewListTemp,
-          reviewsReady: true,
-          pageLoaded: pageTemp,
-          reviewsDisplayed: reviewsDisplayedTemp,
-          hideMoreReviews: hide
-        })
+        } else {
+          var pageTemp = this.state.pageLoaded + 1;
+          var reviewListTemp = this.state.reviewList.concat(result.data.results);
+          var reviewsDisplayedTemp = this.state.reviewsDisplayed + result.data.results.length;
+          var hide = (result.data.results.length === 1);
+
+          this.setState({
+            reviewList: reviewListTemp,
+            reviewsReady: true,
+            pageLoaded: pageTemp,
+            reviewsDisplayed: reviewsDisplayedTemp,
+            hideMoreReviews: hide
+          })
+        }
       })
       .catch((error) => {
         console.log('Error with handleGetReview ' + error);

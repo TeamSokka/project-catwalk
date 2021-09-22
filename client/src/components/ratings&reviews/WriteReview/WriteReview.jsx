@@ -84,24 +84,28 @@ class WriteReview extends React.Component {
 
 
     var characteristics2 = Object.assign({}, this.state.characteristics);
-    characteristics2[name] = {
-      id: Number(e.target.name),
-      value: String(e.target.value)
-    }
+    // characteristics2[name] = {
+    //   id: Number(e.target.name),
+    //   value: parseInt(e.target.value)
+    // }
 
-    // var review2 = Object.assign({}, this.state.review,
-    //   {
-    //     characteristics: Object.assign({}, this.state.review.characteristics, characteristics2)
-    //   }
-    // );
+    characteristics2[String(e.target.name)] = parseInt(e.target.value);
 
-    // this.setState({
-    //   review: review2
-    // });
+
+    var review2 = Object.assign({}, this.state.review,
+      {
+        characteristics: Object.assign({}, this.state.review.characteristics, characteristics2)
+      }
+    );
 
     this.setState({
+      review: review2,
       characteristics: characteristics2
     });
+
+    // this.setState({
+    //   characteristics: characteristics2
+    // });
 
     // this.setState({
     //   characteristics: {
