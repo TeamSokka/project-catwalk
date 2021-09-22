@@ -164,6 +164,7 @@ class RatingsAndReviews extends React.Component {
       })
   }
 
+  // 38
   // Mark review as report vs Helpful
   // need to fix --- updates 2 every time
   handlePutReview(review_id, type, index) {
