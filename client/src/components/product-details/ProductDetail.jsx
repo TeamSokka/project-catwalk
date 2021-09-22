@@ -5,7 +5,7 @@ import ImageGallery from './ImageGallery.jsx';
 import ProductInfo from './ProductInfo.jsx';
 import StyleSelector from './StyleSelector.jsx';
 import AddToCart from './AddToCart.jsx';
-import StarRatings from '../ratings&reviews/ReviewList/StarRatings.jsx';
+// import StarRatings from '../ratings&reviews/ReviewList/StarRatings.jsx';
 import data from './data/dummy-data.js';
 
 class ProductDetail extends React.Component {
@@ -142,6 +142,8 @@ class ProductDetail extends React.Component {
           <ProductInfo
             productInfo={this.props.productInfo}
             selectedStyle={this.props.selectedStyle}
+            metaData={this.props.metaData}
+            metaReady={this.props.metaReady}
           />
           <StyleSelector
             styles={this.props.styles}
