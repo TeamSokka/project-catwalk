@@ -107,6 +107,7 @@ class ProductDetail extends React.Component {
   }
 
   handleRightArrowClick(event) {
+    event.preventDefault();
     this.setState({
       selectedPhotoIndex: this.state.selectedPhotoIndex + 1
     })
@@ -120,8 +121,9 @@ class ProductDetail extends React.Component {
     // this.setState({
     //   selectedStyle: this.state.styles[0]
     // });
-    console.log('styles:', this.state.styles);
-    console.log('selected style:', this.state.selectedStyle);
+    // console.log('styles:', this.state.styles);
+    // console.log('selected style:', this.state.selectedStyle);
+    console.log('state:', this.state)
     console.log('this.props:', this.props);
   }
 

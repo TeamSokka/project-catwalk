@@ -40,25 +40,27 @@ var ImageGallery = (props) => (
     </div>
     <div className="main-image-box">
     {props.photos.length
-      ? <div>
-        <img
+      ? <div
           id="main-image"
-          src={props.photos[props.selectedPhotoIndex].url} width="750"
+          src={props.photos[props.selectedPhotoIndex].url}
+          style={{
+            backgroundImage: `url(${props.photos[props.selectedPhotoIndex].url})`,
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+            zIndex: '10',
+            maxHeight: '700px',
+            maxWidth: '700px',
+            }}
           // style={{
           //   backgroundImage: `url(${props.photos[props.selectedPhotoIndex].url})`,
-          //   backgroundSize: 'cover',
-          //   backgroundRepeat: 'no-repeat',
-          //   zIndex: '10',
-          //   maxHeight: '100%',
-          //   maxWidth: '100%'
+          //
           // }}
           >
-        </img>
         {props.selectedPhotoIndex > 0 && <FaChevronCircleLeft className="gallery-arrow left" onClick={props.handleLeftArrowClick}/>}
       {props.selectedPhotoIndex < props.photos.length - 1 &&
       <FaChevronCircleRight className="gallery-arrow right" onClick={props.handleRightArrowClick}/>}
       </div>
-      : <p><em>No photo to display.</em></p>
+      : <p><em>Getting photos...</em></p>
     }
     </div>
   </div>
