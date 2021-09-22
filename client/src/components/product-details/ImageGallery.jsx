@@ -55,6 +55,7 @@ var ImageGallery = (props) => (
           //   backgroundImage: `url(${props.photos[props.selectedPhotoIndex].url})`,
           //
           // }}
+          onClick={props.handleDefaultImageClick}
           >
         {props.selectedPhotoIndex > 0 && <FaChevronCircleLeft className="gallery-arrow left" onClick={props.handleLeftArrowClick}/>}
       {props.selectedPhotoIndex < props.photos.length - 1 &&

@@ -5,7 +5,7 @@ import ImageGallery from './ImageGallery.jsx';
 import ProductInfo from './ProductInfo.jsx';
 import StyleSelector from './StyleSelector.jsx';
 import AddToCart from './AddToCart.jsx';
-// import StarRatings from '../ratings&reviews/ReviewList/StarRatings.jsx';
+import ExpandedView from './ExpandedView.jsx';
 import data from './data/dummy-data.js';
 
 class ProductDetail extends React.Component {
@@ -19,7 +19,8 @@ class ProductDetail extends React.Component {
       selectedQuantity: 1,
       selectedPhotoIndex: 0,
       cart: null,
-      topThumbnail: 0
+      topThumbnail: 0,
+      expanded: false,
     }
   }
 
@@ -110,6 +111,20 @@ class ProductDetail extends React.Component {
     event.preventDefault();
     this.setState({
       selectedPhotoIndex: this.state.selectedPhotoIndex + 1
+    });
+  }
+
+  handleDefaultImageClick(event) {
+    event.preventDefault();
+    this.setState({
+      expanded: true
+    });
+  }
+
+  handleExitExpandedClick(event) {
+    event.preventDefault();
+    this.setState({
+      expanded: false
     })
   }
 
@@ -130,16 +145,30 @@ class ProductDetail extends React.Component {
   render() {
     return (
       <div id="overview-box">
-        <ImageGallery
-          photos={this.props.selectedStyle.photos}
-          selectedPhotoIndex={this.state.selectedPhotoIndex}
-          handleThumbnailClick={this.handleThumbnailClick.bind(this)}
-          topThumbnail={this.state.topThumbnail}
-          handleUpArrowClick={this.handleUpArrowClick.bind(this)}
-          handleDownArrowClick={this.handleDownArrowClick.bind(this)}
-          handleLeftArrowClick={this.handleLeftArrowClick.bind(this)}
-          handleRightArrowClick={this.handleRightArrowClick.bind(this)}
+        {this.state.expanded === false
+          ? <ImageGallery
+              photos={this.props.selectedStyle.photos}
+              selectedPhotoIndex={this.state.selectedPhotoIndex}
+              handleThumbnailClick={this.handleThumbnailClick.bind(this)}
+              topThumbnail={this.state.topThumbnail}
+              handleUpArrowClick={this.handleUpArrowClick.bind(this)}
+              handleDownArrowClick={this.handleDownArrowClick.bind(this)}
+              handleLeftArrowClick={this.handleLeftArrowClick.bind(this)}
+              handleRightArrowClick={this.handleRightArrowClick.bind(this)}
+              handleDefaultImageClick={this.handleDefaultImageClick.bind(this)}
+
+            />
+          : <ExpandedView
+              photos={this.props.selectedStyle.photos}
+              selectedPhotoIndex={this.state.selectedPhotoIndex}
+              handleThumbnailClick={this.handleThumbnailClick.bind(this)}
+              topThumbnail={this.state.topThumbnail}
+              handleLeftArrowClick={this.handleLeftArrowClick.bind(this)}
+              handleRightArrowClick={this.handleRightArrowClick.bind(this)}
+              handleExitExpandedClick={this.handleExitExpandedClick.bind(this)}
         />
+        }
+
         <div id="next-to-image">
           <ProductInfo
             productInfo={this.props.productInfo}
