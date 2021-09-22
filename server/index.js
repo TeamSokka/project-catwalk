@@ -15,6 +15,14 @@ app.use(express.static(path.join(__dirname, '..', 'client/dist')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+
+// app.get('*.js', function (req, res, next) {
+//   req.url = req.url + '.gz';
+//   res.set('Content-Encoding', 'gzip');
+//   next();
+// });
+
+
 // Products
 // GET /products
 app.get('/products', (req, res) => {
