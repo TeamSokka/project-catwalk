@@ -1,12 +1,11 @@
 import React from 'react';
-import './related-items.scss';
+import '../related-items.scss';
 
 const ProductInformation = (props) => {
   const { productInfo, product } = props;
 
   let price = product.default_price.split('.');
   price = Number(price[0]);
-  let category = product.category
 
   return (
     <div id="product-info">

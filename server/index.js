@@ -148,7 +148,7 @@ app.put(`/reviews/:review_id/:method`, (req, res) => {
 // Questions and Answers
 // GET Questions
 app.get('/qa/questions', (req, res) => {
-  console.log('product id', req.query);
+  // console.log('product id', req.query);
   let id = req.query.product_id;
   questions.getQuestions(id, (err, data) => {
     if (err) {
@@ -178,7 +178,7 @@ app.get('/qa/questions/:question_id/answers', (req, res) => {
 
 // POST Questions
 app.post('/qa/questions', (req, res) => {
-  console.log('body ', req.body);
+  // console.log('body ', req.body);
   questions.postQuestion(req.body, (err, data) => {
     if (err) {
       res.status(400).send(err);

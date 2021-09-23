@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 
 import QuestionsAndAnswers from '../components/Q&A/QuestionsAndAnswers.jsx';
-import RelatedItems from './RelatedItems&OutfitCreation/RelatedItems';
+import Cards from './RelatedItems&OutfitCreation/Cards';
 import RatingsAndReviews from './ratings&reviews/RatingsAndReviews';
 import ProductDetail from './product-details/ProductDetail.jsx';
 
@@ -132,7 +132,7 @@ class App extends React.Component {
         />
 
 
-        <RelatedItems
+        <Cards
           productInfo={productInfo}
           relatedProducts={relatedProducts}
         />
