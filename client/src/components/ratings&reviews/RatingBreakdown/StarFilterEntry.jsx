@@ -8,7 +8,7 @@ class StarFilterEntry extends React.Component {
   }
   render() {
     return (
-      <div id={`${this.props.star}`} className="star" onClick={this.props.sortByStar}>
+      <div id={`${this.props.star}`} className="star">
         <div style={{ textAlign: 'center' }}>
           {`${this.props.star} stars`}
         </div>
