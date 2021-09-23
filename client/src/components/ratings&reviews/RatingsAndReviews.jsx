@@ -16,7 +16,6 @@ class RatingsAndReviews extends React.Component {
     this.state = {
       reviewList: [],
       starSort: [],
-      // noReviews: false,
       reviewsDisplayed: 0,
       pageLoaded: 0,
       writeReviewModal: false,
@@ -37,7 +36,6 @@ class RatingsAndReviews extends React.Component {
     this.sortByStar = this.sortByStar.bind(this);
     this.clearStarFilter = this.clearStarFilter.bind(this);
     this.sortChange = this.sortChange.bind(this);
-
   }
 
   // Get reviews
@@ -50,7 +48,6 @@ class RatingsAndReviews extends React.Component {
           this.setState({
             hideMoreReviews: true
           });
-
         } else {
           var pageTemp = this.state.pageLoaded + 1;
           var reviewListTemp = this.state.reviewList.concat(result.data.results);
@@ -70,6 +67,7 @@ class RatingsAndReviews extends React.Component {
         console.log('Error with handleGetReview ' + error);
       })
   }
+
   //  this.getReviewHelpful(2, this.state.sortOption, pageIndex);
   getReviewHelpful(count, sort, pageLoaded) {
     const { productID } = this.props;
@@ -94,10 +92,6 @@ class RatingsAndReviews extends React.Component {
           reviewListTemp = reviewListTemp.concat(list2);
         }
 
-
-        // reviewListTemp = totalList.concat(list1, result.data.results, list2);
-        // alert(result.data.results.length);
-
         this.setState({
           reviewList: reviewListTemp,
           reviewsReady: true
@@ -108,50 +102,8 @@ class RatingsAndReviews extends React.Component {
       })
   }
 
-
   getReviewSortChange(sort, pageLoaded) {
-    // var sortOptionTemp = this.state.sortOption.toLowerCase();
-    // var pageLoadedTemp = this.state.pageLoaded;
-    // if (sort !== undefined && pageLoaded !== undefined) {
-    //   sortOptionTemp = sort.toLowerCase();
-    //   pageLoadedTemp = pageLoaded;
-    // }
-
     this.handleGetReview(2, sort, pageLoaded);
-
-    // const { productID } = this.props;
-    // axios.get(`/reviews?product_id=${productID}&count=2&page=${pageLoaded}&sort=${sort}`)
-    //   .then((result) => {
-    //     if (result.data.results.length === 0) {
-    //       this.setState({
-    //         hideMoreReviews: true
-    //       });
-    //     }
-
-    //     var pageTemp = this.state.pageLoaded + 1;
-    //     var reviewListTemp = this.state.reviewList.concat(result.data.results);
-    //     var reviewsDisplayedTemp = this.state.reviewsDisplayed + result.data.results.length;
-
-    //     this.setState({
-    //       reviewList: reviewListTemp,
-    //       reviewsReady: true,
-    //       pageLoaded: pageTemp,
-    //       reviewsDisplayed: reviewsDisplayedTemp,
-    //     })
-
-    //     // if (this.state.reviewsDisplayed < this.state.reviewList.length) {
-    //     //   var newEnd = this.state.reviewsDisplayed + 2;
-    //     //   if (newEnd > this.state.reviewList.length) {
-    //     //     newEnd--;
-    //     //   }
-    //     //   this.setState({
-    //     //     reviewsDisplayed: newEnd
-    //     //   })
-    //     // }
-    //   })
-    //   .catch((error) => {
-    //     console.log('Error with handleGetReview ' + error);
-    //   })
   }
 
   // Post a review
@@ -159,16 +111,13 @@ class RatingsAndReviews extends React.Component {
     axios.post('/reviews', reviewData)
       .then((result) => {
         console.log('Success with handlePostReview');
-        // this.handleGetReview();
       })
       .catch((error) => {
         console.log('Error with handleGetReview ' + error);
       })
   }
 
-  // 38
   // Mark review as report vs Helpful
-  // need to fix --- updates 2 every time
   handlePutReview(review_id, type, index) {
     axios.put(`/reviews/${review_id}/${type}`)
       .then((result) => {
@@ -330,95 +279,47 @@ class RatingsAndReviews extends React.Component {
   }
 }
 
-
-// render() {
-
-//   const { metaData } = this.props;
-//   return (
-//     <div className="main-div">
-//       {
-//         this.state.reviewsReady === true
-//         &&
-//         <div className="rating-grid">
-//           <RatingBreakdown
-//             metaData={metaData}
-//             starSort={this.state.starSort}
-//             sortByStar={this.sortByStar}
-//             clearStarFilter={this.clearStarFilter}
-//           />
-//         </div>
-//       }
-
-//       <div className="product">
-//         <ProductBreakdown
-//           metaData={this.props.metaData}
-//         />
-//       </div>
-
-//       {
-//         this.state.writeReviewModal
-//         && (
-//           <div
-//             className="modal-style"
-//             onClick={this.exitWriteReviewClick}
-//           >
-//             <div
-//               className="inner-modal-style"
-//               onClick={(e) => e.stopPropagation()}
-//             >
-//               <span className="close-button" onClick={this.exitWriteReviewClick}>&times;</span>
-//               <WriteReview
-//                 handlePostReview={this.handlePostReview}
-//                 metaData={this.props.metaData}
-//                 productID={this.props.productID}
-//                 productInfo={this.props.productInfo}
-//               />
-//               <br />
-//             </div>
-//           </div>
-//         )
-//       }
-
-//       <div className="sort-options">
-//         <SortOptions
-//           metaData={this.props.metaData}
-//           sortOption={this.state.sortOption}
-//           sortChange={this.sortChange}
-//         />
-//       </div>
-
-
-//       <div className="review-list">
-//         <ReviewList
-//           reviewList={this.state.reviewList}
-//           starSort={this.state.starSort}
-//           handlePutReview={this.handlePutReview}
-//           reviewsDisplayed={this.state.reviewsDisplayed}
-//         />
-//       </div>
-
-
-//       {/* <div className="review-buttons">
-//           <div style={{ display: 'flex', margin: 'auto', justifyContent: 'space-evenly' }}>
-//             <button className="add-review-btn" type="button" onClick={this.writeReviewClick}>Add a Review</button>
-
-//             {
-//               this.state.reviewsDisplayed <= this.state.reviewList.length && this.state.hideMoreReviews === false && (
-//                 <button className="more-reviews-btn" type="button" onClick={this.moreReviewsClick}>More Reviews</button>
-//               )
-//             }
-//           </div>
-//         </div> */}
-
-//       {/* <div className="review-buttons">
-//           <div style={{ display: 'flex', margin: 'auto', justifyContent: 'space-evenly' }}>
-//             <button className="add-review-btn" type="button" onClick={this.writeReviewClick}>Add a Review</button>
-//             <button className="more-reviews-btn" type="button" onClick={this.moreReviewsClick}>More Reviews</button>
-//           </div>
-//         </div> */}
-//     </div >
-//   )
-// }
-// }
-
 export default RatingsAndReviews;
+
+
+// get view sort change
+// var sortOptionTemp = this.state.sortOption.toLowerCase();
+// var pageLoadedTemp = this.state.pageLoaded;
+// if (sort !== undefined && pageLoaded !== undefined) {
+//   sortOptionTemp = sort.toLowerCase();
+//   pageLoadedTemp = pageLoaded;
+// }
+
+// const { productID } = this.props;
+// axios.get(`/reviews?product_id=${productID}&count=2&page=${pageLoaded}&sort=${sort}`)
+//   .then((result) => {
+//     if (result.data.results.length === 0) {
+//       this.setState({
+//         hideMoreReviews: true
+//       });
+//     }
+
+//     var pageTemp = this.state.pageLoaded + 1;
+//     var reviewListTemp = this.state.reviewList.concat(result.data.results);
+//     var reviewsDisplayedTemp = this.state.reviewsDisplayed + result.data.results.length;
+
+//     this.setState({
+//       reviewList: reviewListTemp,
+//       reviewsReady: true,
+//       pageLoaded: pageTemp,
+//       reviewsDisplayed: reviewsDisplayedTemp,
+//     })
+
+//     // if (this.state.reviewsDisplayed < this.state.reviewList.length) {
+//     //   var newEnd = this.state.reviewsDisplayed + 2;
+//     //   if (newEnd > this.state.reviewList.length) {
+//     //     newEnd--;
+//     //   }
+//     //   this.setState({
+//     //     reviewsDisplayed: newEnd
+//     //   })
+//     // }
+//   })
+//   .catch((error) => {
+//     console.log('Error with handleGetReview ' + error);
+//   })
