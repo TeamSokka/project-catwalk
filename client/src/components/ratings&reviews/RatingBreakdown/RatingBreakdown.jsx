@@ -3,7 +3,7 @@ import StarRating from '../ReviewList/StarRatings';
 import RatingBreakdownList from './RatingBreakdownList';
 import StarFilterEntry from './StarFilterEntry';
 import '../Styles/rating-breakdown-entry.scss';
-import { ModuleGraphConnection } from 'webpack';
+// import { ModuleGraphConnection } from 'webpack';
 class RatingBreakdown extends React.Component {
   constructor(props) {
     super(props);
