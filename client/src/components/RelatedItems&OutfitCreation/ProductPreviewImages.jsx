@@ -1,5 +1,4 @@
 import React from 'react';
-import { formatPreviewImage } from '../helpers/_functions.js'
 
 const ProductPreviewImages = (props) => {
   const { productStyles } = props;
