@@ -15,7 +15,7 @@ import { FaChevronCircleLeft } from 'react-icons/fa';
 //      clicking again zooms out to standard expanded view
 
 var ExpandedView = (props) => (
-  <div id="expanded-image-gallery" width="100%" height="100%">
+  <div id="expanded-image-gallery">
     <div id="dot-list">
       {props.photos.map((photo, index) =>
         {props.photos.indexOf(photo) === props.selectedPhotoIndex
@@ -24,7 +24,7 @@ var ExpandedView = (props) => (
         }
       )}
     </div>
-    <div className="main-image-box expanded">
+    <div className="main-image-box-expanded">
     {props.photos.length
       ? <div
           id="expanded-main-image"
@@ -43,7 +43,7 @@ var ExpandedView = (props) => (
         {props.selectedPhotoIndex > 0 && <FaChevronCircleLeft className="gallery-arrow left" onClick={props.handleLeftArrowClick}/>}
       {props.selectedPhotoIndex < props.photos.length - 1 &&
       <FaChevronCircleRight className="gallery-arrow right" onClick={props.handleRightArrowClick}/>}
-      <button id="exit-expanded" onClick={props.handleExitExpandedClick}>Exit Expanded View</button>
+      <button className="exit-expanded" onClick={props.handleExitExpandedClick}>Exit Expanded View</button>
       </div>
       : <p><em>Getting photos...</em></p>
     }

@@ -165,6 +165,7 @@ class ProductDetail extends React.Component {
               topThumbnail={this.state.topThumbnail}
               handleLeftArrowClick={this.handleLeftArrowClick.bind(this)}
               handleRightArrowClick={this.handleRightArrowClick.bind(this)}
+              handleExitExpandedClick
               handleExitExpandedClick={this.handleExitExpandedClick.bind(this)}
         />
         }
@@ -197,3 +198,29 @@ class ProductDetail extends React.Component {
 };
 
 export default ProductDetail;
+
+
+// {this.state.expanded === false
+//   ? <ImageGallery
+//       photos={this.props.selectedStyle.photos}
+//       selectedPhotoIndex={this.state.selectedPhotoIndex}
+//       handleThumbnailClick={this.handleThumbnailClick.bind(this)}
+//       topThumbnail={this.state.topThumbnail}
+//       handleUpArrowClick={this.handleUpArrowClick.bind(this)}
+//       handleDownArrowClick={this.handleDownArrowClick.bind(this)}
+//       handleLeftArrowClick={this.handleLeftArrowClick.bind(this)}
+//       handleRightArrowClick={this.handleRightArrowClick.bind(this)}
+//       handleDefaultImageClick={this.handleDefaultImageClick.bind(this)}
+
+//     />
+//   : <ExpandedView
+//       photos={this.props.selectedStyle.photos}
+//       selectedPhotoIndex={this.state.selectedPhotoIndex}
+//       handleThumbnailClick={this.handleThumbnailClick.bind(this)}
+//       topThumbnail={this.state.topThumbnail}
+//       handleLeftArrowClick={this.handleLeftArrowClick.bind(this)}
+//       handleRightArrowClick={this.handleRightArrowClick.bind(this)}
+//       handleExitExpandedClick
+//       handleExitExpandedClick={this.handleExitExpandedClick.bind(this)}
+// />
+// }

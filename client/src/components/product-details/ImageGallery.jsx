@@ -25,7 +25,6 @@ import { FaChevronCircleLeft } from 'react-icons/fa';
 
 var ImageGallery = (props) => (
   <div id="image-gallery" width="60%" height="700px">
-    <div id="thumbnail-list">
       {props.photos
         ? <ThumbnailList
           topThumbnail={props.topThumbnail}
@@ -37,32 +36,28 @@ var ImageGallery = (props) => (
          />
         : <p><em>No photos to display.</em></p>
       }
-    </div>
     <div className="main-image-box">
     {props.photos.length
-      ? <div
+      ? <img
           id="main-image"
           src={props.photos[props.selectedPhotoIndex].url}
-          style={{
-            backgroundImage: `url(${props.photos[props.selectedPhotoIndex].url})`,
-            backgroundSize: 'cover',
-            backgroundRepeat: 'no-repeat',
-            zIndex: '10',
-            maxHeight: '700px',
-            maxWidth: '700px',
-            }}
           // style={{
           //   backgroundImage: `url(${props.photos[props.selectedPhotoIndex].url})`,
-          //
+          //   backgroundSize: 'cover',
+          //   backgroundRepeat: 'no-repeat',
+          //   zIndex: '10',
+          //   maxHeight: '700px',
+          //   maxWidth: '700px',
           // }}
+
           onClick={props.handleDefaultImageClick}
-          >
+          ></img>
+          : <p><em>Getting photos...</em></p>
+        }
         {props.selectedPhotoIndex > 0 && <FaChevronCircleLeft className="gallery-arrow left" onClick={props.handleLeftArrowClick}/>}
       {props.selectedPhotoIndex < props.photos.length - 1 &&
       <FaChevronCircleRight className="gallery-arrow right" onClick={props.handleRightArrowClick}/>}
-      </div>
-      : <p><em>Getting photos...</em></p>
-    }
+
     </div>
   </div>
 );
