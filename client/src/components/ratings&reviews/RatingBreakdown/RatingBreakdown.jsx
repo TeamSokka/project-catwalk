@@ -3,8 +3,7 @@ import StarRating from '../ReviewList/StarRatings';
 import RatingBreakdownList from './RatingBreakdownList';
 import StarFilterEntry from './StarFilterEntry';
 import '../Styles/rating-breakdown-entry.scss';
-
-
+// import { ModuleGraphConnection } from 'webpack';
 class RatingBreakdown extends React.Component {
   constructor(props) {
     super(props);
@@ -25,8 +24,21 @@ class RatingBreakdown extends React.Component {
   }
 
   averageRecommended(obj) {
-    const total = Number(obj.true) + Number(obj.false);
-    const result = Number(obj.true) / total;
+    var sum1;
+    var sum2;
+    if (isNaN(obj.false)) {
+      sum1 = 0;
+    } else {
+      sum1 = Number(obj.false);
+    }
+
+    if (obj.true === null) {
+      sum2 = 0;
+    } else {
+      sum2 = Number(obj.true);
+    }
+    const total = sum1 + sum2;
+    const result = sum2 / total;
 
     if (isNaN(result.toFixed(1) * 100)) {
       return 0;
@@ -46,7 +58,7 @@ class RatingBreakdown extends React.Component {
           RATINGS AND REVIEWS
         </div>
 
-        <div className="avg-rating-spacing">
+        <div className="avg-rating">
           {this.averageRating(ratings).toFixed(1)}
         </div>
 
@@ -55,7 +67,7 @@ class RatingBreakdown extends React.Component {
           gridRow: '3',
         }}
         >
-          <div style={{ display: 'flex', justifyContent: 'space-around', marginLeft: '-90px', paddingBottom: '20px' }}>
+          <div className="stars">
             {stars}
           </div>
         </div>
@@ -89,7 +101,7 @@ class RatingBreakdown extends React.Component {
                       ))}
                   </div>
                   <div className="clear-star-filter" onClick={this.props.clearStarFilter}>
-                    <u style={{ color: 'grey', fontSize: '13px' }}>Remove all filters</u>
+                    <u style={{ color: 'grey', fontSize: '12px' }}>Remove all filters</u>
                   </div>
                 </div>
               )
@@ -118,43 +130,3 @@ class RatingBreakdown extends React.Component {
 }
 
 export default RatingBreakdown;
-
-/*
-<RatingBreakdown
-  metaData={this.props.metaData}
-  starSort={this.state.starSort}
-  sortByStar={this.sortByStar}
-  clearStarFilter={this.clearStarFilter}
-/>
-*/
-
-/*
-{
-  "product_id": "40348",
-    "ratings": {
-    "3": "1",
-      "4": "1"
-  },
-  "recommended": {
-    "true": "2"
-  },
-  "characteristics": {
-    "Size": {
-      "id": 135232,
-        "value": "4.0000000000000000"
-    },
-    "Width": {
-      "id": 135233,
-        "value": "3.5000000000000000"
-    },
-    "Comfort": {
-      "id": 135234,
-        "value": "4.0000000000000000"
-    },
-    "Quality": {
-      "id": 135235,
-        "value": "3.5000000000000000"
-    }
-  }
-}
-*/

@@ -5,6 +5,7 @@ import ImageGallery from './ImageGallery.jsx';
 import ProductInfo from './ProductInfo.jsx';
 import StyleSelector from './StyleSelector.jsx';
 import AddToCart from './AddToCart.jsx';
+import ExpandedView from './ExpandedView.jsx';
 import data from './data/dummy-data.js';
 
 class ProductDetail extends React.Component {
@@ -18,7 +19,8 @@ class ProductDetail extends React.Component {
       selectedQuantity: 1,
       selectedPhotoIndex: 0,
       cart: null,
-      topThumbnail: 0
+      topThumbnail: 0,
+      expanded: false,
     }
   }
 
@@ -47,25 +49,23 @@ class ProductDetail extends React.Component {
 
   handleCartSubmit(event) {
     event.preventDefault();
-    // console.log('event.target.sizesku.value:', event.target.sizesku.value);
-    // console.log('event.target.quantity.value:', event.target.quantity.value);
-    // console.log('what type?', typeof event.target.quantity.value);
-
     var count = parseInt(event.target.quantity.value);
     for (var i = 1; i <= count; i++) {
       this.postToCart({ sku_id: event.target.sizesku.value });
     }
-    // this.postToCart({ sku_id: event.target.sizesku.value, count: event.target.quantity.value});
+  }
+
+  openSizeSelect() {
+    // document.getElementById('size-selector').size = `${Object.keys(this.state.selectedStyle.skus.length)}`;
+    document.getElementById('size-selector').size = '12';
   }
 
   handleSizeSelect(event) {
     event.preventDefault();
-    // console.log('size select entry:', event.target.value);
     this.setState({
       selectedSize: this.props.selectedStyle.skus[event.target.value]
     });
     event.target.size = '1';
-    // document.getElementById('size-selector').size = '1';
   }
 
   handleQuantitySelect(event) {
@@ -101,10 +101,33 @@ class ProductDetail extends React.Component {
     });
   }
 
-  openSizeSelect() {
-    // document.getElementById('size-selector').size = `${Object.keys(this.state.selectedStyle.skus.length)}`;
-    document.getElementById('size-selector').size = '12';
+  handleLeftArrowClick(event) {
+    this.setState({
+      selectedPhotoIndex: this.state.selectedPhotoIndex - 1
+    })
   }
+
+  handleRightArrowClick(event) {
+    event.preventDefault();
+    this.setState({
+      selectedPhotoIndex: this.state.selectedPhotoIndex + 1
+    });
+  }
+
+  handleDefaultImageClick(event) {
+    event.preventDefault();
+    this.setState({
+      expanded: true
+    });
+  }
+
+  handleExitExpandedClick(event) {
+    event.preventDefault();
+    this.setState({
+      expanded: false
+    })
+  }
+
 
   componentDidMount() {
     // this.getProductInfo();
@@ -115,37 +138,58 @@ class ProductDetail extends React.Component {
     // });
     // console.log('styles:', this.state.styles);
     // console.log('selected style:', this.state.selectedStyle);
+    console.log('state:', this.state)
+    console.log('this.props:', this.props);
   }
 
   render() {
     return (
       <div id="overview-box">
-        <ImageGallery
-          photos={this.props.selectedStyle.photos}
-          selectedphotoindex={this.state.selectedPhotoIndex}
-          handleThumbnailClick={this.handleThumbnailClick.bind(this)}
-          topThumbnail={this.state.topThumbnail}
-          handleUpArrowClick={this.handleUpArrowClick.bind(this)}
-          handleDownArrowClick={this.handleDownArrowClick.bind(this)}
-        />
+        {this.state.expanded === false
+          ? <ImageGallery
+            photos={this.props.selectedStyle.photos}
+            selectedPhotoIndex={this.state.selectedPhotoIndex}
+            handleThumbnailClick={this.handleThumbnailClick.bind(this)}
+            topThumbnail={this.state.topThumbnail}
+            handleUpArrowClick={this.handleUpArrowClick.bind(this)}
+            handleDownArrowClick={this.handleDownArrowClick.bind(this)}
+            handleLeftArrowClick={this.handleLeftArrowClick.bind(this)}
+            handleRightArrowClick={this.handleRightArrowClick.bind(this)}
+            handleDefaultImageClick={this.handleDefaultImageClick.bind(this)}
+
+          />
+          : <ExpandedView
+            photos={this.props.selectedStyle.photos}
+            selectedPhotoIndex={this.state.selectedPhotoIndex}
+            handleThumbnailClick={this.handleThumbnailClick.bind(this)}
+            topThumbnail={this.state.topThumbnail}
+            handleLeftArrowClick={this.handleLeftArrowClick.bind(this)}
+            handleRightArrowClick={this.handleRightArrowClick.bind(this)}
+            handleExitExpandedClick
+            handleExitExpandedClick={this.handleExitExpandedClick.bind(this)}
+          />
+        }
+
         <div id="next-to-image">
           <ProductInfo
-            productinfo={this.props.productInfo}
-            selectedstyle={this.props.selectedStyle}
+            productInfo={this.props.productInfo}
+            selectedStyle={this.props.selectedStyle}
+            metaData={this.props.metaData}
+            metaReady={this.props.metaReady}
           />
           <StyleSelector
             styles={this.props.styles}
-            selectedstyle={this.props.selectedStyle}
+            selectedStyle={this.props.selectedStyle}
             handleStyleSelect={this.props.handleStyleSelect}
           />
           <AddToCart
-            selectedsize={this.state.selectedSize}
-            selectedstyle={this.props.selectedStyle}
-            selectedquantity={this.state.selectedQuantity}
-            handlesizeselect={this.handleSizeSelect.bind(this)}
-            handlequantityselect={this.handleQuantitySelect.bind(this)}
-            handlecartsubmit={this.handleCartSubmit.bind(this)}
-            opensizeselect={this.openSizeSelect.bind(this)}
+            selectedSize={this.state.selectedSize}
+            selectedStyle={this.props.selectedStyle}
+            selectedQuantity={this.state.selectedQuantity}
+            handleSizeSelect={this.handleSizeSelect.bind(this)}
+            handleQuantitySelect={this.handleQuantitySelect.bind(this)}
+            handleCartSubmit={this.handleCartSubmit.bind(this)}
+            openSizeSelect={this.openSizeSelect.bind(this)}
           />
         </div>
       </div>
@@ -154,3 +198,29 @@ class ProductDetail extends React.Component {
 };
 
 export default ProductDetail;
+
+
+// {this.state.expanded === false
+//   ? <ImageGallery
+//       photos={this.props.selectedStyle.photos}
+//       selectedPhotoIndex={this.state.selectedPhotoIndex}
+//       handleThumbnailClick={this.handleThumbnailClick.bind(this)}
+//       topThumbnail={this.state.topThumbnail}
+//       handleUpArrowClick={this.handleUpArrowClick.bind(this)}
+//       handleDownArrowClick={this.handleDownArrowClick.bind(this)}
+//       handleLeftArrowClick={this.handleLeftArrowClick.bind(this)}
+//       handleRightArrowClick={this.handleRightArrowClick.bind(this)}
+//       handleDefaultImageClick={this.handleDefaultImageClick.bind(this)}
+
+//     />
+//   : <ExpandedView
+//       photos={this.props.selectedStyle.photos}
+//       selectedPhotoIndex={this.state.selectedPhotoIndex}
+//       handleThumbnailClick={this.handleThumbnailClick.bind(this)}
+//       topThumbnail={this.state.topThumbnail}
+//       handleLeftArrowClick={this.handleLeftArrowClick.bind(this)}
+//       handleRightArrowClick={this.handleRightArrowClick.bind(this)}
+//       handleExitExpandedClick
+//       handleExitExpandedClick={this.handleExitExpandedClick.bind(this)}
+// />
+// }
