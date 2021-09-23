@@ -48,9 +48,12 @@ var ExpandedView = (props) => (
             </img>
         : <p><em>Getting photos...</em></p>
       }
+      <div>
         {props.selectedPhotoIndex > 0 && <FaChevronCircleLeft className="gallery-arrow left" onClick={props.handleLeftArrowClick}/>}
-      {props.selectedPhotoIndex < props.photos.length - 1 &&
-      <FaChevronCircleRight className="gallery-arrow right" onClick={props.handleRightArrowClick}/>}
+
+        {props.selectedPhotoIndex < props.photos.length - 1 &&
+        <FaChevronCircleRight className="gallery-arrow right" onClick={props.handleRightArrowClick}/>}
+      </div>
       <button className="exit-expanded" onClick={props.handleExitExpandedClick}>Exit Expanded View</button>
     </div>
   </div>

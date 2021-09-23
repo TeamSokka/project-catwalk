@@ -56,9 +56,8 @@ var ImageGallery = (props) => (
     }
       <div>
         {props.selectedPhotoIndex > 0 && <FaChevronCircleLeft className="gallery-arrow left" onClick={props.handleLeftArrowClick}/>}
-      </div>
-      <div>
-        {props.selevfctedPhotoIndex < props.photos.length - 1 && <FaChevronCircleRight className="gallery-arrow right" onClick={props.handleRightArrowClick}/>}
+
+        {props.selectedPhotoIndex < props.photos.length - 1 && <FaChevronCircleRight className="gallery-arrow right" onClick={props.handleRightArrowClick}/>}
       </div>
 
     </div>
