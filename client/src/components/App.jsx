@@ -16,9 +16,8 @@ const axios = require('axios');
 class App extends React.Component {
   constructor(props) {
     super(props);
-    // 40355
     this.state = {
-      productID: 40344,
+      productID: 40348, // example product id, change to num
       productInfo: {},
       relatedProducts: [],
       styles: [],
@@ -26,11 +25,12 @@ class App extends React.Component {
       metaData: {},
       metaReady: false,
     }
-    this.fetchMeta = this.fetchMeta.bind(this);
+    // this.fetchMeta = this.fetchMeta.bind(this);
   }
 
   componentDidMount() {
     const { productInfo, productID } = this.state;
+
     this.fetchMeta();
     this.getRelated(productID);
     this.getProductInfo(productID);
@@ -39,9 +39,7 @@ class App extends React.Component {
 
   setProductInfo = (data) => {
     this.setState({
-      productInfo: data,
-      styles: data.styles,
-      selectedStyle: data.styles[0]
+      productInfo: data
     })
   }
   /*stormi: refactor function to take in id, callback. The callback is defaulted to setProductInfo.
@@ -75,17 +73,17 @@ class App extends React.Component {
 
   handleStyleSelect(event) {
     event.preventDefault();
+    // console.log('event.target:', event.target);
+    // console.log('event.target.dataset.index:', event.target.dataset.index);
     this.setState({
       selectedStyle: this.state.styles[event.target.dataset.index]
-    });
-    console.log('selectedStyle:', this.state.selectedStyle);
-    document.getElementById('selected-style').id = '';
-    event.target.id = 'selected-style';
+    })
   }
 
   getRelated = () => {
     axios.get(`/products/${this.state.productID}/related`)
       .then((res) => {
+        // console.log('related products recd:', res.data);
         this.setState({
           relatedProducts: res.data
         })
@@ -111,7 +109,11 @@ class App extends React.Component {
   }
 
   render() {
-    const { productID, productInfo, relatedProducts, styles, selectedStyle, metaData } = this.state;
+    const { productID, productInfo, relatedProducts, styles, selectedStyle, metaData, metaReady } = this.state;
+
+    // console.log('app state// productInfo', productInfo);
+    // console.log('app state// relatedPro', relatedProducts);
+
     return (
       <div>
         {/* <Suspense fallback={<div>Loading...</div>}>
@@ -125,7 +127,10 @@ class App extends React.Component {
           styles={styles}
           selectedStyle={selectedStyle}
           handleStyleSelect={this.handleStyleSelect.bind(this)}
+          metaData={metaData}
+          metaReady={metaReady}
         />
+
 
         <RelatedItems
           productInfo={productInfo}

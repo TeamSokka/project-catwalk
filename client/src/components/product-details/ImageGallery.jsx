@@ -1,9 +1,7 @@
 import React from 'react';
 import ThumbnailList from './ThumbnailList.jsx';
-import { library, dom } from '@fortawesome/fontawesome-svg-core';
-import { fas } from '@fortawesome/free-solid-svg-icons';
-import { far } from '@fortawesome/free-regular-svg-icons';
-import { fab } from '@fortawesome/free-brands-svg-icons';
+import { FaChevronCircleRight } from 'react-icons/fa';
+import { FaChevronCircleLeft } from 'react-icons/fa';
 
 //ImageGallery module
 //img urls in props.selectedstyle
@@ -27,41 +25,41 @@ import { fab } from '@fortawesome/free-brands-svg-icons';
 
 var ImageGallery = (props) => (
   <div id="image-gallery" width="60%" height="700px">
-    <div id="thumbnail-list">
       {props.photos
         ? <ThumbnailList
           topThumbnail={props.topThumbnail}
           photos={props.photos}
-          selectedphotoindex={props.selectedphotoindex}
+          selectedPhotoIndex={props.selectedPhotoIndex}
           handleThumbnailClick={props.handleThumbnailClick}
           handleUpArrowClick={props.handleUpArrowClick}
           handleDownArrowClick={props.handleDownArrowClick}
          />
         : <p><em>No photos to display.</em></p>
       }
-    </div>
+    <div className="main-image-box">
     {props.photos.length
       ? <img
           id="main-image"
-          src={props.photos[props.selectedphotoindex].url} width="750"
+          src={props.photos[props.selectedPhotoIndex].url}
           // style={{
-          //   backgroundImage: `url(${props.photos[props.selectedphotoindex].url})`,
+          //   backgroundImage: `url(${props.photos[props.selectedPhotoIndex].url})`,
           //   backgroundSize: 'cover',
           //   backgroundRepeat: 'no-repeat',
           //   zIndex: '10',
-          //   maxHeight: '100%',
-          //   maxWidth: '100%'
+          //   maxHeight: '700px',
+          //   maxWidth: '700px',
           // }}
-        >
-      </img>
-      : <p><em>No photo to display.</em></p>
-    }
+
+          onClick={props.handleDefaultImageClick}
+          ></img>
+          : <p><em>Getting photos...</em></p>
+        }
+        {props.selectedPhotoIndex > 0 && <FaChevronCircleLeft className="gallery-arrow left" onClick={props.handleLeftArrowClick}/>}
+      {props.selectedPhotoIndex < props.photos.length - 1 &&
+      <FaChevronCircleRight className="gallery-arrow right" onClick={props.handleRightArrowClick}/>}
+
+    </div>
   </div>
 );
 
 export default ImageGallery;
-
-// <i class="fas fa-chevron-circle-up"></i>
-// <i class="fas fa-chevron-circle-down"></i>
-// <i class="fas fa-chevron-circle-left"></i>
-// <i class="fas fa-chevron-circle-right"></i>
