@@ -2,17 +2,6 @@ const axios = require('axios');
 const config = require('../../config');
 
 // GET reviews
-// GET metadata
-// 40344 - 40348
-// product id - req.query
-// https://app-hrsei-api.herokuapp.com/api/fec2/:CAMPUS_CODE/
-// http://example.com/page?parameter=value&also=another
-// `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?product_id=${body.product_id}&page=${body.page}&count=${body.count}&sort=${body.sort}`
-
-// page 1
-// count default to 5
-// we get 2 every time - missing the rest of 3 reviews, skipping them when we change pages
-
 const getReviews = (query, callback) => {
   var optionalString = "";
   if (query.page !== undefined) {
@@ -26,8 +15,6 @@ const getReviews = (query, callback) => {
   if (query.sort !== undefined) {
     optionalString += `&sort=${query.sort}`;
   }
-  // console.log(optionalString);
-  // console.log(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?product_id=${query.product_id}${optionalString}`);
 
   axios.get(
     `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?product_id=${query.product_id}${optionalString}`,
@@ -38,7 +25,6 @@ const getReviews = (query, callback) => {
       },
     })
     .then((response) => {
-      // console.log('getReviews API data: ' + response);
       callback(null, response.data);
     })
     .catch((error) => {
@@ -55,7 +41,6 @@ const getMetaReviews = (query, callback) => {
     }
   })
     .then((response) => {
-      // console.log('getMetaReviews API data: ' + response);
       callback(null, response.data);
     })
     .catch((error) => {
@@ -66,11 +51,6 @@ const getMetaReviews = (query, callback) => {
 
 
 // POST reviews
-/*
-POST /reviews
-Response: Status: 201 CREATED
-localhost:3000/reviews
-*/
 const postReviews = (body, callback) => {
   axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews', body, {
     headers: {
@@ -86,34 +66,8 @@ const postReviews = (body, callback) => {
       callback(error, null);
     })
 }
-// localhost:3000/reviews?product_id=40344&page=1&count=5&sort="helpful"
-// {
-//   "product_id": 40344,
-//   "rating": 5,
-//   "summary": "abc",
-//   "body": "zxy",
-//   "recommend": true,
-//   "name": "user",
-//   "email": "@yahoo",
-//   "photos": ["img"],
-//   "characteristics": { "14": 5, "15": 5 }
-// }
 
 // PUT reviews
-/*
-PUT /reviews/:review_id/helpful
-Response: Status: 204 NO CONTENT
-*/
-
-/*
-PUT /reviews/:review_id/report
-Response: Status: 204 NO CONTENT
-*/
-
-// localhost:3000/reviews?product_id=40344&page=1&count=5&sort="helpful"
-// "review_id": 840820,
-// localhost:3000/reviews/840820/helpful
-
 const putReviews = (req, callback) => {
   const { review_id, method } = req.params;
 
@@ -127,8 +81,6 @@ const putReviews = (req, callback) => {
     }
   })
     .then((response) => {
-      // console.log('putReviews API data: ' + response.data);
-      // console.log('res ', response);
       callback(null, response.data);
     })
     .catch((error) => {
@@ -143,35 +95,3 @@ module.exports = {
   postReviews,
   putReviews
 }
-
-// const putReviews = (body, callback) => {
-//   axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/${body.review_id}/${body.type}`, {}, {
-//     headers: {
-//       Authorization: config.TOKEN,
-//     }
-//   })
-//     .then((response) => {
-//       console.log('putReviews API data: ' + response.data);
-//       callback(null, response.data);
-//     })
-//     .catch((error) => {
-//       console.log('Error putReviews API: ' + error);
-//       callback(error, null);
-//     })
-// }
-
-/*
-{
-    "product_id": 40344,
-    "rating": 5,
-    "summary": "abc",
-    "body": "zxy",
-    "recommend": true,
-    "name": "user",
-    "email": "john6fa@yahoo.com",
-    "photos": [],
-    "characteristics": { "14": 5, "15": 5 }
-}
-
-
-*/
