@@ -5,12 +5,14 @@ import { VscTriangleLeft, VscTriangleRight } from 'react-icons/vsc';
 import '../related-items.scss';
 
 const RelatedProductCards = (props) => {
-  const { productInfo, relatedProducts, getProductInfo } = props;
+  const { productInfo, relatedProducts, handleComparison } = props;
 
   const products = relatedProducts.map((product, index) =>
     <div className="product-card" key={index}>
       <ProductPreviewImages
         productStyles={product.styles}
+        id={index}
+        handleComparison={handleComparison}
       />
       <ProductInformation
         relatedProducts={relatedProducts}

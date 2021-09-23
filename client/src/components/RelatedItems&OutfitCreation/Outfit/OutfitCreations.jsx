@@ -4,7 +4,7 @@ import { FiPlus } from 'react-icons/fi';
 import '../related-items.scss';
 
 const OutfitCreations = (props) => {
-  const { productInfo, handleAddOutfit, outfits } = props;
+  const { outfits, productInfo, handleAddOutfit, handleDeleteOutfit } = props;
 
   let handleAddNewOutfit = () => {
     let outfit = {
@@ -21,7 +21,7 @@ const OutfitCreations = (props) => {
     <div id="outfit-card">
       <div id="outfit-product-card">
       {outfits.length >= 1 ?
-        <OutfitCard outfits={outfits}/>
+        <OutfitCard outfits={outfits} handleDeleteOutfit={handleDeleteOutfit}/>
         :
         <div className="add-outfit" onClick={handleAddNewOutfit}>
           <FiPlus />

@@ -1,0 +1,75 @@
+#comparing-container {
+  // display: flex;
+  height: 300px;  backdrop-filter: blur(3px) contrast(50%);
+  // background-color: rgb(0,0,0);
+  // background-color: rgba(0,0,0,0.2);
+  z-index: 150;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  padding-top: 65px;
+}
+
+#inner-comparing-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: white;
+  width: 50%;
+  min-width: 550px;
+  max-width: 100%;
+  // max-height: 80%;
+  // height: 80%;
+  margin: auto;
+  padding: 5px;
+  border: none;
+  overflow: auto;
+  // border-radius: 20px;
+}
+
+#comparing-map {
+  display: flex;
+  flex-direction: column;
+}
+
+#comparing-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#comparing-info {
+  display: flex;
+}
+
+#current-product {
+  border: 1px solid blue;
+  width: 150px;
+}
+
+#characteristic {
+  border: 1px solid yellow;
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#compared-product {
+  border: 1px solid green;
+  width: 150px;
+}
+
+#close-comparing-modal {
+  float: right;
+  width: 1.5rem;
+  line-height: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  background-color: lightgray;
+}
