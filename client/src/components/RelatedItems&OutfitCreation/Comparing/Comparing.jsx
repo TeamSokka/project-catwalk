@@ -1,7 +1,4 @@
 import React from 'react';
-import CurrentProduct from './CurrentProduct';
-import ComparedProduct from './ComparedProduct';
-import Characteristic from './Characteristic';
 import { TiDeleteOutline } from 'react-icons/ti';
 import { VscCheck } from'react-icons/vsc';
 import './comparing.scss';
@@ -48,7 +45,6 @@ const Comparing = (props) => {
             <TiDeleteOutline id="close-comparing-modal" onClick={() => exitComparison()}/>
           </div>
 
-          {/* <div id="comparing-info"> */}
           <table>
             <tbody>
               <tr>
@@ -59,17 +55,7 @@ const Comparing = (props) => {
               {characteristic}
             </tbody>
           </table>
-          {/* </div> */}
 
-            {/* <CurrentProduct
-               name={productName}
-             />
-             <Characteristic
-                characteristic={characteristic}
-             />
-             <ComparedProduct
-               name={compareName}
-             /> */}
         </div>
 
       </div>
