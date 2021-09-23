@@ -18,10 +18,13 @@ var ExpandedView = (props) => (
   <div id="expanded-image-gallery">
     <div id="dot-list">
       {props.photos.map((photo, index) =>
-        {props.photos.indexOf(photo) === props.selectedPhotoIndex
-          ? <FaCircle id="selected-dot" key={props.photos.indexOf(photo)} data-index={props.photos.indexOf(photo)} width="25px"/>
-          : <FaRegCircle id="" key={props.photos.indexOf(photo)} data-index={props.photos.indexOf(photo)} width="25px"/>
-        }
+        // (
+        //   <FaRegCircle key={props.photos.indexOf(photo)} data-index={props.photos.indexOf(photo)} onClick={props.handleThumbnailClick} />
+        // )
+        props.photos.indexOf(photo) === props.selectedPhotoIndex
+          ? <FaCircle id="selected-dot" key={props.photos.indexOf(photo)} data-index={props.photos.indexOf(photo)} width="25px" onClick={props.handleThumbnailClick}/>
+          : <FaRegCircle id="" key={props.photos.indexOf(photo)} data-index={props.photos.indexOf(photo)} width="25px" onClick={props.handleThumbnailClick} />
+
       )}
     </div>
     <div className="main-image-box-expanded">

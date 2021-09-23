@@ -128,7 +128,9 @@ app {
   display: flex;
   flex-direction: column;
   position: relative;
+  align-self: center;
   z-index: 20;
+  margin: 10px;
 }
 
 .main-image-box-expanded {
