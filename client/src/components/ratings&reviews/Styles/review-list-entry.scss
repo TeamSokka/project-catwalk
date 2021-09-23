@@ -7,8 +7,8 @@ body {
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(6, 1fr);
   border-bottom: 1px solid grey;
-  padding-top: 8px;
-  padding-bottom: 8px;
+  padding-top: 3px;
+  padding-bottom: 10px;
   width: 720px;
 };
 
@@ -52,7 +52,7 @@ body {
 };
 
 .response-layout {
-  padding: 5px;
+  padding: 9px;
   font-size: 13px;
   grid-row: 5;
   grid-column-end: span 3;
@@ -73,6 +73,7 @@ body {
   font-size: 14px;
   grid-row-end: 7;
   grid-column-end: span 3;
+  padding-top: 10px;
 };
 
 .star-layout {
