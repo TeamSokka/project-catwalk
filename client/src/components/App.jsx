@@ -18,7 +18,7 @@ class App extends React.Component {
     super(props);
     // 40355
     this.state = {
-      productID: 40356,
+      productID: 40344,
       productInfo: {},
       relatedProducts: [],
       styles: [],

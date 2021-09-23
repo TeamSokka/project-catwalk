@@ -6,10 +6,9 @@
 };
 
 .characteristics-bar {
-  height: 7px;
+  height: 8px;
   width: 100%;
-  border: none;
-  background-color: rgba(232, 232, 232, .8);
+  background-color: rgba(232, 232, 232, 0.815);
 };
 
 .margin-left {
@@ -18,8 +17,6 @@
 };
 
 .margin-center {
-  margin-left: auto;
-  margin-right: auto;
   margin: auto;
   position: relative;
 };
@@ -32,15 +29,15 @@
 .characteristics-title {
   display: flex;
   font-size: 16px;
-  color: black;
   padding-top: 25px;
+  color: black;
 };
 
 .characteristics-trait {
   display: flex;
+  justify-content: space-evenly;
   font-size: 13px;
   color: grey;
-  justify-content: space-evenly;
 };
 
 
