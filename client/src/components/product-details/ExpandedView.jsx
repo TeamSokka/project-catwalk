@@ -26,27 +26,28 @@ var ExpandedView = (props) => (
     </div>
     <div className="main-image-box-expanded">
     {props.photos.length
-      ? <div
+      ? <img
           id="expanded-main-image"
           src={props.photos[props.selectedPhotoIndex].url}
-          style={{
-            backgroundImage: `url(${props.photos[props.selectedPhotoIndex].url})`,
-            backgroundSize: 'cover',
-            backgroundRepeat: 'no-repeat',
-            zIndex: '7',
-            }}
+          // style={{
+          //   backgroundImage: `url(${props.photos[props.selectedPhotoIndex].url})`,
+          //   backgroundSize: 'fit',
+          //   backgroundRepeat: 'no-repeat',
+          //   zIndex: '7',
+          //   overflow: 'scroll',
+          //   }}
           // style={{
           //   backgroundImage: `url(${props.photos[props.selectedPhotoIndex].url})`,
           //
           // }}
           >
+            </img>
+        : <p><em>Getting photos...</em></p>
+      }
         {props.selectedPhotoIndex > 0 && <FaChevronCircleLeft className="gallery-arrow left" onClick={props.handleLeftArrowClick}/>}
       {props.selectedPhotoIndex < props.photos.length - 1 &&
       <FaChevronCircleRight className="gallery-arrow right" onClick={props.handleRightArrowClick}/>}
       <button className="exit-expanded" onClick={props.handleExitExpandedClick}>Exit Expanded View</button>
-      </div>
-      : <p><em>Getting photos...</em></p>
-    }
     </div>
   </div>
 );

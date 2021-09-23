@@ -78,13 +78,19 @@ class ProductDetail extends React.Component {
   handleThumbnailClick(event) {
     event.preventDefault();
     console.log('event.target.dataset.index:', event.target.dataset.index);
+    console.log('event.target.id:', event.target.id);
     this.setState({
       selectedPhotoIndex: event.target.dataset.index
     });
 
-    document.getElementById('selected-image').id = '';
-    event.target.id = 'selected-image';
-    // event.target.classList.toggle('selected');
+    if (document.getElementById('selected-image')) {
+      console.log('prev selected img:', document.getElementById('selected-image'));
+      document.getElementById('selected-image').id = '';
+      event.target.id = 'selected-image';
+    } else {
+      console.log('Cannot getElementById "selected-image"');
+    }
+    event.target.classList.toggle('selected');
   }
 
   handleUpArrowClick(event) {
@@ -102,16 +108,33 @@ class ProductDetail extends React.Component {
   }
 
   handleLeftArrowClick(event) {
+    event.preventDefault();
+    let newPhotoIndex = this.state.selectedPhotoIndex - 1;
     this.setState({
-      selectedPhotoIndex: this.state.selectedPhotoIndex - 1
+      selectedPhotoIndex: newPhotoIndex
     })
+    // if (document.getElementById('selected-image')) {
+    //   console.log('prev selected img:', document.getElementById('selected-image'));
+    //   document.getElementById('selected-image').id = '';
+    //   // event.target.id = 'selected-image';
+    // } else {
+    //   console.log('Cannot getElementById "selected-image"');
+    // }
   }
 
   handleRightArrowClick(event) {
     event.preventDefault();
+    let newPhotoIndex = this.state.selectedPhotoIndex + 1;
     this.setState({
-      selectedPhotoIndex: this.state.selectedPhotoIndex + 1
+      selectedPhotoIndex: newPhotoIndex
     });
+    // if (document.getElementById('selected-image')) {
+    //   console.log('prev selected img:', document.getElementById('selected-image'));
+    //   document.getElementById('selected-image').id = '';
+    //   // event.target.id = 'selected-image';
+    // } else {
+    //   console.log('Cannot getElementById "selected-image"');
+    // }
   }
 
   handleDefaultImageClick(event) {
@@ -161,6 +184,7 @@ class ProductDetail extends React.Component {
           : <ExpandedView
               photos={this.props.selectedStyle.photos}
               selectedPhotoIndex={this.state.selectedPhotoIndex}
+              selectedPhoto={this.props.selectedStyle.photos[this.state.selectedPhotoIndex]}
               handleThumbnailClick={this.handleThumbnailClick.bind(this)}
               topThumbnail={this.state.topThumbnail}
               handleLeftArrowClick={this.handleLeftArrowClick.bind(this)}
