@@ -1,11 +1,6 @@
 import React from 'react';
 import PhotoEntry from './PhotoEntry';
 import '../Styles/photo-entry.scss'
-
-const imgContainer = {
-  display: 'flex',
-};
-
 class PhotoList extends React.Component {
   constructor(props) {
     super(props);
@@ -24,8 +19,3 @@ class PhotoList extends React.Component {
 }
 
 export default PhotoList;
-
-/*
-photos: [{…}]
-{id: 1595336, url: "wwww.etc"}
-*/
