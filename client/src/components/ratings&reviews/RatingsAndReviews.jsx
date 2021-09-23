@@ -164,17 +164,18 @@ class RatingsAndReviews extends React.Component {
 
   sortByStar(e) {
     const { starSort } = this.state;
+    var idNum = parseInt(e.target.id);
 
-    if (starSort.indexOf(e.target.id) === -1) {
+    if (starSort.indexOf(idNum) === -1) {
       var starSortTemp = this.state.starSort.slice();
-      starSortTemp.push(Number(e.target.id));
+      starSortTemp.push(idNum);
       this.sorting(starSortTemp);
       this.setState({
         starSort: starSortTemp
       });
     } else {
       var starSortTemp = this.state.starSort.slice();
-      starSortTemp.splice(starSortTemp.indexOf(e.target.id), 1);
+      starSortTemp.splice(starSortTemp.indexOf(idNum), 1);
       this.setState({
         starSort: starSortTemp
       });
