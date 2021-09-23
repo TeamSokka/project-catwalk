@@ -7,20 +7,6 @@ class WriteReview extends React.Component {
     super(props);
     const { productID, metaData } = this.props;
 
-    // this.state = {
-    //   mouseOver: [0, 0, 0, 0, 0],
-    //   productID: productID,
-    //   recommend: null,
-    //   summary: '',
-    //   body: '',
-    //   photos: [],
-    //   name: '',
-    //   email: '',
-    //   rating: null,
-    //   characteristics: {
-    //   }
-    // }
-
     this.state = {
       review: {
         product_id: productID,
@@ -56,13 +42,7 @@ class WriteReview extends React.Component {
     this.setState({
       review: review2
     });
-
-    // this.setState({
-    //   [e.target.name]: e.target.value
-    // })
   }
-
-
 
   handleCharacteristicClick(name, e) {
     const { characteristics } = this.state;
@@ -77,10 +57,6 @@ class WriteReview extends React.Component {
     // var review2 = JSON.parse(JSON.stringify(this.state.review));
     // review2.characteristics.name["id"] = e.target.name;
     // review2.characteristics.name["value"] = eNumber(e.target.value);
-    // "Size": { "id": 135232, "value": "1" },
-    // "Width": { "id": 135233, "value": "2" },
-    // "Comfort": { "id": 135234, "value": "3" },
-    // "Quality": { "id": 135235, "value": "4" }
 
 
     var characteristics2 = Object.assign({}, this.state.characteristics);
@@ -90,7 +66,6 @@ class WriteReview extends React.Component {
     // }
 
     characteristics2[String(e.target.name)] = parseInt(e.target.value);
-
 
     var review2 = Object.assign({}, this.state.review,
       {
@@ -122,10 +97,6 @@ class WriteReview extends React.Component {
     this.setState({
       review: review2
     });
-
-    // this.setState({
-    //   [e.target.name]: Number(e.target.value),
-    // });
   }
 
   handleRecommendClick(e) {
@@ -142,10 +113,6 @@ class WriteReview extends React.Component {
     this.setState({
       review: review2
     });
-
-    // this.setState({
-    //   [e.target.name]: bool,
-    // });
   }
 
   // min char count
@@ -170,16 +137,6 @@ class WriteReview extends React.Component {
     const { rating } = this.state.review;
     const { characteristics } = this.state.review;
 
-    // checks
-    // Recommend - mandatory
-    // Characteristics - mandatory
-    // Review Summary - up to 60 characters
-    // Review body - up to 1000 characters, over 50 characters
-    // Name - up to 60 characters
-    // Email - up to 60 characters
-    // alert with warning message if not satisfactory entry
-
-    // concat alert string
     e.preventDefault();
     var alertMessage = '';
 
@@ -190,7 +147,6 @@ class WriteReview extends React.Component {
     if (recommend === null) {
       alertMessage += 'Please fill out required recommended option. \n';
     }
-    // characteristics
 
     if (summary.length > 60) {
       alertMessage += 'Review Summary must be 60 characters or less. \n';
@@ -199,8 +155,6 @@ class WriteReview extends React.Component {
     if (body.length > 1000 || body.length < 50) {
       alertMessage += 'Review Body must be at least 50 characters. \n';
     }
-
-    // photo check
 
     if (name.length > 60 || name.length === 0) {
       alertMessage += 'Name must be less than 60 characters and cannot be empty. \n';
@@ -213,7 +167,6 @@ class WriteReview extends React.Component {
       alertMessage += 'Please input a valid email address.';
     }
 
-    // check if alert message not empty - check length > 0
     if (alertMessage.length > 0) {
       alert('You must enter the following: \n' + alertMessage);
       return;
@@ -337,16 +290,6 @@ class WriteReview extends React.Component {
               display: 'flex', justifyContent: 'center', fontSize: '20px', marginTop: '5px', marginBottom: '5px',
             }}
             >
-              {/* <span className="fa fa-star" aria-hidden="true"
-                onClick={() => { this.setState({ rating: 1, mouseOver: [1, 0, 0, 0, 0], starRating: "Poor" }); }} />
-
-              <span className="fa fa-star" aria-hidden="true" onClick={() => { this.setState({ rating: 2, mouseOver: [1, 1, 0, 0, 0], starRating: "Fair" }); }} />
-
-              <span className="fa fa-star" aria-hidden="true" onClick={() => { this.setState({ rating: 3, mouseOver: [1, 1, 1, 0, 0], starRating: "Average" }); }} />
-
-              <span className="fa fa-star" aria-hidden="true" onClick={() => { this.setState({ rating: 4, mouseOver: [1, 1, 1, 1, 0], starRating: "Good" }); }} />
-
-              <span className="fa fa-star" aria-hidden="true" onKeyUp={this.handleKeyUp} onClick={() => { this.setState({ rating: 5, mouseOver: [1, 1, 1, 1, 1], starRating: "Great" }); }} /> */}
 
               {
                 this.state.mouseOver[0] === 1
@@ -497,38 +440,15 @@ class WriteReview extends React.Component {
 
 export default WriteReview;
 
-/*
-localhost:3000/reviews/?product_id=40344&page=1&count=5&sort="helpful"
+{/* <span className="fa fa-star" aria-hidden="true"
+onClick={() => { this.setState({ rating: 1, mouseOver: [1, 0, 0, 0, 0], starRating: "Poor" }); }} />
 
-Metadata for product 40348
-{
-    "product_id": "40348",
-    "ratings": {
-        "3": "1",
-        "4": "1"
-    },
-    "recommended": {
-        "true": "2"
-    },
-    "characteristics": {
-        "Size": {
-            "id": 135232,
-            "value": "4.0000000000000000"
-        },
-        "Width": {
-            "id": 135233,
-            "value": "3.5000000000000000"
-        },
-        "Comfort": {
-            "id": 135234,
-            "value": "4.0000000000000000"
-        },
-        "Quality": {
-            "id": 135235,
-            "value": "3.5000000000000000"
-        }
-    }
-}
+<span className="fa fa-star" aria-hidden="true" onClick={() => { this.setState({ rating: 2, mouseOver: [1, 1, 0, 0, 0], starRating: "Fair" }); }} />
 
-*/
+<span className="fa fa-star" aria-hidden="true" onClick={() => { this.setState({ rating: 3, mouseOver: [1, 1, 1, 0, 0], starRating: "Average" }); }} />
+
+<span className="fa fa-star" aria-hidden="true" onClick={() => { this.setState({ rating: 4, mouseOver: [1, 1, 1, 1, 0], starRating: "Good" }); }} />
+
+<span className="fa fa-star" aria-hidden="true" onKeyUp={this.handleKeyUp} onClick={() => { this.setState({ rating: 5, mouseOver: [1, 1, 1, 1, 1], starRating: "Great" }); }} /> */}
+
 
