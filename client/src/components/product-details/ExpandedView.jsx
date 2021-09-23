@@ -29,6 +29,7 @@ var ExpandedView = (props) => (
       ? <img
           id="expanded-main-image"
           src={props.photos[props.selectedPhotoIndex].url}
+          onClick={props.handleExitExpandedClick}
           // style={{
           //   backgroundImage: `url(${props.photos[props.selectedPhotoIndex].url})`,
           //   backgroundSize: 'fit',
