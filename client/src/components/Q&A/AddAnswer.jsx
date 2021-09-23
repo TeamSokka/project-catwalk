@@ -9,6 +9,8 @@ const AddAnswer = (props) => {
 
   const message = 'You must enter the following: \n';
 
+  const validate = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
   const onSubmit = (e) => {
     e.preventDefault();
     if (!body) {
@@ -19,12 +21,12 @@ const AddAnswer = (props) => {
       alert(`${message} Please add your nickname`);
       return;
     }
-    if (!email) {
+    if (!email || !validate.test((email).toLowerCase())) {
       alert(`${message} Please provide email in the correct format`);
       return;
     }
     console.log('answers ', { body, name, email });
-    postAnswer({ body, name, email, photos }, question.question_id);
+    postAnswer({ body, name, email }, question.question_id);
     console.log('photos', photos);
   }
 
@@ -48,7 +50,7 @@ const AddAnswer = (props) => {
       <div>
         <h3 className='ask-headers'>Your Email* </h3>
         <div className='input-div'>
-          <input type='text' className='ask-inputs'
+          <input type='email' className='ask-inputs'
             placeholder='Example: jack@email.com' value={email} onChange={(e) => setEmail(e.target.value)} maxLength={60} />
         </div>
       </div>
