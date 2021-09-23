@@ -23,6 +23,7 @@ $box-shadow-hover: 0 .75rem 1rem rgba(black, 0.30) !default;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 15px;
 }
 
 #product-info {
@@ -70,14 +71,14 @@ $box-shadow-hover: 0 .75rem 1rem rgba(black, 0.30) !default;
   position: absolute;
   top: 0;
   right: 0;
-  padding: 7px 6px 0 0;
+  padding: 7px 20px 0 0;
 }
 
 #ti-delete {
   position: absolute;
   top: 0;
   right: 0;
-  padding: 4px 4px 0 0;
+  padding: 5px 16px 0 0;
   font-size: 20px;
 }
 
