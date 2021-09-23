@@ -104,20 +104,23 @@ class App extends React.Component {
   }
 
   render() {
-    const { productID, productInfo, relatedProducts, styles, selectedStyle, metaData } = this.state;
+    const { productID, productInfo, relatedProducts, styles, selectedStyle, metaData, metaReady } = this.state;
 
     // console.log('app state// productInfo', productInfo);
     // console.log('app state// relatedPro', relatedProducts);
 
     return (
       <div>
-         <ProductDetail
+        <ProductDetail
           productID={productID}
           productInfo={productInfo}
           styles={styles}
           selectedStyle={selectedStyle}
           handleStyleSelect={this.handleStyleSelect.bind(this)}
+          metaData={metaData}
+          metaReady={metaReady}
         />
+
 
         <RelatedItems
           productInfo={productInfo}
