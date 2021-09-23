@@ -24,7 +24,7 @@ const AddQuestion = (props) => {
       alert(`${message} Please provide email in the correct format`);
       return;
     }
-    console.log({ body, name, email, product_id: productID });
+    // console.log({ body, name, email, product_id: productID });
     postQuestion({ body, name, email, product_id: productID });
   }
 

@@ -77,7 +77,7 @@ class ProductDetail extends React.Component {
 
   handleThumbnailClick(event) {
     event.preventDefault();
-    console.log('event.target.dataset.index:', event.target.dataset.index);
+    // console.log('event.target.dataset.index:', event.target.dataset.index);
     this.setState({
       selectedPhotoIndex: event.target.dataset.index
     });
@@ -138,8 +138,8 @@ class ProductDetail extends React.Component {
     // });
     // console.log('styles:', this.state.styles);
     // console.log('selected style:', this.state.selectedStyle);
-    console.log('state:', this.state)
-    console.log('this.props:', this.props);
+    // console.log('state:', this.state)
+    // console.log('this.props:', this.props);
   }
 
   render() {
