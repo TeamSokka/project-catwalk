@@ -14,19 +14,23 @@ const Comparing = (props) => {
 
   const productFeatures = productInfo.features;
   const featureOne = productFeatures.map(feature => {
-    return `${feature.value} ${feature.feature}`;
+    let str = `${feature.value} ${feature.feature}`;
+    str = str.split('"').join(' ');
+    return str;
   });
 
   const compareFeatures = comparedProduct.features;
   const featureTwo = compareFeatures.map(feature => {
-    return `${feature.value} ${feature.feature}`;
+    let str = (`${feature.value} ${feature.feature}`)
+    str = str.split('"').join(' ');
+    return str;
   });
 
   const characteristicList = [...new Set([...featureOne, ...featureTwo])];
 
-  const characteristic = characteristicList.map(feature => {
+  const characteristic = characteristicList.map((feature, index) => {
     return (
-      <tr>
+      <tr key={index}>
         <td id="product-check"><VscCheck /></td>
         <td id="characteristic">{feature}</td>
         <td id="compared-check"><VscCheck /></td>
