@@ -15,6 +15,14 @@ app.use(express.static(path.join(__dirname, '..', 'client/dist')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+
+// app.get('*.js', function (req, res, next) {
+//   req.url = req.url + '.gz';
+//   res.set('Content-Encoding', 'gzip');
+//   next();
+// });
+
+
 // Products
 // GET /products
 app.get('/products', (req, res) => {
@@ -85,7 +93,7 @@ app.post('/cart', (req, res) => {
 
 // Reviews
 // REVIEWS WIDGET
-// GET /reviews/ - OK: localhost:3000/reviews?product_id=40344&page=1&count=5&sort="helpful"
+// GET /reviews/
 app.get('/reviews', (req, res) => {
   ratings.getReviews(req.query, (err, data) => {
     if (err) {
@@ -97,7 +105,7 @@ app.get('/reviews', (req, res) => {
   });
 })
 
-// GET /reviews/meta - OK: localhost:3000/reviews/meta?product_id=40344
+// GET /reviews/meta
 app.get('/reviews/meta', (req, res) => {
   ratings.getMetaReviews(req.query, (err, data) => {
     if (err) {
@@ -109,13 +117,8 @@ app.get('/reviews/meta', (req, res) => {
   });
 })
 
-
-
 // POST /reviews
 app.post('/reviews', (req, res) => {
-  // console.log(req.body);
-  // console.log(req.body.characteristics);
-
   ratings.postReviews(req.body, (err, data) => {
     if (err) {
       console.log('Error app.post /reviews : ' + err);
@@ -138,10 +141,6 @@ app.put(`/reviews/:review_id/:method`, (req, res) => {
     }
   })
 })
-
-
-
-
 
 
 // Questions and Answers

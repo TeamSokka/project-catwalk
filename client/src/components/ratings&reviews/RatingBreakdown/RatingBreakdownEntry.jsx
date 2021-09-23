@@ -10,9 +10,9 @@ class RatingBreakdownEntry extends React.Component {
     this.toggleHover = this.toggleHover.bind(this);
   }
 
-  toggleHover() {
+  toggleHover(bool) {
     this.setState({
-      hover: !this.state.hover
+      hover: bool
     });
   }
 
@@ -26,12 +26,12 @@ class RatingBreakdownEntry extends React.Component {
 
     return (
       <div id={this.props.rating}
+        onClick={this.props.sortByStar}
         style={linkStyle}
         className="star-bar"
         className="star-bar-flex"
-        onClick={this.props.sortByStar}
-        onMouseEnter={this.toggleHover}
-        onMouseLeave={this.toggleHover}
+        onMouseEnter={() => { this.toggleHover(true) }}
+        onMouseLeave={() => { this.toggleHover(false) }}
       >
 
         <u>{`${this.props.rating} stars`}</u>
@@ -45,7 +45,9 @@ class RatingBreakdownEntry extends React.Component {
           }}
           />
         </div>
+
         <div id={this.props.rating} className="star-font">{this.props.ratingCount}</div>
+
       </div>
     );
   }
