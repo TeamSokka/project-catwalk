@@ -47,7 +47,6 @@
   // grid-template-columns: minmax(100px, 1fr) 3fr;
   grid-gap: 10px;
 };
-// width 100%
 
 .no-reviews-grid {
   display: grid;
@@ -69,7 +68,7 @@
   margin-right: auto;
 };
 
-.rating-grid {
+.rating {
   grid-column: 1;
   grid-row: 1;
   max-height: 300px;
@@ -92,7 +91,6 @@
   background-color: white;
   cursor: pointer;
 };
-
 
 .product {
   grid-column: 1;

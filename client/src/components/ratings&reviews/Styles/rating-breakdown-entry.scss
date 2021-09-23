@@ -10,13 +10,13 @@
 
 .star-bar-flex {
   display: flex;
-  margin-bottom: 10px;
-  padding-left: 7px;
+  margin-bottom: 11px;
+  padding-left: 8px;
   cursor: pointer;
 };
 
 .star-font {
-  font-size: 12px;
+  font-size: 13px;
   color: grey;
 };
 
@@ -33,10 +33,17 @@
   margin-bottom: 10px;
 };
 
-.avg-rating-spacing {
+.stars {
+  display: flex;
+  justify-content: space-around;
+  margin-left: -99px;
+  padding-bottom: 14px;
+}
+
+.avg-rating {
   grid-column: 1;
   grid-row: 2;
-  font-size: 80px;
+  font-size: 82px;
   text-align: center;
 };
 
@@ -59,13 +66,13 @@
 
 .star-filter {
   display: flex;
-  margin-bottom: 10px;
   flex-wrap: wrap;
   justify-content: center;
+  margin-bottom: 10px;
 };
 
 .filters-container {
   display: flex;
-  margin-bottom: 10px;
   justify-content: center;
+  margin-bottom: 12px;
 };

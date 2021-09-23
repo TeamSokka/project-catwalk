@@ -203,7 +203,7 @@ class RatingsAndReviews extends React.Component {
           this.state.reviewsReady === true
           && (
             <div className="grid-layout">
-              <div className="rating-grid">
+              <div className="rating">
                 <RatingBreakdown
                   metaData={metaData}
                   starSort={this.state.starSort}
