@@ -1,4 +1,4 @@
-import { thisExpression } from '@babel/types';
+// import { thisExpression } from '@babel/types';
 import React from 'react';
 import ReviewList from './ReviewList/ReviewList';
 import WriteReview from './WriteReview/WriteReview';
@@ -164,6 +164,7 @@ class RatingsAndReviews extends React.Component {
 
   sortByStar(e) {
     const { starSort } = this.state;
+
     if (starSort.indexOf(e.target.id) === -1) {
       var starSortTemp = this.state.starSort.slice();
       starSortTemp.push(Number(e.target.id));

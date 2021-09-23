@@ -26,8 +26,8 @@ class RatingBreakdownEntry extends React.Component {
 
     return (
       <div id={this.props.rating}
-        style={linkStyle}
         onClick={this.props.sortByStar}
+        style={linkStyle}
         className="star-bar"
         className="star-bar-flex"
         onMouseEnter={() => { this.toggleHover(true) }}
