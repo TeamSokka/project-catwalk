@@ -1,6 +1,5 @@
 import React from 'react';
 import '../Styles/photo-entry.scss'
-
 class PhotoEntry extends React.Component {
   constructor(props) {
     super(props);
@@ -29,8 +28,3 @@ class PhotoEntry extends React.Component {
 }
 
 export default PhotoEntry;
-
-/*
-photos: [{…}]
-{id: 1595336, url: "wwww.etc"}
-*/

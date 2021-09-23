@@ -53,6 +53,7 @@ class ProductBreakdown extends React.Component {
             </div>
           )
         }
+
         {
           this.props.metaData.characteristics.Fit
           && (
@@ -88,6 +89,7 @@ class ProductBreakdown extends React.Component {
             </div>
           )
         }
+
         {
           this.props.metaData.characteristics.Length
           && (
@@ -124,6 +126,7 @@ class ProductBreakdown extends React.Component {
             </div>
           )
         }
+
         {
           this.props.metaData.characteristics.Quality
           && (
@@ -160,6 +163,7 @@ class ProductBreakdown extends React.Component {
             </div>
           )
         }
+
         {
           this.props.metaData.characteristics.Size
           && (
@@ -195,6 +199,7 @@ class ProductBreakdown extends React.Component {
             </div>
           )
         }
+
         {
           this.props.metaData.characteristics.Width
           && (
@@ -215,7 +220,6 @@ class ProductBreakdown extends React.Component {
                 }}
               />
               <div className="characteristics-bar"></div>
-
               <div className="characteristics-trait">
                 <div className="margin-right">
                   Too narrow
@@ -236,35 +240,3 @@ class ProductBreakdown extends React.Component {
 }
 
 export default ProductBreakdown;
-
-
-/*
-{
-  "product_id": "40348",
-    "ratings": {
-    "3": "1",
-      "4": "1"
-  },
-  "recommended": {
-    "true": "2"
-  },
-  "characteristics": {
-    "Size": {
-      "id": 135232,
-        "value": "4.0000000000000000"
-    },
-    "Width": {
-      "id": 135233,
-        "value": "3.5000000000000000"
-    },
-    "Comfort": {
-      "id": 135234,
-        "value": "4.0000000000000000"
-    },
-    "Quality": {
-      "id": 135235,
-        "value": "3.5000000000000000"
-    }
-  }
-}
-*/
