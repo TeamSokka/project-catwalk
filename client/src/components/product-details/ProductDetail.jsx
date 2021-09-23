@@ -78,9 +78,11 @@ class ProductDetail extends React.Component {
   handleThumbnailClick(event) {
     event.preventDefault();
     console.log('event.target.dataset.index:', event.target.dataset.index);
+    console.log('typeof event.target.dataset.index:', typeof event.target.dataset.index);
     console.log('event.target.id:', event.target.id);
+    let newPhotoIndex = parseInt(event.target.dataset.index);
     this.setState({
-      selectedPhotoIndex: event.target.dataset.index
+      selectedPhotoIndex: newPhotoIndex
     });
 
     if (document.getElementById('selected-image')) {
