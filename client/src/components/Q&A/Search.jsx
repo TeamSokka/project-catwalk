@@ -5,7 +5,6 @@ import QuestionList from './QuestionList.jsx';
 
 const Search = (props) => {
   const { questions, productID, productInfo, postQuestion, postAnswer } = props;
-  const [filtered, setFiltered] = useState(props.questions);
   const [query, setQuery] = useState('');
 
   const searchList = (array) => {

@@ -68,7 +68,7 @@ const Question = (props) => {
         }
       </div>
       {answers.sort((a, b) =>
-      a.helpfulness > b.helpfulness ? 1 : -1)
+      a.helpfulness > b.helpfulness ? -1 : 1)
         .slice(0, display).map((answer, index) =>
         <Answer key={index} answer={answer}
         />
