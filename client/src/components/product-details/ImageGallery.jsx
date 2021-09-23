@@ -54,7 +54,7 @@ var ImageGallery = (props) => (
           ></img>
           : <p><em>Getting photos...</em></p>
     }
-      <div>
+      <div width="700px">
         {props.selectedPhotoIndex > 0 && <FaChevronCircleLeft className="gallery-arrow left" onClick={props.handleLeftArrowClick}/>}
 
         {props.selectedPhotoIndex < props.photos.length - 1 && <FaChevronCircleRight className="gallery-arrow right" onClick={props.handleRightArrowClick}/>}

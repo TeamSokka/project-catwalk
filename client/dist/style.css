@@ -30,9 +30,11 @@ app {
   position: relative;
   align-items: center;
   align-self: left;
-  align-self: stretch;
+  justify-content: space-around;
+  /* align-self: stretch; */
   /* height: 700px; */
   width: 90px;
+  /* height: 500px; */
   padding: 5px;
   /* overflow: scroll; */
   background:rgba(176, 178, 185, 0.4);
@@ -70,7 +72,7 @@ app {
 
   /* grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
   grid-template-rows: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%; */
-  height: 750px;
+  height: auto;
   width: 700px;
 }
 
@@ -98,6 +100,7 @@ app {
 
 .gallery-arrow.left {
   align-self: center;
+  justify-self: start;
   /* grid-column-start: 5;
   grid-row-start: 5; */
   z-index: 20;
@@ -105,6 +108,7 @@ app {
 
 .gallery-arrow.right {
   align-self: center;
+  justify-self: end;
   /* grid-column-end: 5;
   grid-row-start: 5; */
   z-index: 20;

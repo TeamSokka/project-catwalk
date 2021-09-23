@@ -77,20 +77,20 @@ class ProductDetail extends React.Component {
 
   handleThumbnailClick(event) {
     event.preventDefault();
-    console.log('event.target.dataset.index:', event.target.dataset.index);
-    console.log('typeof event.target.dataset.index:', typeof event.target.dataset.index);
-    console.log('event.target.id:', event.target.id);
+    // console.log('event.target.dataset.index:', event.target.dataset.index);
+    // console.log('typeof event.target.dataset.index:', typeof event.target.dataset.index);
+    // console.log('event.target.id:', event.target.id);
     let newPhotoIndex = parseInt(event.target.dataset.index);
     this.setState({
       selectedPhotoIndex: newPhotoIndex
     });
 
     if (document.getElementById('selected-image')) {
-      console.log('prev selected img:', document.getElementById('selected-image'));
+      // console.log('prev selected img:', document.getElementById('selected-image'));
       document.getElementById('selected-image').id = '';
       event.target.id = 'selected-image';
     } else {
-      console.log('Cannot getElementById "selected-image"');
+      console.error('Cannot getElementById "selected-image"');
     }
     event.target.classList.toggle('selected');
   }
@@ -163,8 +163,8 @@ class ProductDetail extends React.Component {
     // });
     // console.log('styles:', this.state.styles);
     // console.log('selected style:', this.state.selectedStyle);
-    console.log('state:', this.state)
-    console.log('this.props:', this.props);
+    // console.log('state:', this.state)
+    // console.log('this.props:', this.props);
   }
 
   render() {
@@ -191,7 +191,6 @@ class ProductDetail extends React.Component {
               topThumbnail={this.state.topThumbnail}
               handleLeftArrowClick={this.handleLeftArrowClick.bind(this)}
               handleRightArrowClick={this.handleRightArrowClick.bind(this)}
-              handleExitExpandedClick
               handleExitExpandedClick={this.handleExitExpandedClick.bind(this)}
         />
         }
