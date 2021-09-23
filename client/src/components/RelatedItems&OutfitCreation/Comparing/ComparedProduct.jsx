@@ -1,10 +1,12 @@
 import React from 'react';
 import './comparing.scss';
 
-const ComparedProduct = () => {
+const ComparedProduct = (props) => {
+  const {name} = props;
+
   return (
     <div id="compared-product">
-      <h4>Compared Product Name</h4>
+      <h4>{name}</h4>
     </div>
   )
 }

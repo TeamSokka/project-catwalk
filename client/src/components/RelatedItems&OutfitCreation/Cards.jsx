@@ -8,6 +8,7 @@ const Cards = (props) => {
   const { productInfo, relatedProducts } = props;
   const [outfits, setOutfits] = useState([])
   const [comparingModal, setComparingModal] = useState(false);
+  const [comparedProduct, setComparedProduct] = useState(undefined)
 
   const handleAddOutfit = (outfit) => {
     setOutfits([...outfits, outfit]);
@@ -17,11 +18,11 @@ const Cards = (props) => {
     setOutfits(outfits => (outfits.filter((outfit, i) => i !== id)))
   }
   const handleComparison = (id) => {
-    // console.log('handleComparison', relatedProducts[id]);
+    setComparedProduct(relatedProducts[id]);
     setComparingModal(true);
   }
   const exitComparison = (e) => {
-    console.log('hit');
+    setComparedProduct(undefined);
     setComparingModal(false);
   }
 
@@ -45,7 +46,7 @@ const Cards = (props) => {
         comparingModal && (
           <Comparing
             productInfo={productInfo}
-            relatedProducts={relatedProducts}
+            comparedProduct={comparedProduct}
             exitComparison={exitComparison}
           />
         )
