@@ -1,7 +1,7 @@
 import React from 'react';
 import OutfitImages from './OutfitImages';
 import OutfitInformation from './OutfitInformation';
-import { VscTriangleLeft, VscTriangleRight } from 'react-icons/vsc';
+// import { VscTriangleLeft, VscTriangleRight } from 'react-icons/vsc';
 import '../related-items.scss';
 
 const OutfitCard = (props) => {
@@ -24,9 +24,9 @@ const OutfitCard = (props) => {
 
   return (
     <div id="outfit-product-card">
-      <VscTriangleLeft />
+      {/* <VscTriangleLeft /> */}
       {outfit}
-      <VscTriangleRight />
+      {/* <VscTriangleLeft /> */}
     </div>
   )
 }

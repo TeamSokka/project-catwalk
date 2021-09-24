@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import App from '../client/src/components/App'
-const ProductDetail = require('../client/src/components/product-details/ProductDetail.jsx');
+import App from '../client/src/components/App';
+import ProductDetail from '../client/src/components/product-details/ProductDetail.jsx';
 
 describe('App', () => {
   it('renders App component', () => {
@@ -33,6 +33,13 @@ describe('ImageGallery', () => {
 describe('ThumbnailList', () => {
   it('renders ThumbnailList component', () => {
     render(<App />);
+  });
+});
+
+//Expanded View
+describe('ExpandedView', () => {
+  it('renders ExpandedView component', () => {
+    render(<ExpandedView />);
   });
 });
 
