@@ -5,7 +5,7 @@ import Comparing from './Comparing/Comparing';
 import axios from 'axios';
 
 const Cards = (props) => {
-  const { productInfo, relatedProducts } = props;
+  const { productInfo, relatedProducts, handleProductChange } = props;
   const [outfits, setOutfits] = useState([])
   const [comparingModal, setComparingModal] = useState(false);
   const [comparedProduct, setComparedProduct] = useState(undefined)
@@ -33,6 +33,7 @@ const Cards = (props) => {
         productInfo={productInfo}
         relatedProducts={relatedProducts}
         handleComparison={handleComparison}
+        handleProductChange={handleProductChange}
       />
 
       <h3 id="outfit-title">YOUR OUTFIT</h3>
