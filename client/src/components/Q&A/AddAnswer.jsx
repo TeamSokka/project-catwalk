@@ -25,9 +25,9 @@ const AddAnswer = (props) => {
       alert(`${message} Please provide email in the correct format`);
       return;
     }
-    console.log('answers ', { body, name, email });
+    // console.log('answers ', { body, name, email });
     postAnswer({ body, name, email }, question.question_id);
-    console.log('photos', photos);
+    // console.log('photos', photos);
   }
 
   return (
