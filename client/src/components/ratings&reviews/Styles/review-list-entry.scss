@@ -6,7 +6,7 @@ body {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(6, 1fr);
-  border-bottom: 1px solid grey;
+  border-bottom: 1px solid white;
   padding-top: 3px;
   padding-bottom: 10px;
   width: 720px;
@@ -23,7 +23,7 @@ body {
   text-align: right;
   grid-row: 1;
   grid-column: 2;
-  color: grey;
+  color: white;
   font-size: 16px;
 };
 
@@ -32,7 +32,7 @@ body {
   text-align: center;
   grid-row: 1;
   grid-column: 3;
-  color: grey;
+  color: whitesmoke;
   font-size: 16px;
 };
 
@@ -56,12 +56,12 @@ body {
   font-size: 13px;
   grid-row: 5;
   grid-column-end: span 3;
-  background-color: lightgrey;
+  background-color: whitesmoke;
 };
 
 .recommend-layout {
   padding: 5px;
-  color: grey;
+  color: whitesmoke;
   font-size: 14px;
   grid-row: 6;
   grid-column: 1/-1;
@@ -69,7 +69,7 @@ body {
 
 .helpfulness-layout {
   padding: 7px;
-  color: grey;
+  color: white;
   font-size: 14px;
   grid-row-end: 7;
   grid-column-end: span 3;
