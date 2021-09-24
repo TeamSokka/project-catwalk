@@ -1,5 +1,6 @@
 import React, { Suspense } from 'react';
 
+import Banner from './Banner.jsx';
 import QuestionsAndAnswers from '../components/Q&A/QuestionsAndAnswers.jsx';
 import Cards from './RelatedItems&OutfitCreation/Cards';
 import RatingsAndReviews from './ratings&reviews/RatingsAndReviews';
@@ -17,7 +18,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productID: 40348, // example product id, change to num
+      productID: 40344, // example product id, change to num
       productInfo: {},
       relatedProducts: [],
       styles: [],
@@ -25,15 +26,25 @@ class App extends React.Component {
       metaData: {},
       metaReady: false,
     }
-    // this.fetchMeta = this.fetchMeta.bind(this);
   }
 
   componentDidMount() {
     const { productInfo, productID } = this.state;
+    this.initLoadData(productID);
+    this.setState({
+      ...this.state,
+      isLoading: false
+    })
+  }
 
+  initLoadData = (id) => {
+    this.setState({
+      ...this.state,
+      isLoading: true
+    });
     this.fetchMeta();
-    this.getRelated(productID);
-    this.getProductInfo(productID);
+    this.getRelated(id);
+    this.getProductInfo(id);
     this.getStyles();
   }
 
@@ -42,9 +53,7 @@ class App extends React.Component {
       productInfo: data
     })
   }
-  /*stormi: refactor function to take in id, callback. The callback is defaulted to setProductInfo.
-    This allows me to pass in a custom callback without changing the productInfo state
-  */
+
   getProductInfo = (id, callback = this.setProductInfo) => {
     axios.get(`/products/${id}`)
       .then(({ data }) => {
@@ -58,13 +67,10 @@ class App extends React.Component {
   getStyles() {
     axios.get(`/products/${this.state.productID}/styles`)
       .then((res) => {
-        // console.log('skus[0]:', Object.keys(res.data.results[0].skus)[0])
         this.setState({
           styles: res.data.results,
           selectedStyle: res.data.results[0],
-          // selectedSize: res.data.results[0].skus[Object.keys(res.data.results[0].skus)[0]]
         });
-        // console.log('state:', this.state)
       })
       .catch((err) => {
         console.error(err);
@@ -73,8 +79,6 @@ class App extends React.Component {
 
   handleStyleSelect(event) {
     event.preventDefault();
-    // console.log('event.target:', event.target);
-    // console.log('event.target.dataset.index:', event.target.dataset.index);
     this.setState({
       selectedStyle: this.state.styles[event.target.dataset.index]
     })
@@ -83,7 +87,6 @@ class App extends React.Component {
   getRelated = () => {
     axios.get(`/products/${this.state.productID}/related`)
       .then((res) => {
-        // console.log('related products recd:', res.data);
         this.setState({
           relatedProducts: res.data
         })
@@ -93,7 +96,18 @@ class App extends React.Component {
       });
   }
 
-  // Get meta reviews
+  handleProductChange = (id) => {
+    // console.log('id: ', id);
+    const { isLoading } = this.state;
+    if (isLoading) return;
+    this.initLoadData(id);
+    this.setState({
+      ...this.state,
+      productID: id,
+      isLoading: false
+    });
+  }
+
   fetchMeta() {
     const { productID } = this.state;
     axios.get(`/reviews/meta/?product_id=${productID}`)
@@ -111,15 +125,13 @@ class App extends React.Component {
   render() {
     const { productID, productInfo, relatedProducts, styles, selectedStyle, metaData, metaReady } = this.state;
 
-    // console.log('app state// productInfo', productInfo);
-    // console.log('app state// relatedPro', relatedProducts);
-
     return (
       <div>
         {/* <Suspense fallback={<div>Loading...</div>}>
           <section>
           </section>
         </Suspense> */}
+        <Banner />
 
         <ProductDetail
           productID={productID}
@@ -135,6 +147,7 @@ class App extends React.Component {
         <Cards
           productInfo={productInfo}
           relatedProducts={relatedProducts}
+          handleProductChange={this.handleProductChange}
         />
 
         <QuestionsAndAnswers
