@@ -25,6 +25,7 @@ class App extends React.Component {
       selectedStyle: { photos: [], skus: {} },
       metaData: {},
       metaReady: false,
+      questions: [],
     }
   }
 
@@ -46,6 +47,7 @@ class App extends React.Component {
     this.getRelated(id);
     this.getProductInfo(id);
     this.getStyles();
+    this.getQuestions(id);
   }
 
   setProductInfo = (data) => {
@@ -96,6 +98,20 @@ class App extends React.Component {
       });
   }
 
+  getQuestions(id) {
+    axios.get('/qa/questions', {
+      params: {
+        product_id: id
+      }
+    })
+      .then((res) => {
+        this.setState({
+          questions: res.data.results,
+        })
+      })
+      .catch((err) => console.log('Error receiving questions ', err));
+  }
+
   handleProductChange = (id) => {
     // console.log('id: ', id);
     const { isLoading } = this.state;
@@ -123,7 +139,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { productID, productInfo, relatedProducts, styles, selectedStyle, metaData, metaReady } = this.state;
+    const { productID, productInfo, relatedProducts, styles, selectedStyle, metaData, metaReady, questions } = this.state;
 
     return (
       <div>
@@ -153,6 +169,8 @@ class App extends React.Component {
         <QuestionsAndAnswers
           productID={productID}
           productInfo={productInfo}
+          getQuestions={this.getQuestions.bind(this)}
+          questions={questions}
         />
 
         {

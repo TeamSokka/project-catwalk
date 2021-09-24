@@ -8,40 +8,40 @@ class QuestionsAndAnswers extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      questions: [],
-    };
-    this.getQuestions = this.getQuestions.bind(this);
+    // this.state = {
+    //   questions: [],
+    // };
+    // this.getQuestions = this.getQuestions.bind(this);
   }
 
-  componentDidMount() { this.getQuestions() }
+  componentDidMount() { this.props.getQuestions() }
 
-  getQuestions() {
-    const { productID } = this.props;
-    axios.get('/qa/questions', {
-      params: {
-        product_id: productID
-      }
-    })
-      .then((res) => {
-        this.setState({
-          questions: res.data.results,
-        })
-      })
-      .catch((err) => console.log('Error receiving questions ', err));
-  }
+  // getQuestions() {
+  //   const { productID } = this.props;
+  //   axios.get('/qa/questions', {
+  //     params: {
+  //       product_id: productID
+  //     }
+  //   })
+  //     .then((res) => {
+  //       this.setState({
+  //         questions: res.data.results,
+  //       })
+  //     })
+  //     .catch((err) => console.log('Error receiving questions ', err));
+  // }
 
   handleChange(e) { this.setState({ [e.target.id]: e.target.value }) }
 
   postQuestion(body) {
     axios.post('/qa/questions/', body)
-      .then(() => this.getQuestions())
+      .then(() => this.props.getQuestions())
       .catch((err) => console.log('Error adding question ', err));
   }
 
   postAnswer(body, id) {
     axios.post(`/qa/questions/${id}/answers`, body)
-      .then(() => this.getQuestions())
+      .then(() => this.props.getQuestions())
       .catch((err) => console.log('Error adding answer ', err));
   }
 
@@ -51,7 +51,7 @@ class QuestionsAndAnswers extends React.Component {
       <div>
         <h3>QUESTIONS & ANSWERS</h3>
         <Search
-          questions={this.state.questions}
+          questions={this.props.questions}
           productID={this.props.productID}
           productInfo={this.props.productInfo}
           postQuestion={this.postQuestion.bind(this)}
