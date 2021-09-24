@@ -3,7 +3,7 @@ import Question from './Question.jsx';
 import AddQuestion from './AddQuestion.jsx';
 
 const QuestionList = (props) => {
-  const { questions, handleClick, productID, productInfo, postQuestion, postAnswer } = props;
+  const { questions, productID, productInfo, postQuestion, postAnswer } = props;
   const [display, setDisplay] = useState(4);
   const [modal, setModal] = useState(false);
   let loadMoreQuestions = questions.length > display &&
@@ -14,7 +14,8 @@ const QuestionList = (props) => {
       {questions.length > 0 &&
         <div className='question-list'>
           {questions.length > 0 && props.questions.slice(0, display).map((question) => (
-            <Question key={question.question_id} question={question}
+            <Question key={question.question_id}
+              question={question}
               postAnswer={postAnswer}
               productID={productID}
               productInfo={productInfo}

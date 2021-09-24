@@ -41,13 +41,13 @@ describe('<CharacteristicsList />', () => {
 
 describe('<CharacteristicsListEntry />', () => {
   test('renders CharacteristicsListEntry component', () => {
-    render(<CharacteristicsListEntry characteristic={metaDummy.characteristics[Size]} options={characteristicOptions[Size]} />);
+    render(<CharacteristicsListEntry characteristic={metaDummy.characteristics["Size"]} options={characteristicOptions["Size"]} />);
   });
 });
 
 describe('<ReviewList />', () => {
   test('renders ReviewList component', () => {
-    render(<ReviewList reviewList={reviewsDummy.results} />);
+    render(<ReviewList reviewList={reviewsDummy.results} starSort={[5, 4, 3]} />);
   });
 });
 

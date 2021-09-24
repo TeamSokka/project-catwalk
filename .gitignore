@@ -14,6 +14,8 @@
 
 # Runtime data
 client/dist/bundle.js
+client/dist/bundle.js.gz
+client/dist/.gz
 config.js
 
 # User-specific files (MonoDevelop/Xamarin Studio)

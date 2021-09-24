@@ -7,68 +7,35 @@ class SortOptions extends React.Component {
   }
 
   totalReviews(obj) {
-    const total = Number(obj.false) + Number(obj.true);
+    var sum1;
+    var sum2;
+    if (obj.false === undefined) {
+      sum1 = 0;
+    } else {
+      sum1 = Number(obj.false);
+    }
+
+    if (obj.true === undefined) {
+      sum2 = 0;
+    } else {
+      sum2 = Number(obj.true);
+    }
+    const total = sum1 + sum2;
     return total;
   }
 
   render() {
     return (
-      <div style={{ fontFamily: 'arial' }}>
-        {`${this.totalReviews(this.props.metaData.recommended)} reviews, sorted by`}
+      <div>
+        {`${this.props.reviewsDisplayed} reviews, sorted by`}
         <select value={this.props.sortOption} className="options-bar" onChange={this.props.sortChange}>
           <option value="Helpful">Helpful</option>
           <option value="Newest">Newest</option>
           <option value="Relevant">Relevant</option>
         </select>
-      </div>
+      </div >
     )
   }
 }
 
 export default SortOptions;
-
-/*
-<SortOptions
-  metaData={this.state.metaData}
-  sortOption={this.state.sortOption}
-  sortChange={this.sortChange}
-/>
-# reviews, sorted by ___
-
-Form - React Documentation
-options
-Helpful
-Newest
-Relevant
-*/
-
-/*
-{
-  "product_id": "40348",
-    "ratings": {
-    "3": "1",
-      "4": "1"
-  },
-  "recommended": {
-    "true": "2"
-  },
-  "characteristics": {
-    "Size": {
-      "id": 135232,
-        "value": "4.0000000000000000"
-    },
-    "Width": {
-      "id": 135233,
-        "value": "3.5000000000000000"
-    },
-    "Comfort": {
-      "id": 135234,
-        "value": "4.0000000000000000"
-    },
-    "Quality": {
-      "id": 135235,
-        "value": "3.5000000000000000"
-    }
-  }
-}
-*/

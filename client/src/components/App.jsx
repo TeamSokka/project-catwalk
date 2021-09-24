@@ -1,16 +1,21 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 
 import QuestionsAndAnswers from '../components/Q&A/QuestionsAndAnswers.jsx';
-import RelatedItems from './RelatedItems&OutfitCreation/RelatedItems';
+import Cards from './RelatedItems&OutfitCreation/Cards';
 import RatingsAndReviews from './ratings&reviews/RatingsAndReviews';
 import ProductDetail from './product-details/ProductDetail.jsx';
+
+
+// const QuestionsAndAnswers = React.lazy(() => import('../components/Q&A/QuestionsAndAnswers.jsx'));
+// const RelatedItems = React.lazy(() => import('./RelatedItems&OutfitCreation/RelatedItems'));
+// const RatingsAndReviews = React.lazy(() => import('./ratings&reviews/RatingsAndReviews'));
+// const ProductDetail = React.lazy(() => import('./product-details/ProductDetail.jsx'));
 
 const axios = require('axios');
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       productID: 40348, // example product id, change to num
       productInfo: {},
@@ -111,6 +116,11 @@ class App extends React.Component {
 
     return (
       <div>
+        {/* <Suspense fallback={<div>Loading...</div>}>
+          <section>
+          </section>
+        </Suspense> */}
+
         <ProductDetail
           productID={productID}
           productInfo={productInfo}
@@ -122,7 +132,7 @@ class App extends React.Component {
         />
 
 
-        <RelatedItems
+        <Cards
           productInfo={productInfo}
           relatedProducts={relatedProducts}
         />

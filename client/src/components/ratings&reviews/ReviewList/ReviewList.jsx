@@ -2,8 +2,6 @@ import React from "react";
 import ReviewListEntry from "./ReviewListEntry";
 import "../Styles/review-list-entry.scss";
 import { thisExpression } from "@babel/types";
-
-
 class ReviewList extends React.Component {
   constructor(props) {
     super(props);
@@ -27,16 +25,3 @@ class ReviewList extends React.Component {
 
 export default ReviewList;
 
-/*
-<ReviewList
-  reviewList={this.state.reviewList}
-  handlePutReview={this.state.handlePutReview}
-  reviewListEnd={this.state.reviewListEnd}
-/>
-
-Star Rating               User Name + Date
-Review - first line
-Review - rest
-
-Helpful  Yes | Report
-*/

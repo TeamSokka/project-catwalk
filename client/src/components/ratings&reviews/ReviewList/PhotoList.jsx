@@ -1,10 +1,6 @@
 import React from 'react';
 import PhotoEntry from './PhotoEntry';
-
-const imgContainer = {
-  display: 'flex',
-};
-
+import '../Styles/photo-entry.scss'
 class PhotoList extends React.Component {
   constructor(props) {
     super(props);
@@ -12,7 +8,7 @@ class PhotoList extends React.Component {
   render() {
     return (
       <div>
-        <div style={imgContainer}>
+        <div className="img-container">
           {this.props.photos.map((photo) => (
             <PhotoEntry photo={photo} key={photo.id} />
           ))}
@@ -23,8 +19,3 @@ class PhotoList extends React.Component {
 }
 
 export default PhotoList;
-
-/*
-photos: [{…}]
-{id: 1595336, url: "wwww.etc"}
-*/
