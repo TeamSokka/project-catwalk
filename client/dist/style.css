@@ -2,6 +2,13 @@ app {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
+.banner {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: steelblue;
+}
+
 #overview-box {
   display: flex;
   flex-direction: row;
