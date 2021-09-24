@@ -9,6 +9,10 @@ app {
   background-color: steelblue;
 }
 
+.title {
+  text-align: center;
+}
+
 #overview-box {
   display: flex;
   flex-direction: row;

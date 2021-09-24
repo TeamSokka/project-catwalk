@@ -5,7 +5,8 @@ var Banner = (props) => (
     <div className="home-button">Home</div>
     <div className="title">
       <span><h1>Project Catwalk</h1></span>
-      <p>Purrfect fashion to suit your pawsonal style. Right <em>meow.</em></p>
+      {/* <p>Purrfect fashion to suit your pawsonal style. Right <em>meow.</em></p> */}
+      <p>Fashion for both poles and everywhere in between.</p>
     </div>
     <form>
       <label>
