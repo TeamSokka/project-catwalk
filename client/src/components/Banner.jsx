@@ -13,20 +13,10 @@ var Banner = (props) => (
       <div className="about-us">About Us</div>
     </div>
 
-    {/* <img src={image} alt=""> */}
     <div className="title">
       <span><h1>Sokka</h1></span>
-      {/* <p>Purrfect fashion to suit your pawsonal style. Right <em>meow.</em></p> */}
       <p className="sub-title">Fashion for both poles and everywhere in between.</p>
     </div>
-
-    {/* <form>
-      <label>
-        Search:
-        <input type="text" name="search" />
-      </label>
-      <input type="submit" value="Search" />
-    </form> */}
   </div>
 )
 
