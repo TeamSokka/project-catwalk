@@ -6,6 +6,7 @@ import Cards from './RelatedItems&OutfitCreation/Cards';
 import RatingsAndReviews from './ratings&reviews/RatingsAndReviews';
 import ProductDetail from './product-details/ProductDetail.jsx';
 
+// import "../../dist/style.css";
 
 // const QuestionsAndAnswers = React.lazy(() => import('../components/Q&A/QuestionsAndAnswers.jsx'));
 // const RelatedItems = React.lazy(() => import('./RelatedItems&OutfitCreation/RelatedItems'));
@@ -18,7 +19,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productID: 40344, // example product id, change to num
+      productID: 40347, // example product id, change to num
       productInfo: {},
       relatedProducts: [],
       styles: [],
