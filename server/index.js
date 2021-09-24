@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const PORT = 3000;
+const cors = require('cors');
 const app = express();
 
 const axios = require('axios');
@@ -11,6 +12,7 @@ const ratings = require('./helper/ratingsAPI');
 const questions = require('./helper/questionsAPI');
 const interactions = require('./helper/interactionsAPI');
 
+app.use(cors());
 app.use(express.static(path.join(__dirname, '..', 'client/dist')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -176,7 +178,7 @@ app.get('/qa/questions/:question_id/answers', (req, res) => {
 
 // POST Questions
 app.post('/qa/questions', (req, res) => {
-  console.log('body ', req.body);
+  // console.log('body ', req.body);
   questions.postQuestion(req.body, (err, data) => {
     if (err) {
       res.status(400).send(err);
