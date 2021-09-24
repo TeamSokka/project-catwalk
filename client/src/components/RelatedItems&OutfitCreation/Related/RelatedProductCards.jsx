@@ -16,17 +16,17 @@ const RelatedProductCards = (props) => {
     <div
       className="product-card"
       key={index}
-      onClick={() => handleSubmitNewProduct(product.id)}
-    >
+      >
       <ProductPreviewImages
         productStyles={product.styles}
         id={index}
         handleComparison={handleComparison}
-      />
+        />
       <ProductInformation
         relatedProducts={relatedProducts}
         productInfo={productInfo}
         product={product}
+        handleProductChange={handleProductChange}
       />
     </div>
   );

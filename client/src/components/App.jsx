@@ -18,7 +18,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productID: 40345,
+      isLoading: false,
+      productID: 40348,
       productInfo: {},
       relatedProducts: [],
       styles: [],
@@ -30,10 +31,21 @@ class App extends React.Component {
 
   componentDidMount() {
     const { productInfo, productID } = this.state;
+    this.initLoadData(productID);
+    this.setState({
+      ...this.state,
+      isLoading: false
+    })
+  }
 
+  initLoadData = (id) => {
+    this.setState({
+      ...this.state,
+      isLoading: true
+    });
     this.fetchMeta();
-    this.getRelated(productID);
-    this.getProductInfo(productID);
+    this.getRelated(id);
+    this.getProductInfo(id);
     this.getStyles();
   }
 
@@ -86,14 +98,14 @@ class App extends React.Component {
   }
 
   handleProductChange = (id) => {
-    console.log('id: ', id);
-    this.getProductInfo(id);
-    this.getRelated(id);
-    this.fetchMeta();
-    this.getStyles();
+    // console.log('id: ', id);
+    const { isLoading } = this.state;
+    if (isLoading) return;
+    this.initLoadData(id);
     this.setState({
       ...this.state,
-      productID: id
+      productID: id,
+      isLoading: false
     });
   }
 
