@@ -1,20 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-<<<<<<< HEAD
-
 import App from '../client/src/components/App';
-import ProductDetail from '../client/src/components/product-detail/ProductDetail.jsx';
-import AddToCart from '../client/src/components/product-detail/AddToCart.jsx';
-import ImageGallery from '../client/src/components/product-detail/ImageGallery.jsx';
-import ProductInfo from '../client/src/components/product-detail/ProductInfo.jsx';
-import StarRating from '../client/src/components/product-detail/StarRating.jsx';
-import StyleSelector from '../client/src/components/product-detail/StyleSelector.jsx';
-import ThumbnailList from '../client/src/components/product-detail/ThumbnailList.jsx';
-
-=======
-import App from '../client/src/components/App'
-const ProductDetail = require('../client/src/components/product-details/ProductDetail.jsx');
->>>>>>> 53f26ecbd7a9f98d1c20d64d4db4a2fa24bbb415
+import ProductDetail from '../client/src/components/product-details/ProductDetail.jsx';
 
 describe('App', () => {
   it('renders App component', () => {
@@ -46,6 +33,13 @@ describe('ImageGallery', () => {
 describe('ThumbnailList', () => {
   it('renders ThumbnailList component', () => {
     render(<App />);
+  });
+});
+
+//Expanded View
+describe('ExpandedView', () => {
+  it('renders ExpandedView component', () => {
+    render(<ExpandedView />);
   });
 });
 

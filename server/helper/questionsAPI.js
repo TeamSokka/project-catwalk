@@ -13,7 +13,7 @@ const api = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp';
 
 
 const getQuestions = (id, callback) => {
-  axios.get(`${api}/qa/questions?product_id=${id}`, {
+  axios.get(`${api}/qa/questions?product_id=${id}&count=100`, {
     headers: {
       'User-Agent': 'request',
       Authorization: `${config.TOKEN}`,
