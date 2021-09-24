@@ -6,7 +6,7 @@ import ProductInfo from './ProductInfo.jsx';
 import StyleSelector from './StyleSelector.jsx';
 import AddToCart from './AddToCart.jsx';
 import ExpandedView from './ExpandedView.jsx';
-import data from './data/dummy-data.js';
+// import data from './data/dummy-data.js';
 
 class ProductDetail extends React.Component {
   constructor(props) {
