@@ -1,5 +1,6 @@
 import React, { Suspense } from 'react';
 
+import Banner from './Banner.jsx';
 import QuestionsAndAnswers from '../components/Q&A/QuestionsAndAnswers.jsx';
 import Cards from './RelatedItems&OutfitCreation/Cards';
 import RatingsAndReviews from './ratings&reviews/RatingsAndReviews';
@@ -120,6 +121,7 @@ class App extends React.Component {
           <section>
           </section>
         </Suspense> */}
+        <Banner />
 
         <ProductDetail
           productID={productID}
