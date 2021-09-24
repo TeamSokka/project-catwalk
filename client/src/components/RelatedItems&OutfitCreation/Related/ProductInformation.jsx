@@ -17,7 +17,7 @@ const ProductInformation = (props) => {
       <span id="info-category">{product.category}</span>
       <span id="info-name">{product.name}</span>
       <span id="info-price">${price}</span>
-      <span>Star Rating</span>
+      {/* <span>Star Rating</span> */}
     </div>
   )
 }

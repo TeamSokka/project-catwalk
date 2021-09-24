@@ -17,7 +17,7 @@
 
 .star-font {
   font-size: 13px;
-  color: grey;
+  color: whitesmoke;
 };
 
 .grid-layout {
@@ -31,6 +31,7 @@
   display: flex;
   justify-content: center;
   margin-bottom: 10px;
+  color: white;
 };
 
 .stars {
@@ -50,7 +51,7 @@
 .header {
   grid-row: 1;
   grid-column: 1;
-  color: grey;
+  color: white;
   text-align: center;
   font-size: 15px;
   font-weight: bold;
