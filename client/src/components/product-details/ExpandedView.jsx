@@ -18,35 +18,43 @@ var ExpandedView = (props) => (
   <div id="expanded-image-gallery">
     <div id="dot-list">
       {props.photos.map((photo, index) =>
-        {props.photos.indexOf(photo) === props.selectedPhotoIndex
-          ? <FaCircle id="selected-dot" key={props.photos.indexOf(photo)} data-index={props.photos.indexOf(photo)} width="25px"/>
-          : <FaRegCircle id="" key={props.photos.indexOf(photo)} data-index={props.photos.indexOf(photo)} width="25px"/>
-        }
+        // (
+        //   <FaRegCircle key={props.photos.indexOf(photo)} data-index={props.photos.indexOf(photo)} onClick={props.handleThumbnailClick} />
+        // )
+        props.photos.indexOf(photo) === props.selectedPhotoIndex
+          ? <FaCircle id="selected-dot" key={props.photos.indexOf(photo)} data-index={props.photos.indexOf(photo)} width="25px" onClick={props.handleThumbnailClick}/>
+          : <FaRegCircle id="" key={props.photos.indexOf(photo)} data-index={props.photos.indexOf(photo)} width="25px" onClick={props.handleThumbnailClick} />
+
       )}
     </div>
     <div className="main-image-box-expanded">
     {props.photos.length
-      ? <div
+      ? <img
           id="expanded-main-image"
           src={props.photos[props.selectedPhotoIndex].url}
-          style={{
-            backgroundImage: `url(${props.photos[props.selectedPhotoIndex].url})`,
-            backgroundSize: 'cover',
-            backgroundRepeat: 'no-repeat',
-            zIndex: '7',
-            }}
+          onClick={props.handleExitExpandedClick}
+          // style={{
+          //   backgroundImage: `url(${props.photos[props.selectedPhotoIndex].url})`,
+          //   backgroundSize: 'fit',
+          //   backgroundRepeat: 'no-repeat',
+          //   zIndex: '7',
+          //   overflow: 'scroll',
+          //   }}
           // style={{
           //   backgroundImage: `url(${props.photos[props.selectedPhotoIndex].url})`,
           //
           // }}
           >
+            </img>
+        : <p><em>Getting photos...</em></p>
+      }
+      <div width="700px">
         {props.selectedPhotoIndex > 0 && <FaChevronCircleLeft className="gallery-arrow left" onClick={props.handleLeftArrowClick}/>}
-      {props.selectedPhotoIndex < props.photos.length - 1 &&
-      <FaChevronCircleRight className="gallery-arrow right" onClick={props.handleRightArrowClick}/>}
-      <button className="exit-expanded" onClick={props.handleExitExpandedClick}>Exit Expanded View</button>
+
+        {props.selectedPhotoIndex < props.photos.length - 1 &&
+        <FaChevronCircleRight className="gallery-arrow right" onClick={props.handleRightArrowClick}/>}
       </div>
-      : <p><em>Getting photos...</em></p>
-    }
+      <button className="exit-expanded" onClick={props.handleExitExpandedClick}>Exit Expanded View</button>
     </div>
   </div>
 );
