@@ -6,7 +6,47 @@ app {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
+  padding-left: 50px;
+  padding-right: 50px;
   background-color: steelblue;
+}
+
+.divider{
+  width: 150px;
+  height: auto;
+  display: inline-block;
+}
+
+.logo {
+  /* display: flex;
+  justify-content: flex-start; */
+  text-align: left;
+  /* float: left; */
+}
+
+.nav-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  /* padding-left: 30px; */
+  font-size: 25px;
+  margin: 10px;
+}
+
+.home-button {
+  padding-left: 30px;
+}
+
+.title {
+  text-align: right;
+  font-size: 20px;
+}
+
+.sub-title {
+  text-align: right;
+  font-size: 18px;
+  font-style: italic;
 }
 
 #overview-box {
@@ -229,16 +269,21 @@ app {
 /* STYLE SELECTOR */
 #style-selector {
   margin: 5px;
-  padding: 5px;
+  padding: 1px;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: baseline;
+  flex-wrap: wrap;
 }
 
 .style-option {
   display: flex;
   flex-direction: column;
   align-items: center;
+  max-width: 100px;
+  text-align: center;
+  font-size: 10pt;
+  margin: 5px;
 }
 
 .thumbnail-box {
@@ -246,7 +291,7 @@ app {
   flex-direction: column-reverse;
   align-items: flex-end;
   justify-content: end;
-  margin: 5px;
+  margin: 0px;
   height: 100px;
   /* padding: 5px; */
 }
