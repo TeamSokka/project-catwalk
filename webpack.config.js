@@ -49,19 +49,18 @@ module.exports = {
     new webpack.ProvidePlugin({
       process: 'process/browser',
     }),
+    new webpack.DefinePlugin({
+      "process.env": {
+        NODE_ENV: JSON.stringify("development"),
+      },
+    }),
+    new webpack.optimize.AggressiveMergingPlugin(),
+    new CompressionPlugin({
+      filename: "[path].gz[query]",
+      algorithm: "gzip",
+      test: /\.js$|\.css$|\.html$/,
+      threshold: 10240,
+      minRatio: 0.8
+    })
   ]
 };
-
-// new webpack.DefinePlugin({
-//   "process.env": {
-//     NODE_ENV: JSON.stringify("development"),
-//   },
-// }),
-// new webpack.optimize.AggressiveMergingPlugin(),
-// new CompressionPlugin({
-//   filename: "[path].gz[query]",
-//   algorithm: "gzip",
-//   test: /\.js$|\.css$|\.html$/,
-//   threshold: 10240,
-//   minRatio: 0.8
-// })

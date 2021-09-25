@@ -11,18 +11,20 @@ const products = require('./helper/productsAPI.js');
 const ratings = require('./helper/ratingsAPI');
 const questions = require('./helper/questionsAPI');
 const interactions = require('./helper/interactionsAPI');
+const compression = require('compression');
 
+app.use(compression());
 app.use(cors());
 app.use(express.static(path.join(__dirname, '..', 'client/dist')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 
-// app.get('*.js', function (req, res, next) {
-//   req.url = req.url + '.gz';
-//   res.set('Content-Encoding', 'gzip');
-//   next();
-// });
+app.get('*.js', function (req, res, next) {
+  req.url = req.url + '.gz';
+  res.set('Content-Encoding', 'gzip');
+  next();
+});
 
 
 // Products
