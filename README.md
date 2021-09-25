@@ -56,11 +56,11 @@ To get a local copy up and running follow these simple example steps.
 
 
 ## Product Overview
-The Product Overview widget displays images and a description of the product based on a provided product ID, with options to view additional images, select alternate styles, and add the item to the user's cart in a speci.
+The Product Overview widget displays images and a description of the product based on a provided product ID, with options to view additional images, select alternate styles, and add the item to the user's cart in a specified size and style.
 
 
 ## Related Products & Outfit Creations
-Related Productsselectiondisplaysalistofproductsspecific tothe
+Related Productsselectiondisplaysalistofproductsspecific totheclientscurr
 ## Questions & Answers
 
 ## Ratings and Reviews
