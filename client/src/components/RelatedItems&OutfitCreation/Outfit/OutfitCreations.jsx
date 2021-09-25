@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import OutfitCard from './OutfitCard';
 import { FiPlus } from 'react-icons/fi';
+import { VscTriangleLeft, VscTriangleRight } from 'react-icons/vsc';
 import '../related-items.scss';
 
 const OutfitCreations = (props) => {
@@ -17,17 +18,17 @@ const OutfitCreations = (props) => {
   }
 
 
+
   return (
     <div id="outfit-card">
       <div id="outfit-product-card">
-      {outfits.length >= 1 ?
+      <VscTriangleLeft />
         <OutfitCard outfits={outfits} handleDeleteOutfit={handleDeleteOutfit}/>
-        :
         <div className="add-outfit" onClick={handleAddNewOutfit}>
           <FiPlus />
           <span>Add to Outfit</span>
-        </div>}
-
+        </div>
+      <VscTriangleRight />
       </div>
     </div>
   )
