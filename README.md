@@ -11,7 +11,10 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-<!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
+![Product Name Screen Shot][product-screenshot1]
+<!-- ![Product Name Screen Shot][product-screenshot2]
+![Product Name Screen Shot][product-screenshot3]
+![Product Name Screen Shot][product-screenshot4] -->
 
 The objective Front End Capstone was to deliver a fully functional e-commerce web application that meets the specifications and requirements outlined by project stakeholders.
 
@@ -146,4 +149,9 @@ Project Link: [https://github.com/TeamSokka/project-catwalk](https://github.com/
 [license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/othneildrew
-[product-screenshot]: images/screenshot.png
+[product-screenshot1]: image/image1.png
+[product-screenshot2]: image/image2.png
+[product-screenshot3]: image/image3.png
+[product-screenshot4]: image/image4.png
+
+
