@@ -3,7 +3,7 @@ import logo from "./water-tribe.png";
 
 var Banner = (props) => (
   <div className="banner">
-    <img className="logo" src={logo} style={{ width: "90px", height: "90px" }}></img>
+    <img className="logo" src={logo} style={{ width: "90px", height: "90px" }} loading="lazy"></img>
 
     <div className="nav-btn">
       <div className="home">Home</div>
