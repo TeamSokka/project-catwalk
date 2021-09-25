@@ -146,8 +146,8 @@ width:100%;
   justify-content: space-between;
   align-self: fixed;
   position: relative;
-  overflow: scroll;
-  overflow:scroll;
+  /* overflow: scroll;
+  overflow:scroll; */
   /* position: fixed; */
 
   /* grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
