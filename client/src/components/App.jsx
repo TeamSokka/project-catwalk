@@ -6,9 +6,9 @@ import Cards from './RelatedItems&OutfitCreation/Cards';
 import RatingsAndReviews from './ratings&reviews/RatingsAndReviews';
 import ProductDetail from './product-details/ProductDetail.jsx';
 
-
+// const Banner = React.lazy(() => import('../components/Banner.jsx'));
 // const QuestionsAndAnswers = React.lazy(() => import('../components/Q&A/QuestionsAndAnswers.jsx'));
-// const RelatedItems = React.lazy(() => import('./RelatedItems&OutfitCreation/RelatedItems'));
+// const Cards = React.lazy(() => import('./RelatedItems&OutfitCreation/Cards.jsx'));
 // const RatingsAndReviews = React.lazy(() => import('./ratings&reviews/RatingsAndReviews'));
 // const ProductDetail = React.lazy(() => import('./product-details/ProductDetail.jsx'));
 
@@ -182,6 +182,7 @@ class App extends React.Component {
             productInfo={productInfo}
           />
         }
+
       </div>
     )
   }
