@@ -16,7 +16,7 @@
 ![Product Name Screen Shot][product-screenshot3]
 ![Product Name Screen Shot][product-screenshot4] -->
 
-The objective Front End Capstone was to deliver a fully functional e-commerce web application that meets the specifications and requirements outlined by project stakeholders.
+The objective of Front End Capstone was to deliver a fully functional e-commerce web application that meets the specifications and requirements outlined by project stakeholders.
 
 Our team of four worked together on a single code base by dividing up the work among team members but working collaboratively to produce a single front end application. We integrated our front end with the existing API for the product, and demonstrate our working application at the end of the project timeline.
 
